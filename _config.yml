@@ -5,6 +5,7 @@ remote_theme: pmarsceill/just-the-docs
 
 repository: https://github.com/JSK-KML/Python-Programming
 
+baseurl: "/Python-Programming"
 
 
 just_the_docs:
