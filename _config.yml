@@ -1,26 +1,19 @@
-# _config.yml
-
 title: Python Programming
 description: Python course labs and exercises
 
-# Enable Just the Docs remote theme
 remote_theme: pmarsceill/just-the-docs
 
-# Set the repository so "Edit this page" links work
 repository: https://github.com/JSK-KML/Python-Programming
 
-# Logo (placed in assets/images/logo.png, see step 4)
 logo: /assets/images/logo.png
 
-# Navigation style
 just_the_docs:
-  # Show sidebar by default
   slicknav: true
-  # Enable nested navigation
   navigation:
     collapse: true
-  # Show “Edit this page” links
   show_edit_link: true
+  browse_pages: false
+
 
   stylesheets:
     - /assets/css/custom.css
