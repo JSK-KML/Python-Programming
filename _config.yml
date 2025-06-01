@@ -7,13 +7,14 @@ remote_theme: pmarsceill/just-the-docs
 
 just_the_docs:
   slicknav: true
-
-  # Use "nav:" for nested menus in the GitHub Pages / JTD version
-  nav:
-    collapse: true
-
-  show_edit_link: true
+  # Enable only the pages you list; do not auto-list everything
   browse_pages: false
 
+  # Instruct Just the Docs to use _toc.yml for navigation
+  toc:
+    enabled: true
+
+  show_edit_link: true
   stylesheets:
     - /Python-Programming/assets/css/custom.css
+
