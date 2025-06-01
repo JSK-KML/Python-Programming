@@ -2,21 +2,26 @@
   url: /
 
 - title: Labs
+  header: true
+
+- title: Module 1
+  header: true
   children:
-    - title: Module 1
-      children:
-        - title: Lab 01 – Introduction
-          url: /labs/lab01-intro/
-        - title: Lab 02 – Basics
-          url: /labs/lab02-basics/
-    - title: Module 2
-      children:
-        - title: Lab 03 – Advanced Topics
-          url: /labs/lab03-advanced/
-        - title: Lab 04 – Final Project
-          url: /labs/lab04-project/
+    - title: Lab 01 – Introduction
+      url: /labs/lab01-intro/
+    - title: Lab 02 – Basics
+      url: /labs/lab02-basics/
+
+- title: Module 2
+  header: true
+  children:
+    - title: Lab 03 – Advanced Topics
+      url: /labs/lab03-advanced/
+    - title: Lab 04 – Final Project
+      url: /labs/lab04-project/
 
 - title: Resources
+  header: true
   children:
     - title: Submission Guide
       url: /submission-guidelines/
