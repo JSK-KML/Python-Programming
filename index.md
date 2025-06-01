@@ -1,6 +1,6 @@
 ---
 title: Home
-permalink: /Python-Programming
+permalink: /
 sidebar: true
 ---
 
