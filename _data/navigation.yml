@@ -19,11 +19,3 @@
       url: /labs/lab03-advanced/
     - title: Lab 04 – Final Project
       url: /labs/lab04-project/
-
-- title: Resources
-  header: true
-  children:
-    - title: Submission Guide
-      url: /submission-guidelines/
-    - title: CI Status
-      url: /ci-status/
