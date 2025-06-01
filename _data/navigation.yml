@@ -1,0 +1,20 @@
+# _data/navigation.yml
+
+- title: Home
+  url: /
+
+- title: Labs
+  children:
+    - title: Lab 01 – Introduction
+      url: /labs/lab01-intro/
+    - title: Lab 02 – [Next Lab Title]
+      url: /labs/lab02-.../
+    - title: Lab 03 – [Next Lab Title]
+      url: /labs/lab03-.../
+
+- title: Resources
+  children:
+    - title: Submission Guide
+      url: /submission-guidelines/
+    - title: CI Status
+      url: /ci-status/
