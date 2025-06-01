@@ -5,7 +5,7 @@ remote_theme: pmarsceill/just-the-docs
 
 repository: https://github.com/JSK-KML/Python-Programming
 
-logo: /assets/images/logo.png
+
 
 just_the_docs:
   slicknav: true

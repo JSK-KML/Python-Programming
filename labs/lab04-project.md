@@ -1,6 +1,6 @@
 ---
 title: Lab 04 – Projects
-sidebar: true
+sidebar: false
 sidebar_label: Lab 04
 permalink: /labs/lab04-project/
 ---
