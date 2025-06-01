@@ -8,14 +8,14 @@
   header: true
   children:
     - title: Lab 01 – Introduction
-      url: /labs/lab01-intro/
+      url: /labs/lab01-intro.md/
     - title: Lab 02 – Basics
-      url: /labs/lab02-basics/
+      url: /labs/lab02-basics.md/
 
 - title: Module 2
   header: true
   children:
     - title: Lab 03 – Advanced Topics
-      url: /labs/lab03-advanced/
+      url: /labs/lab03-advanced.md/
     - title: Lab 04 – Final Project
-      url: /labs/lab04-project/
+      url: /labs/lab04-project.md/
