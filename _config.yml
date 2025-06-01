@@ -16,5 +16,3 @@ just_the_docs:
   browse_pages: false
 
 
-  stylesheets:
-    - /assets/css/custom.css
