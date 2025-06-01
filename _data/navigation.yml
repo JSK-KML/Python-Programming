@@ -1,5 +1,7 @@
+# _data/navigation.yml
+
 - title: Home
-  url: /Python-Programming
+  url: /Python-Programming/
 
 - title: Labs
   header: true
@@ -8,14 +10,14 @@
   header: true
   children:
     - title: Lab 01 – Introduction
-      url: /Python-Programming/labs/lab01-intro.md/
+      url: /Python-Programming/labs/lab01-intro/
     - title: Lab 02 – Basics
-      url: /Python-Programming/labs/lab02-basics.md/
+      url: /Python-Programming/labs/lab02-basics/
 
 - title: Module 2
   header: true
   children:
-    - title: Lab 03 – Advanced Topics
-      url: /Python-Programming/labs/lab03-advanced.md/
-    - title: Lab 04 – Final Project
-      url: /Python-Programming/labs/lab04-project
+    - title: Lab 03 – Advanced
+      url: /Python-Programming/labs/lab03-advanced/
+    - title: Lab 04 – Projects
+      url: /Python-Programming/labs/lab04-project/

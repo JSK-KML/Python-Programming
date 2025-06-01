@@ -1,18 +1,19 @@
+# _config.yml
+
 title: Python Programming
 description: Python course labs and exercises
-
-remote_theme: pmarsceill/just-the-docs
-
-repository: https://github.com/JSK-KML/Python-Programming
-
 baseurl: "/Python-Programming"
-
+remote_theme: pmarsceill/just-the-docs
 
 just_the_docs:
   slicknav: true
-  navigation:
+
+  # Use "nav:" for nested menus in the GitHub Pages / JTD version
+  nav:
     collapse: true
+
   show_edit_link: true
   browse_pages: false
 
-
+  stylesheets:
+    - /Python-Programming/assets/css/custom.css
