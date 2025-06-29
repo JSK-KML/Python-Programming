@@ -1,0 +1,40 @@
+name: Build & Deploy VitePress Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out your repository
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0     # so that we can push to gh-pages
+
+      # 2. Set up Node.js
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # 3. Install dependencies
+      - name: Install npm dependencies
+        run: npm ci
+
+      # 4. Build the VitePress site
+      - name: Build site
+        run: npm run docs:build
+
+      # 5. Deploy to gh-pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages            # the branch the action should deploy to
+          folder: .vitepress/dist     # the folder the action should deploy
+          clean: true                 # remove files in gh-pages that are not in .vitepress/dist
+          token: ${{ secrets.GITHUB_TOKEN }}
