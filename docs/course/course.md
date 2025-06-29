@@ -14,3 +14,4 @@ title : Course Informations
 | Practical Test 3  | 15            | 11                      |
 | Assignment        | 10            | 10 -13                  |
 | Final Exam (PSPM) | 50            | End of Semester 1       |
+
