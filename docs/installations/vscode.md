@@ -18,8 +18,9 @@ Why we use VS Code in this course:
 ## Installing VS Code
 
 1. Go to https://code.visualstudio.com/ and click Download for Windows.
+   
 2. Double-click the downloaded `VSCodeUserSetup-x64-*.exe`.
 
-3. Select Additional Tasks: Maintain the defaults, but it is recommended to tick off the `Create a desktop icon` box.
+3. `Select Additional Tasks`: Maintain the defaults, but it is recommended to tick off the `Create a desktop icon` box.
 
 4. Click `Install`, then `Finish`. 

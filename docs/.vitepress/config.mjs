@@ -16,14 +16,22 @@ export default defineConfig({
 
     sidebar: {
       '/labs/' : [
+
         {
-          text: 'Lab 1',
-          link : 'labs/lab-01'
-        },
-        {
-          text: 'Lab 2',
-          link : 'labs/lab-02'
+          text : 'Labs',
+          collapsed : true,
+          items : [
+            {
+              text: 'Lab 1',
+              link : 'labs/lab-01'
+            },
+            {
+              text: 'Lab 2',
+              link : 'labs/lab-02'
+            }
+          ]
         }
+        
       ],
       '/installations/' : [
         {

@@ -12,7 +12,11 @@ Flowgorithm is a free, open-source visual tool for creating, editing, and execut
 ## Installing Flowgorithm
 
    1. Open your browser and go to https://flowgorithm.org
+   
    2. Click the Download link in the top menu. Under `Windows Installer` section, click the `Windows 64-bit Installer` link and save the installer to your chosen folder.
+   
    3. Double click the downloaded `.zip` folder. No need to unzip the folder first. Inside the folder, click the `Flowgorithm Installer`.
+   
    4. `Select Installation Folder` : Choose any folder that you'd like.
+   
    5. Click `Next` until you see the licence agreement, agree to the Terms and Conditions and click `Install`. That's it and you are good to go!
