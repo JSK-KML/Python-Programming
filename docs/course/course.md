@@ -7,7 +7,6 @@ title : Course Informations
 
 ## Course Assessments
 
-
 | **Assessment**        | **Weightage (%)** | **Planned Timeline (Week)** |
 |-------------------|---------------|-------------------------|
 | Practical Test 1  | 10            | 5                       |
