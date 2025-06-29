@@ -1,5 +1,9 @@
 name: Build & Deploy VitePress Site
 
+# Give GITHUB_TOKEN permission to push commits
+permissions:
+  contents: write
+
 on:
   push:
     branches:
@@ -21,18 +25,15 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        # run npm ci in docs/ so it sees docs/package-lock.json
         run: npm ci --prefix docs
 
       - name: Build VitePress
-        # run the build script (docs:build) in docs/
         run: npm run docs:build --prefix docs
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          # point at the built output under docs/.vitepress/dist
           folder: docs/.vitepress/dist
           clean: true
           token: ${{ secrets.GITHUB_TOKEN }}
