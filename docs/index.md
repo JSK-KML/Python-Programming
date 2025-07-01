@@ -14,7 +14,7 @@ hero:
       link: /installations/git
     - theme: alt
       text: Labs
-      link: /labs/lab01
+      link: /labs/lab-01
 
 features:
   - title: Installations
