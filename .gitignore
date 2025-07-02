@@ -1,5 +1,5 @@
 # Node dependencies and cache
-/.vitepress/
+.vitepress/
 docs/node_modules/
 docs/.vitepress/cache/
 
