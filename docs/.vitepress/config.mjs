@@ -11,7 +11,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Course Informations', link: '/course/course' },
       { text: 'Installations', link: '/installations/git' },
-      { text: 'Labs', link: '/labs/lab-01' }
+      { text: 'Labs', link: '/labs/lab-02' }
     ],
 
     sidebar: {
