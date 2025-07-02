@@ -9,7 +9,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Course Informations', link: '/course/course' },
+      { text: 'About', link: '/course/course' },
       { text: 'Schedule', link: '/course/schedule' },
       { text: 'Installations', link: '/installations/git' },
       { text: 'Labs', link: '/labs/lab-01' }
@@ -66,7 +66,7 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Released under the MIT License.',
+      message: 'Released under the MIT License. All rights reserved.',
       copyright: 'Copyright © 2025-Present Muhammad Aiman Haris'
     },
 

@@ -23,6 +23,27 @@ features:
     details: The labs is a collections of structured and guided instructions that we can do together to understand Python concept better
 ---
 
+::: tip
+Use the navigation links above to explore labs, installation guides and the course schedule.
+:::
+
+<CodeGroup>
+<CodeGroupItem title="Python" active>
+
+```python
+print("Hello, World!")
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="JavaScript">
+
+```js
+console.log("Hello, World!")
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
 
 
 
