@@ -2,3 +2,21 @@
   --vp-c-brand-1: #ff5722;
   --vp-font-family-base: 'Segoe UI', Roboto, sans-serif;
 }
+
+/* Improve homepage hero styling */
+.VPHomeHero {
+  background: linear-gradient(135deg, var(--vp-c-brand-1), #ff9800);
+  color: #fff;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.VPHomeHero .name {
+  font-family: var(--vp-font-family-base);
+  font-size: 3rem;
+}
+
+.VPHomeHero .text {
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
