@@ -1,11 +1,15 @@
 import { defineConfig } from 'vitepress'
+import Theme from './theme'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Python Programming",
   description: "Course and Labs Informations",
   base: '/Python-Programming/',
+  theme: Theme,
   themeConfig: {
+    logo: '/assets/images/profile.jpeg',
+    heroImage: '/assets/images/profile.jpeg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
