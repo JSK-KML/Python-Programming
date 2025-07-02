@@ -22,6 +22,6 @@ title: Course Schedule
 | **12** (22 – 26 Sep 25) | **Topic 7 – Repetition Control Structure**<br>• Counter- vs sentinel-controlled loops | **Selection Control**<br>• if / if-else / if-elif-else usage | **Repetition Control**<br>• IPO / pseudocode / flowchart for **counter-controlled loop** | — |
 | **13** (29 Sep – 3 Oct 25) | **Topic 7 – Repetition Control**<br>• Construct *while* & *for in range* | **Selection Control**<br>• Boolean expressions in selection | **Repetition Control**<br>• IPO / pseudocode / flowchart for **sentinel-controlled loop** | Assignment release |
 | **14** (6 – 10 Oct 25) | **Topic 7 – Repetition Control**<br>• *while* & *for in range* (cont.) | **Selection Control**<br>• Logical ops, multi-condition | **Repetition Control**<br>• Counter/sentinel solution in code | — |
-| **15** (13 – 17 Oct 25) | **Topic 8 – Combination of Control Structures**<br>• Program combining seq / sel / rep | **Selection Control**<br>• Python with various selections | **Combination**<br>• Apply all control structures in problem solving | Assignment |
+| **15** (13 – 17 Oct 25) | **Topic 8 – Combination of Control Structures**<br>• Program combining seq / sel / rep | **Selection Control**<br>• Python with various selections | **Combination**<br>• Apply all control structures in problem solving | Assignment Submission |
 | **16** (20 – 24 Oct 25) | — *(Deepavali week)* | — | **Combination**<br>• Apply all control structures in problem solving | 20-22 Oct Deepavali |
 | **17** (27 – 31 Oct 25) | *(Revision / buffer)* | — | — | — |
