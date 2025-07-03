@@ -10,8 +10,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
 
-      { text: 'About', link: '/course/course' },
-      { text: 'Schedule', link: '/course/schedule' },
+      { text: 'Course Informations', link: '/course/course' },
       { text: 'Installations', link: '/installations/git' },
       { text: 'Tutorials', link: '/tutorials/tutorial-1' },
       { text: 'Labs', link: '/labs/lab-01' },
