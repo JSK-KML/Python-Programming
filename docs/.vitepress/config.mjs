@@ -12,6 +12,7 @@ export default defineConfig({
       { text: 'About', link: '/course/course' },
       { text: 'Schedule', link: '/course/schedule' },
       { text: 'Installations', link: '/installations/git' },
+      { text: 'Tutorials', link: '/tutorials/tutorial-1' },
       { text: 'Labs', link: '/labs/lab-01' }
     ],
 
@@ -57,7 +58,13 @@ export default defineConfig({
           text: 'Schedule',
           link: 'course/schedule'
         }
-      ]
+      ],
+      //'/tutorials/' : [
+      //  {
+      //    text: 'Tutorial 1',
+      //    link: 'tutorials/tutorial-1'
+        //}
+      //]
     },
     
 
