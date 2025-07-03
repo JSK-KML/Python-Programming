@@ -55,5 +55,5 @@ Mr Rahman plans to make a reservation for a hotel room in Langkawi Island. The b
 
 The wage to mow the yard of a house is based on the price of diesel used to mow it. The yard to be mowed is shown in the shaded area given in the figure below.
 
-![image1](./c1t1-1.png)
+![image1](/public/tutorials/c1t1-1.png)
 
