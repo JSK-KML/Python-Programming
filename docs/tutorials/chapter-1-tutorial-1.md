@@ -78,3 +78,15 @@ During the school holidays, the hotel offers a 10% discount on the total room ch
 ::: details Click for clue
 Again, be mindful of the constant
 :::
+
+
+### Scenario 7 - Converting between Bytes
+
+Prompt user to input in Kilobyte, and convert the input into Megabyte, Gigabyte, Terabyte and Petabyte.
+::: details Click for clue
+For bytes, the base for conversion is in base 8
+:::
+
+### Scenario 8 - Volume of Cuboid
+A student is required to determine volume of a cuboid based on the measurements of length, width and height in centimetre unit. Determine input, process, and output for the volume calculation problem.
+
