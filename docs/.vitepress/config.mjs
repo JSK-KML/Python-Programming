@@ -13,7 +13,8 @@ export default defineConfig({
       { text: 'Schedule', link: '/course/schedule' },
       { text: 'Installations', link: '/installations/git' },
       { text: 'Tutorials', link: '/tutorials/tutorial-1' },
-      { text: 'Labs', link: '/labs/lab-01' }
+      { text: 'Labs', link: '/labs/lab-01' },
+      { text: 'Lectures', link: '/lectures/week-01' }
     ],
 
     sidebar: {
@@ -57,6 +58,31 @@ export default defineConfig({
         {
           text: 'Schedule',
           link: 'course/schedule'
+        }
+      ],
+      '/lectures/': [
+        {
+          text: 'Lectures',
+          collapsed: true,
+          items: [
+            { text: 'Week 1', link: 'lectures/week-01' },
+            { text: 'Week 2', link: 'lectures/week-02' },
+            { text: 'Week 3', link: 'lectures/week-03' },
+            { text: 'Week 4', link: 'lectures/week-04' },
+            { text: 'Week 5', link: 'lectures/week-05' },
+            { text: 'Week 6', link: 'lectures/week-06' },
+            { text: 'Week 7', link: 'lectures/week-07' },
+            { text: 'Week 8', link: 'lectures/week-08' },
+            { text: 'Week 9', link: 'lectures/week-09' },
+            { text: 'Week 10', link: 'lectures/week-10' },
+            { text: 'Week 11', link: 'lectures/week-11' },
+            { text: 'Week 12', link: 'lectures/week-12' },
+            { text: 'Week 13', link: 'lectures/week-13' },
+            { text: 'Week 14', link: 'lectures/week-14' },
+            { text: 'Week 15', link: 'lectures/week-15' },
+            { text: 'Week 16', link: 'lectures/week-16' },
+            { text: 'Week 17', link: 'lectures/week-17' }
+          ]
         }
       ],
       //'/tutorials/' : [
