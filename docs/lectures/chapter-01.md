@@ -17,10 +17,7 @@ outline : deep
 <br>
 
 <a href="./chapter-01.pdf" target="_blank" rel="noopener">
-  <button 
-    style="background-color: #f57c00; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;"
-    onmouseover="this.style.backgroundColor='#e65100'"
-    onmouseout="this.style.backgroundColor='#f57c00'">
+  <button class="open-pdf-btn">
     Open in full screen
   </button>
 </a>
