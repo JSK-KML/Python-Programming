@@ -12,7 +12,7 @@ export default defineConfig({
 
       { text: 'Course Informations', link: '/course/course' },
       { text: 'Installations', link: '/installations/git' },
-      { text: 'Tutorials', link: '/tutorials/tutorial-1' },
+      { text: 'Tutorials', link: '/tutorials/chapter-1-tutorial-1' },
       { text: 'Labs', link: '/labs/lab-01' },
       { text: 'Lectures', link: '/lectures/chapter-01' }
 
@@ -62,12 +62,10 @@ export default defineConfig({
         }
       ],
       '/lectures/': [
-        {
-          text: 'Lectures',
-          collapsed: true,
-          items: [
+        
+          
             { text: 'Chapter 1', link: 'lectures/chapter-01' },
-           // { text: 'Week 2', link: 'lectures/week-02' },
+            { text: 'Chapter 2', link: 'lectures/chapter-02' },
            // { text: 'Week 3', link: 'lectures/week-03' },
            // { text: 'Week 4', link: 'lectures/week-04' },
            // { text: 'Week 5', link: 'lectures/week-05' },
@@ -83,14 +81,19 @@ export default defineConfig({
             //{ text: 'Week 15', link: 'lectures/week-15' },
             //{ text: 'Week 16', link: 'lectures/week-16' },
             //{ text: 'Week 17', link: 'lectures/week-17' }
-          ]
-        }
+          
+        
       ],
       '/tutorials/' : [
+
         {
-          text: 'Tutorial 1',
-          link: 'tutorials/tutorial-1'
+          text : 'Chapter 1',
+          collapsed : true,
+          items : [
+                { text: 'Tutorial 1', link: 'tutorials/chapter-1-tutorial-1'}
+          ]
         }
+        
       ]
     },
     
