@@ -80,13 +80,13 @@ Again, be mindful of the constant
 :::
 
 
-### Scenario 7 - Converting between Bytes
+### Scenario 7 - Converting between Bytes <Badge type="tip" text="Question" />
 
 Prompt user to input in Kilobyte, and convert the input into Megabyte, Gigabyte, Terabyte and Petabyte.
 ::: details Click for clue
 For bytes, the base for conversion is in base 8
 :::
 
-### Scenario 8 - Volume of Cuboid
+### Scenario 8 - Volume of Cuboid <Badge type="tip" text="Question" />
 A student is required to determine volume of a cuboid based on the measurements of length, width and height in centimetre unit. Determine input, process, and output for the volume calculation problem.
 
