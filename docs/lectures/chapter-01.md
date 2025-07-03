@@ -11,7 +11,7 @@ outline : deep
 
 
 
-<iframe src="/Python-Programming/lectures/chapter-01.pdf" width="100%" height="400" allowfullscreen></iframe>
+<iframe src="/lectures/chapter-01.pdf" width="100%" height="400" allowfullscreen></iframe>
 <br>
 
 <a href="/Python-Programming/lectures/chapter-01.pdf" target="_blank" rel="noopener">
