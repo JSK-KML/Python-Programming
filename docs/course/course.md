@@ -1,9 +1,9 @@
 ---
 outline: deep
-title : Course Informations
+title : Course Assessments
 ---
 
-# CP115 Course Informations
+# CP115 Course Assessments
 
 ## Course Assessments
 

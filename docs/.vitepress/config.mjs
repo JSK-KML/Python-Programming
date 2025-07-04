@@ -53,7 +53,7 @@ export default defineConfig({
       ],
       '/course/' : [
         {
-          text: 'Course Informations',
+          text: 'Assessments',
           link: 'course/course'
         },
         {
