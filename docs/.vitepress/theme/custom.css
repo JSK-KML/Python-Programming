@@ -18,20 +18,3 @@
 .open-pdf-btn:hover {
   background-color: #e65100;
 }
-
-/* Sidebar styling */
-.VPSidebar {
-  background-color: var(--vp-c-brand-1);
-  padding: 1rem;
-  transition: background-color 0.3s;
-}
-
-.VPSidebarItem {
-  padding: 0.5rem 1rem;
-  transition: background-color 0.3s;
-}
-
-.VPSidebarItem:hover {
-  background-color: #e65100;
-  color: #fff;
-}
