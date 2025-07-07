@@ -64,6 +64,8 @@ The wage to mow the yard of a house is based on the price of diesel used to mow 
 
 ![image1](/public/tutorials/c2t1-1.png)
 
+You are given the length and width of the house area and the length and width of the house. The price of diesel used is RM2.00 per square meter.Identify the input, process and output to calculate and display the wage of mowing the yard of the house.
+
 ### Scenario 6 - Hotels Rate <Badge type="tip" text="Question" />
 
 A hotel offers two types of room with different rates. 
