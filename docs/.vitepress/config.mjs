@@ -12,7 +12,7 @@ export default defineConfig({
 
       { text: 'Course Informations', link: '/course/course' },
       { text: 'Installations', link: '/installations/git' },
-      { text: 'Tutorials', link: '/tutorials/chapter-1-tutorial-1' },
+      { text: 'Tutorials', link: '/tutorials/chapter-2-tutorial-1' },
       { text: 'Labs', link: '/labs/lab-01' },
       { text: 'Lectures', link: '/lectures/chapter-01' }
 
