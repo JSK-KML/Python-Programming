@@ -1,9 +1,9 @@
 ---
-title: Chapter 1 - Tutorial 1
+title: Chapter 2 - Tutorial 1
 outline : deep
 ---
 
-# Chapter 1 - Tutorial 1
+# Chapter 2 - Tutorial 1
 
 ## IPO - Input ▸ Process ▸ Output  
 
@@ -62,7 +62,7 @@ Mr Rahman plans to make a reservation for a hotel room in Langkawi Island. The b
 
 The wage to mow the yard of a house is based on the price of diesel used to mow it. The yard to be mowed is shown in the shaded area given in the figure below.
 
-![image1](/public/tutorials/c1t1-1.png)
+![image1](/public/tutorials/c2t1-1.png)
 
 ### Scenario 6 - Hotels Rate <Badge type="tip" text="Question" />
 
@@ -88,5 +88,27 @@ For bytes, the base for conversion is in base 8
 :::
 
 ### Scenario 8 - Volume of Cuboid <Badge type="tip" text="Question" />
+
 A student is required to determine volume of a cuboid based on the measurements of length, width and height in centimetre unit. Determine input, process, and output for the volume calculation problem.
+
+### Scenarion 9 - Area of Shaded Region <Badge type="tip" text="Question" />
+
+You are asked to calculate the area of shaded area of two circle in figure below. List down the input, process and output of this problem. 
+
+<p align="center">
+    <img src="/public/tutorials/c2t1-2.png" alt="drawing" width="200"/>
+</p>
+
+::: details Click for clue
+Use the correct formula for calculation
+:::   
+
+
+### Scenario 10 - International Fax Cost <Badge type="tip" text="Question" />
+
+A program created by Amin will calculate the cost of sending an international fax is calculated as follows:
+    - Service charges is RM 3.00
+    - RM 0.20 per page.
+
+Using problem analysis, determine the input, output and process.
 
