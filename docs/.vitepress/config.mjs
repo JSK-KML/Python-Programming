@@ -87,7 +87,7 @@ export default defineConfig({
       '/tutorials/' : [
 
         {
-          text : 'Chapter 1',
+          text : 'Chapter 2',
           collapsed : true,
           items : [
                 { text: 'Tutorial 1', link: 'tutorials/chapter-1-tutorial-1'}
