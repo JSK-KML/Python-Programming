@@ -2,13 +2,13 @@
 outline: deep
 
 
-title: Lab 1 - Using GitHub and VS Code
+title: Lab 1 - Tool Orientation (VS Code and GitHub)
 ---
 
-# Lab 01: Tool Orientation (VS Code and GitHub)
+# Lab 01 : Tool Orientation (VS Code and GitHub)
 
 
-This lab walks you through setting up Git and VS Code, then using their graphical interfaces to manage the `class-cp115-repo` on GitHub. Screenshots should be stored under `docs/images/`.
+This lab walks you through setting up Git and VS Code, then using their graphical interfaces to manage the `class-cp115-repo` on GitHub.
 
 ## Install Git and VS Code
 
@@ -20,7 +20,7 @@ This lab walks you through setting up Git and VS Code, then using their graphica
 
 
 <p align="center">
-    <img src="/public/labs/lab-1-1.png" alt="drawing" width="400"/>
+    <img src="/public/labs/lab-01/lab-1-1.png" alt="drawing" width="400"/>
 </p>
 
 
@@ -34,7 +34,7 @@ When you fork a repository on GitHub, you create a fully independent copy under 
 On GitHub, fork the `class-cp115-repo` from this [link](https://github.com/JSK-KML/CP115-Class-Repo) by clicking the `fork` button in Github. Proceed to the fork, without changing any default options.
 
 <p align="center">
-    <img src="/public/labs/lab-1-2.png" alt="drawing" width="400"/>
+    <img src="/public/labs/lab-01/lab-1-2.png" alt="drawing" width="400"/>
 </p>
 
 After you have done forking the repository, everything that you write is fully yours and only you can control it. So what is the difference between forking and simply copying?
@@ -53,25 +53,25 @@ To solve this, we need to clone the repository into your computer so you can edi
 In your `class-cp115-repo`, click `Code` and copy the link.
 
 <p align="center">
-    <img src="/public/labs/lab-1-3.png" alt="drawing" width="400"/>
+    <img src="/public/labs/lab-01/lab-1-3.png" alt="drawing" width="400"/>
 </p>
 
 Back in VS Code, choose `Source Control` from the sidebar and click  `Clone repository` and paste the link that you have copied in the box when prompted. Then choose `Clone from URL`.
 
 <p align="center">
-    <img src="/public/labs/lab-1-4.png" alt="drawing" width="400"/>
+    <img src="/public/labs/lab-01/lab-1-4.png" alt="drawing" width="400"/>
 </p>
 
 After finishing that, your Github account need to be setup. By `cloning` the repository, you are just copying the code into the your own PC, but you need to tell Github that you are the rightful owner of the code. To do this, you need to use the terminal. Click `Terminal` and then `New Terminal`. 
 
 <p align="center">
-    <img src="/public/labs/lab-1-8.png" alt="drawing" width="400"/>
+    <img src="/public/labs/lab-01/lab-1-8.png" alt="drawing" width="400"/>
 </p>
 
 A new terminal will appear at the bottom of the VS Code.
 
 <p align="center">
-    <img src="/public/labs/lab-1-9.png" alt="drawing" width="400"/>
+    <img src="/public/labs/lab-01/lab-1-9.png" alt="drawing" width="400"/>
 </p>
 
 
@@ -101,7 +101,7 @@ By changing the code, even if you add a space , VS Code will automatically detec
 On the sidebar, choose the `Source Control` and VS Code will automatically show you where the changes have been done. In the message box add appropriate message such as `Change the print in Lab 1` and click commit.
 
 <p align="center">
-    <img src="/public/labs/lab-1-5.png" alt="drawing" width="400"/>
+    <img src="/public/labs/lab-01/lab-1-5.png" alt="drawing" width="400"/>
 </p>
 
 But what exactly is commit? A commit records a snapshot of your changes in the local repository. Each commit carries a unique ID and a message explaining what changed, letting you roll back or review history at any point.
@@ -109,7 +109,7 @@ But what exactly is commit? A commit records a snapshot of your changes in the l
 `Push` is the Git action that copies your new commits from the local repository on your computer to the remote repository, which in our case is `cp115-class-repo`. Although the the button shows `Sync`, behind the scene what it will do it `Push` and `Pull`.
 
 <p align="center">
-    <img src="/public/labs/lab-1-6.png" alt="drawing" width="400"/>
+    <img src="/public/labs/lab-01/lab-1-6.png" alt="drawing" width="400"/>
 </p>
 
 Now go back to your Github account in the browser. You should see that the repository has been updated with the commit message that you have added.
@@ -121,7 +121,7 @@ Once you fork a project, your copy starts aging the moment the original (“up-s
 To make sure you repository is up to date, go to you Github account and click `Sync Fork` and then choose `Update branch`.
 
 <p align="center">
-    <img src="/public/labs/lab-1-7.png" alt="drawing" width="400"/>
+    <img src="/public/labs/lab-01/lab-1-7.png" alt="drawing" width="400"/>
 </p>
 
 
