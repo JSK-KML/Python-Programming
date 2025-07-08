@@ -21,4 +21,9 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
 
 `Pull` connects to the project on Github, grabs any commits added since your last `Pull`, and blends those changes into your PC so your local files and history now match what’s online on Github server.
 
-<kbd>Win</kbd>
+## Introduction to Flowgorithm
+
+Flowgorithm is a program that lets you draw an algorithm as a flowchart and then watch it run step-by-step. Each shape (start, input, decision, loop, etc.) represents one action in your logic, so you can see what happens to your variables without writing any code first. When you’re ready, Flowgorithm can even show the matching Python code so you can relate the picture to real code.
+
+Launch Flowgorithm by pressing <kbd style="color:#1B1B1F; border:1px solid #e64a1e; padding:2px 6px; border-radius:4px; background:#FF5522; box-shadow:inset 0 -2px 0 #c4401a;">⊞ Win</kbd> on your keyboard and type *Flowgorithm*.
+
