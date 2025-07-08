@@ -22,7 +22,9 @@
 /* Pill highlight for active sidebar link */
 .VPSidebarItem.is-active > .item .link > .text {
   background-color: var(--vp-c-brand-1);
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 9999px;
   padding: 2px 10px;
+  display: inline-block;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
