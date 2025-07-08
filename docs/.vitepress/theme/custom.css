@@ -19,14 +19,82 @@
   background-color: #e65100;
 }
 
-/* Pill highlight for active sidebar link */
+.VPSidebarItem > .item .link > .text {
+  display: inline-block;
+  border-radius: 10px;
+
+  transition: background-color 0.1s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.VPSidebarItem.level-0 > .item > .text {
+  border-left: 3px solid var(--vp-c-brand-1);
+  padding-left: 8px;
+  border-radius: 10px;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.VPSidebarItem.level-0 > .item > .text:hover {
+  background-color: var(--vp-c-brand-1);
+  color: #ffffff !important;
+}
+
 .VPSidebarItem.is-active > .item .link > .text {
   background-color: var(--vp-c-brand-1);
   color: #ffffff !important;
-  border-radius: 9999px;
   padding: 2px 10px;
-  display: inline-block;
-  transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-
 }
+
+.VPSidebarItem.level-1 > .item {
+  padding-left: 20px;
+}
+.VPSidebarItem.level-2 > .item {
+  padding-left: 24px;
+}
+
+/* Extra indentation for the active item */
+.VPSidebarItem.level-1.is-active > .item {
+  padding-left: 20px;
+}
+.VPSidebarItem.level-2.is-active > .item {
+  padding-left: 24px;
+}
+
+.VPNavBarMenuLink.active {
+  border-bottom: 3px solid var(--vp-c-brand-1);
+
+  color: var(--vp-c-brand-1);
+  padding-bottom: 4px;
+  background-color: transparent;
+  transition: border-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+              color 1s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: bold;
+}
+
+
+/* Base navbar link setup */
+.VPNavBarMenuLink {
+  position: relative;
+  padding: 0 12px;
+}
+
+/* Underline element */
+.VPNavBarMenuLink::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;          /* adjust spacing as needed */
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--vp-c-brand-1);
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When the link is active */
+.VPNavBarMenuLink.active::after {
+  width: 100%;
+}
+
+
