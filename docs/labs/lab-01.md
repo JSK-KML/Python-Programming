@@ -62,8 +62,27 @@ Back in VS Code, choose `Source Control` from the sidebar and click  `Clone repo
     <img src="/public/labs/lab-1-4.png" alt="drawing" width="400"/>
 </p>
 
+After finishing that, your Github account need to be setup. By `cloning` the repository, you are just copying the code into the your own PC, but you need to tell Github that you are the rightful owner of the code. To do this, you need to use the terminal. Click `Terminal` and then `New Terminal`. 
 
-## Commit and Push
+<p align="center">
+    <img src="/public/labs/lab-1-8.png" alt="drawing" width="400"/>
+</p>
+
+A new terminal will appear at the bottom of the VS Code.
+
+<p align="center">
+    <img src="/public/labs/lab-1-9.png" alt="drawing" width="400"/>
+</p>
+
+
+In the terminal, use the command below to setup your Github username and email. Refer back to your Github account for your username and email, the email is the email that you use for login. Replace "USERNAME" and "EMAIL" with your actual username and email.
+
+```bash
+git config --global user.name  "USERNAME"
+git config --global user.email "EMAIL"
+```
+
+## Commit and Push 
 
 When you have finished cloning the repository, you will see that the folder and file on the computer is exactly like in the Github web. Now let's try to update our code. In `labs/lab01/exercise.py`, change the code from 
 
