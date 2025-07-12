@@ -10,11 +10,16 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
 
-      { text: 'Course Informations', link: '/course/course' },
-      { text: 'Installations', link: '/installations/git' },
-      { text: 'Tutorials', link: '/tutorials/chapter-2-tutorial-1' },
-      { text: 'Labs', link: '/labs/lab-01' },
-      { text: 'Lectures', link: '/lectures/chapter-01' }
+      { text: 'Course Informations', link: '/course/course',
+        activeMatch: '^/course/' },
+      { text: 'Installations', link: '/installations/git',
+        activeMatch: '^/installations/' },
+      { text: 'Tutorials', link: '/tutorials/chapter-2-tutorial-1',
+        activeMatch: '^/tutorials/' },
+      { text: 'Labs', link: '/labs/lab-01',
+        activeMatch: '^/labs/' },
+      { text: 'Lectures', link: '/lectures/chapter-01',
+        activeMatch: '^/lectures/' }
 
     ],
 
@@ -27,11 +32,11 @@ export default defineConfig({
           items : [
             {
               text: 'Lab 1',
-              link : 'labs/lab-01'
+              link : '/labs/lab-01'
             },
             {
               text: 'Lab 2',
-              link : 'labs/lab-02'
+              link : '/labs/lab-02'
             }
           ]
         }
@@ -40,32 +45,32 @@ export default defineConfig({
       '/installations/' : [
         {
           text: 'Git',
-          link : 'installations/git'
+          link : '/installations/git'
         },
         {
           text: 'VS Code',
-          link : 'installations/vscode'
+          link : '/installations/vscode'
         },
         {
           text: 'Flowgorithm',
-          link : 'installations/flowgorithm'
+          link : '/installations/flowgorithm'
         }
       ],
       '/course/' : [
         {
           text: 'Assessments',
-          link: 'course/course'
+          link: '/course/course'
         },
         {
           text: 'Schedule',
-          link: 'course/schedule'
+          link: '/course/schedule'
         }
       ],
       '/lectures/': [
         
           
-            { text: 'Chapter 1', link: 'lectures/chapter-01' },
-            { text: 'Chapter 2', link: 'lectures/chapter-02' },
+            { text: 'Chapter 1', link: '/lectures/chapter-01' },
+            { text: 'Chapter 2', link: '/lectures/chapter-02' },
            // { text: 'Week 3', link: 'lectures/week-03' },
            // { text: 'Week 4', link: 'lectures/week-04' },
            // { text: 'Week 5', link: 'lectures/week-05' },
