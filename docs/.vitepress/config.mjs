@@ -10,11 +10,16 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
 
-      { text: 'Course Informations', link: '/course/course' },
-      { text: 'Installations', link: '/installations/git' },
-      { text: 'Tutorials', link: '/tutorials/chapter-2-tutorial-1' },
-      { text: 'Labs', link: '/labs/lab-01' },
-      { text: 'Lectures', link: '/lectures/chapter-01' }
+      { text: 'Course Informations', link: '/course/course',
+        activeMatch: '^/course/' },
+      { text: 'Installations', link: '/installations/git',
+        activeMatch: '^/installations/' },
+      { text: 'Tutorials', link: '/tutorials/chapter-2-tutorial-1',
+        activeMatch: '^/tutorials/' },
+      { text: 'Labs', link: '/labs/lab-01',
+        activeMatch: '^/labs/' },
+      { text: 'Lectures', link: '/lectures/chapter-01',
+        activeMatch: '^/lectures/' }
 
     ],
 
