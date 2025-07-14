@@ -37,7 +37,13 @@ To know if the file is still unsaved, the name of the file is still callled `(Un
 
 ## Using Github Actions
 
-GitHub Actions is an integrated automation service inside GitHub that lets you describe “workflows” in simple YAML files so common tasks—such as running tests, building your project, or deploying a website that happen automatically whenever you push code, open a pull request, or on a set schedule.
+GitHub Actions is a built-in tool inside GitHub that can automatically run tasks for you, like checking your code, testing it, or uploading your project to a website.
+
+You set up these tasks using a simple file written in YAML, where you describe what steps should happen and when.
+
+For example, every time you push new code or create a pull request, GitHub Actions can automatically check your work to see if everything is correct.
+
+This process is called a workflow, and it helps catch mistakes early, without you needing to run tests manually.
 
 To set up your Github Actions, go to the `cp115-class-repo` in your Github account and go to the `Actions` tab. Click the `I understand my workflows, go ahead and enable them`. 
 
@@ -53,13 +59,15 @@ Look into the `lab02-ci.yml`, you can see that the language is quite direct and 
 
 Copy and paste the saved file from the [Flowgorithm](#introduction-to-flowgorithm) section earlier into `/labs/lab02/` directory of your repo using VS Code. Then commit and push the code. Refer back to the previous lab on how to do [commit and push](./lab-01.md#commit-and-push) if you doesnt remember how to.
 
-Go to your Github account back and go back to your repository and you will see a small orange circle beside the commit message.
+When you push your changes to GitHub, a special process called a GitHub Actions workflow automatically runs in the background. Think of this as GitHub testing your work — just like an auto-checker.
+
+After you push, go back to your repository on GitHub. You’ll notice a small orange circle beside your latest commit message
 
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-4.png" alt="drawing" width="600"/>
 </p>
 
-Wait for a while, you will see that the orange circle will turn into a red cross.
+If there’s a mistake, the orange circle will change into a red cross. This means your submission didn’t pass the automated check, but don’t panic, you can fix it.
 
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-5.png" alt="drawing" width="600"/>
@@ -71,7 +79,8 @@ Click the `Actions` tab and click the latest workflow inside the `Actions`.
     <img src="/public/labs/lab-02/lab-2-6.png" alt="drawing" width="600"/>
 </p>
 
-Inside the workflow, you will see the error that is causing the worklflow to failed.
+
+Inside the workflow, you’ll see a clear error message showing why it failed. This might say the file is missing, wrongly named, or contains something invalid.
 
 ### Successful Action Workflow <Badge type="tip" text="Task" />
 
