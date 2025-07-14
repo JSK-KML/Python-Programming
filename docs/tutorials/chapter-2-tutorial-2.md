@@ -16,16 +16,13 @@ outline : deep
 
 ### Scenario 1 - Simple Scenario <Badge type="tip" text="Question" />
 
-    - Calculate the area of a circle if the radius is a positive value.
-  
-    - Calculate the 10% tax on a product if the price is greater than RM200.
-  
-    - Check if a student has passed or failed based on their exam score:
-      - If the score is greater than or equal to 50, display "Passed." Otherwise, display "Failed."
-      - If the person is 18 years or older, display the message “Eligible to vote”.  
-      - Otherwise display the message “Not eligible to vote”.
-  
-    - Determine whether the number keyed in by the user is positive, negative or zero.
+  1. Calculate the area of a circle if the radius is a positive value.
+  2. Calculate the 10% tax on a product if the price is greater than RM200.
+  3. Check if a student has passed or failed based on their exam score:
+      - If the score is greater than or equal to 50, display "Passed." 
+      - Otherwise, display "Failed."
+  4. If the person is 18 years or older, display the message “Eligible to vote”. Otherwise display the message “Not eligible to vote”.
+  5. Determine whether the number keyed in by the user is positive, negative or zero.
 
 
 ### Scenario 2 - Bookstore Price <Badge type="tip" text="Question" />
