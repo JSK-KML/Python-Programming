@@ -25,7 +25,7 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
 
 Flowgorithm is a program that lets you draw an algorithm as a flowchart and then watch it run step-by-step. Each shape (start, input, decision, loop, etc.) represents one action in your logic, so you can see what happens to your variables without writing any code first. When you’re ready, Flowgorithm can even show the matching Python code so you can relate the picture to real code.
 
-Launch Flowgorithm by pressing <kbd style="color:#1B1B1F; border:1px solid #e64a1e; padding:2px 6px; border-radius:4px; background:#FF5522; box-shadow:inset 0 -2px 0 #c4401a;">⊞ Win</kbd> on your keyboard and type *Flowgorithm*. If you can't see it make sure you have [installed it.](/installations/flowgorithm)
+Launch Flowgorithm by pressing <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">⊞ Win</kbd> on your keyboard and type *Flowgorithm*. If you can't see it make sure you have [installed it.](/installations/flowgorithm)
 
 When you first launch it, you will see a simple flowchart, containing only `Start` and `End`. This is the default template of the any Flowgorithm projects. Before we edit the file, we need to save the file first.
 
@@ -34,6 +34,8 @@ To know if the file is still unsaved, the name of the file is still callled `(Un
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-2.png" alt="drawing" width="400"/>
 </p>
+
+<!-- 
 
 ## Using Github Actions
 
@@ -89,3 +91,5 @@ Your task is to read the error message and correct the mistake based on the erro
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-7.png" alt="drawing" width="600"/>
 </p>
+
+-->
