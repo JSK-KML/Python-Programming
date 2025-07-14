@@ -93,9 +93,12 @@ export default defineConfig({
 
         {
           text : 'Chapter 2',
-          collapsed : true,
+          collapsed : false,
           items : [
-                { text: 'Tutorial 1', link: 'tutorials/chapter-1-tutorial-1'}
+                { 
+                  text: 'Tutorial 1', 
+                  link: '/tutorials/chapter-2-tutorial-1'
+                }
           ]
         }
         
