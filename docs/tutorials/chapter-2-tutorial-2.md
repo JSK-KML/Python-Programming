@@ -23,6 +23,10 @@ outline : deep
       - Otherwise, display "Failed."
   4. If the person is 18 years or older, display the message “Eligible to vote”. Otherwise display the message “Not eligible to vote”.
   5. Determine whether the number keyed in by the user is positive, negative or zero.
+  6. Calculate phone bill based on the following term:
+       - Usage less than RM50 per month : no discount will be given
+       - Usage less than RM100 per month : get 5% discount
+       - Usage RM100 above per month : get 20% discount
 
 
 ### Scenario 2 - Bookstore Price <Badge type="tip" text="Question" />
