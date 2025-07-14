@@ -1,6 +1,35 @@
 :root {
-  --vp-c-brand-1: #ff5722;
+  --vp-c-bg: #FFF1F6;
+  --vp-c-bg-alt: #f9d7e5;
+  --vp-c-bg-soft: #FAD8E5;
+
+  --vp-c-brand-1: #FF0066;     /* punchy hot pink */
+  --vp-c-brand-2: #E6005C;     /* strong raspberry pink */
+  --vp-c-brand-3: #CC0052;     /* deep pink, still vibrant */
+
+  --vp-c-text-1: #2A2A2A;
+  --vp-c-text-2: #CC3366;      /* rich rose-magenta tone */
+  --vp-c-text-3: #B8004D;      /* strong and bold pinkish text */
+
   --vp-font-family-base: 'Segoe UI', Roboto, sans-serif;
+}
+
+
+
+
+/* Dark mode overrides */
+.dark {
+  --vp-c-bg: #0B0F1A;           /* darker background */
+  --vp-c-bg-alt: #1A1F2E;       /* slightly lighter but still dark */
+  --vp-c-bg-soft: #1A1F2E;
+
+  --vp-c-brand-1: #0070F3;      /* darker blue with subtle neon feel */
+  --vp-c-brand-2: #005FCC;
+  --vp-c-brand-3: #0047A3;
+
+  --vp-c-text-1: #D6D6D6;       /* softer white for less glare */
+  --vp-c-text-2: #7A869A;       /* low-contrast grey-blue */
+  --vp-c-text-3: #5C677D;       /* even more muted text */
 }
 
 /* Style for lecture PDF buttons */
