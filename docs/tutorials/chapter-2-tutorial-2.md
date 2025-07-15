@@ -72,4 +72,8 @@ Cumulative Cups	Extra-Cup Price
 
 A cinema loyalty pass gives one free ticket every Tuesday or one free ticket any day once you’ve spent RM200 that month—whichever happens first.
 Tickets cost RM18.
-A member buys tickets on: 1st (Jan) – 3 tickets, 7th (Jan, Tue) – 2 tickets, 14th (Jan, Tue) – 4 tickets.
+A member buys tickets on: 
+
+  - 1st (Jan) : 3 tickets
+  - 7th (Jan, Tue) : 2 tickets
+  - 14th (Jan, Tue) : 4 tickets
