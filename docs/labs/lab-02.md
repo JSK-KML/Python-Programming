@@ -109,11 +109,14 @@ The result afterwards should looks like the below
 </p>
 
 
-Repeat the steps again to declare the variable that are used in `Output` shape.
+Repeat the steps again to declare the variable that are used in `Output` shape. After you finished that, click anywhere in the **Flowgorithm** and press <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">Ctrl</kbd> + <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">S</kbd> to save the file. 
 
 ::: warning REMINDER
 Make sure you click the correct arrow to ensure that the variable is declared in the correct sequence.
 :::
+
+
+
 
 
 ## Using Github Actions
