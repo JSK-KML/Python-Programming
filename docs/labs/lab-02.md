@@ -35,7 +35,86 @@ To know if the file is still unsaved, the name of the file is still callled `(Un
     <img src="/public/labs/lab-02/lab-2-2.png" alt="drawing" width="400"/>
 </p>
 
-<!-- 
+
+
+### Creating Our First Flowchart
+
+Hover your mouse on the arrow that is connecting `Main` and `End` until the arrow turns orange, then left click on the arrow.
+
+<p align="center">
+    <img src="/public/labs/lab-02/lab-2-8.png" alt="drawing" width="400"/>
+</p>
+
+After you right click on in, you will see a window popup, listing all the shapes that you can add into your flowchart. Dont worry on the types of shapes that you see here, you will be taught on how to use it later.
+
+<p align="center">
+    <img src="/public/labs/lab-02/lab-2-9.png" alt="drawing" width="600"/>
+</p>
+
+Lets try to apply it on a scenario. For this example, lets use [Scenario 1](../tutorials/chapter-2-tutorial-1.md#scenario-1-meal-price-with-taxes) from our Chapter 2 - Tutorial 1.
+
+For this exercise, we are focusing on how to use Flowgorithm not how to create a correct flowchart. The usage of the shapes might be not the most accurate way, but take it easy. This exercise is emphasizing on the software.
+
+Lets recall Scenario 1 from Chapter 2 - Tutorial 1 :
+
+>A government tax of 10% and service tax of 5% will be added to the price of a set of meal bought  at MFC. Calculate the total price that Ali has to pay for a set of meal. Write a problem analysis for the given problem statement.
+
+#### Creating Input and Output
+
+Click again the arrow between `Main` and `End` and open the popup window again. Under the **Statement** category, click the **Input** shapes.
+
+<p align="center">
+    <img src="/public/labs/lab-02/lab-2-10.png" alt="drawing" width="600"/>
+</p>
+
+An `Input` shape will appear in between `Main` and `End`. So if you want to add a new shape in between the two old shape, click the line in between those two shapes. Now lets change the input in the `Input` shapes. Double click the `Input` shapes until a window appear that ask you to enter the variable name. For this questions, the input name is `mealPrice`.
+
+<p align="center">
+    <img src="/public/labs/lab-02/lab-2-11.png" alt="drawing" width="400"/>
+</p>
+
+::: danger INFO
+Any variable name that are used must only contains only letters and numbers, you cannot use special character such as - or _
+:::
+
+After finshing those step, this is what you should see as belows.
+
+<p align="center">
+    <img src="/public/labs/lab-02/lab-2-12.png" alt="drawing" width="400"/>
+</p>
+
+Now repeat the process again, but this time, use the `Output` shape and enter the variable name for the output. Make sure that you click the arrow between `Input` and `End` so you will add the `Output` shape in the correct sequence.
+
+
+#### Declaring the Variable
+
+Eventhough we have declared the our input and output, in **Flowgorithm**, we need to separately declared our variable first outside the `Input` and `Output` shape. So for your `Input`, click the arrow between `Main` and `Input` so we can declared the the variable used in `Input` shape.
+
+In the popup window, under the category Statement, choose the `Declare` shape.
+
+<p align="center">
+    <img src="/public/labs/lab-02/lab-2-13.png" alt="drawing" width="400"/>
+</p>
+
+Double click the `Declare` shape and named the variable exactly as you put in the input, which in our case, is `mealPrice` and choose the Integer data type. Click OK to finalise it. 
+
+<p align="center">
+    <img src="/public/labs/lab-02/lab-2-14.png" alt="drawing" width="400"/>
+</p>
+
+The result afterwards should looks like the below
+
+<p align="center">
+    <img src="/public/labs/lab-02/lab-2-15.png" alt="drawing" width="300"/>
+</p>
+
+
+Repeat the steps again to declare the variable that are used in `Output` shape.
+
+::: warning REMINDER
+Make sure you click the correct arrow to ensure that the variable is declared in the correct sequence.
+:::
+
 
 ## Using Github Actions
 
@@ -92,4 +171,3 @@ Your task is to read the error message and correct the mistake based on the erro
     <img src="/public/labs/lab-02/lab-2-7.png" alt="drawing" width="600"/>
 </p>
 
--->
