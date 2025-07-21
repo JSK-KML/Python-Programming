@@ -37,6 +37,10 @@ export default defineConfig({
             {
               text: 'Lab 2',
               link : '/labs/lab-02'
+            },
+            {
+              text: 'Lab 3',
+              link : '/labs/lab-03'
             }
           ]
         }
