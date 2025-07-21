@@ -176,6 +176,6 @@ You are given the length and width of the house area and the length and width of
 
 ## Push and Check
 
-After you ahve finish answering all the questions, make sure to [commit and push](./lab-01.md#commit-and-push) your files back to your repo.
+After you have finish answering all the questions, make sure to [commit and push](./lab-01.md#commit-and-push) your files back to your repo.
 
 In the Github repo, make sure that the commit passed all the test. Recall back [here](./lab-02.md#using-flowgorithm-with-github-action) if you forgot how to check it.
