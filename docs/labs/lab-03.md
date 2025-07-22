@@ -17,7 +17,7 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
     <img src="/public/labs/lab-02/lab-2-1.png" alt="drawing" width="400"/>
 </p>
 
-## Creating Our First Flowchart
+## Creating Our First Flowchart <Badge type="warning" text="Recall" />
 
 Launch Flowgorithm by pressing <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">⊞ Win</kbd> on your keyboard and type *Flowgorithm*. If you can't see it make sure you have [installed it.](/installations/flowgorithm)
 
@@ -97,6 +97,7 @@ The result afterwards should looks like the below
 
 Repeat the steps again to declare the variable that are used in `Output` shape. After you finished that, click anywhere in the **Flowgorithm** and press <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">Ctrl</kbd> + <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">S</kbd> to save the file. 
 
+
 ::: warning REMINDER
 Make sure you click the correct arrow to ensure that the variable is declared in the correct sequence.
 :::
@@ -138,44 +139,176 @@ To run the program, click the green arrow at the top right corner of the window.
 
 Copy and paste the saved file from the section earlier into `/labs/lab03/` directory of your repo using VS Code. Then commit and push the code. Refer back to the previous lab on how to do [commit and push](./lab-01.md#commit-and-push) if you doesnt remember how to.
 
-## Scenario 1
 
-Create a new **Flowgorithm** file and rename it to `lab-03-2` and after finishing answering the question, make sure to put it in `/labs/lab03/` directory.
 
+## Exporting Flowgorithm to Python 
+
+In VS Code, right click the `lab03` folder and click `New File`. Name the file `lab-3-1.py`. In **Flowgorithm**, at the top bar, click the `Source Code Viewer`.
+
+<p align="center">
+    <img src="/public/labs/lab-03/lab-3-6.png" alt="drawing" width="400"/>
+</p>
+
+A popup window will appear, click the the dropdown at the top left of the window and choose `Python`.
+
+<p align="center">
+    <img src="/public/labs/lab-03/lab-3-7.png" alt="drawing" width="400"/>
+</p>
+
+Copy and paste the given code from the window into `lab-3-1.py` and save the file.
+
+
+
+## Scenario 1 – Hotel Reservation <Badge type="tip" text="Question" />
+
+Question:
 Mr Rahman plans to make a reservation for a hotel room in Langkawi Island. The basic rate is RM250.00 per night and service charge is 15% of the room rate. Determine the total payment if he books the hotel room for n nights.
 
-## Scenario 2 <Badge type="tip" text="Question" />
+Instruction:
+- Flowgorithm file name: `lab-03-2` → place in `/labs/lab03/`.
+- Python file name : `lab-03-2.py` → place in `/labs/lab03/`.
 
-Create a new **Flowgorithm** file and rename it to `lab-03-3` and after finishing answering the question, make sure to put it in `/labs/lab03/` directory.
+Inputs (in order):
 
-Prompt user to input in Kilobyte, and convert the input into Megabyte, Gigabyte, Terabyte and Petabyte.
+- `NUM_NIGHT` – integer number of nights
 
-## Scenario 3 <Badge type="tip" text="Question" />
+Outputs (in order):
 
-Create a new **Flowgorithm** file and rename it to `lab-03-4` and after finishing answering the question, make sure to put it in `/labs/lab03/` directory.
+- `TOTAL_PAYMENT` – sum of room rate and service charge (RM)
 
-A program created by Amin will calculate the cost of sending an international fax is calculated as follows: 
-  - Service charges is RM 3.00 
-  - RM 0.20 per page.
 
-## Scenario 4 <Badge type="tip" text="Question" />
+## Scenario 2 – Storage Conversion <Badge type="tip" text="Question" />
+Question:
+Prompt user to input a size in Kilobyte, and convert the input into Megabyte, Gigabyte, Terabyte and Petabyte.
 
-Create a new **Flowgorithm** file and rename it to `lab-03-5` and after finishing answering the question, make sure to put it in `/labs/lab03/` directory.
+Instruction:
+- Flowgorithm file name: `lab-03-3` → place in `/labs/lab03/`.
+- Python file name : `lab-03-3.py` → place in `/labs/lab03/`.
 
-A pack contains 40 pieces of cookies. The calorie information claims that there are 10 servings in a pack. Each serving equals to 300 calories. Calculate and display the number of total calories consumed.
+Inputs (order):
 
-## Scenario 5 - Area of Yard <Badge type="tip" text="Question" />
+- `kilobyte` – real number in KB
 
-Create a new **Flowgorithm** file and rename it to `lab-03-6` and after finishing answering the question, make sure to put it in `/labs/lab03/` directory.
+Outputs (order):
 
-The wage to mow the yard of a house is based on the price of diesel used to mow it. The yard to be mowed is shown in the shaded area given in the figure below.
+`megabyte`
+
+`gigabyte`
+
+`terabyte`
+
+`petabyte`
+
+
+## Scenario 3 – International Fax Cost <Badge type="tip" text="Question" />
+
+Question:
+Amin’s program calculates the cost of sending an international fax: service charge RM3.00 plus RM0.20 per page.
+
+Instruction:
+- Flowgorithm file name: `lab-03-4` → place in `/labs/lab03/`.
+- Python file name : `lab-03-4.py` → place in `/labs/lab03/`.
+
+Inputs (order):
+
+- `pages` – integer number of pages
+  
+Outputs (order):
+
+`TOTAL_COST` – sum of service charge and pages cost
+
+
+## Scenario 4 – Cookie Calories <Badge type="tip" text="Question" />
+
+Question:
+A pack contains 40 pieces of cookies. The calorie info claims 10 servings per pack. Each serving equals 300 calories. Calculate the total calories consumed based on number of packs eaten.
+
+Instruction:
+- Flowgorithm file name: `lab-03-5` → place in `/labs/lab03/`.
+- Python file name : `lab-03-5.py` → place in `/labs/lab03/`.
+
+Inputs (order):
+
+- `packs_eaten` – integer number of packs consumed
+
+Outputs (order):
+
+- `TOTAL_CALORIES` – SERVINGS_CONSUMED * 300
+
+## Scenario 5 – Wage to Mow Yard <Badge type="tip" text="Question" />
+
+Question:
+The wage to mow the yard is based on diesel price RM2.00 per square meter. The yard area is the large rectangle minus the house rectangle. You are given the length and width of the yard boundary and the length and width of the house. Calculate the wage.
 
 ![image1](/public/tutorials/c2t1-1.png)
 
-You are given the length and width of the house area and the length and width of the house. The price of diesel used is RM2.00 per square meter.Calculate and display the wage of mowing the yard of the house.
+Instruction:
+- Flowgorithm file name: `lab-03-6` → place in `/labs/lab03/`.
+- Python file name : `lab-03-6.py` → place in `/labs/lab03/`.
 
-## Push and Check
+Inputs (order):
+
+- `yard_length` – real number
+
+- `yard_width` – real number
+
+- `house_length` – real number
+
+- `house_width` – real number
+ 
+Outputs (order):
+
+- `WAGE` – Total wage
+
+## Scenario 6 – Temperature Conversion <Badge type="tip" text="Question" />
+
+Question
+Prompt user to input a temperature in Celsius and convert it to Fahrenheit and Kelvin.
+
+Instruction:
+- Flowgorithm file name: `lab-03-7` → place in `/labs/lab03/`.
+- Python file name: `lab-03-7.py` → place in `/labs/lab03/`.
+
+Inputs (in order)
+
+- `celsius` – real number (°C)
+
+Outputs (in order)
+
+- `fahrenheit` 
+
+- `kelvin` 
+
+## Scenario 7 – Simple Interest Calculator <Badge type="tip" text="Question" />
+
+Question: 
+Prompt user for principal (P), annual rate (R %) and time (T years); calculate:
+1. the simple interest earned over the entire period  
+2. the total amount to be repaid  
+3. the monthly interest amount (simple interest ÷ (T × 12))
+
+Instruction:  
+- Flowgorithm file name: `lab-03-8` → place in `/labs/lab03/`.  
+- Python file name:    `lab-03-8.py` → place in `/labs/lab03/`.  
+
+Inputs (in order):  
+- `principal` – real number (RM)  
+- `rate`      – real number (% per annum)  
+- `time`      – real number (years)  
+
+Outputs (in order):  
+- `interest`        
+- `total_amount`     
+- `monthly_interest`
+
+
+## Push and Check <Badge type="danger" text="Experimental" />
 
 After you have finish answering all the questions, make sure to [commit and push](./lab-01.md#commit-and-push) your files back to your repo.
 
 In the Github repo, make sure that the commit passed all the test. Recall back [here](./lab-02.md#using-flowgorithm-with-github-action) if you forgot how to check it.
+
+
+::: danger Attention
+The Github Actions setup for this lab is experimental and can fail eventhough you have done everything correctly. Please let me know if you have reached this part and show me the Actions result.
+:::

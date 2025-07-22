@@ -35,7 +35,7 @@ MyHealth magazine is sold at RM5 each if at least 5 units of the magazine are pu
 
 ### Scenario 2 - Library Books <Badge type="tip" text="Question" />
 
-A library system calculates whether a late fee should be charged to a member returning a book based on the return date. If the book is returned on time, no fee is charged. If it's late, a fee based on the number of overdue days is applied.
+A library system calculates whether a late fee should be charged to a member returning a book based on the return date. If the book is returned on time, no fee is charged. If it's late, a fee of RM 1.00 per the number of overdue days is applied.
 
 ### Scenario 3 – Electricity Bill <Badge type="tip" text="Question" />
 A utility company charges RM 0.30 per kWh for the first 100 kWh, RM 0.50 per kWh for the next 100 kWh (101–200 kWh), and RM 0.75 per kWh for any usage above 200 kWh.
