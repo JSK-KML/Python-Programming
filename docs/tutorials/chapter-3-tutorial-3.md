@@ -53,4 +53,20 @@ Income tax is applied as:
 
 Given an annual income, calculate total tax due.
 
+### Scenario 5 – Parking Fee <Badge type="tip" text="Question" />
+
+A mall charges parking as follows:
+
+First 2 hours → Free
+
+Next 3 hours (2–5 hours) → RM 2.00 per hour
+
+Beyond 5 hours → RM 3.00 per hour
+
+Maximum charge per day → RM 30.00
+
+Given total hours parked, calculate the parking fee.
+
+
+
 
