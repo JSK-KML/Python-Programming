@@ -1,17 +1,17 @@
 :root {
-  --vp-c-bg: #FFF1F6;
-  --vp-c-bg-alt: #f9d7e5;
-  --vp-c-bg-soft: #FAD8E5;
+  --vp-c-bg: #F3F6FB;           /* very soft blue-gray background */
+  --vp-c-bg-alt: #E5EDF7;       /* slightly deeper blue-gray */
+  --vp-c-bg-soft: #D7E3F3;      /* softest blue for cards/alt */
 
-  --vp-c-brand-1: #FF0066;     /* punchy hot pink */
-  --vp-c-brand-2: #E6005C;     /* strong raspberry pink */
-  --vp-c-brand-3: #CC0052;     /* deep pink, still vibrant */
+  --vp-c-brand-1: #3B82F6;      /* soft blue */
+  --vp-c-brand-2: #2563EB;      /* medium blue */
+  --vp-c-brand-3: #1E40AF;      /* deep blue */
 
-  --vp-c-text-1: #2A2A2A;
-  --vp-c-text-2: #CC3366;      /* rich rose-magenta tone */
-  --vp-c-text-3: #B8004D;      /* strong and bold pinkish text */
+  --vp-c-text-1: #22304A;       /* dark blue-gray for main text */
+  --vp-c-text-2: #4B5C77;       /* muted blue for secondary text */
+  --vp-c-text-3: #7A8CA6;       /* soft blue for tertiary text */
 
-  --vp-font-family-base: 'Segoe UI', Roboto, sans-serif;
+  --vp-font-family-base: 'Inter', Roboto, sans-serif;
 }
 
 

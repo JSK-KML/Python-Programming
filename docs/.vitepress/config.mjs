@@ -10,16 +10,49 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
 
-      { text: 'Course Informations', link: '/course/course',
-        activeMatch: '^/course/' },
-      { text: 'Installations', link: '/installations/git',
-        activeMatch: '^/installations/' },
-      { text: 'Tutorials', link: '/tutorials/chapter-2-tutorial-1',
-        activeMatch: '^/tutorials/' },
-      { text: 'Labs', link: '/labs/lab-01',
-        activeMatch: '^/labs/' },
-      { text: 'Lectures', link: '/lectures/chapter-01',
-        activeMatch: '^/lectures/' }
+      { 
+        text: 'Course Informations', 
+        items: [
+          { text: 'Assessments', link: '/course/course' },
+          { text: 'Schedule', link: '/course/schedule' }
+        ],
+        activeMatch: '^/course/' 
+      },
+      { 
+        text: 'Installations', 
+        activeMatch: '^/installations/' ,
+        items: [
+          { text: 'Git', link: '/installations/git' },
+          { text: 'VS Code', link: '/installations/vscode' },
+          { text: 'Flowgorithm', link: '/installations/flowgorithm' }
+        ]
+      },
+      { 
+        text: 'Tutorials', 
+        items: [
+          { text: 'Tutorial 1', link: '/tutorials/chapter-2-tutorial-1' },
+          { text: 'Tutorial 2', link: '/tutorials/chapter-2-tutorial-2' },
+          { text: 'Tutorial 3', link: '/tutorials/chapter-3-tutorial-3' }
+        ],
+        activeMatch: '^/tutorials/' 
+      },
+      { 
+        text: 'Labs', 
+        items: [
+          { text: 'Lab 1', link: '/labs/lab-01' },
+          { text: 'Lab 2', link: '/labs/lab-02' },
+          { text: 'Lab 3', link: '/labs/lab-03' }
+        ],
+        activeMatch: '^/labs/' 
+      },
+      { text: 'Lectures', 
+        items: [
+          { text: 'Chapter 1', link: '/lectures/chapter-01' },
+          { text: 'Chapter 2', link: '/lectures/chapter-02' },
+          { text: 'Chapter 3', link: '/lectures/chapter-03' }
+        ],
+        activeMatch: '^/lectures/' 
+      }
 
     ],
 

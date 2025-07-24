@@ -67,6 +67,35 @@ Maximum charge per day → RM 30.00
 
 Given total hours parked, calculate the parking fee.
 
+## Scenario 6 – Baggage Allowance Logic <Badge type="tip" text="Question" />
+
+A flight ticket that includes 15 kg of free baggage.
+Excess baggage is charged RM 4 per kg beyond that limit.
+However, if the passenger brings no baggage, they receive a RM 10 discount on the total ticket price.
+
+Given the weight of baggage and ticket price, calculate the final price. 
+
+
+## Scenario 7 – Early Bird Discount Logic <Badge type="tip" text="Question" />
+
+If a user registers before day 15 of the month, they get a 10% discount.
+Otherwise, they pay full price.
+
+Given the day of registration and base fee, calculate the final fee.
+
+## Scenario 8 - Final Score  <Badge type="tip" text="Question" />
+
+Final score is calculated as:
+
+Midterm 30%
+
+Assignment 20%
+
+Final exam 50%
+
+But if any of the three components is below 30, the final score is automatically 0.
+
+Given all three marks, calculate final result.
 
 
 
