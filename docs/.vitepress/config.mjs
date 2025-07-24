@@ -5,11 +5,21 @@ export default defineConfig({
   title: "Python Programming",
   description: "Course and Labs Informations",
   base: '/Python-Programming/',
+
+  head: [
+    [
+      'link',
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Inter&display=swap'
+      }
+    ]
+  ],
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-
       { 
         text: 'Course Informations', 
         items: [
@@ -53,92 +63,40 @@ export default defineConfig({
         ],
         activeMatch: '^/lectures/' 
       }
-
     ],
 
     sidebar: {
       '/labs/' : [
-
         {
           text : 'Labs',
           collapsed : true,
           items : [
-            {
-              text: 'Lab 1',
-              link : '/labs/lab-01'
-            },
-            {
-              text: 'Lab 2',
-              link : '/labs/lab-02'
-            },
-            {
-              text: 'Lab 3',
-              link : '/labs/lab-03'
-            }
+            { text: 'Lab 1', link : '/labs/lab-01' },
+            { text: 'Lab 2', link : '/labs/lab-02' },
+            { text: 'Lab 3', link : '/labs/lab-03' }
           ]
         }
-        
       ],
       '/installations/' : [
-        {
-          text: 'Git',
-          link : '/installations/git'
-        },
-        {
-          text: 'VS Code',
-          link : '/installations/vscode'
-        },
-        {
-          text: 'Flowgorithm',
-          link : '/installations/flowgorithm'
-        }
+        { text: 'Git', link : '/installations/git' },
+        { text: 'VS Code', link : '/installations/vscode' },
+        { text: 'Flowgorithm', link : '/installations/flowgorithm' }
       ],
       '/course/' : [
-        {
-          text: 'Assessments',
-          link: '/course/course'
-        },
-        {
-          text: 'Schedule',
-          link: '/course/schedule'
-        }
+        { text: 'Assessments', link: '/course/course' },
+        { text: 'Schedule', link: '/course/schedule' }
       ],
       '/lectures/': [
-        { 
-          text: 'Chapter 1', 
-          link: '/lectures/chapter-01' 
-        },
-        { 
-          text: 'Chapter 2', 
-          link: '/lectures/chapter-02' 
-        },
-        { 
-          text: 'Chapter 3', 
-          link: '/lectures/chapter-03' 
-        }
-        
+        { text: 'Chapter 1', link: '/lectures/chapter-01' },
+        { text: 'Chapter 2', link: '/lectures/chapter-02' },
+        { text: 'Chapter 3', link: '/lectures/chapter-03' }
       ],
       '/tutorials/' : [
-
-        
-          
-                { 
-                  text: 'Tutorial 1', 
-                  link: '/tutorials/chapter-2-tutorial-1'
-                },
-                { 
-                  text: 'Tutorial 2', 
-                  link: '/tutorials/chapter-2-tutorial-2'
-                },
-                { 
-                  text: 'Tutorial 3', 
-                  link: '/tutorials/chapter-3-tutorial-3'
-                }
-        
-        
+        { text: 'Tutorial 1', link: '/tutorials/chapter-2-tutorial-1' },
+        { text: 'Tutorial 2', link: '/tutorials/chapter-2-tutorial-2' },
+        { text: 'Tutorial 3', link: '/tutorials/chapter-3-tutorial-3' }
       ]
     },
-    
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/JSK-KML/CP115-Class-Repo' }
@@ -151,7 +109,6 @@ export default defineConfig({
 
     search: {
       provider: 'local',
-      
     }
   }
 })
