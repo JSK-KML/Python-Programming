@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(npm run docs:dev:*)",
+      "Bash(npm run docs:build:*)",
+      "Bash(rm:*)",
+      "Bash(mv:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)",
+      "Bash(taskkill:*)",
+      "Bash(npm run docs:preview:*)",
+      "Bash(timeout 5 npm run docs:dev)",
+      "Bash(grep:*)"
+    ],
+    "deny": []
+  }
+}

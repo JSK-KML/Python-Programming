@@ -1,130 +1,163 @@
-:root {
-  --vp-c-bg: #F3F6FB;           /* very soft blue-gray background */
-  --vp-c-bg-alt: #E5EDF7;       /* slightly deeper blue-gray */
-  --vp-c-bg-soft: #D7E3F3;      /* softest blue for cards/alt */
+/* Enhanced Sidebar Styling with Glow Effects */
 
-  --vp-c-brand-1: #3B82F6;      /* soft blue */
-  --vp-c-brand-2: #2563EB;      /* medium blue */
-  --vp-c-brand-3: #1E40AF;      /* deep blue */
-
-  --vp-c-text-1: #22304A;       /* dark blue-gray for main text */
-  --vp-c-text-2: #4B5C77;       /* muted blue for secondary text */
-  --vp-c-text-3: #7A8CA6;       /* soft blue for tertiary text */
-
-  --vp-font-family-base: 'Inter', Roboto, sans-serif;
-}
-
-
-
-
-/* Dark mode overrides */
-.dark {
-  --vp-c-bg: #0B0F1A;           /* darker background */
-  --vp-c-bg-alt: #1A1F2E;       /* slightly lighter but still dark */
-  --vp-c-bg-soft: #1A1F2E;
-
-  --vp-c-brand-1: #0070F3;      /* darker blue with subtle neon feel */
-  --vp-c-brand-2: #005FCC;
-  --vp-c-brand-3: #0047A3;
-
-  --vp-c-text-1: #D6D6D6;       /* softer white for less glare */
-  --vp-c-text-2: #7A869A;       /* low-contrast grey-blue */
-  --vp-c-text-3: #5C677D;       /* even more muted text */
-}
-
-/* Style for lecture PDF buttons */
-.open-pdf-btn {
-  background-color: var(--vp-c-brand-2);
+/* Left Sidebar (Navigation) */
+.VPSidebarGroup .title {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: var(--vp-font-family-base);
   font-weight: 600;
-  transition: background-color 0.3s;
-}
-
-.open-pdf-btn:hover {
-  background-color: var(--vp-c-brand-1);
-}
-
-.VPSidebarItem > .item .link > .text {
-  display: inline-block;
-  border-radius: 10px;
-
-  transition: background-color 0.1s cubic-bezier(0.4, 0, 0.2, 1),
-              color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              padding 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.VPSidebarItem.level-0 > .item > .text {
-  border-left: 3px solid var(--vp-c-brand-1);
-  padding-left: 8px;
-  border-radius: 10px;
-  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.VPSidebarItem.level-0 > .item > .text:hover {
-  background-color: var(--vp-c-brand-1);
-  color: #ffffff !important;
-}
-
-.VPSidebarItem.is-active > .item .link > .text {
-  background-color: var(--vp-c-brand-1);
-  color: #ffffff !important;
-  padding: 2px 10px;
-}
-
-.VPSidebarItem.level-1 > .item {
-  padding-left: 20px;
-}
-.VPSidebarItem.level-2 > .item {
-  padding-left: 24px;
-}
-
-/* Extra indentation for the active item */
-.VPSidebarItem.level-1.is-active > .item {
-  padding-left: 20px;
-}
-.VPSidebarItem.level-2.is-active > .item {
-  padding-left: 24px;
-}
-
-.VPNavBarMenuLink.active {
-  border-bottom: 3px solid var(--vp-c-brand-1);
-
-  color: var(--vp-c-brand-1);
-  padding-bottom: 4px;
-  background-color: transparent;
-  transition: border-color 1s cubic-bezier(0.4, 0, 0.2, 1),
-              color 1s cubic-bezier(0.4, 0, 0.2, 1);
-  font-weight: bold;
-}
-
-
-/* Base navbar link setup */
-.VPNavBarMenuLink {
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin: 12px 10px 8px 10px;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
   position: relative;
-  padding: 0 12px;
+  overflow: hidden;
 }
 
-/* Underline element */
-.VPNavBarMenuLink::after {
-  content: "";
+.VPSidebarGroup .title::before {
+  content: '';
   position: absolute;
-  bottom: -4px;          /* adjust spacing as needed */
-  left: 0;
-  width: 0;
-  height: 3px;
-  background-color: var(--vp-c-brand-1);
-  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* When the link is active */
-.VPNavBarMenuLink.active::after {
+  top: 0;
+  left: -100%;
   width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s ease;
 }
 
+.VPSidebarGroup .title:hover {
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
+}
 
+.VPSidebarGroup .title:hover::before {
+  left: 100%;
+}
+
+.VPSidebarItem .item {
+  margin: 4px 12px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  background: transparent;
+}
+
+.VPSidebarItem .item:hover {
+  background: rgba(59, 130, 246, 0.08);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+  transform: translateX(6px);
+}
+
+/* Nested sidebar groups (sub-items) */
+.VPSidebarGroup .VPSidebarGroup {
+  margin-left: 16px;
+  margin-right: 8px;
+  margin-top: 8px;
+  border-radius: 10px;
+  background: rgba(59, 130, 246, 0.03);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  overflow: hidden;
+}
+
+.VPSidebarGroup .VPSidebarGroup .title {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 14px;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: 0 2px 8px rgba(107, 114, 128, 0.2);
+}
+
+.VPSidebarGroup .VPSidebarGroup .VPSidebarItem .item {
+  padding-left: 20px;
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+  background: transparent;
+  margin: 2px 8px;
+}
+
+.VPSidebarGroup .VPSidebarGroup .VPSidebarItem .item:hover {
+  background: rgba(59, 130, 246, 0.12);
+  box-shadow: 0 1px 4px rgba(59, 130, 246, 0.2);
+}
+
+/* Active states */
+.VPSidebarItem.is-active .item {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 100%);
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+  box-shadow: 0 3px 12px rgba(59, 130, 246, 0.25);
+  border-left: 3px solid var(--vp-c-brand-1);
+}
+
+/* Right Sidebar (Table of Contents) Enhancement */
+.VPDocAsideOutline {
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.VPDocAsideOutline .title {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.VPDocAsideOutline .outline-link {
+  display: block;
+  padding: 4px 8px;
+  margin: 2px 0;
+  border-radius: 4px;
+  color: var(--vp-c-text-2);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-left: 2px solid transparent;
+}
+
+.VPDocAsideOutline .outline-link:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--vp-c-text-1);
+  border-left-color: var(--vp-c-brand-1);
+  transform: translateX(4px);
+}
+
+.VPDocAsideOutline .outline-link.active {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--vp-c-brand-1);
+  font-weight: 500;
+  border-left-color: var(--vp-c-brand-1);
+}
+
+/* H3 and deeper headings indentation */
+.VPDocAsideOutline .outline-link.outline-3 {
+  padding-left: 16px;
+  font-size: 13px;
+}
+
+.VPDocAsideOutline .outline-link.outline-4 {
+  padding-left: 24px;
+  font-size: 12px;
+}
+
+.VPDocAsideOutline .outline-link.outline-5,
+.VPDocAsideOutline .outline-link.outline-6 {
+  padding-left: 32px;
+  font-size: 11px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .VPSidebarGroup .VPSidebarGroup {
+    margin-left: 12px;
+  }
+  
+  .VPSidebarGroup .VPSidebarGroup .VPSidebarItem .item {
+    padding-left: 12px;
+  }
+}

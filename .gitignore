@@ -9,3 +9,7 @@ docs/.vitepress/dist/
 
 # Misc
 .DS_Store
+
+# Agent files
+AGENTS.md
+CLAUDE.md
