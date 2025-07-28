@@ -28,6 +28,13 @@ export default defineConfig({
         ],
         activeMatch: '^/course/' 
       },
+      {
+        text: 'Assessments',
+        items: [
+          { text: 'Lab Test 1', link: '/assessments/lab-test-1' }
+        ],
+        activeMatch: '^/assessments/'
+      },
       { 
         text: 'Installations', 
         activeMatch: '^/installations/' ,
@@ -51,7 +58,8 @@ export default defineConfig({
         items: [
           { text: 'Lab 1', link: '/labs/lab-01' },
           { text: 'Lab 2', link: '/labs/lab-02' },
-          { text: 'Lab 3', link: '/labs/lab-03' }
+          { text: 'Lab 3', link: '/labs/lab-03' },
+          { text: 'Lab 4', link: '/labs/lab-04' }
         ],
         activeMatch: '^/labs/' 
       },
@@ -73,7 +81,8 @@ export default defineConfig({
           items : [
             { text: 'Lab 1', link : '/labs/lab-01' },
             { text: 'Lab 2', link : '/labs/lab-02' },
-            { text: 'Lab 3', link : '/labs/lab-03' }
+            { text: 'Lab 3', link : '/labs/lab-03' },
+            { text: 'Lab 4', link : '/labs/lab-04' }
           ]
         }
       ],
@@ -95,6 +104,9 @@ export default defineConfig({
         { text: 'Tutorial 1', link: '/tutorials/chapter-2-tutorial-1' },
         { text: 'Tutorial 2', link: '/tutorials/chapter-2-tutorial-2' },
         { text: 'Tutorial 3', link: '/tutorials/chapter-3-tutorial-3' }
+      ],
+      '/assessments/': [
+        { text: 'Lab Test 1', link: '/assessments/lab-test-1' }
       ]
     },
 

@@ -7,17 +7,17 @@ title : Git
 
 ## What is Git
 
-Git is a distributed version control system that records every change you make to your code, lets you rewind to any previous state, and supports branching so you can safely experiment without affecting your “main” work.
+**Git** is a distributed version control system that records every change you make to your code, lets you rewind to any previous state, and supports branching so you can safely experiment without affecting your `main` work.
 
-Why we use Git (and GitHub) instead of Google Classroom:
+Why we use **Git** (and **GitHub**) instead of **Google Classroom**:
 
-- Real-world practice: Professional developers worldwide rely on Git daily. By learning Git here, you acquire skills you’ll use in internships, labs, and future jobs.
+- Real-world practice: Professional developers worldwide rely on **Git** daily. By learning **Git** here, you acquire skills you'll use in internships, labs, and future jobs.
 
 - Instant, automated feedback: Every push triggers our Continuous Integration checks (tests, style reviews), so you see errors or suggestions immediately rather than waiting for manual grading.
 
-- Complete history & easy rollback: Unlike a one-off upload, Git preserves the full history of your edits. Made a mistake? You can revert to any prior version with a single command.
+- Complete history & easy rollback: Unlike a one-off upload, **Git** preserves the full history of your edits. Made a mistake? You can revert to any prior version with a single command.
 
-- Collaboration & peer review: GitHub’s pull-request workflow lets you review classmates’ code, discuss improvements inline, and learn from each other in a transparent, controlled way.
+- Collaboration & peer review: **GitHub's** pull-request workflow lets you review classmates' code, discuss improvements inline, and learn from each other in a transparent, controlled way.
 
 
 ## Installing Git
@@ -34,10 +34,10 @@ Why we use Git (and GitHub) instead of Google Classroom:
    
 6.  `Adjusting the name of the initial branch in new repositories` : Choose the default. 
    
-7. ` Adjusting your PATH environment`: Choose `Git from the command line and also from 3rd-party software.`
->[!Note]
-> The PATH environment variable in Windows tells the system where to look for executable programs when you type
-> a command in command prompt. If you ever see this option again, its almost always a good idea to tick off the box.
+7. `Adjusting your PATH environment`: Choose `Git from the command line and also from 3rd-party software.`
+>::: info NOTE
+The PATH environment variable in **Windows** tells the system where to look for executable programs when you type a command in command prompt. If you ever see this option again, it's almost always a good idea to tick off the box.
+:::
 
 8. `Choosing the SSH executable` : Choose the default.
    
@@ -53,5 +53,5 @@ Why we use Git (and GitHub) instead of Google Classroom:
     
 14. `Configuring extra options`: Choose the default.
     
-15. Click `install`, it should take a few minutes you are good to go!
+15. Click `Install`, it should take a few minutes and you are good to go!
 

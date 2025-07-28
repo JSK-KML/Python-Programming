@@ -1,6 +1,6 @@
 ---
 title: Chapter 3 Lecture
-outline : deep
+outline: deep
 ---
 
 # Chapter 3 : Design Solutions
