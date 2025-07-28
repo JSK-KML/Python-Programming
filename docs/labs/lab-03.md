@@ -3,13 +3,13 @@ outline: deep
 title : Lab 3 - More Flowgorithm 
 ---
 
-# Lab 02 : Flowgorithm 
+# Lab 03 : More Flowgorithm 
 
 ## Pull and Update in VS Code
 
-This lab will explain how to use Flowgorithm for sequence and selection.
+This lab will explain how to use **Flowgorithm** for sequence and selection.
 
-Before starting any lab, you need to make sure that the repo in your Github is the latest one. [Sync the repo](./lab-01.md#syncing-fork) if the `upstream` repo have been updated. 
+Before starting any lab, you need to make sure that the repo in your **GitHub** is the latest one. [Sync the repo](./lab-01.md#syncing-fork) if the `upstream` repo have been updated. 
 
 Once the online repo is in-sync, bring those changes down to your PC by clicking `Source Control` and then `...` beside `Changes` and click `Pull`.
 
@@ -19,11 +19,11 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
 
 ## Creating Our First Flowchart <Badge type="warning" text="Recall" />
 
-Launch Flowgorithm by pressing <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">⊞ Win</kbd> on your keyboard and type *Flowgorithm*. If you can't see it make sure you have [installed it.](/installations/flowgorithm)
+Launch **Flowgorithm** by pressing <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">⊞ Win</kbd> on your keyboard and type *Flowgorithm*. If you can't see it make sure you have [installed it.](/installations/flowgorithm)
 
-When you first launch it, you will see a simple flowchart, containing only `Start` and `End`. This is the default template of the any Flowgorithm projects. Before we edit the file, we need to save the file first.
+When you first launch it, you will see a simple flowchart, containing only `Start` and `End`. This is the default template of the any **Flowgorithm** projects. Before we edit the file, we need to save the file first.
 
-To know if the file is still unsaved, the name of the file is still callled `(Untitled)`. To save the file, click `File` and then `Save As...`. The system will prompt you on the location of the file you want it saved. Saved it to any location you are comfortable with. Remember this location, you will need to use this later. Named the file exactly as this; `lab-03-1`.
+To know if the file is still unsaved, the name of the file is still called `(Untitled)`. To save the file, click `File` and then `Save As...`. The system will prompt you on the location of the file you want it saved. Save it to any location you are comfortable with. Remember this location, you will need to use this later. Name the file exactly as this; `lab-03-1`.
 
 Hover your mouse on the arrow that is connecting `Main` and `End` until the arrow turns orange, then left click on the arrow.
 
@@ -31,7 +31,7 @@ Hover your mouse on the arrow that is connecting `Main` and `End` until the arro
     <img src="/public/labs/lab-02/lab-2-8.png" alt="drawing" width="400"/>
 </p>
 
-After you right click on in, you will see a window popup, listing all the shapes that you can add into your flowchart. Dont worry on the types of shapes that you see here, you will be taught on how to use it later.
+After you right click on in, you will see a window popup, listing all the shapes that you can add into your flowchart. Don't worry about the types of shapes that you see here, you will be taught on how to use it later.
 
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-9.png" alt="drawing" width="600"/>
@@ -39,7 +39,7 @@ After you right click on in, you will see a window popup, listing all the shapes
 
 Lets try to apply it on a scenario. For this example, lets use [Scenario 1](../tutorials/chapter-2-tutorial-1.md#scenario-1-meal-price-with-taxes) from our Chapter 2 - Tutorial 1.
 
-For this exercise, we are focusing on how to use Flowgorithm not how to create a correct flowchart. The usage of the shapes might be not the most accurate way, but take it easy. This exercise is emphasizing on the software.
+For this exercise, we are focusing on how to use **Flowgorithm** not how to create a correct flowchart. The usage of the shapes might be not the most accurate way, but take it easy. This exercise is emphasizing on the software.
 
 Lets recall Scenario 1 from Chapter 2 - Tutorial 1 :
 
@@ -59,11 +59,11 @@ An `Input` shape will appear in between `Main` and `End`. So if you want to add 
     <img src="/public/labs/lab-02/lab-2-11.png" alt="drawing" width="400"/>
 </p>
 
-::: danger INFO
+::: info NOTE
 Any variable name that are used must only contains only letters and numbers, you cannot use special character such as - or _
 :::
 
-After finshing those step, this is what you should see as belows.
+After finishing those steps, this is what you should see as belows.
 
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-12.png" alt="drawing" width="400"/>
@@ -74,7 +74,7 @@ Now repeat the process again, but this time, use the `Output` shape and enter th
 
 #### Declaring the Variable
 
-Eventhough we have declared the our input and output, in **Flowgorithm**, we need to separately declared our variable first outside the `Input` and `Output` shape. So for your `Input`, click the arrow between `Main` and `Input` so we can declared the the variable used in `Input` shape.
+Even though we have declared our input and output, in **Flowgorithm**, we need to separately declare our variable first outside the `Input` and `Output` shape. So for your `Input`, click the arrow between `Main` and `Input` so we can declare the variable used in `Input` shape.
 
 In the popup window, under the category Statement, choose the `Declare` shape.
 
@@ -82,13 +82,13 @@ In the popup window, under the category Statement, choose the `Declare` shape.
     <img src="/public/labs/lab-02/lab-2-13.png" alt="drawing" width="400"/>
 </p>
 
-Double click the `Declare` shape and named the variable exactly as you put in the input, which in our case, is `mealPrice` and choose the Integer data type. Click OK to finalise it. 
+Double click the `Declare` shape and name the variable exactly as you put in the input, which in our case, is `mealPrice` and choose the Integer data type. Click OK to finalise it. 
 
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-14.png" alt="drawing" width="400"/>
 </p>
 
-The result afterwards should looks like the below
+The result afterwards should look like the below
 
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-15.png" alt="drawing" width="300"/>
@@ -131,19 +131,19 @@ Before running the program, double-check if your answer is exactly like this.
     <img src="/public/labs/lab-03/lab-3-5.png" alt="drawing" width="200"/>
 </p>
 
-To run the program, click the green arrow at the top right corner of the window. A popup window with a box to enter an input will appear, enter any input and compare it with you calculator to see if the calculations is correct.
+To run the program, click the green arrow at the top right corner of the window. A popup window with a box to enter an input will appear, enter any input and compare it with you calculator to see if the calculations are correct.
 
 <p align="center">
     <img src="/public/labs/lab-03/lab-3-4.png" alt="drawing" width="400"/>
 </p>
 
-Copy and paste the saved file from the section earlier into `/labs/lab03/` directory of your repo using VS Code. Then commit and push the code. Refer back to the previous lab on how to do [commit and push](./lab-01.md#commit-and-push) if you doesnt remember how to.
+Copy and paste the saved file from the section earlier into `/labs/lab03/` directory of your repo using **VS Code**. Then commit and push the code. Refer back to the previous lab on how to do [commit and push](./lab-01.md#commit-and-push) if you don't remember how to.
 
 
 
 ## Exporting Flowgorithm to Python 
 
-In VS Code, right click the `lab03` folder and click `New File`. Name the file `lab-3-1.py`. In **Flowgorithm**, at the top bar, click the `Source Code Viewer`.
+In **VS Code**, right click the `lab03` folder and click `New File`. Name the file `lab-3-1.py`. In **Flowgorithm**, at the top bar, click the `Source Code Viewer`.
 
 <p align="center">
     <img src="/public/labs/lab-03/lab-3-6.png" alt="drawing" width="400"/>
@@ -306,9 +306,9 @@ Outputs (in order):
 
 After you have finish answering all the questions, make sure to [commit and push](./lab-01.md#commit-and-push) your files back to your repo.
 
-In the Github repo, make sure that the commit passed all the test. Recall back [here](./lab-02.md#using-flowgorithm-with-github-action) if you forgot how to check it.
+In the **GitHub** repo, make sure that the commit passed all the test. Recall back [here](./lab-02.md#using-flowgorithm-with-github-action) if you forgot how to check it.
 
 
-::: danger Attention
-The Github Actions setup for this lab is experimental and can fail eventhough you have done everything correctly. Please let me know if you have reached this part and show me the Actions result.
+::: danger ATTENTION
+The **GitHub Actions** setup for this lab is experimental and can fail eventhough you have done everything correctly. Please let me know if you have reached this part and show me the Actions result.
 :::

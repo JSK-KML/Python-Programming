@@ -1,6 +1,6 @@
 ---
 title: Chapter 1 Lecture
-outline : deep
+outline: deep
 ---
 
 # Chapter 1 : Introduction to Programming

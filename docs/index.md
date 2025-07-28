@@ -6,8 +6,8 @@ title: Home
 
 hero:
   name: "CP115 Python Programming"
-  text: "Course and Labs Informations"
-  tagline: Structured Python Labs and Exercise
+  text: "Course and Lab Information"
+  tagline: Structured Python Labs and Exercises
   actions:
     - theme: brand
       text: Installations
@@ -20,7 +20,7 @@ features:
   - title: Installations
     details: This section will guide you step-by-step on how to download and install all the necessary software and tools that we are going to need in this course
   - title: Labs
-    details: The labs is a collections of structured and guided instructions that we can do together to understand Python concept better
+    details: The labs are a collection of structured and guided instructions that we can do together to understand Python concepts better
 ---
 
 ::: tip
@@ -56,7 +56,7 @@ const members = [
     name: 'Muhammad Aiman Haris',
     title: 'Lecturer',
     org : 'Kolej Matrikulasi Labuan',
-    desc : 'I have few years experience in teaching programming using Python, Java and Javascript. If you have any questions, please don’t hesitate to reach out via the link below. Enjoy the course!',
+    desc : 'I have several years of experience in teaching programming using **Python**, **Java** and **JavaScript**. If you have any questions, please don\'t hesitate to reach out via the link below. Enjoy the course!',
     links: [
       {icon : 'whatsapp', link :'https://wasap.my/+60143294625'},
       { icon: 'gmail', link: 'mailto:bm-3570@moe-dl.edu.my' },
