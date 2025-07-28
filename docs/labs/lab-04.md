@@ -118,3 +118,25 @@ Income tax is applied as:
 - Above RM100,000.00 → 2%
 
 Given an annual income, calculate total tax due.
+
+### Scenario 3 - Parking Fee <Badge type="tip" text="Question" />
+
+A mall charges parking as follows:
+
+First 2 hours → Free
+
+Next 3 hours (2–5 hours) → RM2.00 per hour
+
+Beyond 5 hours → RM3.00 per hour
+
+Maximum charge per day → RM30.00
+
+Given total hours parked, calculate the parking fee.
+
+### Scenario 4 - Baggage Allowance Logic <Badge type="tip" text="Question" />
+
+A flight ticket that includes 15 kg of free baggage.
+Excess baggage is charged RM4.00 per kg beyond that limit.
+However, if the passenger brings no baggage, they receive a RM10.00 discount on the total ticket price.
+
+Given the weight of baggage and ticket price, calculate the final price. 
