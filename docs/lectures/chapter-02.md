@@ -1,6 +1,6 @@
 ---
 title: Chapter 2 Lecture
-outline : deep
+outline: deep
 ---
 
 # Chapter 2 : Problem Analysis

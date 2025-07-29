@@ -1,11 +1,13 @@
-# Node dependencies and cache
-.vitepress/
-docs/node_modules/
-docs/.vitepress/cache/
 
-# Build assets
-docs/assets/
-docs/.vitepress/dist/
+
 
 # Misc
 .DS_Store
+
+# Agent and Claude files
+agent.md
+claude.md
+CLAUDE.md
+CLAUDE.local.md
+claude_local.md
+.claude/
