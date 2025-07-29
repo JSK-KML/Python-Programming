@@ -16,7 +16,7 @@
 1. Complete your flowchart in **Flowgorithm**
 2. Export flowchart as image.
 3. Save the image file as: `lab-test-1`
-4. Upload the image to the Google Form at [here](https://forms.gle/G1iBhWmxCzsntjVB8)
+4. Upload the image to the Google Form at [here](https://forms.gle/5MNe2EgMeYiN5itUA)
 5. Fill in all required information in the form
 
 ### What to Submit
