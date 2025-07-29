@@ -41,7 +41,8 @@ export default defineConfig({
         items: [
           { text: 'Lab 1', link: '/labs/lab-01' },
           { text: 'Lab 2', link: '/labs/lab-02' },
-          { text: 'Lab 3', link: '/labs/lab-03' }
+          { text: 'Lab 3', link: '/labs/lab-03' },
+          { text: 'Lab 4', link: '/labs/lab-04'}
         ],
         activeMatch: '^/labs/' 
       },
@@ -74,7 +75,11 @@ export default defineConfig({
             {
               text: 'Lab 3',
               link : '/labs/lab-03'
-            }
+            },
+             { 
+               text: 'Lab 4', 
+               link: '/labs/lab-04'
+             }
           ]
         }
         
