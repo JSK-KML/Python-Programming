@@ -14,6 +14,7 @@ export default {
     // Initialize magnetic glow effects on client side
     if (typeof window !== 'undefined') {
       import('./magneticGlow.js')
+      import('./slidingPill.js')
     }
   }
 }

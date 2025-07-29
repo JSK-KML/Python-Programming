@@ -126,9 +126,9 @@
 
 /* Magnetic Glow Integration for Sidebar Items */
 .VPSidebarItem .link {
-  margin: 2px 12px;
-  padding: 6px 16px;
-  border-radius: 8px;
+  margin: 2px 14px;
+  padding: 6px 14px;
+  border-radius: 10px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   background: transparent;
@@ -192,24 +192,56 @@
   animation: pulse-glow 2s ease-in-out infinite alternate;
 }
 
-/* Solid blue background for active/selected item */
+/* Enhanced active state with sliding pill indicator */
+.VPSidebar {
+  position: relative;
+}
+
+.VPSidebar::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  height: 32px;
+  top: var(--pill-top, 0px);
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(0);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+  box-shadow: 
+    0 3px 8px rgba(59, 130, 246, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: activeBreathing 2.5s ease-in-out infinite;
+}
+
+.VPSidebar.has-active::before {
+  opacity: 1;
+}
+
+/* Gradient background for active/selected item */
 .VPSidebarItem.is-active .link {
-  background: #3b82f6 !important;
+  background: transparent !important;
   color: #ffffff !important;
   font-weight: bold !important;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif !important;
   font-size: 14px !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
-  border-radius: 8px !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
+  border-radius: 10px !important;
   letter-spacing: 0.025em !important;
   text-transform: none !important;
+  position: relative;
+  z-index: 1;
+  margin: 2px 14px;
+  padding: 6px 14px;
 }
 
 .VPSidebarItem.is-active .link:hover {
-  background: #2563eb !important;
+  background: transparent !important;
   color: #ffffff !important;
   font-weight: bold !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7) !important;
 }
 
 /* Force bold text on active sidebar items - override all VitePress styles */
@@ -229,6 +261,21 @@
   100% {
     opacity: 0.8;
     transform: scale(1.01);
+  }
+}
+
+@keyframes activeBreathing {
+  0%, 100% {
+    box-shadow: 
+      0 4px 12px rgba(59, 130, 246, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    box-shadow: 
+      0 6px 20px rgba(59, 130, 246, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transform: translateY(0) scale(1.01);
   }
 }
 
