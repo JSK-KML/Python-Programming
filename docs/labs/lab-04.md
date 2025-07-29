@@ -135,8 +135,10 @@ Given total hours parked, calculate the parking fee.
 
 ### Scenario 4 - Baggage Allowance Logic <Badge type="tip" text="Question" />
 
-A flight ticket that includes 15 kg of free baggage.
-Excess baggage is charged RM4.00 per kg beyond that limit.
+A flight ticket that includes 15 kg of free baggage.Excess baggage is charged RM4.00 per kg beyond that limit.
 However, if the passenger brings no baggage, they receive a RM10.00 discount on the total ticket price.
 
+
 Given the weight of baggage and ticket price, calculate the final price. 
+
+
