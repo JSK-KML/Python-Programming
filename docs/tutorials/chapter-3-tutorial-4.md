@@ -48,7 +48,7 @@ Real compression algorithms are much more sophisticated and can compress almost 
 
 Implement a run-length encoding algorithm that processes characters sequentially and counts consecutive identical characters.
 
-- **Input:** Characters entered one by one and will end when z is entered
+- **Input:** Characters entered one by one and will end when # is entered
   
 - **Output:** Compressed string representation
 
