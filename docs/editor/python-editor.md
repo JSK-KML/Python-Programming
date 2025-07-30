@@ -653,11 +653,93 @@ print(f"Is student: {is_student}")`;
     }, 2000);
   }
   
+  // Mobile detection and redirect
+  function isMobileDevice() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+    // Check for mobile user agents
+    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i;
+    const isMobileUA = mobileRegex.test(userAgent.toLowerCase());
+    
+    // Check for touch capability
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    // Check screen size (mobile-like dimensions)
+    const isSmallScreen = window.innerWidth <= 768 || window.innerHeight <= 600;
+    
+    // Combine checks for better detection
+    return isMobileUA || (isTouchDevice && isSmallScreen);
+  }
+  
+  function redirectToMobile() {
+    // Get current code if editor exists
+    let currentCode = '';
+    if (editor) {
+      currentCode = editor.getValue();
+    }
+    
+    // Save code to localStorage for mobile editor
+    if (currentCode) {
+      localStorage.setItem('pythonEditorCode', currentCode);
+      localStorage.setItem('pythonEditorTimestamp', Date.now().toString());
+    }
+    
+    // Redirect to mobile editor
+    const mobileUrl = window.location.origin + window.location.pathname.replace('/editor/python-editor', '/editor-mobile.html');
+    window.location.href = mobileUrl;
+  }
+  
+  function checkMobileAndRedirect() {
+    // Check for force mobile parameter (for testing/manual access)
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceMobile = urlParams.get('mobile') === 'true';
+    const forceDesktop = urlParams.get('desktop') === 'true';
+    
+    if (forceDesktop) {
+      console.log('Desktop mode forced via URL parameter');
+      return false;
+    }
+    
+    if (forceMobile || isMobileDevice()) {
+      console.log(forceMobile ? 'Mobile mode forced via URL parameter' : 'Mobile device detected, redirecting to mobile editor...');
+      
+      // Add a small delay to show a loading message
+      const loadingMsg = document.createElement('div');
+      loadingMsg.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0d1117;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        z-index: 9999;
+      `;
+      loadingMsg.textContent = 'Redirecting to mobile editor...';
+      document.body.appendChild(loadingMsg);
+      
+      // Redirect after brief delay
+      setTimeout(redirectToMobile, 800);
+      return true;
+    }
+    return false;
+  }
+
   // Initialize when DOM is ready
   function init() {
     console.log('Initializing Python editor...');
     
-    // Wait a bit for DOM to be fully ready
+    // Check for mobile and redirect if needed
+    if (checkMobileAndRedirect()) {
+      return; // Stop initialization if redirecting
+    }
+    
+    // Wait a bit for DOM to be fully ready (desktop only)
     setTimeout(() => {
       initializeMonaco();
     }, 500);
