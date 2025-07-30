@@ -56,6 +56,13 @@ export default defineConfig({
           { text: 'Chapter 4', link: '/lectures/chapter-04' }
         ],
         activeMatch: '^/lectures/' 
+      },
+      { 
+        text: 'Editor', 
+        items: [
+          { text: 'Python Editor', link: '/editor/python-editor' }
+        ],
+        activeMatch: '^/editor/' 
       }
 
     ],
@@ -152,6 +159,12 @@ export default defineConfig({
                 }
         
         
+      ],
+      '/editor/': [
+        {
+          text: 'Python Editor',
+          link: '/editor/python-editor'
+        }
       ]
     },
     

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Editor - Fullscreen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      background: #0d1117;
+      color: white;
+      height: 100vh;
+      overflow: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Light mode styles */
+    body.light-mode {
+      background: #ffffff;
+      color: #24292f;
+    }
+
+    body.light-mode .fullscreen-container {
+      background: #ffffff;
+    }
+
+    body.light-mode .header {
+      background: #f6f8fa;
+      border-bottom-color: #d0d7de;
+    }
+
+    body.light-mode .header h1 {
+      color: #24292f;
+    }
+
+    body.light-mode .controls {
+      background: #f6f8fa;
+      border-top-color: #d0d7de;
+    }
+
+    body.light-mode .output-section {
+      background: #f6f8fa;
+      border-top-color: #d0d7de;
+    }
+
+    body.light-mode .output-header {
+      background: #ffffff;
+      border-bottom-color: #d0d7de;
+      color: #0969da;
+    }
+
+    body.light-mode .output-content {
+      color: #0969da;
+      background: rgba(13, 17, 23, 0.05);
+    }
+
+    body.light-mode .resize-handle::before {
+      background: #d0d7de;
+    }
+
+    body.light-mode .resize-handle:hover::before {
+      background: #0969da;
+    }
+
+    body.light-mode .output-content::-webkit-scrollbar-track {
+      background: #f6f8fa;
+    }
+
+    body.light-mode .output-content::-webkit-scrollbar-thumb {
+      background: #d0d7de;
+    }
+
+    body.light-mode .output-content::-webkit-scrollbar-thumb:hover {
+      background: #afb8c1;
+    }
+
+    .fullscreen-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background: #0d1117;
+    }
+
+    .header {
+      background: #21262d;
+      padding: 12px 20px;
+      border-bottom: 1px solid #30363d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #f0f6fc;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .font-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .program-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .settings-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .font-control-btn {
+      padding: 6px 12px;
+      background: var(--btn-neutral-bg);
+      border: 1px solid var(--btn-neutral-border);
+      border-radius: 4px;
+      color: #1e293b;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 32px;
+    }
+
+    .font-control-btn:hover {
+      background: var(--btn-neutral-hover);
+      border-color: var(--btn-neutral-border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+      color: #0f172a;
+    }
+
+    /* Dark mode for font control buttons */
+    body:not(.light-mode) .font-control-btn {
+      color: white;
+    }
+
+    body:not(.light-mode) .font-control-btn:hover {
+      color: white;
+    }
+
+    .font-size-display {
+      color: #8b949e;
+      font-size: 12px;
+      font-weight: 500;
+      margin: 0 4px;
+      min-width: 32px;
+      text-align: center;
+    }
+
+    .theme-toggle {
+      padding: 8px 16px;
+      background: var(--btn-secondary-bg);
+      border: 1px solid var(--btn-secondary-border);
+      border-radius: 6px;
+      color: #1e293b;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-right: 12px;
+    }
+
+    .theme-toggle:hover {
+      background: var(--btn-secondary-hover);
+      border-color: var(--btn-secondary-border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+      color: #0f172a;
+    }
+
+    /* Dark mode for theme toggle */
+    body:not(.light-mode) .theme-toggle {
+      color: white;
+    }
+
+    body:not(.light-mode) .theme-toggle:hover {
+      color: white;
+    }
+
+    .editor-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .editor-wrapper {
+      flex: 1;
+      background: #0d1117;
+      position: relative;
+      min-height: 0;
+    }
+
+    #monaco-editor {
+      height: 100%;
+      width: 100%;
+    }
+
+
+    .output-section {
+      background: #161b22;
+      border-top: 1px solid #30363d;
+      height: 200px;
+      min-height: 100px;
+      max-height: 70vh;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .resize-handle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: transparent;
+      cursor: ns-resize;
+      z-index: 100;
+      transition: background 0.2s ease;
+    }
+
+    .resize-handle:hover {
+      background: rgba(59, 130, 246, 0.3);
+    }
+
+    .resize-handle::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 2px;
+      background: #30363d;
+      border-radius: 1px;
+    }
+
+    .resize-handle:hover::before {
+      background: #3b82f6;
+    }
+
+    .resizing {
+      user-select: none;
+    }
+
+    .resizing .output-section {
+      transition: none;
+    }
+
+    .output-header {
+      background: #21262d;
+      padding: 12px 20px;
+      border-bottom: 1px solid #30363d;
+      font-weight: 600;
+      font-size: 14px;
+      color: #3b82f6;
+    }
+
+    .output-content {
+      flex: 1;
+      padding: 16px 20px;
+      overflow-y: auto;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #58a6ff;
+      white-space: pre-wrap;
+    }
+
+    /* CSS Variables for Button System */
+    :root {
+      /* Gradient color scheme variables */
+      --gradient-subtle: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+      --gradient-light: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(147, 51, 234, 0.15) 100%);
+      --gradient-primary: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+      --gradient-medium: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(147, 51, 234, 0.25) 100%);
+      --gradient-hover: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(147, 51, 234, 0.3) 100%);
+      --gradient-strong: linear-gradient(135deg, rgba(59, 130, 246, 0.35) 0%, rgba(147, 51, 234, 0.35) 100%);
+      --gradient-active: linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.4) 100%);
+      
+      /* Gradient border colors */
+      --gradient-border-light: rgba(59, 130, 246, 0.2);
+      --gradient-border-medium: rgba(59, 130, 246, 0.3);
+      --gradient-border-strong: rgba(59, 130, 246, 0.4);
+      --gradient-border-active: rgba(59, 130, 246, 0.6);
+
+      /* Standardized Button Color System */
+      --btn-primary-bg: var(--gradient-hover);
+      --btn-primary-hover: var(--gradient-active);
+      --btn-primary-border: var(--gradient-border-medium);
+      --btn-primary-border-hover: var(--gradient-border-active);
+
+      --btn-secondary-bg: var(--gradient-primary);
+      --btn-secondary-hover: var(--gradient-hover);
+      --btn-secondary-border: var(--gradient-border-light);
+      --btn-secondary-border-hover: var(--gradient-border-medium);
+
+      --btn-neutral-bg: var(--gradient-subtle);
+      --btn-neutral-hover: var(--gradient-primary);
+      --btn-neutral-border: var(--gradient-border-light);
+      --btn-neutral-border-hover: var(--gradient-border-medium);
+
+      --btn-warning-bg: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%);
+      --btn-warning-hover: linear-gradient(135deg, rgba(245, 158, 11, 0.3) 0%, rgba(217, 119, 6, 0.3) 100%);
+      --btn-warning-border: rgba(245, 158, 11, 0.3);
+      --btn-warning-border-hover: rgba(245, 158, 11, 0.5);
+
+      --btn-danger-bg: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(185, 28, 28, 0.2) 100%);
+      --btn-danger-hover: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(185, 28, 28, 0.3) 100%);
+      --btn-danger-border: rgba(239, 68, 68, 0.3);
+      --btn-danger-border-hover: rgba(239, 68, 68, 0.5);
+    }
+
+    /* Button Styles */
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      height: 32px;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--btn-primary-bg);
+      color: #1e293b; /* Dark text for light mode */
+      border: 1px solid var(--btn-primary-border);
+    }
+
+    .btn-primary:hover {
+      background: var(--btn-primary-hover);
+      border-color: var(--btn-primary-border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      color: #0f172a; /* Darker text on hover */
+    }
+
+    .btn-secondary {
+      background: var(--btn-secondary-bg);
+      color: #1e293b; /* Dark text for light mode */
+      border: 1px solid var(--btn-secondary-border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--btn-secondary-hover);
+      border-color: var(--btn-secondary-border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+      color: #0f172a; /* Darker text on hover */
+    }
+
+    .btn-neutral {
+      background: var(--btn-neutral-bg);
+      color: #1e293b; /* Dark text for light mode */
+      border: 1px solid var(--btn-neutral-border);
+    }
+
+    .btn-neutral:hover {
+      background: var(--btn-neutral-hover);
+      border-color: var(--btn-neutral-border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+      color: #0f172a; /* Darker text on hover */
+    }
+
+    .btn-warning {
+      background: var(--btn-warning-bg);
+      color: #78350f; /* Amber dark text for warning buttons */
+      border: 1px solid var(--btn-warning-border);
+    }
+
+    .btn-warning:hover {
+      background: var(--btn-warning-hover);
+      border-color: var(--btn-warning-border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+      color: #451a03; /* Darker amber text on hover */
+    }
+
+    .btn-danger {
+      background: var(--btn-danger-bg);
+      color: #7f1d1d; /* Red dark text for danger buttons */
+      border: 1px solid var(--btn-danger-border);
+    }
+
+    .btn-danger:hover {
+      background: var(--btn-danger-hover);
+      border-color: var(--btn-danger-border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+      color: #450a0a; /* Darker red text on hover */
+    }
+
+    /* Dark Mode Button Styles */
+    body:not(.light-mode) .btn-primary {
+      color: white; /* White text for dark mode */
+    }
+
+    body:not(.light-mode) .btn-primary:hover {
+      color: white;
+    }
+
+    body:not(.light-mode) .btn-secondary {
+      color: white;
+    }
+
+    body:not(.light-mode) .btn-secondary:hover {
+      color: white;
+    }
+
+    body:not(.light-mode) .btn-neutral {
+      color: white;
+    }
+
+    body:not(.light-mode) .btn-neutral:hover {
+      color: white;
+    }
+
+    body:not(.light-mode) .btn-warning {
+      color: white; /* White text for better contrast in dark mode */
+    }
+
+    body:not(.light-mode) .btn-warning:hover {
+      color: white;
+    }
+
+    body:not(.light-mode) .btn-danger {
+      color: white; /* White text for better contrast in dark mode */
+    }
+
+    body:not(.light-mode) .btn-danger:hover {
+      color: white;
+    }
+
+    /* Scrollbar */
+    .output-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .output-content::-webkit-scrollbar-track {
+      background: #21262d;
+    }
+
+    .output-content::-webkit-scrollbar-thumb {
+      background: #30363d;
+      border-radius: 4px;
+    }
+
+    .output-content::-webkit-scrollbar-thumb:hover {
+      background: #484f58;
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #3b82f6;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 10000;
+      font-size: 14px;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(100%); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideOut {
+      from { opacity: 1; transform: translateX(0); }
+      to { opacity: 0; transform: translateX(100%); }
+    }
+  </style>
+</head>
+<body>
+  <div class="fullscreen-container">
+    <!-- Header -->
+    <div class="header">
+      <h1>Python Editor - Fullscreen</h1>
+      <div class="header-buttons">
+        <div class="program-controls">
+          <button class="btn btn-primary" onclick="runCode()">Run Code</button>
+          <button class="btn btn-primary" onclick="downloadCode()">Download</button>
+          <button class="btn btn-neutral" onclick="clearOutput()">Clear Output</button>
+          <button class="btn btn-warning" onclick="resetCode()">Reset</button>
+        </div>
+        <div class="settings-controls">
+          <div class="font-controls">
+            <button class="font-control-btn" onclick="decreaseFontSize()" title="Decrease font size">A-</button>
+            <span class="font-size-display" id="font-size-display">16px</span>
+            <button class="font-control-btn" onclick="increaseFontSize()" title="Increase font size">A+</button>
+          </div>
+          <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
+            <span id="theme-text">Light Mode</span>
+          </button>
+          <button class="btn btn-danger" onclick="closeFullscreen()">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Editor -->
+    <div class="editor-main">
+      <div class="editor-wrapper">
+        <div id="monaco-editor"></div>
+      </div>
+    </div>
+
+    <!-- Output Section -->
+    <div class="output-section" id="output-section">
+      <div class="resize-handle" id="resize-handle"></div>
+      <div class="output-header">Output:</div>
+      <div class="output-content" id="output">Write some Python code and click "Run Code" to see results...</div>
+    </div>
+  </div>
+
+  <script>
+    let editor = null;
+    let isResizing = false;
+    let startY = 0;
+    let startHeight = 0;
+    let currentFontSize = 16;
+    let isLightMode = false;
+    
+    // Load Monaco Editor and Skulpt
+    function loadMonaco() {
+      return new Promise((resolve) => {
+        if (window.require && window.monaco) {
+          resolve();
+          return;
+        }
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js';
+        script.onload = () => {
+          setTimeout(resolve, 100);
+        };
+        document.head.appendChild(script);
+      });
+    }
+    
+    function loadSkulpt() {
+      return new Promise((resolve, reject) => {
+        if (window.Sk) {
+          resolve();
+          return;
+        }
+        
+        const skulptScript = document.createElement('script');
+        skulptScript.src = 'https://skulpt.org/js/skulpt.min.js';
+        skulptScript.onload = () => {
+          const skulptStdlib = document.createElement('script');
+          skulptStdlib.src = 'https://skulpt.org/js/skulpt-stdlib.js';
+          skulptStdlib.onload = () => {
+            console.log('Skulpt loaded successfully!');
+            resolve();
+          };
+          skulptStdlib.onerror = () => reject(new Error('Failed to load Skulpt stdlib'));
+          document.head.appendChild(skulptStdlib);
+        };
+        skulptScript.onerror = () => reject(new Error('Failed to load Skulpt'));
+        document.head.appendChild(skulptScript);
+      });
+    }
+
+    const defaultPythonCode = `# Welcome to the Fullscreen Python Editor!
+# This is a dedicated coding environment with maximum screen space
+
+print("Hello from fullscreen Python editor!")`;
+
+    async function initializeEditor() {
+      try {
+        await loadMonaco();
+        loadSkulpt().catch(error => console.warn('Skulpt failed to load:', error));
+        
+        if (!window.require) {
+          console.error('Monaco loader not available');
+          return;
+        }
+        
+        window.require.config({ 
+          paths: { 
+            'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' 
+          } 
+        });
+        
+        window.require(['vs/editor/editor.main'], function () {
+          const editorElement = document.getElementById('monaco-editor');
+          if (!editorElement) {
+            console.error('Monaco editor container not found');
+            return;
+          }
+          
+          let initialCode = defaultPythonCode;
+          
+          editor = monaco.editor.create(editorElement, {
+            value: initialCode,
+            language: 'python',
+            theme: 'vs-dark',
+            fontSize: currentFontSize,
+            lineNumbers: 'on',
+            roundedSelection: false,
+            scrollBeyondLastLine: false,
+            readOnly: false,
+            automaticLayout: true,
+            minimap: { enabled: true },
+            folding: true,
+            lineNumbersMinChars: 3,
+            wordWrap: 'on',
+            scrollbar: {
+              verticalScrollbarSize: 10,
+              horizontalScrollbarSize: 10
+            }
+          });
+          
+          // Update font size display
+          updateFontSizeDisplay();
+          
+          console.log('Fullscreen Monaco Editor initialized!');
+        });
+      } catch (error) {
+        console.error('Failed to initialize Monaco:', error);
+      }
+    }
+
+    // Editor functions
+    function runCode() {
+      const output = document.getElementById('output');
+      
+      if (!editor) {
+        output.textContent = 'Error: Editor not initialized. Please wait for the editor to load.';
+        showNotification('Editor not ready yet');
+        return;
+      }
+      
+      try {
+        const code = editor.getValue();
+        output.textContent = `Running Python code...\\n\\n`;
+        
+        setTimeout(() => {
+          executePython(code, output);
+        }, 300);
+      } catch (error) {
+        output.textContent = `Error: ${error.message}`;
+        showNotification('Error running code');
+      }
+    }
+
+    async function executePython(code, output) {
+      try {
+        if (!window.Sk) {
+          output.textContent = 'Loading Python interpreter...\\n\\n';
+          await loadSkulpt();
+        }
+        
+        let pythonOutput = '';
+        
+        Sk.pre = "output";
+        Sk.configure({
+          output: function(text) {
+            pythonOutput += text;
+          },
+          read: function(x) {
+            if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined) {
+              throw "File not found: '" + x + "'";
+            }
+            return Sk.builtinFiles["files"][x];
+          },
+          __future__: Sk.python3,
+          python3: true
+        });
+        
+        output.textContent = 'Running Python code...\\n\\n';
+        
+        const promise = Sk.misceval.asyncToPromise(() => {
+          return Sk.importMainWithBody("<stdin>", false, code, true);
+        });
+        
+        await promise;
+        
+        if (pythonOutput.trim()) {
+          output.textContent = `${pythonOutput}\\nPython executed successfully!\\nRunning in fullscreen mode with Skulpt interpreter.`;
+        } else {
+          output.textContent = `Python code executed successfully!\\nNo output produced. Try adding print() statements.\\n\\nFullscreen Python interpreter ready for your code!`;
+        }
+        
+        showNotification('Python executed successfully!');
+        
+      } catch (error) {
+        let errorMessage = error.toString();
+        
+        if (error.traceback) {
+          const lineInfo = error.traceback[0];
+          if (lineInfo && lineInfo.lineno) {
+            errorMessage = `Line ${lineInfo.lineno}: ${error.args ? error.args.v[0].v : errorMessage}`;
+          }
+        }
+        
+        output.textContent = `Python Error:\\n${errorMessage}\\n\\nCheck your Python syntax and try again.\\nUsing Skulpt Python interpreter.`;
+        showNotification('Python execution error');
+      }
+    }
+
+    function downloadCode() {
+      if (!editor) {
+        showNotification('Editor not ready yet');
+        return;
+      }
+      
+      try {
+        const code = editor.getValue();
+        const blob = new Blob([code], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'exercise.py';
+        link.style.display = 'none';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        window.URL.revokeObjectURL(url);
+        showNotification('Python file downloaded as exercise.py');
+      } catch (error) {
+        showNotification('Error downloading file');
+        console.error('Download error:', error);
+      }
+    }
+
+
+    function clearOutput() {
+      const output = document.getElementById('output');
+      output.textContent = 'Output cleared. Write some Python code and click "Run Code" to see results...';
+      showNotification('Output cleared');
+    }
+
+    function resetCode() {
+      if (!editor) {
+        showNotification('Editor not ready yet');
+        return;
+      }
+      
+      try {
+        editor.setValue(defaultPythonCode);
+        document.getElementById('output').textContent = 'Code reset to default template. Ready to run!';
+        showNotification('Code reset to default template');
+      } catch (error) {
+        showNotification('Error resetting code');
+      }
+    }
+
+    function closeFullscreen() {
+      try {
+        window.close();
+      } catch (error) {
+        window.close();
+      }
+    }
+
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.remove();
+          }
+        }, 300);
+      }, 2500);
+    }
+    
+    // Resize functionality
+    function initializeResizeHandle() {
+      const resizeHandle = document.getElementById('resize-handle');
+      const outputSection = document.getElementById('output-section');
+      
+      if (!resizeHandle || !outputSection) return;
+      
+      resizeHandle.addEventListener('mousedown', (e) => {
+        isResizing = true;
+        startY = e.clientY;
+        startHeight = parseInt(document.defaultView.getComputedStyle(outputSection).height, 10);
+        document.body.classList.add('resizing');
+        e.preventDefault();
+      });
+      
+      document.addEventListener('mousemove', (e) => {
+        if (!isResizing) return;
+        
+        const deltaY = startY - e.clientY; // Reversed because we want to drag up to make bigger
+        const newHeight = Math.max(100, Math.min(window.innerHeight * 0.7, startHeight + deltaY));
+        
+        outputSection.style.height = newHeight + 'px';
+        
+        // Trigger Monaco editor resize if needed
+        if (editor) {
+          setTimeout(() => {
+            editor.layout();
+          }, 0);
+        }
+        
+        e.preventDefault();
+      });
+      
+      document.addEventListener('mouseup', () => {
+        if (isResizing) {
+          isResizing = false;
+          document.body.classList.remove('resizing');
+        }
+      });
+    }
+
+    // Font size controls
+    function increaseFontSize() {
+      if (!editor) {
+        showNotification('Editor not ready yet');
+        return;
+      }
+      
+      if (currentFontSize < 32) {
+        currentFontSize += 2;
+        editor.updateOptions({ fontSize: currentFontSize });
+        updateFontSizeDisplay();
+        showNotification(`Font size increased to ${currentFontSize}px`);
+      }
+    }
+
+    function decreaseFontSize() {
+      if (!editor) {
+        showNotification('Editor not ready yet');
+        return;
+      }
+      
+      if (currentFontSize > 10) {
+        currentFontSize -= 2;
+        editor.updateOptions({ fontSize: currentFontSize });
+        updateFontSizeDisplay();
+        showNotification(`Font size decreased to ${currentFontSize}px`);
+      }
+    }
+
+    function updateFontSizeDisplay() {
+      const display = document.getElementById('font-size-display');
+      if (display) {
+        display.textContent = `${currentFontSize}px`;
+      }
+    }
+
+    // Theme toggle
+    function toggleTheme() {
+      if (!editor) {
+        showNotification('Editor not ready yet');
+        return;
+      }
+      
+      isLightMode = !isLightMode;
+      const body = document.body;
+      const themeText = document.getElementById('theme-text');
+      
+      if (isLightMode) {
+        body.classList.add('light-mode');
+        editor.updateOptions({ theme: 'vs' });
+        themeText.textContent = 'Dark Mode';
+        showNotification('Switched to light mode');
+      } else {
+        body.classList.remove('light-mode');
+        editor.updateOptions({ theme: 'vs-dark' });
+        themeText.textContent = 'Light Mode';
+        showNotification('Switched to dark mode');
+      }
+    }
+
+    // Initialize when DOM is ready
+    function init() {
+      console.log('Initializing fullscreen Python editor...');
+      setTimeout(() => {
+        initializeEditor();
+        initializeResizeHandle();
+      }, 300);
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
+</body>
+</html>
