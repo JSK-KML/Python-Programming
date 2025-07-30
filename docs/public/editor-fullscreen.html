@@ -209,11 +209,18 @@
       color: white;
     }
 
+    .main-content {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
+
     .editor-main {
       flex: 1;
       display: flex;
       flex-direction: column;
       min-height: 0;
+      min-width: 0;
     }
 
     .editor-wrapper {
@@ -522,6 +529,381 @@
       from { opacity: 1; transform: translateX(0); }
       to { opacity: 0; transform: translateX(100%); }
     }
+
+    /* Ripple Effect System */
+    .btn,
+    .font-control-btn,
+    .theme-toggle,
+    button {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ripple-effect {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: ripple-animation 0.6s linear;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes ripple-animation {
+      0% {
+        transform: scale(0);
+        opacity: 0.8;
+      }
+      50% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Light mode ripple adjustment */
+    body.light-mode .ripple-effect {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* Visualization Section Styles */
+    .visualization-section {
+      background: #161b22;
+      border-left: 1px solid #30363d;
+      width: 400px;
+      min-width: 350px;
+      max-width: 500px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body.light-mode .visualization-section {
+      background: #f6f8fa;
+      border-left-color: #d0d7de;
+    }
+
+    .viz-resize-handle {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: transparent;
+      cursor: ew-resize;
+      z-index: 100;
+      transition: background 0.2s ease;
+    }
+
+    .viz-resize-handle:hover {
+      background: rgba(88, 166, 255, 0.3);
+    }
+
+    .viz-resize-handle::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 40px;
+      background: #30363d;
+      border-radius: 1px;
+    }
+
+    .viz-resize-handle:hover::before {
+      background: #58a6ff;
+    }
+
+    body.light-mode .viz-resize-handle::before {
+      background: #d0d7de;
+    }
+
+    body.light-mode .viz-resize-handle:hover::before {
+      background: #0969da;
+    }
+
+    .visualization-section {
+      position: relative;
+    }
+
+    .viz-header {
+      background: #21262d;
+      padding: 12px 20px;
+      border-bottom: 1px solid #30363d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    body.light-mode .viz-header {
+      background: #ffffff;
+      border-bottom-color: #d0d7de;
+    }
+
+    .viz-header h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #f0f6fc;
+    }
+
+    body.light-mode .viz-header h3 {
+      color: #24292f;
+    }
+
+    .step-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      min-height: 32px;
+    }
+
+    .step-buttons {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .step-controls .btn {
+      padding: 4px 8px;
+      font-size: 11px;
+      height: 28px;
+      min-width: auto;
+      white-space: nowrap;
+    }
+
+    .step-counter {
+      font-size: 12px;
+      color: #8b949e;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    body.light-mode .step-counter {
+      color: #656d76;
+    }
+
+    .viz-content {
+      flex: 1;
+      padding: 16px 20px;
+      overflow-y: auto;
+    }
+
+    .viz-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .variables-section, .call-stack-section {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .variables-section h4, .call-stack-section h4 {
+      margin: 0 0 12px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: #58a6ff;
+      background: rgba(88, 166, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 6px;
+      border-left: 3px solid #58a6ff;
+    }
+
+    body.light-mode .variables-section h4, 
+    body.light-mode .call-stack-section h4 {
+      color: #0969da;
+      background: rgba(9, 105, 218, 0.1);
+      border-left-color: #0969da;
+    }
+
+    .variables-table, .call-stack-list {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    body.light-mode .variables-table, 
+    body.light-mode .call-stack-list {
+      background: #ffffff;
+      border-color: #d0d7de;
+    }
+
+    .variable-row {
+      display: flex;
+      padding: 8px 12px;
+      border-bottom: 1px solid #21262d;
+      align-items: center;
+    }
+
+    body.light-mode .variable-row {
+      border-bottom-color: #d0d7de;
+    }
+
+    .variable-row:last-child {
+      border-bottom: none;
+    }
+
+    .variable-name {
+      font-weight: 600;
+      color: #f85149;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      flex: 0 0 120px;
+    }
+
+    body.light-mode .variable-name {
+      color: #cf222e;
+    }
+
+    .variable-value {
+      color: #a5d6ff;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      flex: 1;
+      word-break: break-word;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    body.light-mode .variable-value {
+      color: #0969da;
+    }
+
+    .value-content {
+      flex: 1;
+    }
+
+    .value-type {
+      font-size: 11px;
+      color: #8b949e;
+      font-weight: 500;
+      background: rgba(33, 38, 45, 0.6);
+      padding: 2px 6px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    body.light-mode .value-type {
+      color: #656d76;
+      background: rgba(208, 215, 222, 0.6);
+    }
+
+    .stack-frame {
+      padding: 8px 12px;
+      border-bottom: 1px solid #21262d;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      color: #e6edf3;
+    }
+
+    body.light-mode .stack-frame {
+      border-bottom-color: #d0d7de;
+      color: #24292f;
+    }
+
+    .stack-frame:last-child {
+      border-bottom: none;
+    }
+
+    .stack-frame.current {
+      background: rgba(88, 166, 255, 0.15);
+      color: #58a6ff;
+      font-weight: 600;
+    }
+
+    body.light-mode .stack-frame.current {
+      background: rgba(9, 105, 218, 0.1);
+      color: #0969da;
+    }
+
+    .empty-state {
+      padding: 24px;
+      text-align: center;
+      color: #8b949e;
+      font-size: 13px;
+      font-style: italic;
+      background: rgba(33, 38, 45, 0.3);
+      border: 1px dashed #30363d;
+      border-radius: 6px;
+      margin: 8px 0;
+    }
+
+    body.light-mode .empty-state {
+      color: #656d76;
+      background: rgba(208, 215, 222, 0.3);
+      border-color: #d0d7de;
+    }
+
+    /* Line highlighting for visualization */
+    .current-execution-line {
+      background: rgba(88, 166, 255, 0.15) !important;
+      border-left: 3px solid #58a6ff !important;
+    }
+
+    .current-execution-glyph {
+      background: #58a6ff;
+      width: 6px !important;
+      border-radius: 3px;
+      margin-left: 3px;
+    }
+
+    body.light-mode .current-execution-line {
+      background: rgba(9, 105, 218, 0.1) !important;
+      border-left-color: #0969da !important;
+    }
+
+    body.light-mode .current-execution-glyph {
+      background: #0969da;
+    }
+
+    /* Responsive visualization */
+    @media (max-width: 1200px) {
+      .main-content {
+        flex-direction: column;
+      }
+      
+      .visualization-section {
+        width: 100%;
+        min-width: auto;
+        max-width: none;
+        border-left: none;
+        border-top: 1px solid #30363d;
+        height: 300px;
+        max-height: 40vh;
+      }
+
+      body.light-mode .visualization-section {
+        border-top-color: #d0d7de;
+      }
+      
+      .viz-sections {
+        flex-direction: row;
+        gap: 24px;
+      }
+      
+      .variables-section, .call-stack-section {
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .viz-sections {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -532,6 +914,7 @@
       <div class="header-buttons">
         <div class="program-controls">
           <button class="btn btn-primary" onclick="runCode()">Run Code</button>
+          <button class="btn btn-primary" onclick="visualizeCode()">Visualize Code</button>
           <button class="btn btn-primary" onclick="downloadCode()">Download</button>
           <button class="btn btn-neutral" onclick="clearOutput()">Clear Output</button>
           <button class="btn btn-warning" onclick="resetCode()">Reset</button>
@@ -550,26 +933,59 @@
       </div>
     </div>
 
-    <!-- Main Editor -->
-    <div class="editor-main">
-      <div class="editor-wrapper">
-        <div id="monaco-editor"></div>
-      </div>
-      
-      <!-- Controls -->
-      <div class="controls">
-        <button class="btn btn-primary" onclick="runCode()">Run Code</button>
-        <button class="btn btn-primary" onclick="downloadCode()">Download</button>
-        <button class="btn btn-neutral" onclick="clearOutput()">Clear Output</button>
-        <button class="btn btn-warning" onclick="resetCode()">Reset</button>
-      </div>
-    </div>
+    <!-- Main Content Area -->
+    <div class="main-content">
+      <!-- Left Side: Editor and Output -->
+      <div class="editor-main">
+        <div class="editor-wrapper">
+          <div id="monaco-editor"></div>
+        </div>
+        
+        <!-- Controls -->
+        <div class="controls">
+          <button class="btn btn-primary" onclick="runCode()">Run Code</button>
+          <button class="btn btn-primary" onclick="visualizeCode()">Visualize Code</button>
+          <button class="btn btn-primary" onclick="downloadCode()">Download</button>
+          <button class="btn btn-neutral" onclick="clearOutput()">Clear Output</button>
+          <button class="btn btn-warning" onclick="resetCode()">Reset</button>
+        </div>
 
-    <!-- Output Section -->
-    <div class="output-section" id="output-section">
-      <div class="resize-handle" id="resize-handle"></div>
-      <div class="output-header">Output:</div>
-      <div class="output-content" id="output">Write some Python code and click "Run Code" to see results...</div>
+        <!-- Output Section -->
+        <div class="output-section" id="output-section">
+          <div class="resize-handle" id="resize-handle"></div>
+          <div class="output-header">Output:</div>
+          <div class="output-content" id="output">Write some Python code and click "Run Code" to see results...</div>
+        </div>
+      </div>
+
+      <!-- Right Side: Visualization Panel -->
+      <div class="visualization-section" id="visualization-section" style="display: none;">
+        <div class="viz-resize-handle" id="viz-resize-handle"></div>
+        <div class="viz-header">
+          <h3>Code Visualization</h3>
+          <div class="step-controls">
+            <span class="step-counter">Step <span id="current-step">0</span> of <span id="total-steps">0</span></span>
+            <div class="step-buttons">
+              <button class="btn btn-secondary" id="prev-step" onclick="prevStep()" disabled>← Prev</button>
+              <button class="btn btn-secondary" id="next-step" onclick="nextStep()" disabled>Next →</button>
+              <button class="btn btn-warning" id="cancel-viz" onclick="cancelVisualization()">Cancel</button>
+              <button class="btn btn-neutral" id="reset-viz" onclick="resetVisualization()">Reset</button>
+            </div>
+          </div>
+        </div>
+        <div class="viz-content">
+          <div class="viz-sections">
+            <div class="variables-section">
+              <h4>📊 Variables</h4>
+              <div id="variables-display" class="variables-table"></div>
+            </div>
+            <div class="call-stack-section">
+              <h4>📋 Call Stack</h4>
+              <div id="call-stack-display" class="call-stack-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -623,9 +1039,36 @@
     }
 
     const defaultPythonCode = `# Welcome to the Fullscreen Python Editor!
-# This is a dedicated coding environment with maximum screen space
+# Try the "Visualize Code" button to see step-by-step execution
 
-print("Hello from fullscreen Python editor!")`;
+# Variables and data types
+name = "Student"
+age = 20
+score = 85.5
+
+print("Student Information:")
+print(f"Name: {name}")
+print(f"Age: {age}")
+print(f"Score: {score}")
+
+# Simple calculation
+bonus = 10
+final_score = score + bonus
+print(f"Final Score: {final_score}")
+
+# Conditional logic
+if final_score >= 90:
+    grade = "A"
+elif final_score >= 80:
+    grade = "B"
+else:
+    grade = "C"
+
+print(f"Grade: {grade}")
+
+# User input example (pauses visualization)
+# user_name = input("Enter your name: ")
+# print(f"Hello, {user_name}!")`;
 
     async function initializeEditor() {
       try {
@@ -738,12 +1181,12 @@ print("Hello from fullscreen Python editor!")`;
         await promise;
         
         if (pythonOutput.trim()) {
-          output.textContent = `${pythonOutput}\\nPython executed successfully!\\nRunning in fullscreen mode with Skulpt interpreter.`;
+          output.textContent = pythonOutput;
         } else {
-          output.textContent = `Python code executed successfully!\\nNo output produced. Try adding print() statements.\\n\\nFullscreen Python interpreter ready for your code!`;
+          output.textContent = 'No output produced. Try adding print() statements.';
         }
         
-        showNotification('Python executed successfully!');
+        showNotification('Code executed');
         
       } catch (error) {
         let errorMessage = error.toString();
@@ -755,7 +1198,7 @@ print("Hello from fullscreen Python editor!")`;
           }
         }
         
-        output.textContent = `Python Error:\\n${errorMessage}\\n\\nCheck your Python syntax and try again.\\nUsing Skulpt Python interpreter.`;
+        output.textContent = `Python Error:\n${errorMessage}\n\nCheck your Python syntax and try again.\nUsing Skulpt Python interpreter.`;
         showNotification('Python execution error');
       }
     }
@@ -808,6 +1251,461 @@ print("Hello from fullscreen Python editor!")`;
       } catch (error) {
         showNotification('Error resetting code');
       }
+    }
+
+    // Visualization state
+    let visualizationState = {
+      steps: [],
+      currentStep: -1,
+      isVisualizationMode: false,
+      inputQueue: [],
+      waitingForInput: false
+    };
+
+    function visualizeCode() {
+      if (!editor) {
+        showNotification('Editor not ready yet');
+        return;
+      }
+      
+      try {
+        const code = editor.getValue();
+        const output = document.getElementById('output');
+        output.textContent = 'Starting code visualization...';
+        
+        // Disable run buttons during visualization
+        setRunButtonsDisabled(true);
+        
+        // Show visualization panel
+        const vizSection = document.getElementById('visualization-section');
+        if (!vizSection) {
+          console.error('Visualization section not found!');
+          showNotification('Visualization panel not found');
+          setRunButtonsDisabled(false);
+          return;
+        }
+        
+        console.log('Showing visualization panel...');
+        vizSection.style.display = 'flex';
+        
+        // Start visualization
+        executeCodeVisualization(code);
+        
+      } catch (error) {
+        showNotification('Error starting visualization');
+        console.error('Visualization error:', error);
+        setRunButtonsDisabled(false);
+      }
+    }
+
+    function setRunButtonsDisabled(disabled) {
+      // Disable all run code buttons
+      const runButtons = document.querySelectorAll('button[onclick="runCode()"]');
+      runButtons.forEach(btn => {
+        btn.disabled = disabled;
+        if (disabled) {
+          btn.style.opacity = '0.5';
+          btn.style.cursor = 'not-allowed';
+        } else {
+          btn.style.opacity = '';
+          btn.style.cursor = '';
+        }
+      });
+    }
+
+    async function executeCodeVisualization(code) {
+      try {
+        if (!window.Sk) {
+          await loadSkulpt();
+        }
+        
+        // Reset visualization state
+        visualizationState = {
+          steps: [],
+          currentStep: -1,
+          isVisualizationMode: true,
+          inputQueue: [],
+          waitingForInput: false
+        };
+        
+        // Create initial step
+        let executionSteps = [{
+          line: 0,
+          variables: {},
+          callStack: ['<module>'],
+          output: '',
+          description: 'Program started',
+          waitingForInput: false
+        }];
+        
+        // Simulate execution with input handling
+        simulateExecution(code, executionSteps);
+        
+        visualizationState.steps = executionSteps;
+        visualizationState.currentStep = 0;
+        
+        updateVisualizationDisplay();
+        updateStepControls();
+        
+        showNotification(`Code visualization ready! ${executionSteps.length} steps created.`);
+        
+      } catch (error) {
+        console.error('Visualization execution error:', error);
+        showNotification('Error during code visualization');
+        
+        const output = document.getElementById('output');
+        output.textContent = `Visualization Error: ${error.message}`;
+      }
+    }
+    
+    // Function to evaluate expressions with variables
+    function evaluateExpression(expression, variables) {
+      // Remove whitespace
+      expression = expression.trim();
+      
+      // Handle string literals
+      if ((expression.startsWith('"') && expression.endsWith('"')) || 
+          (expression.startsWith("'") && expression.endsWith("'"))) {
+        return expression;
+      }
+      
+      // Handle boolean literals
+      if (expression === 'True' || expression === 'False') {
+        return expression;
+      }
+      
+      // Handle numeric literals
+      if (!isNaN(parseFloat(expression)) && isFinite(expression)) {
+        return expression;
+      }
+      
+      // Handle variable references
+      if (variables[expression]) {
+        return variables[expression];
+      }
+      
+      // Handle simple arithmetic expressions
+      try {
+        // Replace variable names with their values
+        let evaluatedExpr = expression;
+        
+        // Sort variable names by length (longest first) to avoid partial replacements
+        const sortedVars = Object.keys(variables).sort((a, b) => b.length - a.length);
+        
+        for (const varName of sortedVars) {
+          const varValue = variables[varName];
+          // Remove quotes from string values for arithmetic
+          const numericValue = parseFloat(varValue.replace(/['"]/g, ''));
+          
+          if (!isNaN(numericValue)) {
+            // Replace whole word only (use word boundaries)
+            const regex = new RegExp(`\\b${varName}\\b`, 'g');
+            evaluatedExpr = evaluatedExpr.replace(regex, numericValue.toString());
+          }
+        }
+        
+        // Evaluate simple arithmetic expressions safely
+        // Only allow numbers, operators, parentheses, and whitespace
+        if (/^[\d\s+\-*/().]+$/.test(evaluatedExpr)) {
+          const result = Function('"use strict"; return (' + evaluatedExpr + ')')();
+          return result.toString();
+        }
+      } catch (error) {
+        console.warn('Error evaluating expression:', expression, error);
+      }
+      
+      // If we can't evaluate, return the original expression
+      return expression;
+    }
+
+    function simulateExecution(code, steps) {
+      const allLines = code.split('\n');
+      let variables = {};
+      let lineNum = 0;
+      
+      for (let i = 0; i < allLines.length && steps.length < 30; i++) {
+        const line = allLines[i];
+        lineNum = i + 1;
+        
+        // Skip empty lines and comments
+        if (!line.trim() || line.trim().startsWith('#')) {
+          continue;
+        }
+        
+        const trimmedLine = line.trim();
+        let output = '';
+        let waitingForInput = false;
+        
+        // Handle input() statements - this pauses execution
+        if (trimmedLine.includes('input(')) {
+          waitingForInput = true;
+          let inputMatch = trimmedLine.match(/(\w+)\s*=\s*input\((.*)\)/);
+          if (inputMatch) {
+            const varName = inputMatch[1];
+            const prompt = inputMatch[2];
+            output = `Input prompt: ${prompt}\n`;
+            // Simulate user input
+            variables[varName] = '"User Input"';
+          }
+        }
+        // Variable assignment
+        else if (trimmedLine.includes('=') && !trimmedLine.includes('==') && !trimmedLine.includes('!=') && !trimmedLine.includes('>=') && !trimmedLine.includes('<=')) {
+          const parts = trimmedLine.split('=');
+          if (parts.length === 2) {
+            const varName = parts[0].trim();
+            let value = parts[1].trim();
+            
+            // Evaluate the expression
+            const evaluatedValue = evaluateExpression(value, variables);
+            variables[varName] = evaluatedValue;
+          }
+        }
+        // Handle print statements
+        else if (trimmedLine.includes('print(')) {
+          let printContent = trimmedLine.match(/print\((.*)\)/);
+          if (printContent) {
+            let content = printContent[1];
+            if (content.startsWith('f"') || content.startsWith("f'")) {
+              // Handle f-strings - simple variable substitution
+              let fstring = content.slice(2, -1);
+              // Replace {variable} with actual values
+              fstring = fstring.replace(/\{(\w+)\}/g, (match, varName) => {
+                if (variables[varName]) {
+                  return variables[varName].replace(/['"]/g, ''); // Remove quotes for display
+                }
+                return match;
+              });
+              output = `${fstring}\n`;
+            } else if (content.startsWith('"') && content.endsWith('"')) {
+              output = `${content.slice(1, -1)}\n`;
+            } else if (content.startsWith("'") && content.endsWith("'")) {
+              output = `${content.slice(1, -1)}\n`;
+            } else {
+              output = `${content}\n`;
+            }
+          }
+        }
+        
+        steps.push({
+          line: lineNum,
+          variables: {...variables},
+          callStack: ['<module>'],
+          output: output,
+          description: `Line ${lineNum}: ${trimmedLine}`,
+          waitingForInput: waitingForInput
+        });
+      }
+    }
+    
+    function updateVisualizationDisplay() {
+      if (visualizationState.currentStep < 0 || visualizationState.currentStep >= visualizationState.steps.length) {
+        return;
+      }
+      
+      const currentStepData = visualizationState.steps[visualizationState.currentStep];
+      
+      // Update variables display
+      updateVariablesDisplay(currentStepData.variables);
+      
+      // Update call stack display
+      updateCallStackDisplay(currentStepData.callStack);
+      
+      // Highlight current line in editor
+      highlightCurrentLine(currentStepData.line);
+      
+      // Update output
+      const output = document.getElementById('output');
+      const allOutput = visualizationState.steps
+        .slice(0, visualizationState.currentStep + 1)
+        .map(step => step.output)
+        .join('');
+      
+      if (currentStepData.waitingForInput) {
+        output.textContent = allOutput + '\n[VISUALIZATION: Program waiting for input - click Next to continue]';
+      } else {
+        output.textContent = allOutput || 'No output yet...';
+      }
+    }
+    
+    function updateVariablesDisplay(variables) {
+      const container = document.getElementById('variables-display');
+      
+      if (!container) return;
+      
+      if (Object.keys(variables).length === 0) {
+        container.innerHTML = '<div class="empty-state">No variables yet</div>';
+        return;
+      }
+      
+      container.innerHTML = '';
+      for (const [name, value] of Object.entries(variables)) {
+        const row = document.createElement('div');
+        row.className = 'variable-row';
+        
+        // Format the value display
+        let displayValue = value;
+        let valueType = '';
+        
+        if (value.startsWith('"') && value.endsWith('"')) {
+          valueType = 'str';
+          displayValue = value; // Keep quotes for strings
+        } else if (value.startsWith("'") && value.endsWith("'")) {
+          valueType = 'str';
+          displayValue = value; // Keep quotes for strings
+        } else if (value === 'True' || value === 'False') {
+          valueType = 'bool';
+          displayValue = value;
+        } else if (!isNaN(parseFloat(value)) && isFinite(value)) {
+          if (value.includes('.')) {
+            valueType = 'float';
+          } else {
+            valueType = 'int';
+          }
+          displayValue = value;
+        } else {
+          valueType = 'unknown';
+          displayValue = value;
+        }
+        
+        row.innerHTML = `
+          <div class="variable-name">${name}</div>
+          <div class="variable-value">
+            <span class="value-content">${displayValue}</span>
+            <span class="value-type">(${valueType})</span>
+          </div>
+        `;
+        container.appendChild(row);
+      }
+    }
+    
+    function updateCallStackDisplay(callStack) {
+      const container = document.getElementById('call-stack-display');
+      
+      if (!container) return;
+      
+      if (callStack.length === 0) {
+        container.innerHTML = '<div class="empty-state">No call stack</div>';
+        return;
+      }
+      
+      container.innerHTML = '';
+      callStack.forEach((frame, index) => {
+        const frameEl = document.createElement('div');
+        frameEl.className = `stack-frame ${index === callStack.length - 1 ? 'current' : ''}`;
+        frameEl.textContent = frame;
+        container.appendChild(frameEl);
+      });
+    }
+    
+    function highlightCurrentLine(lineNumber) {
+      if (!editor || lineNumber <= 0) return;
+      
+      // Clear existing decorations
+      if (window.currentLineDecoration) {
+        editor.deltaDecorations([window.currentLineDecoration], []);
+      }
+      
+      // Add new line highlighting
+      window.currentLineDecoration = editor.deltaDecorations([], [{
+        range: new monaco.Range(lineNumber, 1, lineNumber, 1),
+        options: {
+          isWholeLine: true,
+          className: 'current-execution-line',
+          glyphMarginClassName: 'current-execution-glyph'
+        }
+      }])[0];
+    }
+    
+    function nextStep() {
+      if (visualizationState.currentStep < visualizationState.steps.length - 1) {
+        visualizationState.currentStep++;
+        updateVisualizationDisplay();
+        updateStepControls();
+      }
+    }
+    
+    function prevStep() {
+      if (visualizationState.currentStep > 0) {
+        visualizationState.currentStep--;
+        updateVisualizationDisplay();
+        updateStepControls();
+      }
+    }
+    
+    function cancelVisualization() {
+      // Re-enable run buttons
+      setRunButtonsDisabled(false);
+      
+      // Hide visualization panel
+      const vizSection = document.getElementById('visualization-section');
+      vizSection.style.display = 'none';
+      
+      // Clear line highlighting
+      if (window.currentLineDecoration && editor) {
+        editor.deltaDecorations([window.currentLineDecoration], []);
+        window.currentLineDecoration = null;
+      }
+      
+      // Reset state
+      visualizationState = {
+        steps: [],
+        currentStep: -1,
+        isVisualizationMode: false,
+        inputQueue: [],
+        waitingForInput: false
+      };
+      
+      // Clear output
+      const output = document.getElementById('output');
+      output.textContent = 'Visualization cancelled. Write some Python code and click "Run Code" to see results...';
+      
+      showNotification('Visualization cancelled');
+    }
+
+    function resetVisualization() {
+      visualizationState.currentStep = 0;
+      updateVisualizationDisplay();
+      updateStepControls();
+      
+      // Hide visualization panel
+      const vizSection = document.getElementById('visualization-section');
+      vizSection.style.display = 'none';
+      
+      // Re-enable run buttons
+      setRunButtonsDisabled(false);
+      
+      // Clear line highlighting
+      if (window.currentLineDecoration && editor) {
+        editor.deltaDecorations([window.currentLineDecoration], []);
+        window.currentLineDecoration = null;
+      }
+      
+      showNotification('Visualization reset');
+    }
+    
+    function updateStepControls() {
+      const currentStepEl = document.getElementById('current-step');
+      const totalStepsEl = document.getElementById('total-steps');
+      const prevBtn = document.getElementById('prev-step');
+      const nextBtn = document.getElementById('next-step');
+      
+      if (!currentStepEl || !totalStepsEl || !prevBtn || !nextBtn) {
+        return;
+      }
+      
+      if (visualizationState.steps.length === 0) {
+        currentStepEl.textContent = '0';
+        totalStepsEl.textContent = '0';
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        return;
+      }
+      
+      currentStepEl.textContent = visualizationState.currentStep + 1;
+      totalStepsEl.textContent = visualizationState.steps.length;
+      
+      prevBtn.disabled = visualizationState.currentStep <= 0;
+      nextBtn.disabled = visualizationState.currentStep >= visualizationState.steps.length - 1;
     }
 
     function closeFullscreen() {
@@ -943,7 +1841,52 @@ print("Hello from fullscreen Python editor!")`;
       setTimeout(() => {
         initializeEditor();
         initializeResizeHandle();
+        initializeVizResizeHandle();
       }, 300);
+    }
+
+    // Visualization panel resize functionality
+    function initializeVizResizeHandle() {
+      const vizResizeHandle = document.getElementById('viz-resize-handle');
+      const vizSection = document.getElementById('visualization-section');
+      let isVizResizing = false;
+      let startX = 0;
+      let startWidth = 0;
+      
+      if (!vizResizeHandle || !vizSection) return;
+      
+      vizResizeHandle.addEventListener('mousedown', (e) => {
+        isVizResizing = true;
+        startX = e.clientX;
+        startWidth = parseInt(document.defaultView.getComputedStyle(vizSection).width, 10);
+        document.body.classList.add('resizing');
+        e.preventDefault();
+      });
+      
+      document.addEventListener('mousemove', (e) => {
+        if (!isVizResizing) return;
+        
+        const deltaX = startX - e.clientX; // Reversed because we want to drag left to make bigger
+        const newWidth = Math.max(300, Math.min(800, startWidth + deltaX));
+        
+        vizSection.style.width = newWidth + 'px';
+        
+        // Trigger Monaco editor resize if needed
+        if (editor) {
+          setTimeout(() => {
+            editor.layout();
+          }, 0);
+        }
+        
+        e.preventDefault();
+      });
+      
+      document.addEventListener('mouseup', () => {
+        if (isVizResizing) {
+          isVizResizing = false;
+          document.body.classList.remove('resizing');
+        }
+      });
     }
     
     if (document.readyState === 'loading') {
@@ -951,6 +1894,56 @@ print("Hello from fullscreen Python editor!")`;
     } else {
       init();
     }
+
+    // Ripple Effect System for Fullscreen Editor
+    function createRippleEffect(event) {
+      const element = event.currentTarget;
+      const rect = element.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = event.clientX - rect.left - size / 2;
+      const y = event.clientY - rect.top - size / 2;
+      
+      const ripple = document.createElement('div');
+      ripple.classList.add('ripple-effect');
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      
+      // Remove any existing ripples to avoid accumulation
+      const existingRipples = element.querySelectorAll('.ripple-effect');
+      existingRipples.forEach(r => r.remove());
+      
+      element.appendChild(ripple);
+      
+      // Remove ripple after animation completes
+      setTimeout(() => {
+        if (ripple.parentNode) {
+          ripple.remove();
+        }
+      }, 600);
+    }
+
+    function initRippleEffects() {
+      const clickableSelectors = [
+        '.btn', '.font-control-btn', '.theme-toggle', 'button:not(.no-ripple)'
+      ];
+      
+      clickableSelectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+          if (!element.hasAttribute('data-ripple-attached')) {
+            element.setAttribute('data-ripple-attached', 'true');
+            element.addEventListener('click', createRippleEffect);
+          }
+        });
+      });
+    }
+
+    // Initialize ripple effects after DOM is ready
+    setTimeout(() => {
+      initRippleEffects();
+      console.log('Ripple effects initialized for fullscreen editor');
+    }, 1000);
   </script>
 </body>
 </html>

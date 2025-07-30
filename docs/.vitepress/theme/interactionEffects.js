@@ -1,5 +1,5 @@
-// Enhanced Interaction Effects for Sidebar
-// Adds click ripple effects and hover delay enhancements
+// Enhanced Interaction Effects for All Clickable Elements
+// Adds click ripple effects, hover enhancements, and magnetic interactions
 
 function initInteractionEffects() {
   // Wait for DOM to be ready
@@ -10,16 +10,80 @@ function initInteractionEffects() {
   }
 }
 
-function setupInteractionEffects() {
-  console.log('Initializing interaction effects...');
+// Global ripple effect function
+function createRippleEffect(event) {
+  const element = event.currentTarget;
+  const rect = element.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height);
+  const x = event.clientX - rect.left - size / 2;
+  const y = event.clientY - rect.top - size / 2;
   
-  // Find all sidebar links
+  const ripple = document.createElement('div');
+  ripple.classList.add('ripple-effect');
+  ripple.style.width = ripple.style.height = size + 'px';
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+  
+  // Remove any existing ripples to avoid accumulation
+  const existingRipples = element.querySelectorAll('.ripple-effect');
+  existingRipples.forEach(r => r.remove());
+  
+  element.appendChild(ripple);
+  
+  // Remove ripple after animation completes
+  setTimeout(() => {
+    if (ripple.parentNode) {
+      ripple.remove();
+    }
+  }, 600);
+}
+
+function setupInteractionEffects() {
+  console.log('Initializing comprehensive interaction effects...');
+  
+  // Define all clickable element selectors
+  const clickableSelectors = [
+    // Standard buttons
+    '.btn-primary', '.btn-secondary', '.btn-neutral', '.btn-warning', '.btn-danger',
+    '.open-pdf-btn', 'button:not(.no-ripple)', '.button:not(.no-ripple)',
+    
+    // Python Editor specific buttons
+    '.run', '.download', '.fullscreen', '.clear', '.reset', '.tab',
+    '.btn', '.font-control-btn', '.theme-toggle',
+    
+    // Navigation elements
+    '.VPSidebarItem .link', '.VPDocOutlineItem .outline-link',
+    '.VPNavBarMenuGroup .items .item', '.VPFlyout .items .item',
+    'nav a:not(.no-ripple)', '.nav-link:not(.no-ripple)',
+    
+    // Custom elements
+    '.magnetic-card', '.holographic-card', '.feature-card', '.card:not(.no-ripple)',
+    '.clickable', '.btn-ripple',
+    
+    // Custom blocks (tip, warning, etc.)
+    '.vp-doc .custom-block.tip', '.vp-doc .custom-block.warning',
+    '.vp-doc .custom-block.danger', '.vp-doc .custom-block.info',
+    '.vp-doc .custom-block.details'
+  ];
+  
+  // Apply ripple effects to all clickable elements
+  clickableSelectors.forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(element => {
+      // Check if ripple is already attached to avoid duplicates
+      if (!element.hasAttribute('data-ripple-attached')) {
+        element.setAttribute('data-ripple-attached', 'true');
+        element.addEventListener('click', createRippleEffect);
+      }
+    });
+  });
+  
+  // Enhanced effects for sidebar links
   const sidebarLinks = document.querySelectorAll('.VPSidebarItem .link');
   
   sidebarLinks.forEach(link => {
-    // Add click ripple effect
+    // Add clicked class for additional ping effect
     link.addEventListener('click', function(e) {
-      // Add clicked class for ping effect
       this.classList.add('clicked');
       
       // Remove clicked class after animation
@@ -72,13 +136,18 @@ function setupInteractionEffects() {
     };
   }
   
-  console.log('Interaction effects initialized successfully!');
+  console.log('Comprehensive interaction effects initialized successfully!');
 }
 
 // Initialize when the script loads
 initInteractionEffects();
 
+// Make ripple function globally available
+if (typeof window !== 'undefined') {
+  window.createRippleEffect = createRippleEffect;
+}
+
 // Export for potential external use
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { initInteractionEffects, setupInteractionEffects };
+  module.exports = { initInteractionEffects, setupInteractionEffects, createRippleEffect };
 }

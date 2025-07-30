@@ -1172,6 +1172,95 @@ body .VPNavBar a:not(.VPNavBarTitle) {
 }
 
 /**
+ * Component: Ripple Effect System
+ * -------------------------------------------------------------------------- */
+
+/* Add ripple effect class for all buttons and clickable elements */
+.btn-ripple,
+.btn-primary,
+.btn-secondary,
+.btn-neutral,
+.btn-warning,
+.btn-danger,
+.open-pdf-btn,
+button,
+.button,
+.clickable,
+.run,
+.download,
+.fullscreen,
+.clear,
+.reset,
+.tab,
+.btn,
+.font-control-btn,
+.theme-toggle {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ripple animation */
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple-animation 0.6s linear;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes ripple-animation {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Dark mode ripple adjustment */
+.dark .ripple-effect {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Sidebar items ripple */
+.VPSidebarItem .link,
+.VPDocOutlineItem .outline-link,
+.VPNavBarMenuGroup .items .item,
+.VPFlyout .items .item,
+nav a,
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Enhanced ripple for interactive elements */
+.magnetic-card,
+.holographic-card,
+.feature-card,
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ripple for custom blocks */
+.vp-doc .custom-block.tip,
+.vp-doc .custom-block.warning,
+.vp-doc .custom-block.danger,
+.vp-doc .custom-block.info,
+.vp-doc .custom-block.details {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/**
  * Component: Enhanced Container Blocks with Interactive Features
  * -------------------------------------------------------------------------- */
 
