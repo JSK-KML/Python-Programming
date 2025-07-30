@@ -29,6 +29,7 @@ An interactive Python code editor that runs real Python code in your browser
   </div>
 </div>
 
+
 ## ℹ️ About This Python Editor
 
 This editor provides a full Python 3 environment running directly in your browser:
@@ -37,6 +38,9 @@ This editor provides a full Python 3 environment running directly in your browse
 - **Monaco Editor**: Professional code editor with syntax highlighting and IntelliSense
 - **Standard Library Support**: Includes common Python modules like `math`, `random`, etc.
 - **Instant Feedback**: See your code output immediately without any setup
+
+### 🔍 Code Visualization Available in Full Screen:
+Click **"Open in Full Screen"** to access advanced features including step-by-step code visualization similar to Python Tutor.
 
 
 
@@ -88,6 +92,7 @@ This editor provides a full Python 3 environment running directly in your browse
   width: 100%;
   border: none;
 }
+
 
 /* Open in New Tab Button */
 .fullscreen {
@@ -142,6 +147,7 @@ This editor provides a full Python 3 environment running directly in your browse
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   color: #0f172a; /* Darker text on hover */
 }
+
 
 /* Primary Action Buttons - Download */
 .download {
@@ -223,6 +229,7 @@ This editor provides a full Python 3 environment running directly in your browse
 .dark .run:hover {
   color: white;
 }
+
 
 .dark .download {
   color: white;
@@ -331,21 +338,32 @@ if (typeof window !== 'undefined') {
   }
   
   const pythonTemplate = `# Welcome to the Python Editor! 
-# This is a real Python 3 interpreter running in your browser
-
-# Basic Python programming examples
-print("Hello from Python!")
+# Try the "Visualize Code" button to see step-by-step execution
 
 # Variables and data types
-name = "Python Programmer"
-age = 25
-height = 5.8
-is_student = True
+name = "Student"
+age = 20
+score = 85.5
 
+print("Student Information:")
 print(f"Name: {name}")
 print(f"Age: {age}")
-print(f"Height: {height} feet")
-print(f"Is student: {is_student}")`;
+print(f"Score: {score}")
+
+# Simple calculation
+bonus = 10
+final_score = score + bonus
+print(f"Final Score: {final_score}")
+
+# Conditional logic
+if final_score >= 90:
+    grade = "A"
+elif final_score >= 80:
+    grade = "B"
+else:
+    grade = "C"
+
+print(f"Grade: {grade}")`;
 
   async function initializeMonaco() {
     try {
@@ -614,6 +632,7 @@ print(f"Is student: {is_student}")`;
       console.error('Mobile tab error:', error);
     }
   }
+
 
   // Make functions globally available
   window.switchLanguage = switchLanguage;
