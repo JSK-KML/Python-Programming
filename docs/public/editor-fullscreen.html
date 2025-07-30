@@ -228,6 +228,14 @@
       width: 100%;
     }
 
+    .controls {
+      background: #21262d;
+      padding: 16px 20px;
+      border-top: 1px solid #30363d;
+      display: flex;
+      gap: 12px;
+      flex-shrink: 0;
+    }
 
     .output-section {
       background: #161b22;
@@ -529,15 +537,15 @@
           <button class="btn btn-warning" onclick="resetCode()">Reset</button>
         </div>
         <div class="settings-controls">
-          <div class="font-controls">
-            <button class="font-control-btn" onclick="decreaseFontSize()" title="Decrease font size">A-</button>
-            <span class="font-size-display" id="font-size-display">16px</span>
-            <button class="font-control-btn" onclick="increaseFontSize()" title="Increase font size">A+</button>
-          </div>
-          <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
+        <div class="font-controls">
+          <button class="font-control-btn" onclick="decreaseFontSize()" title="Decrease font size">A-</button>
+          <span class="font-size-display" id="font-size-display">16px</span>
+          <button class="font-control-btn" onclick="increaseFontSize()" title="Increase font size">A+</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
             <span id="theme-text">Light Mode</span>
-          </button>
-          <button class="btn btn-danger" onclick="closeFullscreen()">Close</button>
+        </button>
+        <button class="btn btn-danger" onclick="closeFullscreen()">Close</button>
         </div>
       </div>
     </div>
@@ -546,6 +554,14 @@
     <div class="editor-main">
       <div class="editor-wrapper">
         <div id="monaco-editor"></div>
+      </div>
+      
+      <!-- Controls -->
+      <div class="controls">
+        <button class="btn btn-primary" onclick="runCode()">Run Code</button>
+        <button class="btn btn-primary" onclick="downloadCode()">Download</button>
+        <button class="btn btn-neutral" onclick="clearOutput()">Clear Output</button>
+        <button class="btn btn-warning" onclick="resetCode()">Reset</button>
       </div>
     </div>
 
@@ -905,6 +921,7 @@ print("Hello from fullscreen Python editor!")`;
       
       isLightMode = !isLightMode;
       const body = document.body;
+      const themeIcon = document.getElementById('theme-icon');
       const themeText = document.getElementById('theme-text');
       
       if (isLightMode) {
