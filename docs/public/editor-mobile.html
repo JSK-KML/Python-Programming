@@ -257,17 +257,17 @@
 
     /* Mobile Button Styles */
     .mobile-btn {
-      padding: 6px 10px;
+      padding: 8px 14px;
       border-radius: 4px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 11px;
+      font-size: 13px;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 4px;
       text-decoration: none;
-      min-height: 28px;
+      min-height: 36px;
       white-space: nowrap;
       border: 1px solid transparent;
     }
@@ -490,9 +490,9 @@
       }
       
       .mobile-btn {
-        font-size: 10px;
-        padding: 5px 8px;
-        min-height: 26px;
+        font-size: 12px;
+        padding: 7px 12px;
+        min-height: 32px;
       }
       
       .tab-button {
@@ -526,20 +526,26 @@
     /* Keyboard shortcuts hint */
     .keyboard-hint {
       position: fixed;
-      bottom: 8px;
-      right: 8px;
-      background: rgba(33, 38, 45, 0.9);
-      color: #8b949e;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 10px;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(33, 38, 45, 0.95);
+      color: #f0f6fc;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
       z-index: 1000;
       pointer-events: none;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     body.light-mode .keyboard-hint {
-      background: rgba(246, 248, 250, 0.9);
-      color: #656d76;
+      background: rgba(246, 248, 250, 0.95);
+      color: #24292f;
+      border-color: rgba(59, 130, 246, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
@@ -635,13 +641,13 @@
           const skulptStdlib = document.createElement('script');
           skulptStdlib.src = 'https://skulpt.org/js/skulpt-stdlib.js';
           skulptStdlib.onload = () => {
-            console.log('Skulpt loaded successfully!');
+            console.log('Python loaded successfully!');
             resolve();
           };
-          skulptStdlib.onerror = () => reject(new Error('Failed to load Skulpt stdlib'));
+          skulptStdlib.onerror = () => reject(new Error('Failed to load Python stdlib'));
           document.head.appendChild(skulptStdlib);
         };
-        skulptScript.onerror = () => reject(new Error('Failed to load Skulpt'));
+        skulptScript.onerror = () => reject(new Error('Failed to load Python'));
         document.head.appendChild(skulptScript);
       });
     }
@@ -667,7 +673,7 @@ print("Happy coding!")`;
     async function initializeEditor() {
       try {
         await loadMonaco();
-        loadSkulpt().catch(error => console.warn('Skulpt failed to load:', error));
+        loadSkulpt().catch(error => console.warn('Python failed to load:', error));
         
         if (!window.require) {
           console.error('Monaco loader not available');
@@ -798,13 +804,8 @@ print("Happy coding!")`;
         outputSection.classList.add('active');
       }
       
-      // Hide keyboard hint after first interaction
-      setTimeout(() => {
-        const hint = document.getElementById('keyboard-hint');
-        if (hint) {
-          hint.style.display = 'none';
-        }
-      }, 2000);
+      // Keep keyboard hint visible (removed auto-hide)
+      // The hint will remain permanently visible to help users
     }
 
     // Editor functions
@@ -1055,7 +1056,7 @@ print("Happy coding!")`;
         
         // Add success indicator
         const successMsg = document.createElement('div');
-        successMsg.innerHTML = '\n<span style="color: #50fa7b;">✓ Execution completed successfully</span>\n<span style="color: #8b949e;">Powered by Skulpt Python interpreter</span>';
+        successMsg.innerHTML = '\n<span style="color: #50fa7b;">✓ Execution completed successfully</span>\n<span style="color: #8b949e;">Powered by Python interpreter</span>';
         successMsg.style.marginTop = '8px';
         successMsg.style.fontFamily = "'Consolas', 'Monaco', 'Courier New', monospace";
         output.appendChild(successMsg);

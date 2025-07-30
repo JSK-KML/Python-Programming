@@ -19,6 +19,7 @@ An interactive Python code editor that runs real Python code in your browser
     <button class="run" onclick="runCode()">Run Code</button>
     <button class="download" onclick="downloadCode()">Download</button>
     <button class="fullscreen" onclick="openFullscreenTab()">Open in New Tab</button>
+    <button class="fullscreen" onclick="openMobileTab()">Mobile Editor</button>
     <button class="clear" onclick="clearOutput()">Clear Output</button>
     <button class="reset" onclick="resetCode()">Reset Code</button>
   </div>
@@ -492,7 +493,7 @@ print(f"Is student: {is_student}")`;
     
     try {
       const code = editor.getValue();
-      output.textContent = `🚀 Running Python code...\\n\\n`;
+      output.textContent = `Running Python code...\\n\\n`;
       
       setTimeout(() => {
         executePython(code, output);
@@ -584,11 +585,41 @@ print(f"Is student: {is_student}")`;
     }
   }
 
+  function openMobileTab() {
+    if (!editor) {
+      showNotification('Editor not ready yet');
+      return;
+    }
+    
+    try {
+      // Get current code
+      const currentCode = editor.getValue();
+      
+      // Save to localStorage for sharing between tabs
+      localStorage.setItem('pythonEditorCode', currentCode);
+      localStorage.setItem('pythonEditorTimestamp', Date.now().toString());
+      
+      // Open mobile editor HTML file in new tab
+      const mobileUrl = window.location.origin + '/Python-Programming/editor-mobile.html';
+      const newTab = window.open(mobileUrl, '_blank');
+      
+      if (newTab) {
+        showNotification('Opening mobile Python editor...');
+      } else {
+        showNotification('Please allow popups to open mobile editor');
+      }
+    } catch (error) {
+      showNotification('Error opening mobile editor');
+      console.error('Mobile tab error:', error);
+    }
+  }
+
   // Make functions globally available
   window.switchLanguage = switchLanguage;
   window.runCode = runCode;
   window.downloadCode = downloadCode;
   window.openFullscreenTab = openFullscreenTab;
+  window.openMobileTab = openMobileTab;
   window.clearOutput = clearOutput;
   window.resetCode = resetCode;
 
@@ -622,6 +653,82 @@ print(f"Is student: {is_student}")`;
     }, 2000);
   }
   
+  // Mobile detection and redirect
+  function isMobileDevice() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    
+    // Check for mobile user agents
+    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i;
+    const isMobileUA = mobileRegex.test(userAgent.toLowerCase());
+    
+    // Check for touch capability
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    // Check screen size (mobile-like dimensions)
+    const isSmallScreen = window.innerWidth <= 768 || window.innerHeight <= 600;
+    
+    // Combine checks for better detection
+    return isMobileUA || (isTouchDevice && isSmallScreen);
+  }
+  
+  function redirectToMobile() {
+    // Get current code if editor exists
+    let currentCode = '';
+    if (editor) {
+      currentCode = editor.getValue();
+    }
+    
+    // Save code to localStorage for mobile editor
+    if (currentCode) {
+      localStorage.setItem('pythonEditorCode', currentCode);
+      localStorage.setItem('pythonEditorTimestamp', Date.now().toString());
+    }
+    
+    // Redirect to mobile editor
+    const mobileUrl = window.location.origin + window.location.pathname.replace('/editor/python-editor', '/editor-mobile.html');
+    window.location.href = mobileUrl;
+  }
+  
+  function checkMobileAndRedirect() {
+    // Check for force mobile parameter (for testing/manual access)
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceMobile = urlParams.get('mobile') === 'true';
+    const forceDesktop = urlParams.get('desktop') === 'true';
+    
+    if (forceDesktop) {
+      console.log('Desktop mode forced via URL parameter');
+      return false;
+    }
+    
+    if (forceMobile || isMobileDevice()) {
+      console.log(forceMobile ? 'Mobile mode forced via URL parameter' : 'Mobile device detected, redirecting to mobile editor...');
+      
+      // Add a small delay to show a loading message
+      const loadingMsg = document.createElement('div');
+      loadingMsg.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0d1117;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Inter, sans-serif;
+        font-size: 16px;
+        z-index: 9999;
+      `;
+      loadingMsg.textContent = 'Redirecting to mobile editor...';
+      document.body.appendChild(loadingMsg);
+      
+      // Redirect after brief delay
+      setTimeout(redirectToMobile, 800);
+      return true;
+    }
+    return false;
+  }
 
   // Initialize when DOM is ready
   function init() {

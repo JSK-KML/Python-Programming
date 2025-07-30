@@ -10,25 +10,19 @@ hero:
   tagline: Structured Python Labs and Exercises
   actions:
     - theme: brand
-      text: Installations
-      link: /labs/installation
-    - theme: alt
-      text: Labs
-      link: /labs/lab-01
+      text: Course Informations
+      link: /course/course
     - theme: alt
       text: Mobile Editor
       link: /editor-mobile.html
 
 features:
-  - title: Installations
-    details: This section will guide you step-by-step on how to download and install all the necessary software and tools that we are going to need in this course
-  - title: Labs
-    details: The labs are a collection of structured and guided instructions that we can do together to understand Python concepts better
+  - title: Course Information
+    details: Complete course overview including assessment breakdown, weekly schedules, learning objectives, and grading criteria to help you succeed in CP115 Python Programming
+  - title: Python Editor
+    details: Interactive Python coding environment with syntax highlighting, instant execution, and mobile-friendly interface for practicing programming exercises anywhere
 ---
 
-::: tip
-Use the navigation links above to explore labs, installation guides and the course schedule.
-:::
 
 <CodeGroup>
 <CodeGroupItem title="Python" active>
@@ -38,13 +32,7 @@ print("Hello, World!")
 ```
 
 </CodeGroupItem>
-<CodeGroupItem title="JavaScript">
 
-```js
-console.log("Hello, World!")
-```
-
-</CodeGroupItem>
 </CodeGroup>
 
 
@@ -59,7 +47,7 @@ const members = [
     name: 'Muhammad Aiman Haris',
     title: 'Lecturer',
     org : 'Kolej Matrikulasi Labuan',
-    desc : 'I have several years of experience in teaching programming using **Python**, **Java** and **JavaScript**. If you have any questions, please don\'t hesitate to reach out via the link below. Enjoy the course!',
+    desc : 'I have several years of experience in teaching programming using isPython, Java and JavaScript. If you have any questions, please don\'t hesitate to reach out via the link below. Enjoy the course!',
     links: [
       {icon : 'whatsapp', link :'https://wasap.my/+60143294625'},
       { icon: 'gmail', link: 'mailto:bm-3570@moe-dl.edu.my' },

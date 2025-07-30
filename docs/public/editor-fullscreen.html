@@ -738,12 +738,12 @@ print("Hello from fullscreen Python editor!")`;
         await promise;
         
         if (pythonOutput.trim()) {
-          output.textContent = `${pythonOutput}\\nPython executed successfully!\\nRunning in fullscreen mode with Skulpt interpreter.`;
+          output.textContent = pythonOutput;
         } else {
-          output.textContent = `Python code executed successfully!\\nNo output produced. Try adding print() statements.\\n\\nFullscreen Python interpreter ready for your code!`;
+          output.textContent = 'No output produced. Try adding print() statements.';
         }
         
-        showNotification('Python executed successfully!');
+        showNotification('Code executed');
         
       } catch (error) {
         let errorMessage = error.toString();
