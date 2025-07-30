@@ -12,8 +12,8 @@ This lab walks you through setting up **Git** and **VS Code**, then using their 
 
 ## Install Git and VS Code
 
-- Follow the [**Git** installation guide](/installations/git) for details on downloading and configuring **Git**.
-- Follow the [**VS Code** installation guide](/installations/vscode) to install the editor.
+- Follow the [**Git** installation guide](/labs/installation#git) for details on downloading and configuring **Git**.
+- Follow the [**VS Code** installation guide](/labs/installation#vs-code) to install the editor.
 - In **VS Code**, open the `Extensions` panel and install the **Python** extension from **Microsoft**.
 
 <br>

@@ -19,7 +19,7 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
 
 ## Creating Our First Flowchart <Badge type="warning" text="Recall" />
 
-Launch **Flowgorithm** by pressing <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">⊞ Win</kbd> on your keyboard and type *Flowgorithm*. If you can't see it make sure you have [installed it.](/installations/flowgorithm)
+Launch **Flowgorithm** by pressing <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">⊞ Win</kbd> on your keyboard and type *Flowgorithm*. If you can't see it make sure you have [installed it.](/labs/installation#flowgorithm)
 
 When you first launch it, you will see a simple flowchart, containing only `Start` and `End`. This is the default template of the any **Flowgorithm** projects. Before we edit the file, we need to save the file first.
 

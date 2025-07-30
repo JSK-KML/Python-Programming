@@ -466,6 +466,23 @@
       to { opacity: 0; transform: translate(-50%, -20px); }
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Enhanced input field styles */
+    .terminal-input-container {
+      animation: fadeIn 0.3s ease;
+      transition: all 0.2s ease;
+    }
+
+    .terminal-input-container:focus-within {
+      border-color: #58a6ff !important;
+      background: rgba(88, 166, 255, 0.1) !important;
+      box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2);
+    }
+
     /* Responsive adjustments */
     @media (max-width: 480px) {
       .mobile-header h1 {
@@ -556,7 +573,7 @@
         </div>
         <div class="font-control">
           <button class="font-control-btn" onclick="decreaseFontSize()">A-</button>
-          <span class="font-size-display" id="font-size-display">14</span>
+          <span class="font-size-display" id="font-size-display">18</span>
           <button class="font-control-btn" onclick="increaseFontSize()">A+</button>
         </div>
       </div>
@@ -584,7 +601,7 @@
 
   <script>
     let editor = null;
-    let currentFontSize = 14;
+    let currentFontSize = 18;
     let isLightMode = false;
     let currentTab = 'editor';
     
@@ -630,14 +647,22 @@
     }
 
     const defaultPythonCode = `# Mobile Python Editor
-# Optimized for touch devices
+# Write Python code and tap "Run" to execute
 
-print("Hello from mobile Python editor!")
-print("Tap 'Run' to execute your code")
+print("Welcome to Mobile Python Editor!")
+print("This editor is optimized for mobile devices")
+print()
 
-# Try some basic Python
+# Interactive input example
 name = input("What's your name? ")
-print(f"Nice to meet you, {name}!")`;
+print(f"Hello, {name}!")
+
+age = input("How old are you? ")
+print(f"You are {age} years old")
+
+print()
+print("Great! Now you can edit this code or write your own.")
+print("Happy coding!")`;
 
     async function initializeEditor() {
       try {
@@ -808,6 +833,153 @@ print(f"Nice to meet you, {name}!")`;
       }
     }
 
+    // Terminal input handling - NO POPUPS VERSION
+    let currentInputCallback = null;
+    let inputBuffer = [];
+    let activeInputField = null;
+    
+    function createInputField() {
+      const inputContainer = document.createElement('div');
+      inputContainer.className = 'terminal-input-container';
+      inputContainer.style.cssText = `
+        display: flex;
+        align-items: center;
+        background: rgba(33, 38, 45, 0.8);
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin: 4px 0;
+        border: 1px solid #30363d;
+      `;
+      
+      const prompt = document.createElement('span');
+      prompt.textContent = '>>> ';
+      prompt.style.cssText = `
+        color: #58a6ff;
+        font-weight: bold;
+        margin-right: 8px;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      `;
+      
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = 'Type your input and press Enter...';
+      input.style.cssText = `
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: #f0f6fc;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 14px;
+        outline: none;
+        padding: 4px 0;
+      `;
+      
+      const submitBtn = document.createElement('button');
+      submitBtn.innerHTML = '↵ Enter';
+      submitBtn.style.cssText = `
+        background: var(--btn-primary-bg);
+        border: 1px solid var(--btn-primary-border);
+        border-radius: 3px;
+        color: white;
+        padding: 6px 10px;
+        margin-left: 8px;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      `;
+      
+      inputContainer.appendChild(prompt);
+      inputContainer.appendChild(input);
+      inputContainer.appendChild(submitBtn);
+      
+      return { container: inputContainer, input, submitBtn };
+    }
+    
+    function handlePythonInput(prompt = '') {
+      return new Promise((resolve) => {
+        const output = document.getElementById('output');
+        const { container, input, submitBtn } = createInputField();
+        
+        // Store reference to active input
+        activeInputField = { container, input, submitBtn, resolve };
+        
+        // Add input prompt to output
+        if (prompt) {
+          const promptElement = document.createElement('div');
+          promptElement.textContent = prompt;
+          promptElement.style.cssText = `
+            color: #f39c12;
+            margin-bottom: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-weight: 600;
+          `;
+          output.appendChild(promptElement);
+        }
+        
+        output.appendChild(container);
+        
+        // Auto-switch to output tab if not already there
+        if (currentTab !== 'output') {
+          showTab('output');
+        }
+        
+        // Scroll to bottom and focus
+        output.scrollTop = output.scrollHeight;
+        setTimeout(() => {
+          input.focus();
+          input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
+        const submitInput = () => {
+          const value = input.value.trim();
+          
+          // Show the input in output as terminal echo
+          const inputEcho = document.createElement('div');
+          inputEcho.innerHTML = `<span style="color: #58a6ff; font-weight: bold;">>>> </span><span style="color: #50fa7b; font-weight: 500;">${value}</span>`;
+          inputEcho.style.cssText = `
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            margin-bottom: 8px;
+            padding: 4px 0;
+            border-left: 2px solid #58a6ff;
+            padding-left: 8px;
+            background: rgba(88, 166, 255, 0.05);
+            border-radius: 3px;
+          `;
+          
+          // Replace input container with echo
+          container.parentNode.replaceChild(inputEcho, container);
+          
+          // Clear active input reference
+          activeInputField = null;
+          
+          // Scroll to bottom
+          output.scrollTop = output.scrollHeight;
+          
+          resolve(value);
+        };
+        
+        submitBtn.onclick = submitInput;
+        input.onkeydown = (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            submitInput();
+          }
+        };
+        
+        // Add visual feedback for focus
+        input.onfocus = () => {
+          container.style.borderColor = '#58a6ff';
+          container.style.background = 'rgba(88, 166, 255, 0.1)';
+        };
+        
+        input.onblur = () => {
+          container.style.borderColor = '#30363d';
+          container.style.background = 'rgba(33, 38, 45, 0.8)';
+        };
+      });
+    }
+
     async function executePython(code, output) {
       try {
         if (!window.Sk) {
@@ -815,12 +987,23 @@ print(f"Nice to meet you, {name}!")`;
           await loadSkulpt();
         }
         
+        // Clear output for fresh execution
+        output.innerHTML = '';
+        
         let pythonOutput = '';
         
         Sk.pre = "output";
         Sk.configure({
           output: function(text) {
             pythonOutput += text;
+            // Real-time output update
+            const outputElement = document.createElement('div');
+            outputElement.textContent = text;
+            outputElement.style.color = '#f0f6fc';
+            outputElement.style.fontFamily = "'Consolas', 'Monaco', 'Courier New', monospace";
+            outputElement.style.whiteSpace = 'pre-wrap';
+            output.appendChild(outputElement);
+            output.scrollTop = output.scrollHeight;
           },
           read: function(x) {
             if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined) {
@@ -828,11 +1011,38 @@ print(f"Nice to meet you, {name}!")`;
             }
             return Sk.builtinFiles["files"][x];
           },
+          inputfun: function(prompt) {
+            // Force terminal input, NO browser prompts
+            return handlePythonInput(prompt || 'Enter input: ');
+          },
+          inputfunTakesPrompt: true,
           __future__: Sk.python3,
-          python3: true
+          python3: true,
+          debugging: false,
+          breakpoints: function() { return false; },
+          killableWhile: true,
+          killableFor: true
         });
         
-        output.textContent = 'Running Python code...\n\n';
+        // Override any potential window.prompt calls
+        const originalPrompt = window.prompt;
+        window.prompt = function(message) {
+          console.log('Blocked popup prompt:', message);
+          // Return to terminal input instead
+          return handlePythonInput(message || 'Enter input: ');
+        };
+        
+        // Store original for cleanup
+        const cleanupPromptOverride = () => {
+          window.prompt = originalPrompt;
+        };
+        
+        // Add execution start indicator
+        const startMsg = document.createElement('div');
+        startMsg.textContent = 'Running Python code...\n';
+        startMsg.style.color = '#58a6ff';
+        startMsg.style.marginBottom = '8px';
+        output.appendChild(startMsg);
         
         const promise = Sk.misceval.asyncToPromise(() => {
           return Sk.importMainWithBody("<stdin>", false, code, true);
@@ -840,15 +1050,22 @@ print(f"Nice to meet you, {name}!")`;
         
         await promise;
         
-        if (pythonOutput.trim()) {
-          output.textContent = `${pythonOutput}\n✓ Python executed successfully!\nMobile interpreter with Skulpt.`;
-        } else {
-          output.textContent = `✓ Python code executed successfully!\nNo output produced. Try adding print() statements.\n\nMobile Python interpreter ready!`;
-        }
+        // Cleanup prompt override
+        cleanupPromptOverride();
         
-        showNotification('Code executed successfully!');
+        // Add success indicator
+        const successMsg = document.createElement('div');
+        successMsg.innerHTML = '\n<span style="color: #50fa7b;">✓ Execution completed successfully</span>\n<span style="color: #8b949e;">Powered by Skulpt Python interpreter</span>';
+        successMsg.style.marginTop = '8px';
+        successMsg.style.fontFamily = "'Consolas', 'Monaco', 'Courier New', monospace";
+        output.appendChild(successMsg);
+        
+        showNotification('Code executed successfully');
         
       } catch (error) {
+        // Cleanup prompt override on error too
+        cleanupPromptOverride();
+        
         let errorMessage = error.toString();
         
         if (error.traceback) {
@@ -858,9 +1075,17 @@ print(f"Nice to meet you, {name}!")`;
           }
         }
         
-        output.textContent = `❌ Python Error:\n${errorMessage}\n\nCheck your Python syntax and try again.\nUsing mobile Skulpt interpreter.`;
+        const errorMsg = document.createElement('div');
+        errorMsg.innerHTML = `<span style="color: #ff5555;">❌ Python Error:</span>\n<span style="color: #ffb86c;">${errorMessage}</span>\n\n<span style="color: #8b949e;">Check your Python syntax and try again.</span>`;
+        errorMsg.style.fontFamily = "'Consolas', 'Monaco', 'Courier New', monospace";
+        errorMsg.style.whiteSpace = 'pre-wrap';
+        output.appendChild(errorMsg);
+        
         showNotification('Python execution error');
       }
+      
+      // Scroll to bottom
+      output.scrollTop = output.scrollHeight;
     }
 
     function downloadCode() {
