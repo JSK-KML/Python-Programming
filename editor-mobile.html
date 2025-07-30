@@ -257,17 +257,17 @@
 
     /* Mobile Button Styles */
     .mobile-btn {
-      padding: 6px 10px;
+      padding: 8px 14px;
       border-radius: 4px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 11px;
+      font-size: 13px;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 4px;
       text-decoration: none;
-      min-height: 28px;
+      min-height: 36px;
       white-space: nowrap;
       border: 1px solid transparent;
     }
@@ -490,9 +490,9 @@
       }
       
       .mobile-btn {
-        font-size: 10px;
-        padding: 5px 8px;
-        min-height: 26px;
+        font-size: 12px;
+        padding: 7px 12px;
+        min-height: 32px;
       }
       
       .tab-button {
@@ -526,20 +526,64 @@
     /* Keyboard shortcuts hint */
     .keyboard-hint {
       position: fixed;
-      bottom: 8px;
-      right: 8px;
-      background: rgba(33, 38, 45, 0.9);
-      color: #8b949e;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 10px;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(33, 38, 45, 0.95);
+      color: #f0f6fc;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
       z-index: 1000;
       pointer-events: none;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     body.light-mode .keyboard-hint {
-      background: rgba(246, 248, 250, 0.9);
-      color: #656d76;
+      background: rgba(246, 248, 250, 0.95);
+      color: #24292f;
+      border-color: rgba(59, 130, 246, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Ripple Effect System */
+    .btn,
+    .mobile-btn,
+    .theme-toggle,
+    button {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ripple-effect {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: ripple-animation 0.6s linear;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes ripple-animation {
+      0% {
+        transform: scale(0);
+        opacity: 0.8;
+      }
+      50% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Light mode ripple adjustment */
+    body.light-mode .ripple-effect {
+      background: rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
@@ -635,13 +679,13 @@
           const skulptStdlib = document.createElement('script');
           skulptStdlib.src = 'https://skulpt.org/js/skulpt-stdlib.js';
           skulptStdlib.onload = () => {
-            console.log('Skulpt loaded successfully!');
+            console.log('Python loaded successfully!');
             resolve();
           };
-          skulptStdlib.onerror = () => reject(new Error('Failed to load Skulpt stdlib'));
+          skulptStdlib.onerror = () => reject(new Error('Failed to load Python stdlib'));
           document.head.appendChild(skulptStdlib);
         };
-        skulptScript.onerror = () => reject(new Error('Failed to load Skulpt'));
+        skulptScript.onerror = () => reject(new Error('Failed to load Python'));
         document.head.appendChild(skulptScript);
       });
     }
@@ -667,7 +711,7 @@ print("Happy coding!")`;
     async function initializeEditor() {
       try {
         await loadMonaco();
-        loadSkulpt().catch(error => console.warn('Skulpt failed to load:', error));
+        loadSkulpt().catch(error => console.warn('Python failed to load:', error));
         
         if (!window.require) {
           console.error('Monaco loader not available');
@@ -798,13 +842,8 @@ print("Happy coding!")`;
         outputSection.classList.add('active');
       }
       
-      // Hide keyboard hint after first interaction
-      setTimeout(() => {
-        const hint = document.getElementById('keyboard-hint');
-        if (hint) {
-          hint.style.display = 'none';
-        }
-      }, 2000);
+      // Keep keyboard hint visible (removed auto-hide)
+      // The hint will remain permanently visible to help users
     }
 
     // Editor functions
@@ -981,6 +1020,12 @@ print("Happy coding!")`;
     }
 
     async function executePython(code, output) {
+      // Store original prompt for cleanup
+      const originalPrompt = window.prompt;
+      const cleanupPromptOverride = () => {
+        window.prompt = originalPrompt;
+      };
+
       try {
         if (!window.Sk) {
           output.textContent = 'Loading Python interpreter...\n\n';
@@ -1025,16 +1070,10 @@ print("Happy coding!")`;
         });
         
         // Override any potential window.prompt calls
-        const originalPrompt = window.prompt;
         window.prompt = function(message) {
           console.log('Blocked popup prompt:', message);
           // Return to terminal input instead
           return handlePythonInput(message || 'Enter input: ');
-        };
-        
-        // Store original for cleanup
-        const cleanupPromptOverride = () => {
-          window.prompt = originalPrompt;
         };
         
         // Add execution start indicator
@@ -1055,7 +1094,7 @@ print("Happy coding!")`;
         
         // Add success indicator
         const successMsg = document.createElement('div');
-        successMsg.innerHTML = '\n<span style="color: #50fa7b;">✓ Execution completed successfully</span>\n<span style="color: #8b949e;">Powered by Skulpt Python interpreter</span>';
+        successMsg.innerHTML = '\n<span style="color: #50fa7b;">✓ Execution completed successfully</span>\n<span style="color: #8b949e;">Powered by Python interpreter</span>';
         successMsg.style.marginTop = '8px';
         successMsg.style.fontFamily = "'Consolas', 'Monaco', 'Courier New', monospace";
         output.appendChild(successMsg);
@@ -1066,19 +1105,49 @@ print("Happy coding!")`;
         // Cleanup prompt override on error too
         cleanupPromptOverride();
         
-        let errorMessage = error.toString();
+        // Extract error information properly
+        let errorType = 'Error';
+        let errorMessage = 'Unknown error';
+        let lineNumber = null;
         
-        if (error.traceback) {
-          const lineInfo = error.traceback[0];
-          if (lineInfo && lineInfo.lineno) {
-            errorMessage = `Line ${lineInfo.lineno}: ${error.args ? error.args.v[0].v : errorMessage}`;
+        // Handle Skulpt error object
+        if (error.tp$name) {
+          errorType = error.tp$name;
+        }
+        
+        // Get the actual error message
+        if (error.args && error.args.v && error.args.v[0]) {
+          if (typeof error.args.v[0] === 'object' && error.args.v[0].v) {
+            errorMessage = error.args.v[0].v;
+          } else {
+            errorMessage = error.args.v[0];
+          }
+        } else if (error.toString && error.toString() !== '[object Object]') {
+          errorMessage = error.toString();
+        }
+        
+        // Get line number from traceback
+        if (error.traceback && error.traceback.length > 0) {
+          // Find the traceback entry from user code (not internal files)
+          const userTraceback = error.traceback.find(trace => 
+            !trace.filename || trace.filename === '<stdin>' || trace.filename.includes('stdin')
+          );
+          if (userTraceback && userTraceback.lineno) {
+            lineNumber = userTraceback.lineno;
           }
         }
         
+        // Create formatted error message
+        let formattedError = `${errorType}: ${errorMessage}`;
+        if (lineNumber) {
+          formattedError = `Line ${lineNumber}: ${formattedError}`;
+        }
+        
         const errorMsg = document.createElement('div');
-        errorMsg.innerHTML = `<span style="color: #ff5555;">❌ Python Error:</span>\n<span style="color: #ffb86c;">${errorMessage}</span>\n\n<span style="color: #8b949e;">Check your Python syntax and try again.</span>`;
+        errorMsg.textContent = `❌ Python Error\n${formattedError}\n\nCheck your Python syntax and try again.`;
         errorMsg.style.fontFamily = "'Consolas', 'Monaco', 'Courier New', monospace";
         errorMsg.style.whiteSpace = 'pre-wrap';
+        errorMsg.style.color = '#ff5555';
         output.appendChild(errorMsg);
         
         showNotification('Python execution error');
@@ -1334,6 +1403,56 @@ print("Happy coding!")`;
         e.preventDefault();
       }
     });
+
+    // Ripple Effect System for Mobile Editor
+    function createRippleEffect(event) {
+      const element = event.currentTarget;
+      const rect = element.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = event.clientX - rect.left - size / 2;
+      const y = event.clientY - rect.top - size / 2;
+      
+      const ripple = document.createElement('div');
+      ripple.classList.add('ripple-effect');
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      
+      // Remove any existing ripples to avoid accumulation
+      const existingRipples = element.querySelectorAll('.ripple-effect');
+      existingRipples.forEach(r => r.remove());
+      
+      element.appendChild(ripple);
+      
+      // Remove ripple after animation completes
+      setTimeout(() => {
+        if (ripple.parentNode) {
+          ripple.remove();
+        }
+      }, 600);
+    }
+
+    function initRippleEffects() {
+      const clickableSelectors = [
+        '.btn', '.mobile-btn', '.theme-toggle', 'button:not(.no-ripple)'
+      ];
+      
+      clickableSelectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+          if (!element.hasAttribute('data-ripple-attached')) {
+            element.setAttribute('data-ripple-attached', 'true');
+            element.addEventListener('click', createRippleEffect);
+          }
+        });
+      });
+    }
+
+    // Initialize ripple effects after DOM is ready
+    setTimeout(() => {
+      initRippleEffects();
+      console.log('Ripple effects initialized for mobile editor');
+    }, 1000);
   </script>
 </body>
 </html>
