@@ -15,6 +15,9 @@ hero:
     - theme: alt
       text: Labs
       link: /labs/lab-01
+    - theme: alt
+      text: Mobile Editor
+      link: /editor-mobile.html
 
 features:
   - title: Installations

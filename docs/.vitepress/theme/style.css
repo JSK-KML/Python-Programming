@@ -17,6 +17,52 @@
   --vp-c-brand-2: var(--vp-c-indigo-2);
   --vp-c-brand-3: var(--vp-c-indigo-3);
   --vp-c-brand-soft: var(--vp-c-indigo-soft);
+
+  /* Custom gradient color scheme variables - Available for future use */
+  --gradient-subtle: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+  --gradient-light: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(147, 51, 234, 0.15) 100%);
+  --gradient-primary: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+  --gradient-medium: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(147, 51, 234, 0.25) 100%);
+  --gradient-hover: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(147, 51, 234, 0.3) 100%);
+  --gradient-strong: linear-gradient(135deg, rgba(59, 130, 246, 0.35) 0%, rgba(147, 51, 234, 0.35) 100%);
+  --gradient-active: linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, rgba(147, 51, 234, 0.4) 100%);
+  
+  /* Gradient border colors */
+  --gradient-border-light: rgba(59, 130, 246, 0.2);
+  --gradient-border-medium: rgba(59, 130, 246, 0.3);
+  --gradient-border-strong: rgba(59, 130, 246, 0.4);
+  --gradient-border-active: rgba(59, 130, 246, 0.6);
+
+  /* Standardized Button Color System */
+  /* Primary Action Buttons - Most important actions (Run, Download, Open Fullscreen) */
+  --btn-primary-bg: var(--gradient-hover);
+  --btn-primary-hover: var(--gradient-active);
+  --btn-primary-border: var(--gradient-border-medium);
+  --btn-primary-border-hover: var(--gradient-border-active);
+
+  /* Secondary Action Buttons - Supporting actions (Edit, Copy, Share) */
+  --btn-secondary-bg: var(--gradient-primary);
+  --btn-secondary-hover: var(--gradient-hover);
+  --btn-secondary-border: var(--gradient-border-light);
+  --btn-secondary-border-hover: var(--gradient-border-medium);
+
+  /* Neutral Action Buttons - Utility functions (Clear, Reset) */
+  --btn-neutral-bg: var(--gradient-subtle);
+  --btn-neutral-hover: var(--gradient-primary);
+  --btn-neutral-border: var(--gradient-border-light);
+  --btn-neutral-border-hover: var(--gradient-border-medium);
+
+  /* Warning Action Buttons - Caution required (Reset to Default, Clear All) */
+  --btn-warning-bg: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%);
+  --btn-warning-hover: linear-gradient(135deg, rgba(245, 158, 11, 0.3) 0%, rgba(217, 119, 6, 0.3) 100%);
+  --btn-warning-border: rgba(245, 158, 11, 0.3);
+  --btn-warning-border-hover: rgba(245, 158, 11, 0.5);
+
+  /* Danger Action Buttons - Destructive actions (Delete, Remove) */
+  --btn-danger-bg: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(185, 28, 28, 0.2) 100%);
+  --btn-danger-hover: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(185, 28, 28, 0.3) 100%);
+  --btn-danger-border: rgba(239, 68, 68, 0.3);
+  --btn-danger-border-hover: rgba(239, 68, 68, 0.5);
 }
 
 /**
@@ -947,6 +993,182 @@ body .VPNavBar a:not(.VPNavBarTitle) {
   box-shadow: 
     0 8px 32px rgba(59, 130, 246, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+
+/**
+ * Component: Standardized Button Styles
+ * -------------------------------------------------------------------------- */
+
+/* Global button classes using the standardized color system */
+.btn-primary,
+.open-pdf-btn {
+  padding: 10px 20px;
+  background: var(--btn-primary-bg);
+  color: #1e293b; /* Dark text for light mode */
+  border: 1px solid var(--btn-primary-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-primary:hover,
+.open-pdf-btn:hover {
+  background: var(--btn-primary-hover);
+  border-color: var(--btn-primary-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  text-decoration: none;
+  color: #0f172a; /* Darker text on hover */
+}
+
+.btn-secondary {
+  padding: 10px 20px;
+  background: var(--btn-secondary-bg);
+  color: #1e293b; /* Dark text for light mode */
+  border: 1px solid var(--btn-secondary-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-secondary:hover {
+  background: var(--btn-secondary-hover);
+  border-color: var(--btn-secondary-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+  text-decoration: none;
+  color: #0f172a; /* Darker text on hover */
+}
+
+.btn-neutral {
+  padding: 10px 20px;
+  background: var(--btn-neutral-bg);
+  color: #1e293b; /* Dark text for light mode */
+  border: 1px solid var(--btn-neutral-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-neutral:hover {
+  background: var(--btn-neutral-hover);
+  border-color: var(--btn-neutral-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+  text-decoration: none;
+  color: #0f172a; /* Darker text on hover */
+}
+
+.btn-warning {
+  padding: 10px 20px;
+  background: var(--btn-warning-bg);
+  color: #78350f; /* Amber dark text for warning buttons */
+  border: 1px solid var(--btn-warning-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-warning:hover {
+  background: var(--btn-warning-hover);
+  border-color: var(--btn-warning-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  text-decoration: none;
+  color: #451a03; /* Darker amber text on hover */
+}
+
+.btn-danger {
+  padding: 10px 20px;
+  background: var(--btn-danger-bg);
+  color: #7f1d1d; /* Red dark text for danger buttons */
+  border: 1px solid var(--btn-danger-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn-danger:hover {
+  background: var(--btn-danger-hover);
+  border-color: var(--btn-danger-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  text-decoration: none;
+  color: #450a0a; /* Darker red text on hover */
+}
+
+/* Dark Mode Button Styles */
+.dark .btn-primary,
+.dark .open-pdf-btn {
+  color: white; /* White text for dark mode */
+}
+
+.dark .btn-primary:hover,
+.dark .open-pdf-btn:hover {
+  color: white;
+}
+
+.dark .btn-secondary {
+  color: white;
+}
+
+.dark .btn-secondary:hover {
+  color: white;
+}
+
+.dark .btn-neutral {
+  color: white;
+}
+
+.dark .btn-neutral:hover {
+  color: white;
+}
+
+.dark .btn-warning {
+  color: white; /* White text for better contrast in dark mode */
+}
+
+.dark .btn-warning:hover {
+  color: white;
+}
+
+.dark .btn-danger {
+  color: white; /* White text for better contrast in dark mode */
+}
+
+.dark .btn-danger:hover {
+  color: white;
 }
 
 /**

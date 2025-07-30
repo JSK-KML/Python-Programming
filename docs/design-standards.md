@@ -231,7 +231,126 @@ Use for feature lists, requirements, or non-sequential items:
 - Third item
 ```
 
-## 10. Special Formatting
+## 10. Button Styling Standards
+
+### CSS Variables System
+All buttons MUST use the standardized CSS variable system defined in `docs/.vitepress/theme/style.css`:
+
+```css
+/* Standard Button Variables */
+--btn-primary-bg: var(--gradient-hover);
+--btn-primary-hover: var(--gradient-active);
+--btn-secondary-bg: var(--gradient-primary);
+--btn-neutral-bg: var(--gradient-subtle);
+--btn-warning-bg: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.2) 100%);
+--btn-danger-bg: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(185, 28, 28, 0.2) 100%);
+```
+
+### Button Types and Usage
+
+**Primary Buttons (.btn-primary):**
+- Use for: Main actions (Run Code, Download, Open Fullscreen)
+- Color scheme: Blue-purple gradient
+- Text: Dark text in light mode, white text in dark mode
+
+**Secondary Buttons (.btn-secondary):**
+- Use for: Supporting actions (Edit, Copy, Share)
+- Color scheme: Lighter blue-purple gradient
+- Text: Dark text in light mode, white text in dark mode
+
+**Neutral Buttons (.btn-neutral):**
+- Use for: Utility functions (Clear, Reset)
+- Color scheme: Subtle blue-purple gradient
+- Text: Dark text in light mode, white text in dark mode
+
+**Warning Buttons (.btn-warning):**
+- Use for: Caution required (Reset to Default, Clear All)
+- Color scheme: Amber gradient
+- Text: Amber dark text (`#78350f`) in light mode, white in dark mode
+
+**Danger Buttons (.btn-danger):**
+- Use for: Destructive actions (Delete, Remove)
+- Color scheme: Red gradient
+- Text: Red dark text (`#7f1d1d`) in light mode, white in dark mode
+
+### Light/Dark Mode Requirements
+
+**CRITICAL:** All buttons MUST support both light and dark modes.
+
+**Light Mode (Default):**
+```css
+.btn-primary {
+  color: #1e293b; /* Dark slate text */
+}
+.btn-primary:hover {
+  color: #0f172a; /* Darker on hover */
+}
+```
+
+**Dark Mode:**
+```css
+.dark .btn-primary {
+  color: white; /* White text for dark backgrounds */
+}
+```
+
+### Button Implementation Template
+
+When creating new buttons, use this template:
+
+```css
+.your-button-class {
+  padding: 10px 20px;
+  background: var(--btn-primary-bg);
+  color: #1e293b; /* Light mode text */
+  border: 1px solid var(--btn-primary-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.your-button-class:hover {
+  background: var(--btn-primary-hover);
+  border-color: var(--btn-primary-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  color: #0f172a; /* Darker text on hover */
+}
+
+/* Dark mode support */
+.dark .your-button-class {
+  color: white;
+}
+
+.dark .your-button-class:hover {
+  color: white;
+}
+```
+
+### Button Guidelines
+
+1. **NEVER** use hardcoded colors - always use CSS variables
+2. **ALWAYS** implement both light and dark mode text colors
+3. **ALWAYS** use the standard hover effects (translateY(-2px))
+4. **NO EMOJIS** in button text - use clean, professional labels
+5. **Consistent padding**: Use `10px 20px` for standard buttons
+6. **Font weight**: Use `600` for primary actions, `500` for secondary
+7. **Transitions**: Always use `all 0.3s ease` for smooth animations
+
+### Editor-Specific Buttons
+
+For interactive editors (Python editor, fullscreen editor):
+- Follow the same CSS variable system
+- Ensure Monaco editor theme switching works with button themes
+- Test buttons in both light and dark editor themes
+
+## 11. Special Formatting
 
 ### Currency
 - British style: `RM1.00`, `RM250.00` (no space)
