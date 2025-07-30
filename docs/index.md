@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Installations
-      link: /installations/git
+      link: /labs/installation
     - theme: alt
       text: Labs
       link: /labs/lab-01

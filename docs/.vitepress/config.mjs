@@ -20,15 +20,6 @@ export default defineConfig({
         activeMatch: '^/course/' 
       },
       { 
-        text: 'Installations', 
-        activeMatch: '^/installations/' ,
-        items: [
-          { text: 'Git', link: '/installations/git' },
-          { text: 'VS Code', link: '/installations/vscode' },
-          { text: 'Flowgorithm', link: '/installations/flowgorithm' }
-        ]
-      },
-      { 
         text: 'Tutorials', 
         items: [
           { text: 'Tutorial 1', link: '/tutorials/chapter-2-tutorial-1' },
@@ -41,6 +32,7 @@ export default defineConfig({
       { 
         text: 'Labs', 
         items: [
+          { text: 'Installation', link: '/labs/installation' },
           { text: 'Lab 1', link: '/labs/lab-01' },
           { text: 'Lab 2', link: '/labs/lab-02' },
           { text: 'Lab 3', link: '/labs/lab-03' },
@@ -60,7 +52,8 @@ export default defineConfig({
       { 
         text: 'Editor', 
         items: [
-          { text: 'Python Editor', link: '/editor/python-editor' }
+          { text: 'Python Editor', link: '/editor/python-editor' },
+          { text: 'Mobile Editor', link: '/editor/mobile-editor' }
         ],
         activeMatch: '^/editor/' 
       }
@@ -69,11 +62,11 @@ export default defineConfig({
 
     sidebar: {
       '/labs/' : [
-
         {
-          text : 'Labs',
-          collapsed : true,
-          items : [
+          text: 'Installation',
+          link: '/labs/installation'
+        },
+        
             {
               text: 'Lab 1',
               link : '/labs/lab-01'
@@ -90,23 +83,9 @@ export default defineConfig({
                text: 'Lab 4', 
                link: '/labs/lab-04'
              }
-          ]
-        }
+          
         
-      ],
-      '/installations/' : [
-        {
-          text: 'Git',
-          link : '/installations/git'
-        },
-        {
-          text: 'VS Code',
-          link : '/installations/vscode'
-        },
-        {
-          text: 'Flowgorithm',
-          link : '/installations/flowgorithm'
-        }
+        
       ],
       '/course/' : [
         {
@@ -164,6 +143,10 @@ export default defineConfig({
         {
           text: 'Python Editor',
           link: '/editor/python-editor'
+        },
+        {
+          text: 'Mobile Editor',
+          link: '/editor/mobile-editor'
         }
       ]
     },
