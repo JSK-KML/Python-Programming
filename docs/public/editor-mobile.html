@@ -664,6 +664,24 @@ print(f"Nice to meet you, {name}!")`;
           
           let initialCode = defaultPythonCode;
           
+          // Load saved code from localStorage (from desktop editor redirect)
+          try {
+            const savedCode = localStorage.getItem('pythonEditorCode');
+            const timestamp = localStorage.getItem('pythonEditorTimestamp');
+            
+            // Use saved code if it exists and is recent (within 1 hour)
+            if (savedCode && timestamp) {
+              const timeDiff = Date.now() - parseInt(timestamp);
+              if (timeDiff < 3600000) { // 1 hour in milliseconds
+                initialCode = savedCode;
+                console.log('Loaded code from desktop editor redirect');
+                showNotification('Code loaded from desktop editor');
+              }
+            }
+          } catch (e) {
+            console.warn('Could not load from localStorage:', e);
+          }
+          
           editor = monaco.editor.create(editorElement, {
             value: initialCode,
             language: 'python',
