@@ -18,7 +18,7 @@ An interactive Python code editor that runs real Python code in your browser
   <div class="buttons">
     <button class="run" onclick="runCode()">Run Code</button>
     <button class="download" onclick="downloadCode()">Download</button>
-    <button class="fullscreen" onclick="openFullscreenTab()">Open in New Tab</button>
+    <button class="fullscreen" onclick="openFullscreenTab()">Open in Full Screen</button>
     <button class="fullscreen" onclick="openMobileTab()">Mobile Editor</button>
     <button class="clear" onclick="clearOutput()">Clear Output</button>
     <button class="reset" onclick="resetCode()">Reset Code</button>
@@ -155,6 +155,7 @@ This editor provides a full Python 3 environment running directly in your browse
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
 }
 
@@ -559,7 +560,7 @@ print(f"Is student: {is_student}")`;
         }
       }
       
-      output.textContent = `❌ Python Error:\\n${errorMessage}\\n\\n📝 Check your Python syntax and try again.\\n🐍 Using Skulpt Python interpreter.`;
+      output.textContent = `❌ Python Error:\n${errorMessage}\n\n📝 Check your Python syntax and try again.\n🐍 Using Skulpt Python interpreter.`;
       showNotification('Python execution error');
     }
   }

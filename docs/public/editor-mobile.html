@@ -547,6 +547,44 @@
       border-color: rgba(59, 130, 246, 0.2);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
+
+    /* Ripple Effect System */
+    .btn,
+    .mobile-btn,
+    .theme-toggle,
+    button {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ripple-effect {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(0);
+      animation: ripple-animation 0.6s linear;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes ripple-animation {
+      0% {
+        transform: scale(0);
+        opacity: 0.8;
+      }
+      50% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* Light mode ripple adjustment */
+    body.light-mode .ripple-effect {
+      background: rgba(0, 0, 0, 0.2);
+    }
   </style>
 </head>
 <body>
@@ -982,6 +1020,12 @@ print("Happy coding!")`;
     }
 
     async function executePython(code, output) {
+      // Store original prompt for cleanup
+      const originalPrompt = window.prompt;
+      const cleanupPromptOverride = () => {
+        window.prompt = originalPrompt;
+      };
+
       try {
         if (!window.Sk) {
           output.textContent = 'Loading Python interpreter...\n\n';
@@ -1026,16 +1070,10 @@ print("Happy coding!")`;
         });
         
         // Override any potential window.prompt calls
-        const originalPrompt = window.prompt;
         window.prompt = function(message) {
           console.log('Blocked popup prompt:', message);
           // Return to terminal input instead
           return handlePythonInput(message || 'Enter input: ');
-        };
-        
-        // Store original for cleanup
-        const cleanupPromptOverride = () => {
-          window.prompt = originalPrompt;
         };
         
         // Add execution start indicator
@@ -1067,19 +1105,49 @@ print("Happy coding!")`;
         // Cleanup prompt override on error too
         cleanupPromptOverride();
         
-        let errorMessage = error.toString();
+        // Extract error information properly
+        let errorType = 'Error';
+        let errorMessage = 'Unknown error';
+        let lineNumber = null;
         
-        if (error.traceback) {
-          const lineInfo = error.traceback[0];
-          if (lineInfo && lineInfo.lineno) {
-            errorMessage = `Line ${lineInfo.lineno}: ${error.args ? error.args.v[0].v : errorMessage}`;
+        // Handle Skulpt error object
+        if (error.tp$name) {
+          errorType = error.tp$name;
+        }
+        
+        // Get the actual error message
+        if (error.args && error.args.v && error.args.v[0]) {
+          if (typeof error.args.v[0] === 'object' && error.args.v[0].v) {
+            errorMessage = error.args.v[0].v;
+          } else {
+            errorMessage = error.args.v[0];
+          }
+        } else if (error.toString && error.toString() !== '[object Object]') {
+          errorMessage = error.toString();
+        }
+        
+        // Get line number from traceback
+        if (error.traceback && error.traceback.length > 0) {
+          // Find the traceback entry from user code (not internal files)
+          const userTraceback = error.traceback.find(trace => 
+            !trace.filename || trace.filename === '<stdin>' || trace.filename.includes('stdin')
+          );
+          if (userTraceback && userTraceback.lineno) {
+            lineNumber = userTraceback.lineno;
           }
         }
         
+        // Create formatted error message
+        let formattedError = `${errorType}: ${errorMessage}`;
+        if (lineNumber) {
+          formattedError = `Line ${lineNumber}: ${formattedError}`;
+        }
+        
         const errorMsg = document.createElement('div');
-        errorMsg.innerHTML = `<span style="color: #ff5555;">❌ Python Error:</span>\n<span style="color: #ffb86c;">${errorMessage}</span>\n\n<span style="color: #8b949e;">Check your Python syntax and try again.</span>`;
+        errorMsg.textContent = `❌ Python Error\n${formattedError}\n\nCheck your Python syntax and try again.`;
         errorMsg.style.fontFamily = "'Consolas', 'Monaco', 'Courier New', monospace";
         errorMsg.style.whiteSpace = 'pre-wrap';
+        errorMsg.style.color = '#ff5555';
         output.appendChild(errorMsg);
         
         showNotification('Python execution error');
@@ -1335,6 +1403,56 @@ print("Happy coding!")`;
         e.preventDefault();
       }
     });
+
+    // Ripple Effect System for Mobile Editor
+    function createRippleEffect(event) {
+      const element = event.currentTarget;
+      const rect = element.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = event.clientX - rect.left - size / 2;
+      const y = event.clientY - rect.top - size / 2;
+      
+      const ripple = document.createElement('div');
+      ripple.classList.add('ripple-effect');
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      
+      // Remove any existing ripples to avoid accumulation
+      const existingRipples = element.querySelectorAll('.ripple-effect');
+      existingRipples.forEach(r => r.remove());
+      
+      element.appendChild(ripple);
+      
+      // Remove ripple after animation completes
+      setTimeout(() => {
+        if (ripple.parentNode) {
+          ripple.remove();
+        }
+      }, 600);
+    }
+
+    function initRippleEffects() {
+      const clickableSelectors = [
+        '.btn', '.mobile-btn', '.theme-toggle', 'button:not(.no-ripple)'
+      ];
+      
+      clickableSelectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+          if (!element.hasAttribute('data-ripple-attached')) {
+            element.setAttribute('data-ripple-attached', 'true');
+            element.addEventListener('click', createRippleEffect);
+          }
+        });
+      });
+    }
+
+    // Initialize ripple effects after DOM is ready
+    setTimeout(() => {
+      initRippleEffects();
+      console.log('Ripple effects initialized for mobile editor');
+    }, 1000);
   </script>
 </body>
 </html>
