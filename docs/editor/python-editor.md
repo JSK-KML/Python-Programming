@@ -16,12 +16,12 @@ An interactive Python code editor that runs real Python code in your browser
     <div id="monaco-editor"></div>
   </div>
   <div class="buttons">
-    <button class="run" onclick="runCode()">Run Code</button>
+    <button class="run" onclick="runCode()">Run</button>
     <button class="download" onclick="downloadCode()">Download</button>
-    <button class="fullscreen" onclick="openFullscreenTab()">Open in Full Screen</button>
+    <button class="fullscreen" onclick="openFullscreenTab()">Full Screen</button>
     <button class="fullscreen" onclick="openMobileTab()">Mobile Editor</button>
-    <button class="clear" onclick="clearOutput()">Clear Output</button>
-    <button class="reset" onclick="resetCode()">Reset Code</button>
+    <button class="clear" onclick="clearOutput()">Clear</button>
+    <button class="reset" onclick="resetCode()">Reset</button>
   </div>
   <div class="result">
     <strong>Output:</strong>

@@ -53,7 +53,8 @@ export default defineConfig({
         text: 'Editor', 
         items: [
           { text: 'Python Editor', link: '/editor/python-editor' },
-          { text: 'Mobile Editor', link: '/editor/mobile-editor' }
+          { text: 'Mobile Editor', link: '/editor/mobile-editor' },
+          { text: 'Presentation Mode', link: '/editor/presentation-mode' }
         ],
         activeMatch: '^/editor/' 
       }
@@ -147,6 +148,10 @@ export default defineConfig({
         {
           text: 'Mobile Editor',
           link: '/editor/mobile-editor'
+        },
+        {
+          text: 'Presentation Mode',
+          link: '/editor/presentation-mode'
         }
       ]
     },
