@@ -131,6 +131,8 @@ You'll need to know ASCII values - 'a' is 97, 'b' is 98, etc. Keep track of the 
 
 -->
 
+
+
 ### Exercise 2 - Checksum Validation <Badge type="tip" text="Question" />
 
 Checksums are embedded in various identification systems including credit card numbers, ISBN codes, and barcodes to detect data corruption. These algorithms prevent processing errors that could result from transmission or input mistakes.
@@ -150,7 +152,72 @@ Checksum algorithms can identify various error types including single-digit subs
 
 **Input:** Digits entered one by one, until negative number is entered
 
+
 **Output:** "Valid" if divisible by 10, "Invalid" otherwise
 
 **Example:** For digits 1, 2, 3, 4: sum = 10, 10 % 10 = 0 remainder, so output "Valid"
+
+
+### Exercise 3 - Caesar Cipher <Badge type="tip" text="Question" />
+
+Secure communication protocols (HTTPS), messaging applications, and e-commerce platforms rely on encryption algorithms significantly more complex than basic ciphers. Modern cryptographic systems are designed to resist computational attacks even with substantial computing resources.
+
+**What is Encryption?**
+
+Encryption converts plaintext into ciphertext through systematic transformation algorithms. The Caesar Cipher exemplifies this concept through alphabetic substitution, where each letter shifts by a fixed number of positions (e.g., "HELLO" becomes "KHOOR" with a shift of 3).
+
+The Caesar Cipher, historically attributed to Julius Caesar for military communications, operates through systematic alphabetic shifting. With a shift value of 1:
+- a becomes b (a + 1 = b)
+- b becomes c (b + 1 = c)
+- d becomes a (d + 1 wraps around to a)
+
+Modern encryption algorithms employ mathematical complexity designed to make brute-force attacks computationally impossible without the corresponding decryption key.
+
+**Problem:** Implement a Caesar Cipher encryption algorithm for letters a-d only that shifts each letter by a specified amount, wrapping around within the a-d range.
+
+**Input:** Shift amount and characters (a-d only) entered one by one, until # is entered
+
+**Output:** Encrypted message
+
+**Example:** With shift = 1, input: a, b, c, d → Output: bcda
+
+::: details Click for clue
+Map letters to numbers (a=1, b=2, c=3, d=4), add the shift value, then convert back to letters. Don't forget to wrap around when you reach the end (after d, go back to a).
+:::
+
+### Exercise 4 - Simple Hash Function <Badge type="tip" text="Question" />
+
+**Hash Function Applications:** Cryptographic hash functions serve as fundamental components in blockchain technologies, search engine indexing systems, and secure password storage mechanisms. These functions enable data integrity verification and efficient information retrieval across large datasets.
+
+**What is Hashing?**
+A hash function converts input data of any size into a fixed-size string of characters, creating a unique "digital fingerprint" for that data. This fingerprint is deterministic - the same input always produces the same hash value.
+
+The amazing properties of hash functions:
+- The same input ALWAYS produces the same hash
+- Even changing one tiny character completely changes the hash  
+- They are designed to be computationally irreversible
+- "ab" might become 5, but "ba" (different order) might become 8
+
+**What is Letter-to-Number Mapping?**
+Instead of complex ASCII values, we can use simple letter-to-number mapping for basic calculations:
+
+| Character | Number Value |
+|-----------|--------------|
+| a         | 1            |
+| b         | 2            |
+| c         | 3            |
+| d         | 4            |
+
+
+**Problem:** Implement a hash function that converts characters (a-d only) to their number values (a=1, b=2, c=3, d=4), multiplies each by its position, and computes the cumulative sum.
+
+**Input:** Characters (a-d only) entered one by one, until # is entered
+
+**Output:** Final hash value
+
+**Example:** For input "ab": (1 × 1) + (2 × 2) = 1 + 4 = 5
+
+::: details Click for clue
+Keep track of the position counter and use simple selection statements to map a=1, b=2, c=3, d=4. Multiply each value by its position before adding to the sum.
+:::
 
