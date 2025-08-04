@@ -1,0 +1,3272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Presentation Mode</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #21262d 100%);
+      color: white;
+      height: 100vh;
+      overflow: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Light mode styles */
+    body.light-mode {
+      background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 30%, #bfdbfe 70%, #93c5fd 100%);
+      color: #24292f;
+    }
+
+    body.light-mode .container {
+      background: #ffffff;
+    }
+
+    body.light-mode .header {
+      background: #f6f8fa;
+      border-bottom-color: #d0d7de;
+    }
+
+    body.light-mode .header h1 {
+      color: #24292f;
+    }
+
+    body.light-mode .setup-panel,
+    body.light-mode .explanations-panel,
+    body.light-mode .output-panel {
+      background: #f6f8fa;
+      border-color: #1f2937;
+    }
+
+    body.light-mode .tab-container {
+      background: #f6f8fa;
+      border-bottom-color: #d0d7de;
+    }
+
+    body.light-mode .explanation-item {
+      background: #ffffff;
+      border: 1px solid #1f2937;
+      border-left: 3px solid #1f2937;
+    }
+
+    body.light-mode .explanation-title {
+      color: #0969da;
+    }
+
+    body.light-mode .explanation-content {
+      color: #24292f;
+    }
+
+    body.light-mode .code-link {
+      background: #f6f8fa;
+      border-color: #d0d7de;
+      color: #656d76;
+    }
+
+    body.light-mode .explanation-item.active {
+      background: rgba(34, 197, 94, 0.1);
+      border-left-color: #22c55e;
+    }
+
+    body.light-mode .explanation-item.active .explanation-title {
+      color: #22c55e;
+    }
+
+    body.light-mode .explanation-item.active .code-link {
+      background: rgba(34, 197, 94, 0.1);
+      border-color: #22c55e;
+      color: #22c55e;
+    }
+
+    body.light-mode .explanation-modal-content {
+      background: #ffffff;
+      border-color: #22c55e;
+    }
+
+    body.light-mode .explanation-modal-title {
+      color: #22c55e;
+    }
+
+    body.light-mode .explanation-modal-content-text {
+      color: #24292f;
+    }
+
+    body.light-mode .font-controls {
+      background: rgba(246, 248, 250, 0.8);
+      border-color: #d0d7de;
+    }
+
+    body.light-mode .output-content {
+      background: #ffffff;
+      color: #0969da;
+    }
+
+    body.light-mode .code-input {
+      background: #ffffff;
+      border-color: #1f2937;
+      color: #24292f;
+    }
+
+    body.light-mode .initial-code-section {
+      background: #ffffff;
+      border-color: #1f2937;
+    }
+
+    body.light-mode .step-item {
+      background: #ffffff;
+      border: 1px solid #1f2937;
+      border-left: 3px solid #1f2937;
+    }
+
+    body.light-mode .step-item:hover {
+      background: #f6f8fa;
+      border-left-color: #0969da;
+      border-color: #0969da;
+    }
+
+    body.light-mode .step-item.active {
+      background: rgba(34, 197, 94, 0.1);
+      border-left-color: #22c55e;
+    }
+
+    body.light-mode .step-title {
+      color: #24292f;
+    }
+
+    body.light-mode .step-item.active .step-title {
+      color: #22c55e;
+    }
+
+    body.light-mode .step-description {
+      color: #656d76;
+    }
+
+    body.light-mode .clean-mode-controls {
+      background: rgba(246, 248, 250, 0.9);
+      border-color: #d0d7de;
+    }
+
+    body.light-mode .font-control-group {
+      background: rgba(246, 248, 250, 0.8);
+      border-color: #d0d7de;
+    }
+
+    body.light-mode .font-control-label {
+      color: #656d76;
+    }
+
+    body.light-mode .resize-handle::before {
+      background: #d0d7de;
+    }
+
+    body.light-mode .resize-handle:hover {
+      background: rgba(9, 105, 218, 0.3);
+    }
+
+    body.light-mode .resizing .resize-handle {
+      background: rgba(9, 105, 218, 0.5);
+    }
+
+    body.light-mode .tab-btn {
+      color: #656d76;
+      border-bottom-color: transparent;
+    }
+
+    body.light-mode .tab-btn:hover {
+      color: #24292f;
+      background: #ffffff;
+    }
+
+    body.light-mode .tab-btn.active {
+      color: #0969da;
+      border-bottom-color: #0969da;
+      background: #ffffff;
+    }
+
+    body.light-mode .modal {
+      background: rgba(208, 215, 222, 0.8);
+    }
+
+    body.light-mode .modal-content {
+      background: #ffffff;
+      border-color: #d0d7de;
+    }
+
+    body.light-mode .notification {
+      background: rgba(255, 255, 255, 0.95);
+      color: #0969da;
+      border: 1px solid rgba(9, 105, 218, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    body.light-mode .notification.error {
+      background: rgba(255, 255, 255, 0.95);
+      color: #cf222e;
+      border: 1px solid rgba(207, 34, 46, 0.3);
+    }
+
+    body.light-mode .notification.warning {
+      background: rgba(255, 255, 255, 0.95);
+      color: #bf8700;
+      border: 1px solid rgba(191, 135, 0, 0.3);
+    }
+
+    body.light-mode .notification.success {
+      background: rgba(255, 255, 255, 0.95);
+      color: #1a7f37;
+      border: 1px solid rgba(26, 127, 55, 0.3);
+    }
+
+    body.light-mode .btn-primary {
+      color: #ffffff;
+      background: #0969da;
+      border-color: #0969da;
+    }
+
+    body.light-mode .btn-secondary {
+      color: #1f2937;
+      background: #e5e7eb;
+      border-color: #1f2937;
+    }
+
+    body.light-mode .btn-success {
+      color: #ffffff;
+      background: #10b981;
+      border-color: #10b981;
+    }
+
+    body.light-mode .btn-danger {
+      color: #ffffff;
+      background: #ef4444;
+      border-color: #ef4444;
+    }
+
+    body.light-mode .form-group select {
+      background: #ffffff;
+      border-color: #1f2937;
+      color: #24292f;
+    }
+
+    body.light-mode .form-group textarea {
+      background: #ffffff;
+      border-color: #1f2937;
+      color: #24292f;
+    }
+
+    body.light-mode .form-group input {
+      background: #ffffff;
+      border-color: #1f2937;
+      color: #24292f;
+    }
+
+    body.light-mode .form-group input:focus,
+    body.light-mode .form-group textarea:focus,
+    body.light-mode .form-group select:focus {
+      border-color: #0969da;
+      box-shadow: 0 0 8px rgba(9, 105, 218, 0.3);
+    }
+
+    body.light-mode .form-group label {
+      color: #24292f;
+    }
+
+    body.light-mode .highlight-option {
+      border-color: #1f2937;
+      background: #ffffff;
+      color: #656d76;
+    }
+
+    body.light-mode .highlight-option.primary {
+      background: rgba(9, 105, 218, 0.1);
+      border-color: #0969da;
+      color: #0969da;
+    }
+
+    body.light-mode .highlight-option.secondary {
+      background: rgba(26, 127, 55, 0.1);
+      border-color: #1a7f37;
+      color: #1a7f37;
+    }
+
+    body.light-mode .highlight-option.warning {
+      background: rgba(191, 135, 0, 0.1);
+      border-color: #bf8700;
+      color: #bf8700;
+    }
+
+    body.light-mode .highlight-option.danger {
+      background: rgba(207, 34, 46, 0.1);
+      border-color: #cf222e;
+      color: #cf222e;
+    }
+
+    body.light-mode .highlight-option.selected {
+      box-shadow: 0 4px 12px rgba(9, 105, 218, 0.3);
+    }
+
+    body.light-mode .setup-header {
+      background: #f6f8fa;
+      border-bottom-color: #d0d7de;
+      color: #0969da;
+    }
+
+    body.light-mode .explanations-header {
+      background: #f6f8fa;
+      border-bottom-color: #d0d7de;
+      color: #0969da;
+    }
+
+    body.light-mode .output-header {
+      background: #f6f8fa;
+      border-bottom-color: #d0d7de;
+      color: #0969da;
+    }
+
+    body.light-mode .presentation-controls {
+      background: #f6f8fa;
+      border-top-color: #1f2937;
+    }
+
+    body.light-mode .step-info {
+      color: #656d76;
+    }
+
+    body.light-mode .theme-toggle {
+      color: #1f2937;
+      background: #e5e7eb;
+      border-color: #1f2937;
+    }
+
+    #setupModeToggle.active {
+      background: #10b981;
+      color: white;
+      border-color: #10b981;
+    }
+
+    body.light-mode #setupModeToggle.active {
+      background: #10b981;
+      color: white;
+      border-color: #10b981;
+    }
+
+    body.light-mode .step-section h4 {
+      color: #0969da;
+    }
+
+    body.light-mode .step-item {
+      border: 1px solid #1f2937;
+      border-left: 3px solid #1f2937;
+    }
+
+    body.light-mode .step-item:hover {
+      border-left-color: #0969da;
+      border-color: #0969da;
+    }
+
+    body.light-mode .step-item.active {
+      border-left-color: #10b981;
+      border-color: #10b981;
+    }
+
+    body.light-mode .explanation-item {
+      border: 1px solid #1f2937;
+      border-left: 3px solid #1f2937;
+    }
+
+    body.light-mode .explanation-item:hover {
+      border-color: #0969da;
+      border-left-color: #0969da;
+    }
+
+    body.light-mode .explanation-item.active {
+      border-left-color: #10b981;
+      border-color: #10b981;
+    }
+
+    /* Clean mode light mode styles */
+    body.light-mode.clean-mode .right-panels {
+      border-left-color: #1f2937;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background: #0d1117;
+    }
+
+    .header {
+      background: #21262d;
+      padding: 12px 20px;
+      border-bottom: 1px solid #30363d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      z-index: 1000;
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #f0f6fc;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .mode-toggle {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .settings-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .font-controls {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      background: rgba(33, 38, 45, 0.5);
+      border-radius: 6px;
+      border: 1px solid #30363d;
+    }
+
+    /* Tab Container */
+    .tab-container {
+      background: #21262d;
+      border-bottom: 1px solid #30363d;
+      display: flex;
+      flex-shrink: 0;
+      z-index: 999;
+      gap: 8px;
+      align-items: center;
+      padding: 0 8px;
+    }
+
+    .tab-btn {
+      padding: 12px 20px;
+      border: none;
+      background: transparent;
+      color: #8b949e;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .tab-btn:hover {
+      color: #f0f6fc;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tab-btn.active {
+      color: #58a6ff;
+      border-bottom-color: #58a6ff;
+      background: rgba(88, 166, 255, 0.1);
+    }
+
+    /* Main Content Layout */
+    .main-content {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      position: relative;
+    }
+
+    /* Setup Panel (Left) */
+    .setup-panel {
+      width: 350px;
+      min-width: 300px;
+      background: #161b22;
+      border-right: 1px solid #30363d;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .setup-panel.hidden {
+      display: none;
+    }
+
+    .setup-header {
+      background: #21262d;
+      padding: 12px 16px;
+      border-bottom: 1px solid #30363d;
+      font-weight: 600;
+      font-size: 14px;
+      color: #58a6ff;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .setup-content {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    /* Editor Section (Center) */
+    .editor-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      min-width: 0;
+      position: relative;
+    }
+
+    .editor-wrapper {
+      flex: 1;
+      background: #0d1117;
+      position: relative;
+      min-height: 0;
+    }
+
+    #monaco-editor {
+      height: 100%;
+      width: 100%;
+    }
+
+    /* Right Side Panels */
+    .right-panels {
+      width: 450px;
+      min-width: 350px;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid #30363d;
+    }
+
+    /* Explanations Panel (Top Right) */
+    .explanations-panel {
+      flex: 1;
+      background: #161b22;
+      display: flex;
+      flex-direction: column;
+      min-height: 200px;
+    }
+
+    .explanations-header {
+      background: #21262d;
+      padding: 12px 16px;
+      border-bottom: 1px solid #30363d;
+      font-weight: 600;
+      font-size: 14px;
+      color: #58a6ff;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .explanations-content {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .explanation-item {
+      margin-bottom: 16px;
+      padding: 16px;
+      background: #21262d;
+      border-radius: 12px;
+      border-left: 4px solid #58a6ff;
+      position: relative;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    /* Floating Explanation Modal */
+    .explanation-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10001;
+    }
+
+    .explanation-modal.show {
+      display: flex;
+    }
+
+    .explanation-modal-content {
+      background: #161b22;
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 800px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 2px solid #22c55e;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .explanation-modal-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #22c55e;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .explanation-modal-content-text {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #e6edf3;
+    }
+
+    .explanation-close {
+      background: none;
+      border: none;
+      color: #8b949e;
+      font-size: 28px;
+      cursor: pointer;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .explanation-close:hover {
+      background: rgba(248, 81, 73, 0.1);
+      color: #f85149;
+    }
+
+    .explanation-item:hover {
+      background: #262c36;
+      transform: translateX(4px);
+    }
+
+    .explanation-item.active {
+      border-left-color: #22c55e;
+      background: rgba(34, 197, 94, 0.15);
+      transform: translateX(8px);
+    }
+
+    .explanation-item.active::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 8px solid #22c55e;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+    }
+
+    .explanation-title {
+      font-weight: 600;
+      color: #58a6ff;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    .explanation-item.active .explanation-title {
+      color: #22c55e;
+    }
+
+    .explanation-content {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #e6edf3;
+    }
+
+    .code-link {
+      font-size: 11px;
+      color: #8b949e;
+      background: rgba(33, 38, 45, 0.8);
+      padding: 4px 8px;
+      border-radius: 12px;
+      white-space: nowrap;
+      border: 1px solid #30363d;
+      font-family: 'Consolas', monospace;
+    }
+
+    .explanation-item.active .code-link {
+      background: rgba(34, 197, 94, 0.2);
+      border-color: #22c55e;
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    .highlight-connector {
+      position: absolute;
+      right: -4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 40px;
+      background: linear-gradient(45deg, #22c55e, #34d399);
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .explanation-item.active .highlight-connector {
+      opacity: 0;
+    }
+
+    .explanation-item.previous {
+      border-left-color: #30363d;
+      background: rgba(33, 38, 45, 0.5);
+      opacity: 0.7;
+      transform: translateX(0px);
+    }
+
+    .explanation-item.previous .explanation-title {
+      color: #8b949e;
+    }
+
+    .explanation-item.previous .code-link {
+      background: rgba(33, 38, 45, 0.6);
+      border-color: #21262d;
+      color: #6e7681;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+      50% { opacity: 0.7; transform: translateY(-50%) scale(1.1); }
+    }
+
+    /* Output Console (Bottom Right) */
+    .output-panel {
+      height: 200px;
+      min-height: 100px;
+      background: #161b22;
+      border-top: 1px solid #30363d;
+      display: flex;
+      flex-direction: column;
+      resize: vertical;
+    }
+
+    .output-header {
+      background: #21262d;
+      padding: 8px 16px;
+      border-bottom: 1px solid #30363d;
+      font-weight: 600;
+      font-size: 13px;
+      color: #58a6ff;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .output-content {
+      flex: 1;
+      padding: 12px 16px;
+      overflow-y: auto;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #58a6ff;
+      white-space: pre-wrap;
+      background: #0d1117;
+    }
+
+    /* Presentation Controls */
+    .presentation-controls {
+      background: #21262d;
+      padding: 8px 16px;
+      border-top: 1px solid #30363d;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .step-info {
+      color: #8b949e;
+      font-size: 12px;
+      margin-right: auto;
+    }
+
+    /* Button System */
+    :root {
+      --btn-primary-bg: linear-gradient(135deg, rgba(88, 166, 255, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+      --btn-primary-hover: linear-gradient(135deg, rgba(88, 166, 255, 0.3) 0%, rgba(147, 51, 234, 0.3) 100%);
+      --btn-secondary-bg: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+      --btn-secondary-hover: linear-gradient(135deg, rgba(88, 166, 255, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+      --btn-danger-bg: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(185, 28, 28, 0.2) 100%);
+      --btn-danger-hover: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(185, 28, 28, 0.3) 100%);
+      --btn-success-bg: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(22, 163, 74, 0.2) 100%);
+      --btn-success-hover: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(22, 163, 74, 0.3) 100%);
+    }
+
+    body.light-mode {
+      --btn-primary-bg: linear-gradient(135deg, rgba(9, 105, 218, 0.15) 0%, rgba(79, 70, 229, 0.15) 100%);
+      --btn-primary-hover: linear-gradient(135deg, rgba(9, 105, 218, 0.25) 0%, rgba(79, 70, 229, 0.25) 100%);
+      --btn-secondary-bg: linear-gradient(135deg, rgba(9, 105, 218, 0.08) 0%, rgba(79, 70, 229, 0.08) 100%);
+      --btn-secondary-hover: linear-gradient(135deg, rgba(9, 105, 218, 0.15) 0%, rgba(79, 70, 229, 0.15) 100%);
+      --btn-danger-bg: linear-gradient(135deg, rgba(207, 34, 46, 0.15) 0%, rgba(153, 27, 27, 0.15) 100%);
+      --btn-danger-hover: linear-gradient(135deg, rgba(207, 34, 46, 0.25) 0%, rgba(153, 27, 27, 0.25) 100%);
+      --btn-success-bg: linear-gradient(135deg, rgba(26, 127, 55, 0.15) 0%, rgba(22, 101, 52, 0.15) 100%);
+      --btn-success-hover: linear-gradient(135deg, rgba(26, 127, 55, 0.25) 0%, rgba(22, 101, 52, 0.25) 100%);
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 11px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      height: 28px;
+      white-space: nowrap;
+      border: 1px solid;
+    }
+
+    .btn-primary {
+      background: var(--btn-primary-bg);
+      color: white;
+      border-color: rgba(88, 166, 255, 0.3);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--btn-primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--btn-secondary-bg);
+      color: white;
+      border-color: rgba(88, 166, 255, 0.2);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--btn-secondary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(88, 166, 255, 0.2);
+    }
+
+    .btn-success {
+      background: var(--btn-success-bg);
+      color: white;
+      border-color: rgba(34, 197, 94, 0.3);
+    }
+
+    .btn-success:hover:not(:disabled) {
+      background: var(--btn-success-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+    }
+
+    .btn-danger {
+      background: var(--btn-danger-bg);
+      color: white;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      background: var(--btn-danger-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .theme-toggle {
+      padding: 6px 12px;
+      background: var(--btn-secondary-bg);
+      border: 1px solid rgba(88, 166, 255, 0.2);
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .theme-toggle:hover {
+      background: var(--btn-secondary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Setup Steps */
+    .step-section {
+      margin-bottom: 20px;
+    }
+
+    .step-section h4 {
+      color: #58a6ff;
+      font-size: 14px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .initial-code-section {
+      margin-bottom: 24px;
+      padding: 16px;
+      background: #21262d;
+      border-radius: 8px;
+      border: 1px solid #30363d;
+    }
+
+    .initial-code-section h4 {
+      color: #58a6ff;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .code-input {
+      width: 100%;
+      min-height: 120px;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 12px;
+      color: #e6edf3;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.4;
+      resize: vertical;
+    }
+
+    .code-input:focus {
+      outline: none;
+      border-color: #58a6ff;
+      box-shadow: 0 0 8px rgba(88, 166, 255, 0.3);
+    }
+
+    .step-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .step-item {
+      background: #21262d;
+      margin-bottom: 12px;
+      padding: 12px;
+      border-radius: 8px;
+      border-left: 3px solid #30363d;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 13px;
+      position: relative;
+    }
+
+    .step-item:hover {
+      background: #262c36;
+      border-left-color: #58a6ff;
+      transform: translateX(4px);
+    }
+
+    .step-item.active {
+      border-left-color: #f85149;
+      background: rgba(248, 81, 73, 0.1);
+      transform: translateX(8px);
+      box-shadow: 0 4px 12px rgba(248, 81, 73, 0.2);
+    }
+
+    .step-item.active::after {
+      content: '👁️';
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      font-size: 16px;
+    }
+
+    .step-title {
+      font-weight: 600;
+      color: #e6edf3;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .step-item.active .step-title {
+      color: #f85149;
+    }
+
+    .step-description {
+      color: #8b949e;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .step-controls {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .step-controls .btn {
+      padding: 4px 8px;
+      height: 24px;
+      font-size: 10px;
+    }
+
+    /* Code Highlighting - Block Only Style */
+    .code-highlight-primary {
+      background: rgba(88, 166, 255, 0.08) !important;
+      border: 2px solid #58a6ff !important;
+      border-radius: 6px !important;
+      margin-left: 8px !important;
+      margin-right: 8px !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+
+    .code-highlight-secondary {
+      background: rgba(34, 197, 94, 0.08) !important;
+      border: 2px solid #22c55e !important;
+      border-radius: 6px !important;
+      margin-left: 8px !important;
+      margin-right: 8px !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+
+    .code-highlight-warning {
+      background: rgba(245, 158, 11, 0.08) !important;
+      border: 2px solid #f59e0b !important;
+      border-radius: 6px !important;
+      margin-left: 8px !important;
+      margin-right: 8px !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+
+    .code-highlight-danger {
+      background: rgba(248, 81, 73, 0.08) !important;
+      border: 2px solid #f85149 !important;
+      border-radius: 6px !important;
+      margin-left: 8px !important;
+      margin-right: 8px !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+
+    /* Presentation Modes */
+    .clean-mode .setup-panel,
+    .clean-mode .header,
+    .clean-mode .tab-container,
+    .clean-mode .presentation-controls {
+      display: none !important;
+    }
+
+    .clean-mode .right-panels {
+      width: 500px;
+      min-width: 400px;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid #30363d;
+    }
+
+    .clean-mode .explanations-panel {
+      flex: 1;
+      display: flex !important;
+    }
+
+    .clean-mode .output-panel {
+      height: 150px;
+      display: flex !important;
+    }
+
+    /* Font Controls in Headers */
+    .header-font-controls {
+      display: none;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .clean-mode .header-font-controls {
+      display: flex;
+    }
+
+    .header-run-btn {
+      display: none;
+      margin-left: 8px;
+    }
+
+    .clean-mode .header-run-btn {
+      display: inline-flex;
+    }
+
+    .font-control-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      background: rgba(33, 38, 45, 0.6);
+      border-radius: 4px;
+      border: 1px solid #30363d;
+    }
+
+    .font-control-label {
+      color: #8b949e;
+      font-size: 10px;
+      font-weight: 600;
+      min-width: 40px;
+    }
+
+    .font-control-buttons {
+      display: flex;
+      gap: 2px;
+    }
+
+    .font-control-buttons .btn {
+      padding: 2px 6px;
+      height: 20px;
+      font-size: 9px;
+      min-width: 20px;
+    }
+
+    /* Resizable right panels */
+    .right-panels {
+      min-width: 350px;
+      max-width: 800px;
+      position: relative;
+    }
+    
+    .resize-handle {
+      position: absolute;
+      left: -5px;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      background: transparent;
+      cursor: col-resize;
+      z-index: 1000;
+    }
+    
+    .resize-handle:hover {
+      background: rgba(88, 166, 255, 0.3);
+    }
+    
+    .resize-handle::before {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 30px;
+      background: #30363d;
+      border-radius: 1px;
+    }
+    
+    .resizing .resize-handle {
+      background: rgba(88, 166, 255, 0.5);
+    }
+
+    .clean-mode .editor-wrapper {
+      font-size: 20px;
+    }
+
+    .clean-mode .explanations-content {
+      font-size: inherit;
+    }
+
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #161b22;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 600px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 1px solid #30363d;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #30363d;
+    }
+
+    .modal-header h3 {
+      color: #58a6ff;
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #8b949e;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .close-btn:hover {
+      background: rgba(248, 81, 73, 0.1);
+      color: #f85149;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      color: #e6edf3;
+      font-weight: 500;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 10px 12px;
+      color: #e6edf3;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .form-group textarea {
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #58a6ff;
+      box-shadow: 0 0 8px rgba(88, 166, 255, 0.3);
+    }
+
+    .highlight-type-selector {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .highlight-option {
+      padding: 8px 12px;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .highlight-option.primary {
+      background: rgba(88, 166, 255, 0.1);
+      border-color: #58a6ff;
+      color: #58a6ff;
+    }
+
+    .highlight-option.secondary {
+      background: rgba(34, 197, 94, 0.1);
+      border-color: #22c55e;
+      color: #22c55e;
+    }
+
+    .highlight-option.warning {
+      background: rgba(245, 158, 11, 0.1);
+      border-color: #f59e0b;
+      color: #f59e0b;
+    }
+
+    .highlight-option.danger {
+      background: rgba(248, 81, 73, 0.1);
+      border-color: #f85149;
+      color: #f85149;
+    }
+
+    .highlight-option.selected {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+    }
+
+    /* Notification - Subtle Toast Style */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(88, 166, 255, 0.9);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 10000;
+      font-size: 12px;
+      font-weight: 500;
+      max-width: 200px;
+      animation: fadeInUp 0.3s ease;
+      opacity: 0.85;
+    }
+
+    .notification.error {
+      background: rgba(248, 81, 73, 0.9);
+    }
+
+    .notification.warning {
+      background: rgba(245, 158, 11, 0.9);
+    }
+
+    .notification.success {
+      background: rgba(34, 197, 94, 0.9);
+    }
+
+    /* Custom Alert/Confirm Dialog */
+    .custom-dialog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    .custom-dialog.show {
+      display: flex;
+    }
+
+    .dialog-content {
+      background: #161b22;
+      border-radius: 12px;
+      padding: 24px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 70vh;
+      overflow-y: auto;
+      border: 1px solid #30363d;
+    }
+
+    .dialog-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      gap: 8px;
+    }
+
+    .dialog-icon {
+      font-size: 20px;
+    }
+
+    .dialog-title {
+      color: #e6edf3;
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .dialog-message {
+      color: #e6edf3;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      white-space: pre-line;
+    }
+
+    .dialog-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 0.85; transform: translateY(0); }
+    }
+
+    @keyframes slideOut {
+      from { opacity: 0.85; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(20px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .setup-panel {
+        width: 300px;
+        min-width: 250px;
+      }
+      
+      .right-panels {
+        width: 350px;
+        min-width: 250px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+      
+      .setup-panel,
+      .right-panels {
+        width: 100%;
+        min-width: auto;
+        height: 200px;
+        border: none;
+        border-top: 1px solid #30363d;
+      }
+      
+      .right-panels {
+        flex-direction: row;
+      }
+      
+      .explanations-panel,
+      .output-panel {
+        flex: 1;
+        height: auto;
+        border-right: 1px solid #30363d;
+      }
+      
+      .output-panel {
+        border-top: none;
+        border-right: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <h1>🎯 Python Presentation Mode</h1>
+      <div class="header-controls">
+        <div class="mode-toggle">
+          <button class="btn btn-secondary" id="setupModeToggle">📋 Setup Mode</button>
+        </div>
+        <div class="settings-controls">
+          <div class="font-controls">
+            <button class="btn btn-secondary" id="fontSizeDown">A-</button>
+            <span id="fontSizeDisplay" style="color: #8b949e; font-size: 12px; margin: 0 8px;">16px</span>
+            <button class="btn btn-secondary" id="fontSizeUp">A+</button>
+          </div>
+          <button class="btn btn-success" id="startPresentationBtn">🎯 Start Presentation</button>
+          <button class="btn btn-primary" id="cleanToggle">📺 Clean View</button>
+          <button class="theme-toggle" id="themeToggle">
+            <span id="theme-text">☀️ Light</span>
+          </button>
+          <button class="btn btn-danger" onclick="window.close()">❌ Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab Container -->
+    <div class="tab-container">
+      <button class="tab-btn active" data-tab="demo" oncontextmenu="showRenameTopicModal(event, 'demo'); return false;">Demo Topic</button>
+      <button class="btn btn-success" id="newTabBtn">+ New Topic</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Setup Panel (Left) -->
+      <div class="setup-panel" id="setupPanel">
+        <div class="setup-header">
+          <span>📋 Presentation Setup</span>
+          <button class="btn btn-success" id="addStepBtn">+ Add Step</button>
+        </div>
+        <div class="setup-content" id="setupContent">
+          <!-- Initial Code Section -->
+          <div class="initial-code-section">
+            <h4>📝 Initial Code</h4>
+            <textarea class="code-input" id="initialCodeInput" placeholder="Enter your complete Python code here..."></textarea>
+            <div style="margin-top: 8px; display: flex; gap: 8px;">
+              <button class="btn btn-primary" id="loadCodeBtn">Load Code</button>
+              <button class="btn btn-secondary" id="clearCodeBtn">Clear</button>
+            </div>
+          </div>
+
+          <!-- Steps Section -->
+          <div class="step-section">
+            <h4>📋 Presentation Steps</h4>
+            <ul class="step-list" id="stepsList">
+              <li class="step-item" style="text-align: center; color: #8b949e; font-style: italic;">
+                No steps created yet. Add your first step!
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editor Section (Center) -->
+      <div class="editor-section">
+        <div class="editor-wrapper">
+          <div id="monaco-editor"></div>
+        </div>
+        
+        <!-- Presentation Controls -->
+        <div class="presentation-controls">
+          <div class="step-info">
+            <span id="stepInfo">Step 0 / 0</span>
+          </div>
+          <button class="btn btn-secondary" id="prevStepBtn" disabled>← Prev</button>
+          <button class="btn btn-secondary" id="nextStepBtn" disabled>Next →</button>
+          <button class="btn btn-primary" id="runCodeBtn">▶️ Run Code</button>
+          <button class="btn btn-secondary" id="resetBtn">🔄 Reset</button>
+        </div>
+      </div>
+
+      <!-- Right Panels -->
+      <div class="right-panels" id="rightPanels">
+        <div class="resize-handle" id="resizeHandle"></div>
+        <!-- Explanations Panel (Top) -->
+        <div class="explanations-panel">
+          <div class="explanations-header">
+            <span>💬 Code Explanations</span>
+            <div class="header-font-controls">
+              <div class="font-control-group">
+                <span class="font-control-label">Code:</span>
+                <div class="font-control-buttons">
+                  <button class="btn btn-secondary" id="cleanCodeFontDown">A-</button>
+                  <span id="cleanCodeFontSize" style="color: #8b949e; font-size: 8px; min-width: 25px; text-align: center;">16</span>
+                  <button class="btn btn-secondary" id="cleanCodeFontUp">A+</button>
+                </div>
+              </div>
+              <div class="font-control-group">
+                <span class="font-control-label">Text:</span>
+                <div class="font-control-buttons">
+                  <button class="btn btn-secondary" id="cleanExplainFontDown">A-</button>
+                  <span id="cleanExplainFontSize" style="color: #8b949e; font-size: 8px; min-width: 25px; text-align: center;">14</span>
+                  <button class="btn btn-secondary" id="cleanExplainFontUp">A+</button>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary header-run-btn" id="cleanModeRunBtn">▶️</button>
+            <button class="btn btn-secondary" id="toggleExplanations">−</button>
+          </div>
+          <div class="explanations-content" id="explanationsContent">
+            <div style="text-align: center; color: #8b949e; font-style: italic; padding: 40px 20px;">
+              Create presentation steps to see explanations here
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Console (Bottom) -->
+        <div class="output-panel">
+          <div class="output-header">
+            <span>📟 Output Console</span>
+            <button class="btn btn-secondary" id="clearOutputBtn">Clear</button>
+          </div>
+          <div class="output-content" id="outputContent">
+Ready to run Python code...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Step Modal -->
+  <div class="modal" id="addStepModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Presentation Step</h3>
+        <button class="close-btn" id="closeStepModal">&times;</button>
+      </div>
+      <form id="stepForm">
+        <div class="form-group">
+          <label for="stepTitle">Step Title</label>
+          <input type="text" id="stepTitle" name="title" placeholder="e.g., Variable Declaration" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Line Range for this step</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px;">
+            <div>
+              <label for="startLine" style="font-size: 12px;">From Line</label>
+              <input type="number" id="startLine" name="startLine" min="1" placeholder="1" required>
+            </div>
+            <div>
+              <label for="endLine" style="font-size: 12px;">To Line</label>
+              <input type="number" id="endLine" name="endLine" min="1" placeholder="1" required>
+            </div>
+          </div>
+          <p style="font-size: 12px; color: #8b949e; margin-top: 8px;">This step will show lines from the initial code you entered above</p>
+          
+          <!-- Code Preview -->
+          <div style="margin-top: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <label style="font-size: 12px; color: #58a6ff;">Code Preview (with line numbers)</label>
+              <button type="button" class="btn btn-secondary" id="refreshCodePreview" style="padding: 4px 8px; height: 24px; font-size: 10px;">Refresh</button>
+            </div>
+            <div id="codePreview" style="background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 12px; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 12px; line-height: 1.4; color: #e6edf3; max-height: 300px; overflow-y: auto; white-space: pre;">
+              No code loaded. Please add your initial code first.
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="stepExplanation">Explanation</label>
+          <textarea id="stepExplanation" name="explanation" placeholder="Explain what this code does and why it's important..." rows="4" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="stepOutput">Expected Output (optional)</label>
+          <textarea id="stepOutput" name="output" placeholder="What output should this code produce?" rows="3"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Highlight Color</label>
+          <div class="highlight-type-selector">
+            <div class="highlight-option primary selected" data-type="primary">
+              🔵 Primary (Blue)
+            </div>
+            <div class="highlight-option secondary" data-type="secondary">
+              🟢 Success (Green)
+            </div>
+            <div class="highlight-option warning" data-type="warning">
+              🟡 Warning (Yellow)
+            </div>
+            <div class="highlight-option danger" data-type="danger">
+              🔴 Important (Red)
+            </div>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+          <button type="button" class="btn btn-secondary" id="cancelStepBtn">Cancel</button>
+          <button type="submit" class="btn btn-success">Add Step</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Topic Modal -->
+  <div class="modal" id="addTopicModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add New Topic</h3>
+        <button class="close-btn" id="closeTopicModal">&times;</button>
+      </div>
+      <form id="topicForm">
+        <div class="form-group">
+          <label for="topicName">Topic Name</label>
+          <input type="text" id="topicName" name="name" placeholder="e.g., Variables & Types, Functions, etc." required>
+        </div>
+        
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+          <button type="button" class="btn btn-secondary" id="cancelTopicBtn">Cancel</button>
+          <button type="submit" class="btn btn-success">Create Topic</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Rename Topic Modal -->
+  <div class="modal" id="renameTopicModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Rename Topic</h3>
+        <button class="close-btn" id="closeRenameTopicModal">&times;</button>
+      </div>
+      <form id="renameTopicForm">
+        <div class="form-group">
+          <label for="renameTopicName">New Topic Name</label>
+          <input type="text" id="renameTopicName" name="name" placeholder="Enter new topic name" required>
+        </div>
+        
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+          <button type="button" class="btn btn-secondary" id="cancelRenameTopicBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Rename Topic</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Custom Dialog for Alerts/Confirms -->
+  <div class="custom-dialog" id="customDialog">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <span class="dialog-icon" id="dialogIcon">⚠️</span>
+        <h3 class="dialog-title" id="dialogTitle">Alert</h3>
+      </div>
+      <div class="dialog-message" id="dialogMessage"></div>
+      <div class="dialog-buttons" id="dialogButtons">
+        <button class="btn btn-primary" id="dialogOkBtn">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Explanation Modal -->
+  <div class="explanation-modal" id="explanationModal">
+    <div class="explanation-modal-content">
+      <div class="explanation-modal-title">
+        <span id="explanationModalTitle">Explanation</span>
+        <button class="explanation-close" id="explanationModalClose">&times;</button>
+      </div>
+      <div class="explanation-modal-content-text" id="explanationModalContent">
+        Explanation content will appear here.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let editor = null;
+    let currentTab = 'demo';
+    let currentMode = 'setup';
+    let isLightMode = false;
+    let currentStep = 0;
+    let presentationSteps = [];
+    let selectedHighlightType = 'primary';
+    let currentFontSize = 16;
+    let explanationFontSize = 14;
+    let isPresentationMode = false;
+    
+    // Data structure to store all topics and their steps
+    let presentationData = {
+      demo: {
+        fullCode: '',
+        steps: []
+      }
+    };
+
+    // Initialize Monaco Editor
+    async function initializeEditor() {
+      try {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js';
+        document.head.appendChild(script);
+
+        await new Promise(resolve => {
+          script.onload = () => setTimeout(resolve, 100);
+        });
+
+        window.require.config({ 
+          paths: { 
+            'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' 
+          } 
+        });
+
+        await new Promise(resolve => {
+          window.require(['vs/editor/editor.main'], resolve);
+        });
+
+        editor = monaco.editor.create(document.getElementById('monaco-editor'), {
+          value: '# Welcome to Python Presentation Mode!\n# Add your initial code in the Setup panel on the left\n# Then create presentation steps to guide your audience',
+          language: 'python',
+          theme: 'vs-dark',
+          fontSize: currentFontSize,
+          lineNumbers: 'on',
+          roundedSelection: false,
+          scrollBeyondLastLine: false,
+          readOnly: false,
+          automaticLayout: true,
+          minimap: { enabled: true },
+          folding: true,
+          lineNumbersMinChars: 3,
+          wordWrap: 'on'
+        });
+
+        console.log('Monaco Editor initialized!');
+        showNotification('Presentation mode ready! Start by adding your code.');
+
+      } catch (error) {
+        console.error('Failed to initialize Monaco:', error);
+        showNotification('Error initializing editor');
+      }
+    }
+
+    // Load code into editor
+    async function loadInitialCode() {
+      const codeInput = document.getElementById('initialCodeInput');
+      const code = codeInput.value.trim();
+      
+      // Validate code input
+      if (!code) {
+        showNotification('Please enter some code first');
+        codeInput.focus();
+        return;
+      }
+      
+      if (code.length < 10) {
+        showNotification('Code seems too short. Please enter meaningful Python code.');
+        codeInput.focus();
+        return;
+      }
+      
+      if (code.length > 10000) {
+        const proceed = await customConfirm(
+          'Code is very long (>10,000 characters). This might affect performance. Continue?',
+          'Performance Warning',
+          '⚠️'
+        );
+        if (!proceed) return;
+      }
+      
+      // Check if code has been changed and steps exist
+      if (presentationData[currentTab].fullCode && presentationSteps.length > 0) {
+        const proceed = await customConfirm(
+          'Changing the code will affect existing presentation steps. Continue?',
+          'Warning: Existing Steps',
+          '⚠️'
+        );
+        if (!proceed) return;
+      }
+      
+      if (editor) {
+        editor.setValue(code);
+        presentationData[currentTab].fullCode = code;
+        showNotification(`Code loaded: ${code.split('\n').length} lines`);
+        
+        // Refresh code preview if modal is open
+        if (document.getElementById('addStepModal').classList.contains('show')) {
+          refreshCodePreview();
+        }
+      }
+    }
+
+    // Clear code input
+    function clearCodeInput() {
+      document.getElementById('initialCodeInput').value = '';
+      showNotification('Code input cleared');
+    }
+
+    // Load presentation setup for a tab
+    function loadPresentationSetup(tabName) {
+      const data = presentationData[tabName];
+      if (!data) return;
+
+      presentationSteps = data.steps;
+      currentStep = 0;
+
+      // Load initial code into input
+      document.getElementById('initialCodeInput').value = data.fullCode || '';
+      
+      // Load setup panel
+      loadSetupPanel();
+      
+      // Load explanations
+      loadExplanations();
+      
+      // Update step info
+      updateStepInfo();
+      
+      // Show first step if available
+      if (presentationSteps.length > 0) {
+        showStep(0);
+      } else {
+        updateStepControls();
+        updateStepInfo();
+      }
+    }
+
+    function loadSetupPanel() {
+      const stepsList = document.getElementById('stepsList');
+      
+      if (presentationSteps.length === 0) {
+        stepsList.innerHTML = `
+          <li class="step-item" style="text-align: center; color: #8b949e; font-style: italic;">
+            No steps created yet. Add your first step!
+          </li>
+        `;
+        return;
+      }
+      
+      const stepsHtml = presentationSteps.map((step, index) => `
+        <li class="step-item ${index === 0 ? 'active' : ''}" data-step="${index}">
+          <div class="step-title">
+            <span>Step ${index + 1}: ${step.title}</span>
+          </div>
+          <div class="step-description">${step.explanation.substring(0, 80)}...</div>
+          <div class="step-controls">
+            <button class="btn btn-secondary edit-step-btn" data-step="${index}">Edit</button>
+            <button class="btn btn-danger delete-step-btn" data-step="${index}">Delete</button>
+          </div>
+        </li>
+      `).join('');
+      
+      stepsList.innerHTML = stepsHtml;
+      
+      // Add event listeners
+      document.querySelectorAll('.step-item[data-step]').forEach(item => {
+        item.addEventListener('click', (e) => {
+          if (e.target.classList.contains('btn')) return; // Don't trigger on button clicks
+          const stepIndex = parseInt(e.currentTarget.dataset.step);
+          goToStep(stepIndex);
+        });
+      });
+
+      document.querySelectorAll('.edit-step-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const stepIndex = parseInt(e.target.dataset.step);
+          editStep(stepIndex);
+        });
+      });
+
+      document.querySelectorAll('.delete-step-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const stepIndex = parseInt(e.target.dataset.step);
+          deleteStep(stepIndex);
+        });
+      });
+    }
+
+    function loadExplanations() {
+      const explanationsContent = document.getElementById('explanationsContent');
+      
+      if (presentationSteps.length === 0) {
+        explanationsContent.innerHTML = `
+          <div style="text-align: center; color: #8b949e; font-style: italic; padding: 40px 20px;">
+            Create presentation steps to see explanations here
+          </div>
+        `;
+        return;
+      }
+      
+      // In presentation mode, show all explanations up to current step (stacking)
+      if (isPresentationMode) {
+        if (currentStep >= 0 && currentStep < presentationSteps.length) {
+          // Show all steps from 0 to currentStep (inclusive)
+          const stackedExplanationsHtml = presentationSteps
+            .slice(0, currentStep + 1)
+            .map((step, index) => `
+              <div class="explanation-item ${index === currentStep ? 'active' : 'previous'}" id="explanation-${index}" data-step-index="${index}">
+                <div class="explanation-title">
+                  <span>${step.title}</span>
+                  <span class="code-link">Lines ${step.highlight?.startLine || 1}-${step.highlight?.endLine || 1}</span>
+                </div>
+                <div class="explanation-content">${step.explanation}</div>
+                <div class="highlight-connector"></div>
+              </div>
+            `).join('');
+          
+          explanationsContent.innerHTML = stackedExplanationsHtml;
+          
+          // Add click handlers for presentation mode explanations
+          explanationsContent.querySelectorAll('.explanation-item').forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              
+              console.log('Explanation clicked:', index, presentationSteps[index]);
+              
+              if (presentationSteps[index]) {
+                showFloatingExplanation(presentationSteps[index]);
+              }
+            });
+          });
+        } else {
+          explanationsContent.innerHTML = `
+            <div style="text-align: center; color: #8b949e; font-style: italic; padding: 40px 20px;">
+              Ready to start presentation
+            </div>
+          `;
+        }
+        return;
+      }
+      
+      // In setup mode, show all explanations with current one highlighted
+      const explanationsHtml = presentationSteps.map((step, index) => `
+        <div class="explanation-item ${index === currentStep ? 'active' : ''}" id="explanation-${index}" data-step="${index}">
+          <div class="explanation-title">
+            <span>${step.title}</span>
+            <span class="code-link">Lines ${step.highlight?.startLine || 1}-${step.highlight?.endLine || 1}</span>
+          </div>
+          <div class="explanation-content">${step.explanation}</div>
+          <div class="highlight-connector"></div>
+        </div>
+      `).join('');
+      
+      explanationsContent.innerHTML = explanationsHtml;
+
+      // Add click handlers for all explanation items in the explanations content
+      explanationsContent.querySelectorAll('.explanation-item').forEach((item, index) => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          let stepIndex;
+          
+          // Get step index from different possible attributes
+          if (item.dataset.step) {
+            stepIndex = parseInt(item.dataset.step);
+          } else if (item.dataset.stepIndex) {
+            stepIndex = parseInt(item.dataset.stepIndex);
+          } else {
+            // Use the forEach index as fallback
+            stepIndex = index;
+          }
+          
+          console.log('Explanation clicked (setup mode):', stepIndex, presentationSteps[stepIndex]);
+          
+          if (stepIndex >= 0 && presentationSteps[stepIndex]) {
+            if (isPresentationMode || currentMode === 'clean') {
+              // In presentation or clean mode, show floating modal
+              showFloatingExplanation(presentationSteps[stepIndex]);
+            } else {
+              // In setup mode, navigate to step
+              goToStep(stepIndex);
+            }
+          }
+        });
+      });
+    }
+
+    function showStep(stepIndex) {
+      if (stepIndex < 0 || stepIndex >= presentationSteps.length) return;
+      
+      currentStep = stepIndex;
+      const step = presentationSteps[stepIndex];
+      
+      // Get the full code and show only the specified lines
+      const fullCode = presentationData[currentTab].fullCode || '';
+      const lines = fullCode.split('\n');
+      const startLine = Math.max(0, (step.highlight?.startLine || 1) - 1);
+      const endLine = Math.min(lines.length - 1, (step.highlight?.endLine || startLine + 1) - 1);
+      
+      // Extract the lines for this step
+      const stepCode = lines.slice(0, endLine + 1).join('\n');
+      
+      // Update editor code
+      if (editor) {
+        editor.setValue(stepCode);
+      }
+      
+      // Update active step in setup panel
+      document.querySelectorAll('.step-item').forEach((item, index) => {
+        item.classList.toggle('active', index === stepIndex);
+      });
+      
+      // Update active explanation
+      document.querySelectorAll('.explanation-item').forEach((item, index) => {
+        item.classList.toggle('active', index === stepIndex);
+      });
+      
+      // Show output if available (but not in clean mode unless explicitly requested)
+      if (currentMode !== 'clean') {
+        if (step.output) {
+          document.getElementById('outputContent').textContent = step.output;
+        } else {
+          document.getElementById('outputContent').textContent = 'No output defined for this step';
+        }
+      } else {
+        // In clean mode, only show default message until run button is clicked
+        document.getElementById('outputContent').textContent = 'Click ▶️ to run code and see output';
+      }
+      
+      // Add code highlight with proper line calculation
+      addCodeHighlight(step.highlight);
+      
+      // Update controls
+      updateStepControls();
+      updateStepInfo();
+      
+      // Update explanations (will show only current step in presentation mode)
+      if (isPresentationMode) {
+        loadExplanations();
+      }
+    }
+
+    function addCodeHighlight(highlight) {
+      if (!highlight || !editor) return;
+      
+      // Clear existing decorations
+      if (window.currentHighlight) {
+        editor.deltaDecorations(window.currentHighlight, []);
+        window.currentHighlight = [];
+      }
+      
+      // Ensure we have valid line numbers
+      const startLine = Math.max(1, parseInt(highlight.startLine) || 1);
+      const endLine = Math.max(startLine, parseInt(highlight.endLine) || startLine);
+      
+      // Get the highlight type
+      const highlightType = highlight.type || 'primary';
+      
+      // Create ONLY block decoration, no line highlighting
+      window.currentHighlight = editor.deltaDecorations([], [{
+        range: new monaco.Range(startLine, 1, endLine + 1, 1),
+        options: {
+          blockClassName: `code-highlight-${highlightType}`,
+          blockIsAfterEnd: false,
+          blockPadding: [4, 8, 4, 8]
+        }
+      }]);
+    }
+
+    function goToStep(stepIndex) {
+      showStep(stepIndex);
+    }
+
+    function nextStep() {
+      if (currentStep < presentationSteps.length - 1) {
+        showStep(currentStep + 1);
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 0) {
+        showStep(currentStep - 1);
+      }
+    }
+
+    function updateStepControls() {
+      const prevBtn = document.getElementById('prevStepBtn');
+      const nextBtn = document.getElementById('nextStepBtn');
+      
+      prevBtn.disabled = currentStep === 0 || presentationSteps.length === 0;
+      nextBtn.disabled = currentStep === presentationSteps.length - 1 || presentationSteps.length === 0;
+    }
+
+    function updateStepInfo() {
+      const stepInfo = document.getElementById('stepInfo');
+      if (presentationSteps.length === 0) {
+        stepInfo.textContent = 'Step 0 / 0';
+      } else {
+        stepInfo.textContent = `Step ${currentStep + 1} / ${presentationSteps.length}`;
+      }
+    }
+
+    // Add new step
+    function openAddStepModal() {
+      document.getElementById('addStepModal').classList.add('show');
+      document.getElementById('stepTitle').focus();
+      refreshCodePreview(); // Load the code preview when modal opens
+    }
+
+    function closeAddStepModal() {
+      document.getElementById('addStepModal').classList.remove('show');
+      document.getElementById('stepForm').reset();
+      selectHighlightType('primary'); // Reset to default
+      
+      // Reset modal to add mode
+      document.querySelector('#addStepModal .modal-header h3').textContent = 'Add Presentation Step';
+      document.querySelector('#stepForm button[type="submit"]').textContent = 'Add Step';
+      window.editingStepIndex = undefined;
+    }
+
+    // Code preview functionality
+    function refreshCodePreview() {
+      const fullCode = presentationData[currentTab].fullCode || '';
+      const codePreview = document.getElementById('codePreview');
+      
+      if (!fullCode.trim()) {
+        codePreview.textContent = 'No code loaded. Please add your initial code first.';
+        return;
+      }
+      
+      // Create numbered lines
+      const lines = fullCode.split('\n');
+      const numberedCode = lines.map((line, index) => {
+        const lineNum = (index + 1).toString().padStart(3, ' ');
+        return `${lineNum} | ${line}`;
+      }).join('\n');
+      
+      codePreview.textContent = numberedCode;
+    }
+
+    // Comprehensive validation function
+    async function validateStepData(stepData, editingIndex = -1) {
+      const errors = [];
+      
+      // 1. Check if initial code exists
+      const fullCode = presentationData[currentTab].fullCode || '';
+      if (!fullCode.trim()) {
+        errors.push('Please add initial code first before creating steps.');
+        showNotification('Error: No initial code found!');
+        return false;
+      }
+      
+      // 2. Validate step title
+      if (!stepData.title || stepData.title.trim().length === 0) {
+        errors.push('Step title is required.');
+      } else if (stepData.title.trim().length > 100) {
+        errors.push('Step title must be 100 characters or less.');
+      }
+      
+      // 3. Validate explanation
+      if (!stepData.explanation || stepData.explanation.trim().length === 0) {
+        errors.push('Explanation is required.');
+      } else if (stepData.explanation.trim().length < 10) {
+        errors.push('Explanation must be at least 10 characters long.');
+      }
+      
+      // 4. Validate line numbers
+      const startLine = parseInt(stepData.startLine);
+      const endLine = parseInt(stepData.endLine);
+      const totalLines = fullCode.split('\n').length;
+      
+      if (!startLine || startLine < 1) {
+        errors.push('Start line must be a positive number.');
+      }
+      
+      if (!endLine || endLine < 1) {
+        errors.push('End line must be a positive number.');
+      }
+      
+      if (startLine && endLine && startLine > endLine) {
+        errors.push('Start line must be less than or equal to end line.');
+      }
+      
+      if (startLine && startLine > totalLines) {
+        errors.push(`Start line (${startLine}) exceeds total code lines (${totalLines}).`);
+      }
+      
+      if (endLine && endLine > totalLines) {
+        errors.push(`End line (${endLine}) exceeds total code lines (${totalLines}).`);
+      }
+      
+      // 5. Check for duplicate step titles (skip current step when editing)
+      const existingTitles = presentationSteps
+        .map((step, index) => ({ title: step.title.toLowerCase().trim(), index }))
+        .filter(item => item.index !== editingIndex);
+      
+      if (existingTitles.some(item => item.title === stepData.title.toLowerCase().trim())) {
+        errors.push('A step with this title already exists. Please use a different title.');
+      }
+      
+      // 6. Validate line range makes sense (not too large)
+      if (startLine && endLine && (endLine - startLine + 1) > 50) {
+        errors.push('Line range is too large (max 50 lines per step for better presentation).');
+      }
+      
+      // 7. Check for overlapping ranges (warn if similar, but skip current step when editing)
+      const hasOverlap = presentationSteps.some((step, index) => {
+        // Skip the current step when editing
+        if (index === editingIndex) return false;
+        
+        const existingStart = step.highlight?.startLine || 1;
+        const existingEnd = step.highlight?.endLine || 1;
+        return (startLine <= existingEnd && endLine >= existingStart);
+      });
+      
+      if (hasOverlap) {
+        const proceed = await customConfirm(
+          'This line range overlaps with an existing step. Continue anyway?',
+          'Overlapping Range Warning',
+          '⚠️'
+        );
+        if (!proceed) return false;
+      }
+      
+      // 8. Validate output length if provided
+      if (stepData.output && stepData.output.length > 1000) {
+        errors.push('Expected output is too long (max 1000 characters).');
+      }
+      
+      // Show errors if any
+      if (errors.length > 0) {
+        const errorMessage = 'Validation Errors:\n\n' + errors.map((error, index) => `${index + 1}. ${error}`).join('\n');
+        await customAlert(errorMessage, 'Validation Errors', '❌');
+        showNotification(`${errors.length} validation error(s) found`, 'error');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // Real-time line number validation
+    function validateLineNumbers() {
+      const startLineInput = document.getElementById('startLine');
+      const endLineInput = document.getElementById('endLine');
+      const startLine = parseInt(startLineInput.value);
+      const endLine = parseInt(endLineInput.value);
+      const fullCode = presentationData[currentTab].fullCode || '';
+      const totalLines = fullCode ? fullCode.split('\n').length : 0;
+      
+      // Reset styles
+      startLineInput.style.borderColor = '';
+      endLineInput.style.borderColor = '';
+      
+      let hasError = false;
+      
+      // Validate start line
+      if (startLineInput.value && (startLine < 1 || startLine > totalLines)) {
+        startLineInput.style.borderColor = '#f85149';
+        hasError = true;
+      }
+      
+      // Validate end line
+      if (endLineInput.value && (endLine < 1 || endLine > totalLines)) {
+        endLineInput.style.borderColor = '#f85149';
+        hasError = true;
+      }
+      
+      // Validate start <= end
+      if (startLine && endLine && startLine > endLine) {
+        startLineInput.style.borderColor = '#f85149';
+        endLineInput.style.borderColor = '#f85149';
+        hasError = true;
+      }
+      
+      // Show helpful info
+      if (!hasError && startLine && endLine) {
+        const lineCount = endLine - startLine + 1;
+        if (lineCount > 20) {
+          startLineInput.style.borderColor = '#f59e0b'; // Warning color
+          endLineInput.style.borderColor = '#f59e0b';
+        } else {
+          startLineInput.style.borderColor = '#22c55e'; // Success color
+          endLineInput.style.borderColor = '#22c55e';
+        }
+      }
+    }
+
+    // Validate topic name
+    async function validateTopicName(topicName) {
+      const errors = [];
+      
+      if (!topicName || topicName.trim().length === 0) {
+        errors.push('Topic name is required.');
+      } else if (topicName.trim().length < 3) {
+        errors.push('Topic name must be at least 3 characters long.');
+      } else if (topicName.trim().length > 50) {
+        errors.push('Topic name must be 50 characters or less.');
+      }
+      
+      // Check for invalid characters
+      if (!/^[a-zA-Z0-9\s\-_\.]+$/.test(topicName)) {
+        errors.push('Topic name can only contain letters, numbers, spaces, hyphens, underscores, and dots.');
+      }
+      
+      // Check for duplicate topic names
+      const tabId = topicName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+      if (presentationData[tabId]) {
+        errors.push('A topic with this name already exists.');
+      }
+      
+      if (errors.length > 0) {
+        await customAlert('Topic Validation Errors:\n\n' + errors.join('\n'), 'Topic Validation', '❌');
+        return false;
+      }
+      
+      return true;
+    }
+
+    function addNewStep(stepData) {
+      const newStep = {
+        title: stepData.title,
+        explanation: stepData.explanation,
+        output: stepData.output || '',
+        highlight: {
+          startLine: parseInt(stepData.startLine) || 1,
+          endLine: parseInt(stepData.endLine) || parseInt(stepData.startLine) || 1,
+          startCol: 1,
+          endCol: 1000,
+          type: selectedHighlightType
+        }
+      };
+      
+      presentationSteps.push(newStep);
+      presentationData[currentTab].steps = presentationSteps;
+      
+      // Reload UI
+      loadSetupPanel();
+      loadExplanations();
+      updateStepInfo();
+      updateStepControls();
+      
+      // Go to the new step
+      showStep(presentationSteps.length - 1);
+      
+      showNotification(`Step "${stepData.title}" added successfully!`);
+    }
+
+    function updateExistingStep(stepIndex, stepData) {
+      if (stepIndex < 0 || stepIndex >= presentationSteps.length) return;
+      
+      // Update the step
+      presentationSteps[stepIndex] = {
+        title: stepData.title,
+        explanation: stepData.explanation,
+        output: stepData.output || '',
+        highlight: {
+          startLine: parseInt(stepData.startLine) || 1,
+          endLine: parseInt(stepData.endLine) || parseInt(stepData.startLine) || 1,
+          startCol: 1,
+          endCol: 1000,
+          type: selectedHighlightType
+        }
+      };
+      
+      presentationData[currentTab].steps = presentationSteps;
+      
+      // Reload UI
+      loadSetupPanel();
+      loadExplanations();
+      updateStepInfo();
+      updateStepControls();
+      
+      // Go to the updated step
+      showStep(stepIndex);
+      
+      showNotification(`Step "${stepData.title}" updated successfully!`);
+    }
+
+    function editStep(stepIndex) {
+      if (stepIndex < 0 || stepIndex >= presentationSteps.length) return;
+      
+      const step = presentationSteps[stepIndex];
+      
+      // Populate the modal with existing data
+      document.getElementById('stepTitle').value = step.title;
+      document.getElementById('startLine').value = step.highlight?.startLine || 1;
+      document.getElementById('endLine').value = step.highlight?.endLine || 1;
+      document.getElementById('stepExplanation').value = step.explanation;
+      document.getElementById('stepOutput').value = step.output || '';
+      
+      // Select the correct highlight type
+      selectHighlightType(step.highlight?.type || 'primary');
+      
+      // Set edit mode flag
+      window.editingStepIndex = stepIndex;
+      
+      // Update modal title and button text
+      document.querySelector('#addStepModal .modal-header h3').textContent = 'Edit Presentation Step';
+      document.querySelector('#stepForm button[type="submit"]').textContent = 'Update Step';
+      
+      // Show modal
+      document.getElementById('addStepModal').classList.add('show');
+      document.getElementById('stepTitle').focus();
+      
+      // Refresh code preview
+      refreshCodePreview();
+    }
+
+    async function deleteStep(stepIndex) {
+      const confirmed = await customConfirm(
+        'Are you sure you want to delete this step? This action cannot be undone.',
+        'Delete Step',
+        '🗑️'
+      );
+      if (confirmed) {
+        presentationSteps.splice(stepIndex, 1);
+        presentationData[currentTab].steps = presentationSteps;
+        
+        // Adjust current step if necessary
+        if (currentStep >= presentationSteps.length) {
+          currentStep = Math.max(0, presentationSteps.length - 1);
+        }
+        
+        // Reload UI
+        loadSetupPanel();
+        loadExplanations();
+        updateStepInfo();
+        updateStepControls();
+        
+        // Show appropriate step
+        if (presentationSteps.length > 0) {
+          showStep(currentStep);
+        }
+        
+        showNotification('Step deleted');
+      }
+    }
+
+    // Highlight type selection
+    function selectHighlightType(type) {
+      selectedHighlightType = type;
+      document.querySelectorAll('.highlight-option').forEach(option => {
+        option.classList.toggle('selected', option.dataset.type === type);
+      });
+    }
+
+    // Tab management
+    function switchTab(tabName) {
+      if (!presentationData[tabName]) return;
+
+      // Update tab buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+      currentTab = tabName;
+      loadPresentationSetup(tabName);
+      
+      showNotification(`Switched to ${tabName} topic`);
+    }
+
+    function addNewTopic(topicName) {
+      const tabId = topicName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+      
+      // Create new topic data
+      presentationData[tabId] = {
+        fullCode: '',
+        steps: []
+      };
+      
+      // Add new tab button
+      const tabContainer = document.querySelector('.tab-container');
+      const newTabBtn = document.querySelector('#newTabBtn');
+      
+      const tabButton = document.createElement('button');
+      tabButton.className = 'tab-btn';
+      tabButton.dataset.tab = tabId;
+      tabButton.textContent = topicName;
+      
+      tabContainer.insertBefore(tabButton, newTabBtn);
+      
+      // Add event listeners
+      tabButton.addEventListener('click', (e) => {
+        const tabName = e.target.dataset.tab;
+        switchTab(tabName);
+      });
+      
+      // Add right-click rename functionality
+      tabButton.addEventListener('contextmenu', (e) => {
+        showRenameTopicModal(e, tabId);
+      });
+      
+      // Switch to new topic
+      switchTab(tabId);
+      
+      showNotification(`Topic "${topicName}" created!`);
+    }
+
+    // Clean presentation mode
+    function toggleCleanMode() {
+      const container = document.querySelector('.container');
+      const btn = document.getElementById('cleanToggle');
+      
+      if (currentMode === 'clean') {
+        container.classList.remove('clean-mode');
+        btn.textContent = '📺 Clean View';
+        currentMode = 'setup';
+        showNotification('Setup mode restored');
+      } else {
+        container.classList.add('clean-mode');
+        btn.textContent = '📋 Setup Mode';
+        currentMode = 'clean';
+        showNotification('Clean presentation mode - perfect for projectors!');
+      }
+
+      setTimeout(() => {
+        if (editor) editor.layout();
+      }, 100);
+    }
+
+    // Theme toggle
+    function toggleTheme() {
+      if (!editor) return;
+      
+      isLightMode = !isLightMode;
+      const body = document.body;
+      const themeText = document.getElementById('theme-text');
+      
+      if (isLightMode) {
+        body.classList.add('light-mode');
+        editor.updateOptions({ theme: 'vs' });
+        themeText.textContent = '🌙 Dark';
+        showNotification('Switched to light mode');
+      } else {
+        body.classList.remove('light-mode');
+        editor.updateOptions({ theme: 'vs-dark' });
+        themeText.textContent = '☀️ Light';
+        showNotification('Switched to dark mode');
+      }
+    }
+
+    // Font size controls
+    function increaseFontSize() {
+      if (!editor) return;
+      
+      currentFontSize = Math.min(36, currentFontSize + 2);
+      editor.updateOptions({ fontSize: currentFontSize });
+      document.getElementById('fontSizeDisplay').textContent = `${currentFontSize}px`;
+      
+      // Also update explanations font size
+      const explanationsContent = document.getElementById('explanationsContent');
+      if (explanationsContent) {
+        explanationsContent.style.fontSize = `${Math.max(14, currentFontSize - 2)}px`;
+      }
+      
+      showNotification(`Font size: ${currentFontSize}px`);
+    }
+
+    function decreaseFontSize() {
+      if (!editor) return;
+      
+      currentFontSize = Math.max(10, currentFontSize - 2);
+      editor.updateOptions({ fontSize: currentFontSize });
+      document.getElementById('fontSizeDisplay').textContent = `${currentFontSize}px`;
+      
+      // Also update explanations font size
+      const explanationsContent = document.getElementById('explanationsContent');
+      if (explanationsContent) {
+        explanationsContent.style.fontSize = `${Math.max(12, currentFontSize - 2)}px`;
+      }
+      
+      showNotification(`Font size: ${currentFontSize}px`);
+    }
+
+    // Clean mode separate font controls
+    function increaseCleanCodeFont() {
+      if (!editor) return;
+      
+      currentFontSize = Math.min(36, currentFontSize + 2);
+      editor.updateOptions({ fontSize: currentFontSize });
+      document.getElementById('cleanCodeFontSize').textContent = `${currentFontSize}`;
+    }
+
+    function decreaseCleanCodeFont() {
+      if (!editor) return;
+      
+      currentFontSize = Math.max(10, currentFontSize - 2);
+      editor.updateOptions({ fontSize: currentFontSize });
+      document.getElementById('cleanCodeFontSize').textContent = `${currentFontSize}`;
+    }
+
+    function increaseCleanExplainFont() {
+      explanationFontSize = Math.min(32, explanationFontSize + 2);
+      const explanationsContent = document.getElementById('explanationsContent');
+      if (explanationsContent) {
+        explanationsContent.style.fontSize = `${explanationFontSize}px`;
+        // Also update all explanation items directly
+        explanationsContent.querySelectorAll('.explanation-item').forEach(item => {
+          item.style.fontSize = `${explanationFontSize}px`;
+        });
+        explanationsContent.querySelectorAll('.explanation-content').forEach(content => {
+          content.style.fontSize = `${explanationFontSize}px`;
+        });
+      }
+      document.getElementById('cleanExplainFontSize').textContent = `${explanationFontSize}`;
+    }
+
+    function decreaseCleanExplainFont() {
+      explanationFontSize = Math.max(10, explanationFontSize - 2);
+      const explanationsContent = document.getElementById('explanationsContent');
+      if (explanationsContent) {
+        explanationsContent.style.fontSize = `${explanationFontSize}px`;
+        // Also update all explanation items directly
+        explanationsContent.querySelectorAll('.explanation-item').forEach(item => {
+          item.style.fontSize = `${explanationFontSize}px`;
+        });
+        explanationsContent.querySelectorAll('.explanation-content').forEach(content => {
+          content.style.fontSize = `${explanationFontSize}px`;
+        });
+      }
+      document.getElementById('cleanExplainFontSize').textContent = `${explanationFontSize}`;
+    }
+
+    // Run code
+    function runCode() {
+      if (!editor) return;
+      
+      const code = editor.getValue();
+      if (!code.trim()) {
+        showNotification('No code to run');
+        return;
+      }
+      
+      if (presentationSteps.length > 0 && currentStep < presentationSteps.length) {
+        const currentStepData = presentationSteps[currentStep];
+        if (currentStepData && currentStepData.output) {
+          document.getElementById('outputContent').textContent = currentStepData.output;
+          showNotification('Code executed - output shown');
+          return;
+        }
+      }
+      
+      // Simulate code execution
+      document.getElementById('outputContent').textContent = 'Code executed (simulation mode)\nTo see actual output, add expected output when creating steps.';
+      showNotification('Code executed');
+    }
+
+    // Clean mode simulated run
+    function runCodeCleanMode() {
+      if (!editor) return;
+      
+      const code = editor.getValue();
+      if (!code.trim()) {
+        showNotification('No code to run');
+        return;
+      }
+      
+      // Always show simulated output in clean mode, based on current step
+      if (presentationSteps.length > 0 && currentStep >= 0 && currentStep < presentationSteps.length) {
+        const currentStepData = presentationSteps[currentStep];
+        if (currentStepData && currentStepData.output) {
+          document.getElementById('outputContent').textContent = currentStepData.output;
+          showNotification('Code executed - step output shown');
+          return;
+        }
+      }
+      
+      // Default simulated output for clean mode
+      document.getElementById('outputContent').textContent = 'Code executed successfully!\n\n' + 
+        'Output: [Simulated execution]\n' +
+        'No errors detected.\n' +
+        'Execution completed.';
+      showNotification('Code executed (simulated)');
+    }
+
+    // Clear output
+    function clearOutput() {
+      document.getElementById('outputContent').textContent = 'Output cleared...';
+      showNotification('Output cleared');
+    }
+
+    // Reset presentation
+    function resetPresentation() {
+      if (presentationSteps.length > 0) {
+        showStep(0);
+        showNotification('Reset to first step');
+      }
+    }
+
+    // Start presentation mode
+    async function startPresentation() {
+      if (presentationSteps.length === 0) {
+        await customAlert(
+          'No presentation steps found. Please create at least one step before starting the presentation.',
+          'No Steps Available',
+          '📋'
+        );
+        showNotification('Create presentation steps first', 'warning');
+        return;
+      }
+
+      if (!presentationData[currentTab].fullCode) {
+        await customAlert(
+          'No initial code found. Please add your code first.',
+          'No Code Available',
+          '📝'
+        );
+        showNotification('Add initial code first', 'warning');
+        return;
+      }
+
+      // Switch to presentation mode
+      isPresentationMode = true;
+      currentStep = 0; // Always start from step 1 (index 0)
+      
+      // Update UI for presentation mode
+      const startBtn = document.getElementById('startPresentationBtn');
+      startBtn.textContent = '🔄 End Presentation';
+      startBtn.classList.remove('btn-success');
+      startBtn.classList.add('btn-warning');
+      
+      // Show step 1 (index 0) immediately
+      showStep(0);
+      
+      showNotification('Presentation started! Use arrow keys to navigate', 'success');
+    }
+
+    // End presentation mode
+    function endPresentation() {
+      isPresentationMode = false;
+      
+      // Reset button
+      const startBtn = document.getElementById('startPresentationBtn');
+      startBtn.textContent = '🎯 Start Presentation';
+      startBtn.classList.remove('btn-warning');
+      startBtn.classList.add('btn-success');
+      
+      // Load full setup view
+      loadPresentationSetup(currentTab);
+      
+      showNotification('Presentation ended', 'info');
+    }
+
+    // Toggle presentation mode
+    function togglePresentationMode() {
+      if (isPresentationMode) {
+        endPresentation();
+      } else {
+        startPresentation();
+      }
+    }
+
+    // Setup mode state
+    let isSetupModeEnabled = true;
+
+    // Setup mode toggle
+    function toggleSetupMode() {
+      const setupPanel = document.getElementById('setupPanel');
+      const toggleButton = document.getElementById('setupModeToggle');
+      
+      isSetupModeEnabled = !isSetupModeEnabled;
+      
+      setupPanel.style.display = isSetupModeEnabled ? 'flex' : 'none';
+      toggleButton.textContent = isSetupModeEnabled ? '📋 Setup Mode' : '📋 Setup Mode (Hidden)';
+      toggleButton.classList.toggle('active', isSetupModeEnabled);
+      
+      setTimeout(() => {
+        if (editor) editor.layout();
+      }, 100);
+    }
+
+    // Enhanced notification system
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.remove();
+          }
+        }, 300);
+      }, type === 'error' ? 4000 : 2500); // Errors stay longer
+    }
+
+    // Custom alert dialog
+    function customAlert(message, title = 'Alert', icon = '⚠️') {
+      return new Promise((resolve) => {
+        const dialog = document.getElementById('customDialog');
+        const titleEl = document.getElementById('dialogTitle');
+        const iconEl = document.getElementById('dialogIcon');
+        const messageEl = document.getElementById('dialogMessage');
+        const buttonsEl = document.getElementById('dialogButtons');
+        
+        titleEl.textContent = title;
+        iconEl.textContent = icon;
+        messageEl.textContent = message;
+        
+        // Create OK button
+        buttonsEl.innerHTML = '<button class="btn btn-primary" id="dialogOkBtn">OK</button>';
+        
+        const okBtn = document.getElementById('dialogOkBtn');
+        okBtn.onclick = () => {
+          dialog.classList.remove('show');
+          resolve(true);
+        };
+        
+        dialog.classList.add('show');
+        okBtn.focus();
+      });
+    }
+
+    // Custom confirm dialog
+    function customConfirm(message, title = 'Confirm', icon = '❓') {
+      return new Promise((resolve) => {
+        const dialog = document.getElementById('customDialog');
+        const titleEl = document.getElementById('dialogTitle');
+        const iconEl = document.getElementById('dialogIcon');
+        const messageEl = document.getElementById('dialogMessage');
+        const buttonsEl = document.getElementById('dialogButtons');
+        
+        titleEl.textContent = title;
+        iconEl.textContent = icon;
+        messageEl.textContent = message;
+        
+        // Create Cancel and Confirm buttons
+        buttonsEl.innerHTML = `
+          <button class="btn btn-secondary" id="dialogCancelBtn">Cancel</button>
+          <button class="btn btn-primary" id="dialogConfirmBtn">Confirm</button>
+        `;
+        
+        const cancelBtn = document.getElementById('dialogCancelBtn');
+        const confirmBtn = document.getElementById('dialogConfirmBtn');
+        
+        cancelBtn.onclick = () => {
+          dialog.classList.remove('show');
+          resolve(false);
+        };
+        
+        confirmBtn.onclick = () => {
+          dialog.classList.remove('show');
+          resolve(true);
+        };
+        
+        dialog.classList.add('show');
+        confirmBtn.focus();
+      });
+    }
+
+    // Floating explanation modal
+    function showFloatingExplanation(step) {
+      console.log('showFloatingExplanation called with:', step);
+      
+      const modal = document.getElementById('explanationModal');
+      const title = document.getElementById('explanationModalTitle');
+      const content = document.getElementById('explanationModalContent');
+      
+      console.log('Modal elements:', { modal, title, content });
+      
+      if (!modal || !title || !content) {
+        console.error('Missing modal elements');
+        return;
+      }
+      
+      title.textContent = step.title;
+      content.textContent = step.explanation;
+      
+      // Apply current font size to modal content
+      content.style.fontSize = `${Math.max(16, currentFontSize)}px`;
+      
+      modal.classList.add('show');
+      
+      console.log('Modal should be visible now');
+    }
+    
+    function closeFloatingExplanation() {
+      document.getElementById('explanationModal').classList.remove('show');
+    }
+    
+    // Test function for debugging
+    window.testModal = function() {
+      showFloatingExplanation({
+        title: "Test Explanation",
+        explanation: "This is a test explanation to check if the modal works."
+      });
+    };
+
+    // Toggle explanations panel
+    function toggleExplanationsPanel() {
+      const explanationsPanel = document.getElementById('explanationsContent');
+      const toggleBtn = document.getElementById('toggleExplanations');
+      
+      if (explanationsPanel.style.display === 'none') {
+        explanationsPanel.style.display = 'block';
+        toggleBtn.textContent = '−';
+      } else {
+        explanationsPanel.style.display = 'none';
+        toggleBtn.textContent = '+';
+      }
+    }
+
+    // Rename topic functionality
+    let currentRenameTopicId = null;
+    
+    function showRenameTopicModal(event, topicId) {
+      event.preventDefault();
+      currentRenameTopicId = topicId;
+      
+      const currentButton = document.querySelector(`[data-tab="${topicId}"]`);
+      const currentName = currentButton.textContent;
+      
+      document.getElementById('renameTopicName').value = currentName;
+      document.getElementById('renameTopicModal').classList.add('show');
+      document.getElementById('renameTopicName').focus();
+    }
+    
+    function closeRenameTopicModal() {
+      document.getElementById('renameTopicModal').classList.remove('show');
+      document.getElementById('renameTopicForm').reset();
+      currentRenameTopicId = null;
+    }
+    
+    async function renameTopic(newName) {
+      if (!currentRenameTopicId || !newName) return;
+      
+      // Validate new name
+      if (await validateTopicName(newName)) {
+        const currentButton = document.querySelector(`[data-tab="${currentRenameTopicId}"]`);
+        if (currentButton) {
+          currentButton.textContent = newName;
+          showNotification(`Topic renamed to "${newName}"`);
+        }
+        closeRenameTopicModal();
+      }
+    }
+
+    // Resize functionality
+    function setupResizeHandle() {
+      const resizeHandle = document.getElementById('resizeHandle');
+      const rightPanels = document.getElementById('rightPanels');
+      let isResizing = false;
+      let startX = 0;
+      let startWidth = 0;
+
+      if (!resizeHandle || !rightPanels) return;
+
+      resizeHandle.addEventListener('mousedown', (e) => {
+        isResizing = true;
+        startX = e.clientX;
+        startWidth = parseInt(document.defaultView.getComputedStyle(rightPanels).width, 10);
+        document.body.classList.add('resizing');
+        
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!isResizing) return;
+        
+        const dx = startX - e.clientX; // Reverse direction since we're resizing from left edge
+        const newWidth = Math.max(350, Math.min(800, startWidth + dx));
+        
+        rightPanels.style.width = newWidth + 'px';
+        
+        // Trigger editor layout update
+        setTimeout(() => {
+          if (editor) editor.layout();
+        }, 0);
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (isResizing) {
+          isResizing = false;
+          document.body.classList.remove('resizing');
+        }
+      });
+    }
+
+    // Event listeners
+    function setupEventListeners() {
+      // Tab switching
+      document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('tab-btn') && e.target.dataset.tab) {
+          const tabName = e.target.dataset.tab;
+          switchTab(tabName);
+        }
+      });
+
+      // Controls
+      document.getElementById('prevStepBtn').addEventListener('click', prevStep);
+      document.getElementById('nextStepBtn').addEventListener('click', nextStep);
+      document.getElementById('runCodeBtn').addEventListener('click', runCode);
+      document.getElementById('resetBtn').addEventListener('click', resetPresentation);
+      document.getElementById('clearOutputBtn').addEventListener('click', clearOutput);
+      
+      // Code management
+      document.getElementById('loadCodeBtn').addEventListener('click', loadInitialCode);
+      document.getElementById('clearCodeBtn').addEventListener('click', clearCodeInput);
+      
+      // Mode toggles
+      document.getElementById('cleanToggle').addEventListener('click', toggleCleanMode);
+      document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+      document.getElementById('setupModeToggle').addEventListener('click', toggleSetupMode);
+      document.getElementById('startPresentationBtn').addEventListener('click', togglePresentationMode);
+      
+      // Font size controls
+      document.getElementById('fontSizeUp').addEventListener('click', increaseFontSize);
+      document.getElementById('fontSizeDown').addEventListener('click', decreaseFontSize);
+      
+      // Clean mode font controls
+      document.getElementById('cleanCodeFontUp').addEventListener('click', increaseCleanCodeFont);
+      document.getElementById('cleanCodeFontDown').addEventListener('click', decreaseCleanCodeFont);
+      document.getElementById('cleanExplainFontUp').addEventListener('click', increaseCleanExplainFont);
+      document.getElementById('cleanExplainFontDown').addEventListener('click', decreaseCleanExplainFont);
+      
+      // Toggle explanations button
+      document.getElementById('toggleExplanations').addEventListener('click', toggleExplanationsPanel);
+      
+      // Clean mode run button
+      document.getElementById('cleanModeRunBtn').addEventListener('click', runCodeCleanMode);
+
+      // Modal controls
+      document.getElementById('addStepBtn').addEventListener('click', openAddStepModal);
+      document.getElementById('closeStepModal').addEventListener('click', closeAddStepModal);
+      document.getElementById('cancelStepBtn').addEventListener('click', closeAddStepModal);
+      document.getElementById('refreshCodePreview').addEventListener('click', refreshCodePreview);
+      
+      // Real-time validation for line numbers
+      document.getElementById('startLine').addEventListener('input', validateLineNumbers);
+      document.getElementById('endLine').addEventListener('input', validateLineNumbers);
+      
+      document.getElementById('newTabBtn').addEventListener('click', () => {
+        document.getElementById('addTopicModal').classList.add('show');
+        document.getElementById('topicName').focus();
+      });
+      
+      document.getElementById('closeTopicModal').addEventListener('click', () => {
+        document.getElementById('addTopicModal').classList.remove('show');
+        document.getElementById('topicForm').reset();
+      });
+      
+      document.getElementById('cancelTopicBtn').addEventListener('click', () => {
+        document.getElementById('addTopicModal').classList.remove('show');
+        document.getElementById('topicForm').reset();
+      });
+      
+      // Rename topic modal controls
+      document.getElementById('closeRenameTopicModal').addEventListener('click', closeRenameTopicModal);
+      document.getElementById('cancelRenameTopicBtn').addEventListener('click', closeRenameTopicModal);
+
+      // Form submissions
+      document.getElementById('stepForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const stepData = Object.fromEntries(formData.entries());
+        
+        // Check if we're editing or adding
+        if (window.editingStepIndex !== undefined) {
+          // Editing existing step
+          if (await validateStepData(stepData, window.editingStepIndex)) {
+            updateExistingStep(window.editingStepIndex, stepData);
+            closeAddStepModal();
+          }
+        } else {
+          // Adding new step
+          if (await validateStepData(stepData)) {
+            addNewStep(stepData);
+            closeAddStepModal();
+          }
+        }
+      });
+      
+      document.getElementById('topicForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const topicName = formData.get('name');
+        
+        // Validate topic name before creating
+        if (await validateTopicName(topicName)) {
+          addNewTopic(topicName);
+          document.getElementById('addTopicModal').classList.remove('show');
+          document.getElementById('topicForm').reset();
+        }
+      });
+      
+      document.getElementById('renameTopicForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const newName = formData.get('name');
+        
+        await renameTopic(newName);
+      });
+
+      // Highlight type selection
+      document.querySelectorAll('.highlight-option').forEach(option => {
+        option.addEventListener('click', () => {
+          selectHighlightType(option.dataset.type);
+        });
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          prevStep();
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          nextStep();
+        } else if (e.key === 'Escape') {
+          if (currentMode === 'clean') {
+            toggleCleanMode();
+          }
+          // Close modals
+          document.querySelectorAll('.modal.show').forEach(modal => {
+            modal.classList.remove('show');
+          });
+          // Close floating explanation modal
+          const explanationModal = document.getElementById('explanationModal');
+          if (explanationModal.classList.contains('show')) {
+            closeFloatingExplanation();
+          }
+        }
+      });
+
+      // Close modals when clicking outside
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('show');
+          }
+        });
+      });
+      
+      // Floating explanation modal events
+      document.getElementById('explanationModalClose').addEventListener('click', closeFloatingExplanation);
+      document.getElementById('explanationModal').addEventListener('click', (e) => {
+        if (e.target.id === 'explanationModal') {
+          closeFloatingExplanation();
+        }
+      });
+    }
+
+    // Initialize
+    function init() {
+      console.log('Initializing presentation mode...');
+      initializeEditor();
+      setupEventListeners();
+      setupResizeHandle();
+      loadPresentationSetup('demo');
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
+</body>
+</html>
