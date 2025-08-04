@@ -266,5 +266,3 @@ Write a program that:
 After completing all the exercises, save all your files and commit them to your repository. Make sure your files are properly saved in the `/labs/lab05/` directory, including `exercise.py`, `exercise1.py`, `exercise2.py`, `exercise3.py`, `exercise4.py`, `exercise5.py`, `exercise6.py`, and `exercise7.py`.
 
 Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 5: Python Program Components with Exercises", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully and that any automated tests pass.
-
-This lab has introduced you to the fundamental building blocks of **Python** programs. Understanding these components is essential for reading, writing, and debugging **Python** code effectively. In future labs, we'll build on this foundation to create more complex and interesting programs.
