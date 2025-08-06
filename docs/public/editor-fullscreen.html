@@ -117,8 +117,44 @@
 
     .font-controls {
       display: flex;
-      gap: 8px;
+      gap: 16px;
       align-items: center;
+    }
+
+    .editor-font-controls {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    
+    .output-font-controls {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .output-font-controls .font-control-btn {
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 600;
+      min-width: 24px;
+      height: 24px;
+    }
+
+    .output-font-controls .font-size-display {
+      font-size: 10px;
+      min-width: 28px;
+    }
+
+    .font-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #8b949e;
+      margin-right: 4px;
+    }
+
+    body.light-mode .font-label {
+      color: #656d76;
     }
 
     .program-controls {
@@ -303,6 +339,9 @@
       font-weight: 600;
       font-size: 14px;
       color: #3b82f6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .output-content {
@@ -921,9 +960,12 @@
         </div>
         <div class="settings-controls">
         <div class="font-controls">
-          <button class="font-control-btn" onclick="decreaseFontSize()" title="Decrease font size">A-</button>
-          <span class="font-size-display" id="font-size-display">16px</span>
-          <button class="font-control-btn" onclick="increaseFontSize()" title="Increase font size">A+</button>
+          <div class="editor-font-controls">
+            <span class="font-label">Editor:</span>
+            <button class="font-control-btn" onclick="decreaseEditorFontSize()" title="Decrease editor font size">A-</button>
+            <span class="font-size-display" id="editor-font-size-display">16px</span>
+            <button class="font-control-btn" onclick="increaseEditorFontSize()" title="Increase editor font size">A+</button>
+          </div>
         </div>
         <button class="theme-toggle" onclick="toggleTheme()" id="theme-toggle">
             <span id="theme-text">Light Mode</span>
@@ -945,7 +987,14 @@
         <!-- Output Section -->
         <div class="output-section" id="output-section">
           <div class="resize-handle" id="resize-handle"></div>
-          <div class="output-header">Output Console</div>
+          <div class="output-header">
+            <span>Output Console</span>
+            <div class="output-font-controls">
+              <button class="font-control-btn" onclick="decreaseOutputFontSize()" title="Decrease output font size">A-</button>
+              <span class="font-size-display" id="output-font-size-display">13px</span>
+              <button class="font-control-btn" onclick="increaseOutputFontSize()" title="Increase output font size">A+</button>
+            </div>
+          </div>
           <div class="output-content" id="output">Write some Python code and click "Run Code" to see results...</div>
         </div>
       </div>
@@ -986,7 +1035,8 @@
     let isResizing = false;
     let startY = 0;
     let startHeight = 0;
-    let currentFontSize = 16;
+    let editorFontSize = 16;
+    let outputFontSize = 13;
     let isLightMode = false;
     
     // Load Monaco Editor and Skulpt
@@ -1030,37 +1080,7 @@
       });
     }
 
-    const defaultPythonCode = `# Welcome to the Fullscreen Python Editor!
-# Try the "Visualize Code" button to see step-by-step execution
-
-# Variables and data types
-name = "Student"
-age = 20
-score = 85.5
-
-print("Student Information:")
-print(f"Name: {name}")
-print(f"Age: {age}")
-print(f"Score: {score}")
-
-# Simple calculation
-bonus = 10
-final_score = score + bonus
-print(f"Final Score: {final_score}")
-
-# Conditional logic
-if final_score >= 90:
-    grade = "A"
-elif final_score >= 80:
-    grade = "B"
-else:
-    grade = "C"
-
-print(f"Grade: {grade}")
-
-# User input example (pauses visualization)
-# user_name = input("Enter your name: ")
-# print(f"Hello, {user_name}!")`;
+    const defaultPythonCode = `print("Hello World")`;
 
     async function initializeEditor() {
       try {
@@ -1091,7 +1111,7 @@ print(f"Grade: {grade}")
             value: initialCode,
             language: 'python',
             theme: 'vs-dark',
-            fontSize: currentFontSize,
+            fontSize: editorFontSize,
             lineNumbers: 'on',
             roundedSelection: false,
             scrollBeyondLastLine: false,
@@ -1107,8 +1127,10 @@ print(f"Grade: {grade}")
             }
           });
           
-          // Update font size display
-          updateFontSizeDisplay();
+          // Update font size displays and output font size
+          updateEditorFontSizeDisplay();
+          updateOutputFontSizeDisplay();
+          updateOutputFontSize();
           
           console.log('Fullscreen Monaco Editor initialized!');
         });
@@ -1766,39 +1788,90 @@ print(f"Grade: {grade}")
       });
     }
 
-    // Font size controls
-    function increaseFontSize() {
+    // Editor font size controls
+    function increaseEditorFontSize() {
       if (!editor) {
         showNotification('Editor not ready yet');
         return;
       }
       
-      if (currentFontSize < 32) {
-        currentFontSize += 2;
-        editor.updateOptions({ fontSize: currentFontSize });
-        updateFontSizeDisplay();
-        showNotification(`Font size increased to ${currentFontSize}px`);
+      if (editorFontSize < 40) {
+        editorFontSize += 2;
+        editor.updateOptions({ fontSize: editorFontSize });
+        updateEditorFontSizeDisplay();
+        showNotification(`Editor font size increased to ${editorFontSize}px`);
       }
     }
 
-    function decreaseFontSize() {
+    function decreaseEditorFontSize() {
       if (!editor) {
         showNotification('Editor not ready yet');
         return;
       }
       
-      if (currentFontSize > 10) {
-        currentFontSize -= 2;
-        editor.updateOptions({ fontSize: currentFontSize });
-        updateFontSizeDisplay();
-        showNotification(`Font size decreased to ${currentFontSize}px`);
+      if (editorFontSize > 10) {
+        editorFontSize -= 2;
+        editor.updateOptions({ fontSize: editorFontSize });
+        updateEditorFontSizeDisplay();
+        showNotification(`Editor font size decreased to ${editorFontSize}px`);
       }
     }
 
-    function updateFontSizeDisplay() {
-      const display = document.getElementById('font-size-display');
+    // Output font size controls
+    function increaseOutputFontSize() {
+      if (outputFontSize < 40) {
+        outputFontSize += 2;
+        updateOutputFontSize();
+        updateOutputFontSizeDisplay();
+        showNotification(`Output font size increased to ${outputFontSize}px`);
+      }
+    }
+
+    function decreaseOutputFontSize() {
+      if (outputFontSize > 10) {
+        outputFontSize -= 2;
+        updateOutputFontSize();
+        updateOutputFontSizeDisplay();
+        showNotification(`Output font size decreased to ${outputFontSize}px`);
+      }
+    }
+
+    function updateOutputFontSize() {
+      const outputContent = document.getElementById('output');
+      if (outputContent) {
+        outputContent.style.fontSize = `${outputFontSize}px`;
+      }
+      
+      // Also update visualization elements font size
+      const variablesTable = document.querySelector('.variables-table');
+      const callStackList = document.querySelector('.call-stack-list');
+      
+      if (variablesTable) {
+        const variableRows = variablesTable.querySelectorAll('.variable-name, .variable-value');
+        variableRows.forEach(element => {
+          element.style.fontSize = `${Math.max(11, outputFontSize - 2)}px`;
+        });
+      }
+      
+      if (callStackList) {
+        const stackFrames = callStackList.querySelectorAll('.stack-frame');
+        stackFrames.forEach(element => {
+          element.style.fontSize = `${Math.max(11, outputFontSize - 2)}px`;
+        });
+      }
+    }
+
+    function updateEditorFontSizeDisplay() {
+      const display = document.getElementById('editor-font-size-display');
       if (display) {
-        display.textContent = `${currentFontSize}px`;
+        display.textContent = `${editorFontSize}px`;
+      }
+    }
+
+    function updateOutputFontSizeDisplay() {
+      const display = document.getElementById('output-font-size-display');
+      if (display) {
+        display.textContent = `${outputFontSize}px`;
       }
     }
 
