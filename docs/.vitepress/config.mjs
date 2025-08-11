@@ -35,7 +35,8 @@ export default defineConfig({
           { text: 'Tutorial 1', link: '/tutorials/chapter-2-tutorial-1' },
           { text: 'Tutorial 2', link: '/tutorials/chapter-2-tutorial-2' },
           { text: 'Tutorial 3', link: '/tutorials/chapter-3-tutorial-3' },
-          { text: 'Tutorial 4', link: '/tutorials/chapter-3-tutorial-4' }
+          { text: 'Tutorial 4', link: '/tutorials/chapter-3-tutorial-4' },
+          { text: 'Tutorial 5', link: '/tutorials/chapter-3-tutorial-5' }
         ],
         activeMatch: '^/tutorials/' 
       },
@@ -48,7 +49,7 @@ export default defineConfig({
           { text: 'Lab 3', link: '/labs/lab-03' },
           { text: 'Lab 4', link: '/labs/lab-04' },
           { text: 'Lab 5', link: '/labs/lab-05' },
-          //{ text: 'Lab 6', link: '/labs/lab-06' }
+          { text: 'Lab 6', link: '/labs/lab-06' }
         ],
         activeMatch: '^/labs/' 
       },
@@ -110,10 +111,10 @@ export default defineConfig({
                text: 'Lab 5', 
                link: '/labs/lab-05'
              },
-              //{ 
-              //  text: 'Lab 6', 
-              //  link: '/labs/lab-06'
-              //}
+              { 
+                text: 'Lab 6', 
+                link: '/labs/lab-06'
+              }
       ],
       
       '/course/': [
@@ -162,6 +163,10 @@ export default defineConfig({
                 { 
                   text: 'Tutorial 4', 
                   link: '/tutorials/chapter-3-tutorial-4'
+                },
+                { 
+                  text: 'Tutorial 5', 
+                  link: '/tutorials/chapter-3-tutorial-5'
                 }
       ],
       
