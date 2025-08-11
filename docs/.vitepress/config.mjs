@@ -5,12 +5,22 @@ export default defineConfig({
   title: "Python Programming",
   description: "Course and Labs Informations",
   base: '/Python-Programming/',
+  
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Assessments', link: '/assessments/lab-test-1'},
-
+      { 
+        text: 'Home', 
+        link: '/' 
+      },
+      { 
+        text: 'Assessments',
+        items: [
+          { text: 'Lab Test 1', link: '/assessments/lab-test-1' },
+          { text: 'Lab Test 2', link: '/assessments/lab-test-2' }
+        ],
+        activeMatch: '^/assessments/' 
+      },
       { 
         text: 'Course Informations', 
         items: [
@@ -36,13 +46,14 @@ export default defineConfig({
           { text: 'Lab 1', link: '/labs/lab-01' },
           { text: 'Lab 2', link: '/labs/lab-02' },
           { text: 'Lab 3', link: '/labs/lab-03' },
-          { text: 'Lab 4', link: '/labs/lab-04'},
-          { text: 'Lab 5', link: '/labs/lab-05'},
-          { text: 'Lab 6', link: '/labs/lab-06'}
+          { text: 'Lab 4', link: '/labs/lab-04' },
+          { text: 'Lab 5', link: '/labs/lab-05' },
+          //{ text: 'Lab 6', link: '/labs/lab-06' }
         ],
         activeMatch: '^/labs/' 
       },
-      { text: 'Lectures', 
+      { 
+        text: 'Lectures', 
         items: [
           { text: 'Chapter 1', link: '/lectures/chapter-01' },
           { text: 'Chapter 2', link: '/lectures/chapter-02' },
@@ -60,27 +71,36 @@ export default defineConfig({
         ],
         activeMatch: '^/editor/' 
       }
-
     ],
 
     sidebar: {
-      '/labs/' : [
+      '/assessments/': [
+        {
+          text: 'Lab Test 1',
+          link: '/assessments/lab-test-1'
+        },
+        {
+          text: 'Lab Test 2',
+          link: '/assessments/lab-test-2'
+        }
+      ],
+      
+      '/labs/': [
         {
           text: 'Installation',
           link: '/labs/installation'
         },
-        
             {
               text: 'Lab 1',
-              link : '/labs/lab-01'
+          link: '/labs/lab-01'
             },
             {
               text: 'Lab 2',
-              link : '/labs/lab-02'
+          link: '/labs/lab-02'
             },
             {
               text: 'Lab 3',
-              link : '/labs/lab-03'
+          link: '/labs/lab-03'
             },
              { 
                text: 'Lab 4', 
@@ -90,15 +110,13 @@ export default defineConfig({
                text: 'Lab 5', 
                link: '/labs/lab-05'
              },
-              { 
-                text: 'Lab 6', 
-                link: '/labs/lab-06'
-              }
-          
-        
-        
+              //{ 
+              //  text: 'Lab 6', 
+              //  link: '/labs/lab-06'
+              //}
       ],
-      '/course/' : [
+      
+      '/course/': [
         {
           text: 'Assessments',
           link: '/course/course'
@@ -108,6 +126,7 @@ export default defineConfig({
           link: '/course/schedule'
         }
       ],
+      
       '/lectures/': [
         { 
           text: 'Chapter 1', 
@@ -125,12 +144,9 @@ export default defineConfig({
           text: 'Chapter 4', 
           link: '/lectures/chapter-04' 
         }
-        
       ],
-      '/tutorials/' : [
-
-        
           
+      '/tutorials/': [
                 { 
                   text: 'Tutorial 1', 
                   link: '/tutorials/chapter-2-tutorial-1'
@@ -147,9 +163,8 @@ export default defineConfig({
                   text: 'Tutorial 4', 
                   link: '/tutorials/chapter-3-tutorial-4'
                 }
-        
-        
       ],
+      
       '/editor/': [
         {
           text: 'Python Editor',
@@ -166,9 +181,11 @@ export default defineConfig({
       ]
     },
     
-
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/JSK-KML/CP115-Class-Repo' }
+      { 
+        icon: 'github', 
+        link: 'https://github.com/JSK-KML/CP115-Class-Repo' 
+      }
     ],
 
     footer: {
@@ -177,8 +194,7 @@ export default defineConfig({
     },
 
     search: {
-      provider: 'local',
-      
+      provider: 'local'
     }
   }
 })
