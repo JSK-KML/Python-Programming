@@ -3,7 +3,6 @@ outline: deep
 title : Lab 6 - More Basic Python 
 ---
 
-<!--
 
 # Lab 06 : More Basic Python 
 
@@ -451,6 +450,5 @@ Code after triple quote comment
 3. **Don't over-comment** - Don't explain obvious things
 4. **Use proper grammar and spelling** - Comments are read by humans
 
- -->
 
 
