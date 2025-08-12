@@ -193,3 +193,52 @@ Convert the below flowchart into an IPO table and pseudocode.
 <p align="center">
     <img src="/public/tutorials/c3t5-1.png" alt="drawing" width="300"/>
 </p>
+
+
+## Exercise 4 <Badge type="tip" text="Task" />
+
+Convert the following pseudocode into a flowchart and IPO
+
+```
+Start
+    read temperature
+    count = 0
+    while temperature != -999
+        if temperature > 30
+            print "Hot day"
+            set count = count + 1
+        else
+            if temperature < 10
+                print "Cold day"
+            else
+                print "Pleasant day"
+            end if
+        end if
+        read temperature
+    end while
+    print "Number of hot days: " + count
+Stop
+```
+
+
+
+## Exercise 5 <Badge type="tip" text="Task" />
+
+Given the following pseudocode, create an IPO table and flowchart.
+
+```
+BEGIN
+      total = 0
+      read score
+      while score != 0
+          if score >= 80
+              print "Pass"
+          else
+              print "Fail"
+          endif
+          total = total + score
+          read score
+      endwhile
+      print "Total: " + total
+END
+```
