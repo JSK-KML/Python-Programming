@@ -79,7 +79,7 @@ You should see a path that points to your `cp115_env` directory, confirming that
 
 ### Creating a Simple Python Program
 
-Create a new file called `exercise1.py` in the `/labs/lab07/` directory. Copy and paste this code.
+Create a new file called `test_virtual_env.py` in the `/labs/lab07/` directory. Copy and paste this code.
 
 ```python
 
@@ -296,7 +296,7 @@ Hello Sarah, your score is 92
 
 ### F-String Exercise <Badge type="tip" text="Task" />
 
-Create a file called `exercise2.py`. Practice using f-strings by rewriting these string concatenation examples:
+Create a file called `exercise1.py`. Practice using f-strings by rewriting these string concatenation examples:
 
 ```python
 # Convert these to f-strings
@@ -393,59 +393,39 @@ Name length: 10 characters
 
 ### Import Exercise <Badge type="tip" text="Task" />
 
-Create a file called `exercise3.py`. Practice creating and importing your own module:
+Create a folder called `exercise2` and practice creating and importing your own module:
 
-1. Create a file called `shopping_data.py` with:
+1. In the `exercise2` folder, create a file called `shopping_data.py` with:
    - Product name, price, and quantity variables
    - Calculate total cost
    - Use string operations on the product name
-2. Imports `shopping_data` into `exercise3.py` and displays the information using f-strings
+2. In the same folder, create `exercise2.py` that imports `shopping_data` and displays the information using f-strings
 
 ## Combining F-Strings with Your Own Imports <Badge type="tip" text="Task" />
 
-Create a file called `exercise4.py`. This exercise combines f-strings with importing your own code:
+Create a folder called `exercise3` in `/labs/lab07`.
 
-1. Create a file called `school_data.py` with student and course information
-2. Create another file that imports `school_data` and uses f-strings to display everything nicely
-3. Use string operations and math operations in your module
+1. In the `exercise3` folder, create a file called `school_data.py` with:
+   - Student information variables (name, student ID, age)
+   - Course information variables (course code, course name)
+   - Import `random` module and generate two random scores (70-95 and 75-100)
+   - Calculate total score by adding the two scores
+   - String operations on student name (upper, lower, length)
+   - Import `math` module and calculate square root of total score
 
-First, create `school_data.py`:
-
-```python
-# school_data.py
-import random
-import math
-
-# Student information
-student_name = 
-student_id = 
-age = 
-
-# Course information
-courseCode = 
-coursename = 
-
-# String operations
-NAMeupper = student_name.upper()
-namelwr = student_name.lower()
-name_length = len(student_name)
-
-```
-
-Now create `display_student.py` and display all of the informations above.
+2. In the same folder, create `exercise3.py` that imports `school_data` and uses f-strings to display all the information in a formatted report
 
 ## Exercise 4: Restaurant Menu System <Badge type="tip" text="Task" />
 
-Create your own restaurant system using modules, f-strings, and concepts from previous labs.
+Create a folder called `exercise4` in `/labs/lab07`.
 
-**Part A:** Create a file called `menu_data.py` with the following:
+**Part A:** In the `exercise4` folder, create a file called `menu_data.py` with the following:
 
 1. Import the `random` module
 2. Create variables for:
    - Restaurant name (your choice)
    - Restaurant location  
-   - Three menu items with names and prices
-   - Tax rate (6%) and service charge (10%)
+   - Three menu items with names only (no prices or calculations)
 3. Use string operations to create:
    - Restaurant name in UPPERCASE
    - Restaurant name in lowercase  
@@ -454,21 +434,20 @@ Create your own restaurant system using modules, f-strings, and concepts from pr
    - A daily special number (1, 2, or 3)
    - A customer number (between 100-999)
 
-**Part B:** Create `restaurant_display.py` that:
+**Part B:** In the same folder, create `exercise4.py` that:
 
 1. Imports your `menu_data` module
 2. Uses f-strings to display:
    - Welcome message with restaurant name
    - Customer number
-   - Complete menu with all items and prices
+   - Complete menu with all items
    - Today's special (based on the random number)
 
+## Exercise 5: Personal Information Manager <Badge type="tip" text="Task" />
 
-## Exercise 6: Personal Information Manager <Badge type="tip" text="Task" />
+Create a folder called `exercise5`in `/labs/lab07`.
 
-Create a personal information system that demonstrates all concepts from Labs 5, 6, and 7.
-
-**Part A:** Create `personal_data.py` with:
+**Part A:** In the `exercise5` folder, create `personal_data.py` with:
 
 1. Import `random` and `math` modules
 2. Personal information variables:
@@ -482,22 +461,14 @@ Create a personal information system that demonstrates all concepts from Labs 5,
    - City name in UPPERCASE
    - Full address (combine street + city + postcode)
    - Length of full address
-4. Health calculations:
-   - Convert height to meters (height ÷ 100)
-   - Calculate BMI (weight ÷ height_m²)
-   - Square root of BMI (use `math.sqrt()`)
-5. Random elements:
-   - Lucky number (1 to 100)
-   - Random color choice (use random to pick from 3 colors)
 
-**Part B:** Create `personal_profile.py` that:
+
+**Part B:** In the same folder, create `exercise5.py` that:
 
 1. Imports your `personal_data` module
 2. Uses f-strings to display a comprehensive profile with:
    - Basic personal information section
    - String processing results
    - Address information section  
-   - Health information with calculations
-   - Random generated details
-   - BMI category classification (Underweight, Normal, Overweight, Obese)
+   
 
