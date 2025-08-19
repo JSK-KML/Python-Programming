@@ -21,7 +21,7 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
 
 ### Understanding Virtual Environments
 
-A virtual environment in **Python** is like having a separate, isolated workspace for each of your projects. Think of it as having different toolboxes for different jobs - you wouldn't mix your cooking utensils with your car repair tools.
+A virtual environment in **Python** is like having a separate, isolated workspace for each of your projects. Think of it as having different toolboxes for different jobs.
 
 When you install **Python** packages globally on your computer, they can sometimes conflict with each other. Different projects might need different versions of the same package, or installing a new package might break something in an existing project.
 
@@ -69,13 +69,7 @@ Let's verify that your virtual environment is working correctly. With the virtua
 python --version
 ```
 
-This should show your **Python** version. Now let's see which **Python** interpreter you're using:
-
-```bash
-where python
-```
-
-You should see a path that points to your `cp115_env` directory, confirming that you're using the **Python** installation from your virtual environment, not the system-wide installation.
+This should show your **Python** version. 
 
 ### Creating a Simple Python Program
 
@@ -124,7 +118,7 @@ Search for "Python Test Explorer" and install the extension by **Little Fox Team
     <img src="/public/labs/lab-07/lab-7-2.png" alt="drawing" width="500"/>
 </p>
 
-Also make sure you have the **Python** extension by **Microsoft** installed (you should already have this from Lab 01).
+Also make sure you have the **Python** extension by **Microsoft** installed from [Lab 1](./lab-01.md)
 
 ### Installing pytest
 
@@ -172,22 +166,9 @@ In the Testing panel, you should see your test file and the individual test func
 
 - **Run all tests** by clicking the play button at the top
 - **Run individual tests** by clicking the play button next to each test
-- **View test results** with green checkmarks for passing tests and red X's for failing tests
+- **View test results** with green checkmarks for passing tests and red X's for failing tests.
 
 
-### Understanding Test Output
-
-When tests pass, you'll see green checkmarks and `PASSED` status. When tests fail, **pytest** provides detailed information about what went wrong, including:
-
-- Which assertion failed
-- The expected vs actual values
-- The line number where the failure occurred
-
-This information helps you quickly identify and fix problems in your code.
-
-::: tip
-Testing is not about writing perfect code the first time - it's about catching mistakes early and ensuring your code continues to work as you make changes.
-:::
 
 ## Configuring .gitignore for Python Virtual Environments
 
@@ -227,18 +208,18 @@ env/
 
 After adding the virtual environment to `.gitignore`, check that **Git** is ignoring it:
 
-Look into the sidebar for **Version Control**, and you should not see `cp115_env` and all of its content as something you can commit.
+Look into the sidebar for **Source Control**, and you should not see `cp115_env` and all of its content as something you can commit.
 
 If you do see it, make sure:
 
 1. The `.gitignore` file is in the root directory of your repository
 2. The path `cp115_env/` is correctly spelled in `.gitignore`
 
-## F-Strings: A Better Way to Format Text
+## F-Strings
 
 ### Understanding F-Strings
 
-In Lab 06, you learned how to display text using string concatenation with the `+` operator. While this works, **Python** has a more modern and easier way called **f-strings** (formatted string literals).
+In Lab 6, you learned how to display text using string concatenation with the `+` operator. While this works, **Python** has a more modern and easier way called **f-strings** (formatted string literals).
 
 F-strings let you put variables directly inside strings, making your code cleaner and easier to read.
 
@@ -314,7 +295,7 @@ print("Total: $" + str(total))
 
 Your task: Rewrite the `print()` statements using f-strings instead of string concatenation.
 
-## Advanced Import Techniques
+## More Import Techniques
 
 ### Review: Basic Imports from Lab 05
 
@@ -398,7 +379,6 @@ Create a folder called `exercise2` and practice creating and importing your own 
 1. In the `exercise2` folder, create a file called `shopping_data.py` with:
    - Product name, price, and quantity variables
    - Calculate total cost
-   - Use string operations on the product name
 2. In the same folder, create `exercise2.py` that imports `shopping_data` and displays the information using f-strings
 
 ## Combining F-Strings with Your Own Imports <Badge type="tip" text="Task" />
@@ -427,7 +407,7 @@ Create a folder called `exercise4` in `/labs/lab07`.
    - Restaurant location  
    - Three menu items with names only (no prices or calculations)
 3. Use string operations to create:
-   - Restaurant name in UPPERCASE
+   - Restaurant name in uppercase
    - Restaurant name in lowercase  
    - Length of the location name
 4. Use random to generate:
@@ -457,7 +437,6 @@ Create a folder called `exercise5`in `/labs/lab07`.
 3. String operations:
    - Full name in UPPERCASE and lowercase
    - Length of full name
-   - First name extracted and converted to UPPERCASE
    - City name in UPPERCASE
    - Full address (combine street + city + postcode)
    - Length of full address
