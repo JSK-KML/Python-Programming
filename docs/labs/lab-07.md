@@ -448,6 +448,6 @@ Create a folder called `exercise5`in `/labs/lab07`.
 2. Uses f-strings to display a comprehensive profile with:
    - Basic personal information section
    - String processing results
-   - Address information section  
+   - Address information sections  
    
 
