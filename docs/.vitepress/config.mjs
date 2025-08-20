@@ -149,7 +149,12 @@ export default defineConfig({
         { 
           text: 'Chapter 4', 
           link: '/lectures/chapter-04' 
+        },
+        { 
+          text: 'Chapter 5', 
+          link: '/lectures/chapter-05' 
         }
+
       ],
           
       '/tutorials/': [
