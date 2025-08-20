@@ -4,10 +4,10 @@
 Design and implementation plan for a live grading dashboard that fetches student code from GitHub repositories and runs tests using Pyodide in the browser.
 
 ## Core Concept
-- **One-time setup**: Students provide GitHub repo links once at semester start
-- **Weekly workflow**: Teacher selects assignment from dropdown, dashboard automatically fetches and tests all submissions
-- **Live testing**: All code execution happens in browser using Pyodide (Python runtime)
-- **Real-time feedback**: See student code and test results side-by-side
+- **Template repository setup**: Students fork teacher's template repo with complete folder structure
+- **Batch workflow**: Teacher selects assignment from dropdown, dashboard fetches ALL student submissions at once
+- **Browser-based testing**: All code execution happens in browser using Pyodide (Python runtime)
+- **Tabbed interface**: View individual files with focused code review
 
 ## System Architecture
 
@@ -18,11 +18,11 @@ docs/
 │   ├── index.md                 # Main dashboard page (/dashboard)
 │   ├── repos.json               # Simple list of GitHub repo URLs
 │   └── components/              # Vue components
-│       ├── DashboardTable.vue   # Student list with status
-│       ├── CodeViewer.vue       # Display fetched student code
-│       ├── TestRunner.vue       # Pyodide + runtime fetching
-│       ├── TestResults.vue      # Show test results
-│       └── StudentDetail.vue    # Full student submission view
+│       ├── StudentGrid.vue      # Student list with status
+│       ├── StudentCard.vue      # Individual student submission view
+│       ├── CodeTabs.vue         # Tabbed file interface
+│       ├── TestRunner.vue       # Pyodide execution
+│       └── AssignmentSelector.vue # Assignment dropdown
 ├── .vitepress/
 │   ├── config.js               # Just add dashboard nav
 │   └── theme/
@@ -41,22 +41,23 @@ docs/
 ]
 ```
 
-### Student Repository Structure
+### Template Repository Structure
 ```
-student-repo/
-├── lab-01/main.py
-├── lab-02/main.py  
-├── lab-07/main.py       # Fetched when lab-07 selected
-└── assignment-3/main.py
-```
-
-### Teacher Test Repository Structure
-```
-teacher-test-repo/
-├── lab-01-tests.py
-├── lab-02-tests.py
-├── lab-07-tests.py      # Fetched when lab-07 selected
-└── assignment-3-tests.py
+template-repo/                   # Students fork this
+├── lab-01/
+│   ├── main.py                 # Student code
+│   └── tests.py                # Teacher tests
+├── lab-02/
+│   ├── main.py
+│   └── tests.py
+├── lab-07/
+│   ├── exercise1.py            # Multiple student files
+│   ├── exercise2.py
+│   ├── exercise3.py
+│   └── tests.py                # Teacher tests
+└── assignment-3/
+    ├── solution.py
+    └── tests.py
 ```
 
 ## System Flow
@@ -71,71 +72,64 @@ teacher-test-repo/
 └────────────┬───────────────┘
              │
              ▼
-┌─── FOR EACH REPO URL ──────┐
-│                            │
-│  3. Parse URL → extract:   │
-│     - username             │
-│     - repo name            │
-│  4. GitHub API call:       │
-│     GET /repos/{user}/{repo}│
-│     → Get repo info + name │
-└────────────┬───────────────┘
-             │
-             ▼
 ┌─── DISPLAY STUDENT LIST ───┐
 │                            │
-│  5. Show table:            │
+│  3. Show student grid:     │
 │     - Student name         │
 │     - Repo link            │
 │     - [View Code] button   │
 └────────────┬───────────────┘
              │
              ▼
-┌─── WHEN USER CLICKS VIEW ──┐
+┌─── ASSIGNMENT SELECTION ───┐
 │                            │
-│  6. GitHub API calls:      │
-│     • Fetch student code   │
-│       GET /repos/{user}/{repo}/contents/{assignment}/main.py
-│     • Fetch YOUR tests     │
-│       GET /repos/{teacher}/{test-repo}/contents/{assignment}-tests.py
+│  4. Teacher selects:       │
+│     - Assignment dropdown  │
+│     - Triggers batch fetch │
 └────────────┬───────────────┘
              │
              ▼
-┌─── RUN TESTS IN BROWSER ───┐
+┌─── BATCH FETCH ALL FILES ──┐
 │                            │
-│  7. Load Pyodide           │
-│  8. Execute in browser:    │
-│     pyodide.runPython(`    │
-│       ${studentCode}       │
-│       ${teacherTests}      │
-│     `)                     │
-│  9. Capture results        │
+│  5. For each student repo: │
+│     GET /repos/{user}/{repo}/contents/{assignment}/
+│     → Fetch entire folder  │
+│     → All .py files        │
 └────────────┬───────────────┘
              │
              ▼
-┌─── DISPLAY RESULTS ────────┐
+┌─── PYODIDE EXECUTION ──────┐
 │                            │
-│ 10. Show side-by-side:     │
-│     • Student code         │
+│  6. Load all files into    │
+│     Pyodide filesystem     │
+│  7. Execute tests.py       │
+│  8. Parse print output     │
+└────────────┬───────────────┘
+             │
+             ▼
+┌─── TABBED INTERFACE ───────┐
+│                            │
+│  9. Show for each student: │
+│     • File tabs            │
+│     • Code viewer          │
 │     • Test results         │
-│     • Pass/fail status     │
-│     • Execution output     │
+│     • Run buttons          │
 └────────────────────────────┘
 ```
 
 ## File Fetching Logic
 
 ```javascript
-// Extract assignment from dropdown selection
+// Fetch entire assignment folder
 const assignment = "lab-07"
+const folderContents = await fetchFolder(`${studentRepo}/${assignment}/`)
 
-// Auto-generate file paths
-const studentFile = `${assignment}/main.py`   // → "lab-07/main.py"
-const testFile = `${assignment}-tests.py`     // → "lab-07-tests.py"
+// Returns all files in folder:
+// ["exercise1.py", "exercise2.py", "exercise3.py", "tests.py"]
 
-// Fetch from GitHub API
-const studentCode = await fetchFromGitHub(studentRepo, studentFile)
-const testCode = await fetchFromGitHub(teacherRepo, testFile)
+// Separate student code from tests
+const studentFiles = folderContents.filter(f => f.name !== "tests.py")
+const testFile = folderContents.find(f => f.name === "tests.py")
 ```
 
 ## Dashboard UI Layout
@@ -147,13 +141,13 @@ const testCode = await fetchFromGitHub(teacherRepo, testFile)
 │                                                                                               │
 │  ⚙️ ASSIGNMENT SETTINGS                                                                        │  
 │  ┌─────────────────────────────────────────────────────────────────────────────────────────┐ │
-│  │ Assignment: [Lab-07 ▼] │ Student File: [main.py] │ Teacher Repo: [mike-cp115/tests] │ │
+│  │ Assignment: [Lab-07 ▼]  Fetches: lab-07/ folder (all files)                            │ │
 │  │                                                                                         │ │
-│  │ • Lab-01                 Fetches: lab-07/main.py   Fetches: lab-07-tests.py          │ │
-│  │ • Lab-02                 from each student repo    from your test repo               │ │
-│  │ • Lab-07 ✓                                                                           │ │
-│  │ • Assignment-3                                                                       │ │
-│  │ • Final-Project                                                                      │ │
+│  │ • Lab-01                                                                                │ │
+│  │ • Lab-02                                                                                │ │
+│  │ • Lab-07 ✓                                                                              │ │
+│  │ • Assignment-3                                                                          │ │
+│  │ • Final-Project                                                                         │ │
 │  └─────────────────────────────────────────────────────────────────────────────────────────┘ │
 │                                                                                               │
 │  📋 STUDENT SUBMISSIONS (repos.json loaded once)                                             │
@@ -167,113 +161,124 @@ const testCode = await fetchFromGitHub(teacherRepo, testFile)
 └─────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-## Detailed Student View
+## Tabbed Student View
 
 ```
 ┌─── DETAILED VIEW: Jane Smith's Lab-07 ─────────────────────────────────────────────────────┐
-│  👤 Jane Smith │ 📂 janesmith/cp115-python/lab-07/main.py │ ❌ 3/10 Tests │ 🔗 GitHub    │
+│  👤 Jane Smith │ 📂 janesmith/cp115-python/lab-07/ │ ❌ 3/10 Tests │ 🔗 GitHub              │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│ [exercise1.py*] [exercise2.py] [exercise3.py] [tests.py]                                   │
 ├─────────────────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                             │
-│  ┌─── 📁 FETCHED CODE ─────────────────────┬─── 🧪 LIVE TEST RESULTS ─────────────────────┐ │
-│  │                                         │                                              │ │
-│  │ # lab-07/main.py                        │ Running: lab-07-tests.py                     │ │
-│  │                                         │                                              │ │
-│  │  1  def calculate_average(nums):        │ Test 1: ✅ Basic average                     │ │
-│  │  2      if not nums:                    │ Test 2: ❌ Empty list (got None, want 0)    │ │
-│  │  3          return 0                    │ Test 3: ✅ Single number                     │ │
-│  │  4      return sum(nums) / len(nums)    │ Test 4: ❌ Large numbers                     │ │
-│  │  5                                      │ Test 5: ✅ Negative numbers                  │ │
-│  │  6  def find_maximum(numbers):          │ ...                                          │ │
-│  │  7      if not numbers:                 │                                              │ │
-│  │  8          return None  # ❌ BUG!      │ 🐍 Pyodide Output:                          │ │
-│  │  9      return max(numbers)             │ >>> calculate_average([])                    │ │
-│  │ 10                                      │ None ❌ Expected: 0                          │ │
-│  │ 11  # More code...                      │ >>> find_maximum([1,2,3])                   │ │
-│  │                                         │ 3 ✅                                        │ │
-│  └─────────────────────────────────────────┴──────────────────────────────────────────────┘ │
+│  # exercise1.py - Currently viewing                                                        │
 │                                                                                             │
-│  [🔄 Re-run Tests] [📁 Open GitHub] [📝 Add Comments]                                      │
+│   1  def calculate_average(nums):                                                          │
+│   2      if not nums:                                                                      │
+│   3          return 0                                                                      │
+│   4      return sum(nums) / len(nums)                                                      │
+│   5                                                                                        │
+│   6  # Test this function                                                                  │
+│   7  result = calculate_average([1, 2, 3])                                                 │
+│   8  print(f"Average: {result}")                                                           │
+│                                                                                             │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│ [▶️ Run exercise1.py] [🧪 Run Tests]                                                       │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 🧪 Test Results (from tests.py):                                                          │
+│ ✅ PASS: calculate_average basic test                                                      │
+│ ❌ FAIL: calculate_average expected 2.0, got None                                          │
+│ ✅ PASS: find_max works correctly                                                          │
+│                                                                                             │
+│ 🎯 Summary: 2/3 tests passed (67%)                                                        │
 └─────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ## Key Features
 
-### Runtime Data Fetching
-- **Student code**: Fetched from GitHub API at runtime
-- **Test code**: Fetched from teacher's test repository at runtime
-- **No local storage**: Everything pulled fresh from GitHub
-- **Dynamic assignment selection**: Change assignments via dropdown
+### Template Repository Approach
+- **Single template repo**: Students fork teacher's complete folder structure
+- **Standardized structure**: All assignments and tests in predictable locations
+- **Built-in tests**: Tests travel with assignments, no separate test repository
+- **Import support**: Multi-file assignments work correctly
 
-### Browser-based Execution
-- **Pyodide**: Full Python runtime in browser
-- **No server required**: All code execution client-side
-- **Live results**: Immediate feedback as tests run
-- **Safe execution**: Sandboxed environment
+### Batch Processing
+- **Folder-level fetching**: Fetch entire assignment folder at once
+- **All files included**: Student code, tests, and any supporting files
+- **Parallel execution**: Process all students simultaneously
+- **Simple workflow**: One assignment selection = complete results
 
-### User Experience
-- **One-time setup**: Set repos.json once at semester start
-- **Weekly workflow**: Select assignment, all submissions load automatically
-- **Visual feedback**: Color-coded test results and progress indicators
-- **Direct links**: Jump to GitHub repos for detailed review
+### Tabbed Interface
+- **File-specific run buttons**: Clear "Run exercise1.py" vs "Run Tests"
+- **Code focus**: Full-screen code viewing with syntax highlighting
+- **Easy navigation**: Quick switching between student files
+- **Multi-file support**: Handle imports and dependencies correctly
 
-## Technical Stack
-- **VitePress**: Documentation framework (existing)
-- **Vue.js**: Frontend components
-- **Pyodide**: Python runtime in browser
-- **GitHub API**: Code and repository data fetching
-- **CSS Grid/Flexbox**: Responsive layout
+### Print-Based Testing
+- **Simple test format**: Use print statements with ✅ PASS / ❌ FAIL patterns
+- **Easy parsing**: Dashboard parses output for pass/fail counts
+- **Flexible messaging**: Teachers control exact error messages
+- **No framework complexity**: Just basic Python prints
 
-## Implementation Phases
+## Technical Implementation
 
-### Phase 1: Basic Structure
-- Create dashboard folder structure
-- Set up basic Vue components
-- Add navigation to VitePress
+### Component Architecture
+- **StudentGrid.vue**: Student list with status indicators
+- **StudentCard.vue**: Individual student submission view with tabbed interface
+- **CodeTabs.vue**: File tabs with syntax highlighting
+- **TestRunner.vue**: Pyodide execution and result parsing
+- **AssignmentSelector.vue**: Assignment dropdown with batch fetch trigger
 
-### Phase 2: GitHub Integration
-- Implement GitHub API fetching
-- Create student list from repos.json
-- Display basic repository information
+### GitHub API Strategy
+```javascript
+// Batch fetch approach
+const fetchAssignment = async (studentRepo, assignment) => {
+  const folderContents = await github.getContents(`${studentRepo}/${assignment}/`);
+  return folderContents; // All files in assignment folder
+};
 
-### Phase 3: Code Display
-- Add syntax highlighting for Python code
-- Create code viewer component
-- Implement assignment selection logic
+// Process all students
+const results = await Promise.all(
+  studentRepos.map(repo => fetchAssignment(repo, selectedAssignment))
+);
+```
 
-### Phase 4: Pyodide Integration
-- Load Python runtime in browser
-- Execute student code with tests
-- Display results and feedback
+### Pyodide Integration
+```javascript
+// Load all files into Pyodide filesystem
+for (const file of studentFiles) {
+  pyodide.FS.writeFile(file.name, file.content);
+}
 
-### Phase 5: Polish & Features
-- Enhanced UI/UX
-- Error handling
-- Performance optimization
-- Additional features (comments, grading, etc.)
+// Execute tests with print parsing
+const output = pyodide.runPython('exec(open("tests.py").read())');
+const results = parseTestOutput(output); // Count ✅ PASS / ❌ FAIL
+```
 
-## Benefits
+### Test Result Parsing
+```javascript
+const parseTestOutput = (output) => {
+  const passed = (output.match(/✅ PASS/g) || []).length;
+  const failed = (output.match(/❌ FAIL/g) || []).length;
+  return { passed, failed, total: passed + failed };
+};
+```
 
-### For Teachers
-- **Time saving**: No manual repo browsing
-- **Instant feedback**: See all submissions and results immediately
-- **Flexible**: Easy to switch between assignments
-- **Comprehensive**: View code, tests, and results in one place
+## Implementation Benefits
 
-### For Students
-- **Simple setup**: Just provide GitHub repo once
-- **Standard workflow**: Same repository structure for all assignments
-- **Transparency**: Can see their own results if desired
+### Simplified Architecture
+- **Single repository approach**: No separate test repositories
+- **Batch processing**: One API call gets complete assignment
+- **No state management**: Simple props-down data flow
+- **Clear file structure**: Predictable folder organization
 
-### Technical Benefits
-- **No server costs**: Everything runs client-side
-- **Real-time**: Fresh data from GitHub every time
-- **Scalable**: Works with any number of students
-- **Maintainable**: Simple architecture, easy to modify
+### Reliable Execution
+- **Multi-file support**: Imports work correctly with template structure
+- **Error isolation**: Individual student failures don't affect others
+- **Consistent testing**: Same test environment for all students
+- **Print-based results**: Simple, reliable output parsing
 
-## Complexity Assessment
-- **Frontend**: Medium complexity (Vue.js components, API integration)
-- **Pyodide**: Low-medium complexity (well-documented Python runtime)
-- **GitHub API**: Low complexity (standard REST API calls)
-- **Overall**: Manageable project with clear implementation path
-
-**Development Time Estimate**: 1-2 weeks for full implementation
+### Maintenance Simplicity
+- **Fewer components**: Focused, single-responsibility components
+- **No caching complexity**: Fresh fetch every time
+- **Standard API patterns**: GitHub API with predictable responses
+- **Clear data flow**: Template repo → GitHub API → Pyodide → Results
