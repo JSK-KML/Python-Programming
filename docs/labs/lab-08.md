@@ -328,7 +328,7 @@ Try commenting out the error line (add `#` at the beginning) and run it again. N
 
 Create a folder called `exercise3` in `/labs/lab08/`. In this folder, create `student_grades.py`:
 
-A student has taken 5 tests in a programming course. Their grades are 78, 85, 92, 67, and 88. Calculate the total points, average score, and what percentage each test contributes to the total score. Also calculate how many points above or below the class average of 80 the student performed. Display the results showing each test score, total points, student average, difference from class average, and the percentage breakdown for each test. Use proper variable names and add comments explaining your calculations.
+A student has taken 5 tests in a programming course. Their grades are 78, 85, 92, 67, and 88. The full mark is 100 for each test and a total of 500 for all test. Calculate the total points, average score, and what percentage each test contributes to the total score. Display the results showing each test score, total points, student average, and what percentage each test contributes to the total score. Use proper variable names and add comments explaining your calculations.
 
 ### Exercise 4: Fitness Membership Calculator <Badge type="warning" text="Task" />
 
