@@ -15,3 +15,16 @@ title : Course Assessments
 | Assignment        | 10            | 13 -15                  |
 | Final Exam (PSPM) | 50            | End of Semester 1       |
 
+
+
+
+
+
+
+
+
+
+
+
+
+
