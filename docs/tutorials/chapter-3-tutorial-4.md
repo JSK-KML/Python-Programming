@@ -28,7 +28,7 @@ outline: deep
 
 ## Real Life Algorithm
 
-### Exercise 1 - Run-Length Encoding <Badge type="tip" text="Question" />
+### Exercise 1 - Run-Length Encoding <Badge type="warning" text="Question" />
 
 Compression algorithms are fundamental to modern digital systems, reducing file sizes by 50-90% in applications such as ZIP archives, video streaming platforms, and messaging services. Without compression, multimedia content would require significantly more storage space and transmission time.
 
@@ -62,7 +62,7 @@ Use a variable to keep track of the current character and another variable to co
 
 <!---
 
-### Exercise 2 - Caesar Cipher <Badge type="tip" text="Question" />
+### Exercise 2 - Caesar Cipher <Badge type="warning" text="Question" />
 
 Secure communication protocols (HTTPS), messaging applications, and e-commerce platforms rely on encryption algorithms significantly more complex than basic ciphers. Modern cryptographic systems are designed to resist computational attacks even with substantial computing resources.
 
@@ -89,7 +89,7 @@ Contemporary encryption algorithms employ mathematical complexity designed to ma
 Convert letters to numbers (a=1, b=2, etc.), add the shift value, then convert back to letters. Don't forget to wrap around when you reach the end of the alphabet.
 :::
 
-### Exercise 3 - Simple Hash Function <Badge type="tip" text="Question" />
+### Exercise 3 - Simple Hash Function <Badge type="warning" text="Question" />
 
 **Hash Function Applications:** Cryptographic hash functions serve as fundamental components in blockchain technologies, search engine indexing systems, and secure password storage mechanisms. These functions enable data integrity verification and efficient information retrieval across large datasets.
 
@@ -133,7 +133,7 @@ You'll need to know ASCII values - 'a' is 97, 'b' is 98, etc. Keep track of the 
 
 
 
-### Exercise 2 - Checksum Validation <Badge type="tip" text="Question" />
+### Exercise 2 - Checksum Validation <Badge type="warning" text="Question" />
 
 Checksums are embedded in various identification systems including credit card numbers, ISBN codes, and barcodes to detect data corruption. These algorithms prevent processing errors that could result from transmission or input mistakes.
 
@@ -158,7 +158,7 @@ Checksum algorithms can identify various error types including single-digit subs
 **Example:** For digits 1, 2, 3, 4: sum = 10, 10 % 10 = 0 remainder, so output "Valid"
 
 
-### Exercise 3 - Caesar Cipher <Badge type="tip" text="Question" />
+### Exercise 3 - Caesar Cipher <Badge type="warning" text="Question" />
 
 Secure communication protocols (HTTPS), messaging applications, and e-commerce platforms rely on encryption algorithms significantly more complex than basic ciphers. Modern cryptographic systems are designed to resist computational attacks even with substantial computing resources.
 
@@ -185,7 +185,7 @@ Modern encryption algorithms employ mathematical complexity designed to make bru
 Map letters to numbers (a=1, b=2, c=3, d=4), add the shift value, then convert back to letters. Don't forget to wrap around when you reach the end (after d, go back to a).
 :::
 
-### Exercise 4 - Simple Hash Function <Badge type="tip" text="Question" />
+### Exercise 4 - Simple Hash Function <Badge type="warning" text="Question" />
 
 **Hash Function Applications:** Cryptographic hash functions serve as fundamental components in blockchain technologies, search engine indexing systems, and secure password storage mechanisms. These functions enable data integrity verification and efficient information retrieval across large datasets.
 
