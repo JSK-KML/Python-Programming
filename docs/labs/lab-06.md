@@ -109,7 +109,7 @@ Why is it so important to follow convention? Right now you might be wondering, i
 
 Having a convention is nice because your friends know what to expect from your coding style and vice versa. You also know what to expect from them.
 
-### Variables Naming Exercise <Badge type="tip" text="Question" />
+### Variables Naming Exercise <Badge type="warning" text="Question" />
 
 Create a file called `exercise1.py`. Implement the solutions for this exercise in there. Debug and fix this program with variable naming errors. Change the variable name to follow snake case
 
@@ -205,7 +205,7 @@ Python is awesome,
 And so are you!
 ```
 
-### String Quotes Exercise <Badge type="tip" text="Task" />
+### String Quotes Exercise <Badge type="warning" text="Task" />
 
 Create a file called `exercise2.py`. Write a program that demonstrates the use of all three types of quotes:
 
@@ -259,7 +259,7 @@ print(len(student_name))
 print(len("Hello World")) 
 ```
 
-### String Operations Exercise <Badge type="tip" text="Task" />
+### String Operations Exercise <Badge type="warning" text="Task" />
 
 Create a file called `exercise3.py`. Write a program that:
 
@@ -349,7 +349,7 @@ Ali	20	A
 Sarah	19	B+
 ```
 
-### Escape Characters Exercise <Badge type="tip" text="Task" />
+### Escape Characters Exercise <Badge type="warning" text="Task" />
 
 Create a file called `exercise4.py`. Write a program that creates a formatted receipt using `\n` and `\t`:
 

@@ -166,7 +166,7 @@ Click the `Actions` tab and click the latest workflow inside the `Actions`.
 
 Inside the workflow, you’ll see a clear error message showing why it failed. This might say the file is missing, wrongly named, or contains something invalid.
 
-### Successful Action Workflow <Badge type="tip" text="Task" />
+### Successful Action Workflow <Badge type="warning" text="Task" />
 
 Your task is to read the error message and correct the mistake based on the error. If the workflow is successfull, you should see a green tick next to your commit message.
 

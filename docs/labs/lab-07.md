@@ -275,7 +275,7 @@ print(message)
 Hello Sarah, your score is 92
 ```
 
-### F-String Exercise <Badge type="tip" text="Task" />
+### F-String Exercise <Badge type="warning" text="Task" />
 
 Create a file called `exercise1.py`. Practice using f-strings by rewriting these string concatenation examples:
 
@@ -372,7 +372,7 @@ Name in UPPERCASE: ALI RAHMAN
 Name length: 10 characters
 ```
 
-### Import Exercise <Badge type="tip" text="Task" />
+### Import Exercise <Badge type="warning" text="Task" />
 
 Create a folder called `exercise2` and practice creating and importing your own module:
 
@@ -381,7 +381,7 @@ Create a folder called `exercise2` and practice creating and importing your own 
    - Calculate total cost
 2. In the same folder, create `exercise2.py` that imports `shopping_data` and displays the information using f-strings
 
-## Combining F-Strings with Your Own Imports <Badge type="tip" text="Task" />
+## Combining F-Strings with Your Own Imports <Badge type="warning" text="Task" />
 
 Create a folder called `exercise3` in `/labs/lab07`.
 
@@ -395,7 +395,7 @@ Create a folder called `exercise3` in `/labs/lab07`.
 
 2. In the same folder, create `exercise3.py` that imports `school_data` and uses f-strings to display all the information in a formatted report
 
-## Exercise 4: Restaurant Menu System <Badge type="tip" text="Task" />
+## Exercise 4: Restaurant Menu System <Badge type="warning" text="Task" />
 
 Create a folder called `exercise4` in `/labs/lab07`.
 
@@ -423,7 +423,7 @@ Create a folder called `exercise4` in `/labs/lab07`.
    - Complete menu with all items
    - Today's special (based on the random number)
 
-## Exercise 5: Personal Information Manager <Badge type="tip" text="Task" />
+## Exercise 5: Personal Information Manager <Badge type="warning" text="Task" />
 
 Create a folder called `exercise5`in `/labs/lab07`.
 
@@ -448,6 +448,6 @@ Create a folder called `exercise5`in `/labs/lab07`.
 2. Uses f-strings to display a comprehensive profile with:
    - Basic personal information section
    - String processing results
-   - Address information section  
+   - Address information sections  
    
 

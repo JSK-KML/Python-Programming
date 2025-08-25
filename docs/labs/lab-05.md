@@ -65,7 +65,7 @@ Some of the most commonly used **Python** keywords include `if`, `else`, `while`
 
 These keywords are highlighted differently in **VS Code** because the editor recognizes them as special **Python** syntax. Notice how **VS Code** uses color coding to help you identify different types of code elements. Keywords typically appear in a different color than variables or strings.
 
-### Listing Python Keyword <Badge type="tip" text="Task" />
+### Listing Python Keyword <Badge type="warning" text="Task" />
 
 Copy this code into your `exercise.py` file:
 
@@ -197,7 +197,7 @@ print("Final Grade: " + str(final_grade) + "%")
 
 
 
-## Exercise 1: Student Information System <Badge type="tip" text="Task" />
+## Exercise 1: Student Information System <Badge type="warning" text="Task" />
 
 Create a new file called `exercise1.py` in the `/labs/lab05/` directory. This exercise combines **variables**, **data types**, and **input/output statements**.
 
@@ -207,7 +207,7 @@ Write a program that:
 3. Displays the student information and shows the data types
 
 
-## Exercise 2: Circle Calculator <Badge type="tip" text="Task" />
+## Exercise 2: Circle Calculator <Badge type="warning" text="Task" />
 
 Create a new file called `exercise2.py` in the `/labs/lab05/` directory. This exercise combines **import statements**, **variables**, and **data types**.
 
@@ -216,7 +216,7 @@ Write a program that:
 2. Takes a radius of circle from the user
 3. Print the area and circumference of the circle
 
-## Exercise 3: Random Student Selector <Badge type="tip" text="Task" />
+## Exercise 3: Random Student Selector <Badge type="warning" text="Task" />
 
 Create a new file called `exercise3.py` in the `/labs/lab05/` directory. This exercise combines **import statements**, **variables**, and **input/output statements**.
 
@@ -225,7 +225,7 @@ Write a program that:
 2. Takes the student's class name from the user
 3. Generates a random number and displays class information
 
-## Exercise 4: Shopping Cost Calculator <Badge type="tip" text="Task" />
+## Exercise 4: Shopping Cost Calculator <Badge type="warning" text="Task" />
 
 Create a new file called `exercise4.py` in the `/labs/lab05/` directory. This exercise combines **variables**, **data types**, and **input/output statements**.
 
@@ -234,7 +234,7 @@ Write a program that:
 2. Creates variables for quantity (3 items) and tax rate (6%)
 3. Calculates and displays subtotal, tax amount, and total cost
 
-## Exercise 5: Average Score Calculator <Badge type="tip" text="Task" />
+## Exercise 5: Average Score Calculator <Badge type="warning" text="Task" />
 
 Create a new file called `exercise5.py` in the `/labs/lab05/` directory. This exercise combines **variables**, **data types**, and **input/output statements**.
 
@@ -243,7 +243,7 @@ Write a program that:
 2. Calculates the total score and average score
 3. Displays all individual scores, total, and average
 
-## Exercise 6: Time Converter <Badge type="tip" text="Task" />
+## Exercise 6: Time Converter <Badge type="warning" text="Task" />
 
 Create a new file called `exercise6.py` in the `/labs/lab05/` directory. This exercise combines **variables**, **data types**, and **input/output statements**.
 
@@ -252,7 +252,7 @@ Write a program that:
 2. Converts minutes to hours and remaining minutes
 3. Displays the original minutes and converted time format
 
-## Exercise 7: Advanced Math Operations <Badge type="tip" text="Task" />
+## Exercise 7: Advanced Math Operations <Badge type="warning" text="Task" />
 
 Create a new file called `exercise7.py` in the `/labs/lab05/` directory. This exercise combines **import statements**, **variables**, and **data types**.
 

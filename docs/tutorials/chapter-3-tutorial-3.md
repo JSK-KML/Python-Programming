@@ -29,20 +29,20 @@ outline: deep
 
 For each of the questions below, create an IPO table and its respective flowchart
 
-### Scenario 1 - Selling Magazine <Badge type="tip" text="Question" />
+### Scenario 1 - Selling Magazine <Badge type="warning" text="Question" />
 
 MyHealth magazine is sold at RM5.00 each if at least 5 units of the magazine are purchased, and it is sold at the price of RM7.00 each otherwise. Calculate the price a customer has to pay after they enter the quantity of the magazines that they purchased.
 
-### Scenario 2 - Library Books <Badge type="tip" text="Question" />
+### Scenario 2 - Library Books <Badge type="warning" text="Question" />
 
 A library system calculates whether a late fee should be charged to a member returning a book based on the return date. If the book is returned on time, no fee is charged. If it's late, a fee of RM1.00 per the number of overdue days is applied.
 
-### Scenario 3 - Electricity Bill <Badge type="tip" text="Question" />
+### Scenario 3 - Electricity Bill <Badge type="warning" text="Question" />
 A utility company charges RM0.30 per kWh for the first 100 kWh, RM0.50 per kWh for the next 100 kWh (101–200 kWh), and RM0.75 per kWh for any usage above 200 kWh.
 
 Calculate the total bill when the customer enters their total kWh consumed.
 
-### Scenario 4 - Income Tax Slab <Badge type="tip" text="Question" />
+### Scenario 4 - Income Tax Slab <Badge type="warning" text="Question" />
 Income tax is applied as:
 
 - First RM50,000.00 → 0%
@@ -53,7 +53,7 @@ Income tax is applied as:
 
 Given an annual income, calculate total tax due.
 
-### Scenario 5 - Parking Fee <Badge type="tip" text="Question" />
+### Scenario 5 - Parking Fee <Badge type="warning" text="Question" />
 
 A mall charges parking as follows:
 
@@ -67,7 +67,7 @@ Maximum charge per day → RM30.00
 
 Given total hours parked, calculate the parking fee.
 
-### Scenario 6 - Baggage Allowance Logic <Badge type="tip" text="Question" />
+### Scenario 6 - Baggage Allowance Logic <Badge type="warning" text="Question" />
 
 A flight ticket that includes 15 kg of free baggage.
 Excess baggage is charged RM4.00 per kg beyond that limit.
@@ -76,14 +76,14 @@ However, if the passenger brings no baggage, they receive a RM10.00 discount on 
 Given the weight of baggage and ticket price, calculate the final price. 
 
 
-### Scenario 7 - Early Bird Discount Logic <Badge type="tip" text="Question" />
+### Scenario 7 - Early Bird Discount Logic <Badge type="warning" text="Question" />
 
 If a user registers before the 15th day of the month, they get a 10% discount.
 Otherwise, they pay full price.
 
 Given the day of registration and base fee, calculate the final fee.
 
-### Scenario 8 - Final Score <Badge type="tip" text="Question" />
+### Scenario 8 - Final Score <Badge type="warning" text="Question" />
 
 Final score is calculated as:
 
