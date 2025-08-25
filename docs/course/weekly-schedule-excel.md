@@ -1,0 +1,117 @@
+# Weekly Class Schedule for Excel Import
+
+## Copy each item below and paste into separate Excel columns:
+
+W1L1(01-Jul-25)
+W1T1(01-Jul-25)
+W1T2(02-Jul-25)
+W1L2(02-Jul-25)
+W1P1(29-Jul-25)
+W2L1(08-Jul-25)
+W2T1(08-Jul-25)
+W2T2(09-Jul-25)
+W2L2(09-Jul-25)
+W2P1(05-Aug-25)
+W3L1(15-Jul-25)
+W3T1(15-Jul-25)
+W3T2(16-Jul-25)
+W3L2(16-Jul-25)
+W3P1(12-Aug-25)
+W4L1(22-Jul-25)
+W4T1(22-Jul-25)
+W4T2(23-Jul-25)
+W4L2(23-Jul-25)
+W4P1(19-Aug-25)
+W5L1(29-Jul-25)
+W5T1(29-Jul-25)
+W5T2(30-Jul-25)
+W5L2(30-Jul-25)
+W5P1(26-Aug-25)
+W6L1(05-Aug-25)
+W6T1(05-Aug-25)
+W6T2(06-Aug-25)
+W6L2(06-Aug-25)
+W6P1(02-Sep-25)
+W7L1(12-Aug-25)
+W7T1(12-Aug-25)
+W7T2(13-Aug-25)
+W7L2(13-Aug-25)
+W7P1(09-Sep-25)
+W8L1(19-Aug-25)
+W8T1(19-Aug-25)
+W8T2(20-Aug-25)
+W8L2(20-Aug-25)
+W8P1(23-Sep-25)
+W9L1(26-Aug-25)
+W9T1(26-Aug-25)
+W9T2(27-Aug-25)
+W9L2(27-Aug-25)
+W9P1(30-Sep-25)
+W10L1(02-Sep-25)
+W10T1(02-Sep-25)
+W10T2(03-Sep-25)
+W10L2(03-Sep-25)
+W10P1(07-Oct-25)
+W11L1(09-Sep-25)
+W11T1(09-Sep-25)
+W11T2(10-Sep-25)
+W11L2(10-Sep-25)
+W11P1(14-Oct-25)
+W12L1(23-Sep-25)
+W12T1(23-Sep-25)
+W12T2(24-Sep-25)
+W12L2(24-Sep-25)
+W12P1(21-Oct-25)
+W13L1(30-Sep-25)
+W13T1(30-Sep-25)
+W13T2(01-Oct-25)
+W13L2(01-Oct-25)
+W13P1(28-Oct-25)
+W14L1(07-Oct-25)
+W14T1(07-Oct-25)
+W14T2(08-Oct-25)
+W14L2(08-Oct-25)
+W14P1(04-Nov-25)
+W15L1(14-Oct-25)
+W15T1(14-Jul-25)
+W15T2(15-Oct-25)
+W15L2(15-Oct-25)
+W15P1(04-Nov-25)
+W16L1(21-Oct-25)
+W16T1(21-Oct-25)
+W16T2(22-Oct-25)
+W16L2(22-Oct-25)
+W16P1(05-Nov-25)
+W17L1(28-Oct-25)
+W17T1(28-Oct-25)
+W17T2(29-Oct-25)
+W17L2(29-Oct-25)
+W17P1(05-Nov-25)
+W18L1(04-Nov-25)
+W18T1(04-Nov-25)
+W18T2(05-Nov-25)
+W18L2(05-Nov-25)
+W18P1(06-Nov-25)
+
+## CSV Format - Copy this single row:
+
+W1L1(01-Jul-25),W1T1(01-Jul-25),W1T2(02-Jul-25),W1L2(02-Jul-25),W1Lab1(01-Jul-25),W2L1(08-Jul-25),W2T1(08-Jul-25),W2T2(09-Jul-25),W2L2(09-Jul-25),W2Lab1(08-Jul-25),W3L1(15-Jul-25),W3T1(15-Jul-25),W3T2(16-Jul-25),W3L2(16-Jul-25),W3Lab1(15-Jul-25),W4L1(22-Jul-25),W4T1(22-Jul-25),W4T2(23-Jul-25),W4L2(23-Jul-25),W4Lab1(22-Jul-25),W5L1(29-Jul-25),W5T1(29-Jul-25),W5T2(30-Jul-25),W5L2(30-Jul-25),W5Lab1(29-Jul-25),W6L1(05-Aug-25),W6T1(05-Aug-25),W6T2(06-Aug-25),W6L2(06-Aug-25),W6Lab1(05-Aug-25),W7L1(12-Aug-25),W7T1(12-Aug-25),W7T2(13-Aug-25),W7L2(13-Aug-25),W7Lab1(12-Aug-25),W8L1(19-Aug-25),W8T1(19-Aug-25),W8T2(20-Aug-25),W8L2(20-Aug-25),W8Lab1(19-Aug-25),W9L1(26-Aug-25),W9T1(26-Aug-25),W9T2(27-Aug-25),W9L2(27-Aug-25),W9Lab1(26-Aug-25),W10L1(02-Sep-25),W10T1(02-Sep-25),W10T2(03-Sep-25),W10L2(03-Sep-25),W10Lab1(02-Sep-25),W11L1(09-Sep-25),W11T1(09-Sep-25),W11T2(10-Sep-25),W11L2(10-Sep-25),W11Lab1(09-Sep-25),W12L1(23-Sep-25),W12T1(23-Sep-25),W12T2(24-Sep-25),W12L2(24-Sep-25),W12Lab1(23-Sep-25),W13L1(30-Sep-25),W13T1(30-Sep-25),W13T2(01-Oct-25),W13L2(01-Oct-25),W13Lab1(30-Sep-25),W14L1(07-Oct-25),W14T1(07-Oct-25),W14T2(08-Oct-25),W14L2(08-Oct-25),W14Lab1(07-Oct-25),W15L1(14-Oct-25),W15T1(14-Oct-25),W15T2(15-Oct-25),W15L2(15-Oct-25),W15Lab1(14-Oct-25),W16L1(21-Oct-25),W16T1(21-Oct-25),W16T2(22-Oct-25),W16L2(22-Oct-25),W16Lab1(21-Oct-25),W17L1(28-Oct-25),W17T1(28-Oct-25),W17T2(29-Oct-25),W17L2(29-Oct-25),W17Lab1(28-Oct-25),W18L1(04-Nov-25),W18T1(04-Nov-25),W18T2(05-Nov-25),W18L2(05-Nov-25),W18Lab1(04-Nov-25)
+
+## Notes:
+- Mid-semester break: 13-Sep-25 to 21-Sep-25 (Week 12 skipped)
+- Study Week: 08-Nov-25 to 16-Nov-25
+- Semester Exam: 17-Nov-25 to 24-Nov-25
+- Holiday: 25-Nov-25 to 30-Nov-25
+
+## Lab Tests:
+- LAB TEST 1: Week 5 (29-Jul-25) - Flowgorithm (Selection)
+- LAB TEST 2: Week 7 (12-Aug-25) - Sequence
+- LAB TEST 3: Week 11 (09-Sep-25) - Selection
+
+## Public Holidays:
+- 01-Sep-25 (Monday) - Merdeka
+- 05-Sep-25 (Friday) - Malidurrasul
+- 20-Oct-25 to 22-Oct-25 (Monday-Wednesday) - Deepavali
+
+## Assignment Period:
+- Weeks 13-15 (29-Sep-25 to 17-Oct-25)
