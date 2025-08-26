@@ -7,7 +7,7 @@
 # Daily Induction Plan
 
 **Lecturer:** Muhammad Aiman Syahmi Bin Haris  
-**Subject:** CP115  
+**Subject:** CP115 & SC015  
 **Week:** [Week Number]
 ```
 
@@ -17,6 +17,9 @@
 - **CLO1:** Explain basic computer programming concepts
 - **CLO2:** Solve simple problems using algorithms and a programming language  
 - **CLO3:** Demonstrate programming skills in solving simple problems
+
+**Standard CLOs for SC015:**
+- **CLO3:** Create basic multimedia and database project
 
 ### Class Schedules and CLO Usage
 
@@ -34,18 +37,23 @@
 - **Wednesday**: Lecture 1 (8:15 AM - 9:15 AM) - C01 & C02 together
 - **Thursday**: Lecture 2 (7:15 AM - 8:15 AM) - C01 & C02 together
 
+#### SC015 Class Schedule:
+- **F11**: Wednesday (11:15 AM - 1:15 PM) - Lab
+- **F04**: Friday (10:15 AM - 12:15 PM) - Lab
+
 #### CLO Usage Guidelines:
 
-| Class Type | CLO to Use | Notes |
-|------------|------------|-------|
-| **PRAKTIKUM (Labs)** | CLO2 or CLO3 | Always practical application |
-| **LECTURE** | CLO1 | Always conceptual understanding |
-| **TUTORIAL** | CLO1, CLO2, or both | Depends on content mix |
+| Subject | Class Type | CLO to Use | Notes |
+|---------|------------|------------|-------|
+| **CP115** | **PRAKTIKUM (Labs)** | CLO2 or CLO3 | Always practical application |
+| **CP115** | **LECTURE** | CLO1 | Always conceptual understanding |
+| **CP115** | **TUTORIAL** | CLO1, CLO2, or both | Depends on content mix |
+| **SC015** | **PRAKTIKUM (Labs)** | CLO3 | Always CLO3 for multimedia/database projects |
 
 ### Table Structure
 ```markdown
-| # | Day/Time | Class | Mode | Topic | Learning Outcome | CLO | Reflection |
-|---|----------|-------|------|-------|------------------|-----|------------|
+| # | Day/Time | Class | Subject | Mode | Topic | Learning Outcome | CLO | Reflection |
+|---|----------|-------|---------|------|-------|------------------|-----|------------|
 ```
 
 ### Space-Saving Guidelines
@@ -84,9 +92,27 @@ Head of Computer Science Unit
 ## Weekly Content Mapping
 
 ### Content Format Guidelines
-- **Topics Column**: Only put topic names (e.g., "Topic 1: Introduction to Programming", "Topic 2: Problem Analysis")
-- **Learning Outcome Column**: Copy exact text from schedule.md based on weeks (e.g., "(a) Identify programming concepts", "(c) Explain five (5) steps in problem solving")
+- **Subject Column**: CP115 or SC015
+- **Topics Column**: Only put topic names (e.g., "Topic 1: Introduction to Programming", "Topic 4: Multimedia", "Topic 5: Database")
+- **Learning Outcome Column**: Copy exact text from schedule.md for CP115 or use SC015 specific learning outcomes
 - **Reflection Column**: Must be suitable and relevant to the specific topic and learning outcome being taught
+
+### SC015 Content by Week Period
+**Week 1-9: Topic 4 - Multimedia**
+- Learning Outcomes: 
+  - (a) Identify five (5) multimedia elements (text, animation, graphic, audio, video)
+  - (b) Produce multimedia project
+- **Reflections**: Must focus on multimedia concepts only - element identification, project creation, technical challenges with multimedia integration
+
+**Week 10 onwards: Topic 5 - Database**
+- Learning Outcomes:
+  - (a) Identify basic concepts of database
+  - (b) Create a simple relational database project
+- **Reflections**: Focus on database concepts - table relationships, normalization, query development
+
+**Special Weeks (No SC015 Classes):**
+- **Week 8 & 9**: Lab Test 1 - Show "Lab Test 1" in Topic and Learning Outcome columns, leave reflections empty
+- **Week 15**: Lab Test 2 - Show "Lab Test 2" in Topic and Learning Outcome columns, leave reflections empty
 
 ### Week 1 Content Mapping
 From schedule.md Week 1:
@@ -149,6 +175,26 @@ Reflections must be relevant to the specific topic and learning outcome. Match r
 - **Good**: "Students can explain the concepts of selection structures and apply logical operators in different programming scenarios"
 - **Realistic**: "Students can identify relational operators but find logical operators challenging to distinguish initially"
 - **Mixed**: "Most students understand basic selection concepts, though some struggle with complex logical combinations"
+
+#### SC015 Topic 4 - (a) Identify multimedia elements (Weeks 1-9):
+- **Good**: "Students successfully identify all five multimedia elements and understand their applications"
+- **Realistic**: "Students can identify multimedia elements but need practice distinguishing between animation types"
+- **Mixed**: "Most students understand multimedia concepts, though some struggle with technical terminology"
+
+#### SC015 Topic 4 - (b) Produce multimedia project (Weeks 1-9):
+- **Good**: "Students demonstrate creativity and technical skills in multimedia project development"
+- **Realistic**: "Students find it challenging to integrate multiple multimedia elements cohesively"
+- **Mixed**: "Most students can create basic multimedia projects, though some need guidance with advanced features"
+
+#### SC015 Topic 5 - (a) Identify basic concepts of database (Week 10 onwards):
+- **Good**: "Students can explain database fundamentals and relational concepts effectively"
+- **Realistic**: "Students struggle with understanding relationships between database tables initially"
+- **Mixed**: "Most students grasp basic database concepts, though some need additional practice with normalization"
+
+#### SC015 Topic 5 - (b) Create simple relational database project (Week 10 onwards):
+- **Good**: "Students successfully design and implement functional database projects with proper relationships"
+- **Realistic**: "Students experience difficulties with database design and relationship implementation"
+- **Mixed**: "Most students can create basic databases, though some struggle with complex queries and relationships"
 
 ## File Naming Convention
 - `week-[number]-dip.md`
