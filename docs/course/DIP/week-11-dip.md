@@ -33,24 +33,29 @@
 </style>
 
 **Lecturer:** Muhammad Aiman Syahmi Bin Haris  
-**Subject:** CP115  
+**Subject:** CP115 & SC015  
 **Week:** 11
 
-| # | Day/Time | Class | Mode | Topic | Learning Outcome | CLO | Reflection |
-|---|----------|-------|------|-------|------------------|-----|------------|
-| 1 | MONDAY<br>08-Sep-2025<br>11:15 AM - 1:15 PM | C02 | PRAKTIKUM | Topic 6: Use of Selection Control Structure | (h) Construct a Python program based on a given problem using a control structure | CLO3 | Students successfully construct Python programs using selection structures and demonstrate good problem-solving skills |
-| 2 | TUESDAY<br>09-Sep-2025<br>11:15 AM - 1:15 PM | C01 | PRAKTIKUM | Topic 6: Use of Selection Control Structure | (h) Construct a Python program based on a given problem using a control structure | CLO3 | Most students can implement selection structures in Python, though some need additional support with complex conditions |
-| 3 | TUESDAY<br>09-Sep-2025<br>7:15 AM - 8:15 AM | C01 | TUTORIAL 1 | Topic 4: Python Programming | (f) Construct a Python program using assignment and arithmetic operators | CLO2 | Students demonstrate proficiency with arithmetic operators and show improvement in program construction |
-| 4 | TUESDAY<br>09-Sep-2025<br>2:15 PM - 3:15 PM | C02 | TUTORIAL 1 | Topic 5: Use of Sequence Control Structure | (b) Explain the concept of sequence control structure | CLO1 | Students can explain sequence control structure concepts clearly and understand the execution flow |
-| 5 | WEDNESDAY<br>10-Sep-2025<br>8:15 AM - 9:15 AM | C01 & C02 | LECTURE 1 | No Lecture | No Lecture | No Lecture | No Lecture |
-| 6 | WEDNESDAY<br>10-Sep-2025<br>7:15 AM - 8:15 AM | C01 | TUTORIAL 2 | Topic 5: Use of Sequence Control Structure | (b) Explain the concept of sequence control structure | CLO1 | Students find sequential logic intuitive and can relate it to real-world problem-solving scenarios |
-| 7 | THURSDAY<br>11-Sep-2025<br>7:15 AM - 8:15 AM | C01 & C02 | LECTURE 2 | No Lecture | No Lecture | No Lecture | No Lecture |
-| 8 | THURSDAY<br>11-Sep-2025<br>10:15 AM - 11:15 AM | C02 | TUTORIAL 2 | Topic 5: Use of Sequence Control Structure | (b) Explain the concept of sequence control structure | CLO1 | Students demonstrate understanding of sequential programming concepts and can apply them systematically |
+| # | Day/Time | Class | Subject | Mode | Topic | Learning Outcome | CLO | Reflection |
+|---|----------|-------|---------|------|-------|------------------|-----|------------|
+| 1 | MONDAY<br>08-Sep-2025<br>11:15 AM - 1:15 PM | C02 | CP115 | PRAKTIKUM | Topic 6: Use of Selection Control Structure | (h) Construct a Python program based on a given problem using a control structure | CLO3 | Students can construct selection programs but struggle with complex conditional logic combinations |
+| 2 | TUESDAY<br>09-Sep-2025<br>11:15 AM - 1:15 PM | C01 | CP115 | PRAKTIKUM | Topic 6: Use of Selection Control Structure | (h) Construct a Python program based on a given problem using a control structure | CLO3 | Most students successfully construct Python programs using selection structures with proper syntax |
+| 3 | TUESDAY<br>09-Sep-2025<br>7:15 AM - 8:15 AM | C01 | CP115 | TUTORIAL 1 | Topic 4: Python Programming | (f) Construct a Python program using assignment and arithmetic operators | CLO2 | Students demonstrate good understanding of arithmetic operations and can combine operators effectively |
+| 4 | TUESDAY<br>09-Sep-2025<br>2:15 PM - 3:15 PM | C02 | CP115 | TUTORIAL 1 | Topic 4: Python Programming | (f) Construct a Python program using assignment and arithmetic operators | CLO2 | Most students understand operator precedence but need practice with complex arithmetic expressions |
+| 5 | WEDNESDAY<br>10-Sep-2025<br>8:15 AM - 9:15 AM | C01 & C02 | CP115 | LECTURE 1 | Lab Test 3 | Lab Test 3 | CLO1 | |
+| 6 | WEDNESDAY<br>10-Sep-2025<br>7:15 AM - 8:15 AM | C01 | CP115 | TUTORIAL 2 | Topic 5: Use of Sequence Control Structure | (b) Explain the concept of sequence control structure | CLO1, CLO2 | Students can explain sequence concepts clearly and understand the importance of statement order |
+| 7 | THURSDAY<br>11-Sep-2025<br>7:15 AM - 8:15 AM | C01 & C02 | CP115 | LECTURE 2 | Lab Test 3 | Lab Test 3 | CLO1 | |
+| 8 | THURSDAY<br>11-Sep-2025<br>10:15 AM - 11:15 AM | C02 | CP115 | TUTORIAL 2 | Topic 5: Use of Sequence Control Structure | (b) Explain the concept of sequence control structure | CLO1, CLO2 | Students successfully explain sequence structures and demonstrate understanding of sequential program flow |
+| 9 | WEDNESDAY<br>10-Sep-2025<br>11:15 AM - 1:15 PM | F11 | SC015 | PRAKTIKUM | Topic 5: Database | (b) Create a simple relational database project | CLO3 | Students successfully design and implement functional database projects with proper relationships |
+| 10 | FRIDAY<br>12-Sep-2025<br>10:15 AM - 12:15 PM | F04 | SC015 | PRAKTIKUM | Topic 5: Database | (b) Create a simple relational database project | CLO3 | Students experience difficulties with database design and relationship implementation |
 
-**Course Learning Outcomes:**
+**CP115 Course Learning Outcomes:**
 - CLO1: Explain basic computer programming concepts
 - CLO2: Solve simple problems using algorithms and a programming language  
 - CLO3: Demonstrate programming skills in solving simple problems
+
+**SC015 Course Learning Outcomes:**
+- CLO3: Create basic multimedia and database project
 
 ---
 
