@@ -159,7 +159,7 @@ Copy and paste the given code from the window into `lab-3-1.py` and save the fil
 
 
 
-## Scenario 1 – Hotel Reservation <Badge type="tip" text="Question" />
+## Scenario 1 – Hotel Reservation <Badge type="warning" text="Question" />
 
 Question:
 Mr Rahman plans to make a reservation for a hotel room in Langkawi Island. The basic rate is RM250.00 per night and service charge is 15% of the room rate. Determine the total payment if he books the hotel room for n nights.
@@ -177,7 +177,7 @@ Outputs (in order):
 - `TOTAL_PAYMENT` – sum of room rate and service charge (RM)
 
 
-## Scenario 2 – Storage Conversion <Badge type="tip" text="Question" />
+## Scenario 2 – Storage Conversion <Badge type="warning" text="Question" />
 Question:
 Prompt user to input a size in Kilobyte, and convert the input into Megabyte, Gigabyte, Terabyte and Petabyte.
 
@@ -200,7 +200,7 @@ Outputs (order):
 `petabyte`
 
 
-## Scenario 3 – International Fax Cost <Badge type="tip" text="Question" />
+## Scenario 3 – International Fax Cost <Badge type="warning" text="Question" />
 
 Question:
 Amin’s program calculates the cost of sending an international fax: service charge RM3.00 plus RM0.20 per page.
@@ -218,7 +218,7 @@ Outputs (order):
 `TOTAL_COST` – sum of service charge and pages cost
 
 
-## Scenario 4 – Cookie Calories <Badge type="tip" text="Question" />
+## Scenario 4 – Cookie Calories <Badge type="warning" text="Question" />
 
 Question:
 A pack contains 40 pieces of cookies. The calorie info claims 10 servings per pack. Each serving equals 300 calories. Calculate the total calories consumed based on number of packs eaten.
@@ -235,7 +235,7 @@ Outputs (order):
 
 - `TOTAL_CALORIES` – SERVINGS_CONSUMED * 300
 
-## Scenario 5 – Wage to Mow Yard <Badge type="tip" text="Question" />
+## Scenario 5 – Wage to Mow Yard <Badge type="warning" text="Question" />
 
 Question:
 The wage to mow the yard is based on diesel price RM2.00 per square meter. The yard area is the large rectangle minus the house rectangle. You are given the length and width of the yard boundary and the length and width of the house. Calculate the wage.
@@ -260,7 +260,7 @@ Outputs (order):
 
 - `WAGE` – Total wage
 
-## Scenario 6 – Temperature Conversion <Badge type="tip" text="Question" />
+## Scenario 6 – Temperature Conversion <Badge type="warning" text="Question" />
 
 Question
 Prompt user to input a temperature in Celsius and convert it to Fahrenheit and Kelvin.
@@ -279,7 +279,7 @@ Outputs (in order)
 
 - `kelvin` 
 
-## Scenario 7 – Simple Interest Calculator <Badge type="tip" text="Question" />
+## Scenario 7 – Simple Interest Calculator <Badge type="warning" text="Question" />
 
 Question: 
 Prompt user for principal (P), annual rate (R %) and time (T years); calculate:

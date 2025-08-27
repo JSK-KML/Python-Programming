@@ -103,12 +103,12 @@ Then it will prompt you the location that you want the image saved and the name 
 
 ## Selection Questions
 
-### Scenario 1 - Electricity Bill <Badge type="tip" text="Question" />
+### Scenario 1 - Electricity Bill <Badge type="warning" text="Question" />
 A utility company charges RM0.30 per kWh for the first 100 kWh, RM0.50 per kWh for the next 100 kWh (101–200 kWh), and RM0.75 per kWh for any usage above 200 kWh.
 
 Calculate the total bill when the customer enters their total kWh consumed.
 
-### Scenario 2 - Income Tax Slab <Badge type="tip" text="Question" />
+### Scenario 2 - Income Tax Slab <Badge type="warning" text="Question" />
 Income tax is applied as:
 
 - First RM50,000.00 → 0%
@@ -119,7 +119,7 @@ Income tax is applied as:
 
 Given an annual income, calculate total tax due.
 
-### Scenario 3 - Parking Fee <Badge type="tip" text="Question" />
+### Scenario 3 - Parking Fee <Badge type="warning" text="Question" />
 
 A mall charges parking as follows:
 
@@ -133,7 +133,7 @@ Maximum charge per day → RM30.00
 
 Given total hours parked, calculate the parking fee.
 
-### Scenario 4 - Baggage Allowance Logic <Badge type="tip" text="Question" />
+### Scenario 4 - Baggage Allowance Logic <Badge type="warning" text="Question" />
 
 A flight ticket that includes 15 kg of free baggage.Excess baggage is charged RM4.00 per kg beyond that limit.
 However, if the passenger brings no baggage, they receive a RM10.00 discount on the total ticket price.

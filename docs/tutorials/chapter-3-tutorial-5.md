@@ -157,7 +157,7 @@ END                            ← Level 0 (Closes BEGIN)
 ```
 
 
-## Exercise 1 <Badge type="tip" text="Task" />
+## Exercise 1 <Badge type="warning" text="Task" />
 
 Convert the below pseudocode into a flowchart and IPO table.
 
@@ -174,7 +174,7 @@ Start
 Stop
 ```
 
-## Exercise 2 <Badge type="tip" text="Task" />
+## Exercise 2 <Badge type="warning" text="Task" />
 
 Convert the below IPO table into a flowchart and pseudocode.
 
@@ -185,7 +185,7 @@ Convert the below IPO table into a flowchart and pseudocode.
 | | repeat calculate total_points based on daily_points for 5 times | |
 
 
-## Exercise 3 <Badge type="tip" text="Task" />
+## Exercise 3 <Badge type="warning" text="Task" />
 
 Convert the below flowchart into an IPO table and pseudocode.
 
@@ -195,7 +195,7 @@ Convert the below flowchart into an IPO table and pseudocode.
 </p>
 
 
-## Exercise 4 <Badge type="tip" text="Task" />
+## Exercise 4 <Badge type="warning" text="Task" />
 
 Convert the following pseudocode into a flowchart and IPO
 
@@ -222,7 +222,7 @@ Stop
 
 
 
-## Exercise 5 <Badge type="tip" text="Task" />
+## Exercise 5 <Badge type="warning" text="Task" />
 
 Given the following pseudocode, create an IPO table and flowchart.
 

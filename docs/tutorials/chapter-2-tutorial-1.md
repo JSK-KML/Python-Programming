@@ -29,7 +29,7 @@ Work through each brief below. For every case, try to create an IPO table and we
 
 ---
 
-### Scenario 1 - Meal Price with Taxes <Badge type="tip" text="Question" />
+### Scenario 1 - Meal Price with Taxes <Badge type="warning" text="Question" />
 
 
  A government tax of 10% and service tax of 5% will be added to the price of a set of meal bought at MFC. Calculate the total price that Ali has to pay for a set of meal. Write a problem analysis for the given problem statement.
@@ -39,7 +39,7 @@ Work through each brief below. For every case, try to create an IPO table and we
 :::
 
 
-### Scenario 2 - Cookies Calories <Badge type="tip" text="Question" />
+### Scenario 2 - Cookies Calories <Badge type="warning" text="Question" />
 
 
 A pack contains 40 pieces of cookies. The calorie information claims that there are 10 servings in a pack. Each serving equals 300 calories. Identify the input, process and output to calculate and display the number of total calories consumed.  
@@ -48,17 +48,17 @@ A pack contains 40 pieces of cookies. The calorie information claims that there 
 Be mindful of the kind of calculation that needs to be done.
 :::
 
-### Scenario 3 - Overtime Pay <Badge type="tip" text="Question" />
+### Scenario 3 - Overtime Pay <Badge type="warning" text="Question" />
 
 Create a program that calculates and displays the overtime pay received by an employee. Overtime rate is RM500.00 per hour. Analyse the problem above by determining the input, process and output involved.
 
 
-### Scenario 4 - Langkawi Room with Service Charge <Badge type="tip" text="Question" />
+### Scenario 4 - Langkawi Room with Service Charge <Badge type="warning" text="Question" />
 
 
 Mr Rahman plans to make a reservation for a hotel room in Langkawi Island. The basic rate is RM250.00 per night and service charge is 15% of the room rate. Determine the total payment if he books the hotel room for n nights.
 
-### Scenario 5 - Area of Yard <Badge type="tip" text="Question" />
+### Scenario 5 - Area of Yard <Badge type="warning" text="Question" />
 
 The wage to mow the yard of a house is based on the price of diesel used to mow it. The yard to be mowed is shown in the shaded area given in the figure below.
 
@@ -66,7 +66,7 @@ The wage to mow the yard of a house is based on the price of diesel used to mow 
 
 You are given the length and width of the house area and the length and width of the house. The price of diesel used is RM2.00 per square metre. Identify the input, process and output to calculate and display the wage of mowing the yard of the house.
 
-### Scenario 6 - Hotels Rate <Badge type="tip" text="Question" />
+### Scenario 6 - Hotels Rate <Badge type="warning" text="Question" />
 
 A hotel offers two types of room with different rates. 
 
@@ -82,18 +82,18 @@ Again, be mindful of the constant.
 :::
 
 
-### Scenario 7 - Converting between Bytes <Badge type="tip" text="Question" />
+### Scenario 7 - Converting between Bytes <Badge type="warning" text="Question" />
 
 Prompt user to input in Kilobyte, and convert the input into Megabyte, Gigabyte, Terabyte and Petabyte.
 ::: details Click for clue
 For bytes, the base for conversion is in base 8
 :::
 
-### Scenario 8 - Volume of Cuboid <Badge type="tip" text="Question" />
+### Scenario 8 - Volume of Cuboid <Badge type="warning" text="Question" />
 
 A student is required to determine the volume of a cuboid based on the measurements of length, width and height in centimetre units. Determine input, process, and output for the volume calculation problem.
 
-### Scenario 9 - Area of Shaded Region <Badge type="tip" text="Question" />
+### Scenario 9 - Area of Shaded Region <Badge type="warning" text="Question" />
 
 You are asked to calculate the area of the shaded area of two circles in the figure below. List down the input, process and output of this problem. 
 
@@ -106,7 +106,7 @@ Use the correct formula for calculation
 :::   
 
 
-### Scenario 10 - International Fax Cost <Badge type="tip" text="Question" />
+### Scenario 10 - International Fax Cost <Badge type="warning" text="Question" />
 
 A program created by Amin will calculate the cost of sending an international fax as follows:
     - Service charges is RM3.00

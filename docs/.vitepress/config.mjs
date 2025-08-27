@@ -25,7 +25,7 @@ export default defineConfig({
         text: 'Course Informations', 
         items: [
           { text: 'Assessments', link: '/course/course' },
-          { text: 'Schedule', link: '/course/schedule' }
+          { text: 'Schedule', link: '/course/schedule' },
         ],
         activeMatch: '^/course/' 
       },
@@ -36,7 +36,8 @@ export default defineConfig({
           { text: 'Tutorial 2', link: '/tutorials/chapter-2-tutorial-2' },
           { text: 'Tutorial 3', link: '/tutorials/chapter-3-tutorial-3' },
           { text: 'Tutorial 4', link: '/tutorials/chapter-3-tutorial-4' },
-          { text: 'Tutorial 5', link: '/tutorials/chapter-3-tutorial-5' }
+          { text: 'Tutorial 5', link: '/tutorials/chapter-3-tutorial-5' },
+          { text: 'Tutorial 6', link: '/tutorials/chapter-4-tutorial-1' }
         ],
         activeMatch: '^/tutorials/' 
       },
@@ -50,7 +51,8 @@ export default defineConfig({
           { text: 'Lab 4', link: '/labs/lab-04' },
           { text: 'Lab 5', link: '/labs/lab-05' },
           { text: 'Lab 6', link: '/labs/lab-06' },
-          { text: 'Lab 7', link: '/labs/lab-07' }
+          { text: 'Lab 7', link: '/labs/lab-07' },
+          { text: 'Lab 8', link: '/labs/lab-08' }
         ],
         activeMatch: '^/labs/' 
       },
@@ -61,7 +63,8 @@ export default defineConfig({
           { text: 'Chapter 2', link: '/lectures/chapter-02' },
           { text: 'Chapter 3', link: '/lectures/chapter-03' },
           { text: 'Chapter 4', link: '/lectures/chapter-04' },
-          { text: 'Chapter 5', link: '/lectures/chapter-05' }
+          { text: 'Chapter 5', link: '/lectures/chapter-05' },
+          { text: 'Chapter 6', link: '/lectures/chapter-06' }
         ],
         activeMatch: '^/lectures/' 
       },
@@ -120,6 +123,10 @@ export default defineConfig({
               { 
                 text: 'Lab 7', 
                 link: '/labs/lab-07'
+              },
+              {
+                text: 'Lab 8',
+                link: '/labs/lab-08'
               }
       ],
       
@@ -131,7 +138,7 @@ export default defineConfig({
         {
           text: 'Schedule',
           link: '/course/schedule'
-        }
+        },
       ],
       
       '/lectures/': [
@@ -154,6 +161,10 @@ export default defineConfig({
         { 
           text: 'Chapter 5', 
           link: '/lectures/chapter-05' 
+        },
+        { 
+          text: 'Chapter 6', 
+          link: '/lectures/chapter-06' 
         }
 
       ],
@@ -178,6 +189,10 @@ export default defineConfig({
                 { 
                   text: 'Tutorial 5', 
                   link: '/tutorials/chapter-3-tutorial-5'
+                },
+                { 
+                  text: 'Tutorial 6', 
+                  link: '/tutorials/chapter-4-tutorial-1'
                 }
       ],
       
