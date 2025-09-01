@@ -357,129 +357,187 @@ When in doubt, use parentheses `()` to make your intentions clear:
 if (percentage >= 80) or (extra_credit > 0):
     print("Honor Roll")
 ```
-<!--
-## When to Use Different Selection Structures
 
-Now that we've learned `if`, `elif`, and `else`, a new question arises: "When should I use each one?" A health monitoring app scenario will help us discover the answer.
+## Selection Structure Positioning and Usage
 
-## Multiple Independent Health Checks Problem
+**Python** provides three selection structure components: `if`, `elif`, and `else`. Understanding **where** each can be positioned and **when** to use each is essential for controlling program flow.
 
-A health app wants to provide multiple health warnings and recommendations. Let's see what happens when we need to check several independent conditions:
+### Positioning Rules for Selection Structures
+
+Selection structures in **Python** follow strict positioning rules that determine how conditions are evaluated:
+
+| Component | Position Rules | Can Repeat? | Purpose |
+|-----------|---------------|-------------|---------|
+| `if` | **Always first** in a selection block | No | Initial condition check |
+| `elif` | **Only after `if`** or another `elif` | Yes (multiple allowed) | Additional condition checks |
+| `else` | **Always last** in a selection block | No | Default action when all conditions fail |
+
+The positioning creates a **decision chain** where **Python** evaluates conditions in order from top to bottom, executing only the first `True` condition it encounters.
+
+### Understanding If Statement Placement
+
+The `if` statement must **always** be positioned first in any selection structure. It establishes the beginning of the decision-making process.
+
+Copy this code into your `exercise.py` file and run it:
 
 ```python
-# Multiple independent checks - each health check is separate
+# if statement - always at the beginning
+student_grade = 85
+
+if student_grade >= 90:
+    print("Excellent performance")
+```
+
+What output do you see? Try changing `student_grade` to `95` and run it again. What happens now?
+
+The `if` statement serves as the **entry point** for conditional logic. **Python** encounters the `if` first and evaluates whether its condition is `True` or `False`. Without an `if` statement, you cannot create conditional logic in **Python**.
+
+### Understanding Elif Statement Placement
+
+The `elif` statement can **only** be positioned **after** an `if` statement or **after** another `elif` statement. It provides additional conditions to check when previous conditions are `False`.
+
+Run this code in your `exercise.py` file:
+
+```python
+# elif positioning - can have multiple elif statements
+student_grade = 85
+
+if student_grade >= 90:
+    print("Excellent performance")
+elif student_grade >= 80:    # After if
+    print("Good performance") 
+elif student_grade >= 70:    # After elif
+    print("Satisfactory performance")
+elif student_grade >= 60:    # After elif
+    print("Minimum performance")
+```
+
+Which message appears? Try changing `student_grade` to different values like `95`, `75`, and `55`. What happens each time?
+
+The `elif` statement creates a **chain of alternatives**. **Python** only checks an `elif` condition if all previous conditions (`if` and any preceding `elif` statements) were `False`. Once any condition evaluates to `True`, **Python** executes that block and **skips all remaining `elif` and `else` statements**.
+
+### Understanding Else Statement Placement  
+
+The `else` statement can **only** be positioned as the **final component** in a selection structure. It executes when all previous conditions (`if` and any `elif` statements) evaluate to `False`.
+
+Copy this code into your `exercise.py` file and run it:
+
+```python
+# else positioning - always last
+student_grade = 45
+
+if student_grade >= 90:
+    print("Excellent performance")
+elif student_grade >= 80:
+    print("Good performance")
+elif student_grade >= 70:
+    print("Satisfactory performance") 
+elif student_grade >= 60:
+    print("Minimum performance")
+else:                        # Always positioned last
+    print("Below minimum performance")
+```
+
+What message appears? Try changing `student_grade` to `75`, then to `65`. Which conditions are being checked each time?
+
+The `else` statement serves as the **default action**. It provides a guaranteed execution path when none of the conditional statements above it are `True`. The `else` statement does not have a condition because it represents "everything else" - all cases not handled by the `if` and `elif` conditions.
+
+### When to Use Multiple If vs If-Elif-Else
+
+Understanding **when** to use multiple independent `if` statements versus connected `if-elif-else` chains is crucial for correct program logic.
+
+**Use multiple independent `if` statements when:**
+- Multiple conditions can be `True` simultaneously
+- Each condition represents a separate, independent check
+- You want all applicable conditions to execute their code blocks
+
+**Use `if-elif-else` chains when:**  
+- Only one condition should execute its code block
+- Conditions represent mutually exclusive choices
+- You want **Python** to stop checking once it finds the first `True` condition
+
+### Practical Example: Multiple Independent Checks
+
+Consider a health monitoring system that provides multiple warnings. Each health recommendation is independent - a person might need multiple recommendations simultaneously:
+
+Copy this code into your `exercise.py` file and run it:
+
+```python
+# Multiple independent health checks - use multiple if statements
 weight = 70  # kg
 height = 1.75  # meters
 age = 25
-exercise_hours = 5  # per week
+exercise_hours = 2  # per week
 
 bmi = weight / (height * height)
 
-print(f"BMI: {bmi}")
-print(f"Age: {age}")
-print(f"Exercise: {exercise_hours} hours/week")
-
-# Check ALL health recommendations independently
+# Each check is independent - multiple can be True
 if bmi >= 25:
-    print("Consider weight management")
+    print("Recommendation: Consider weight management")
     
 if age >= 40:
-    print("Regular health checkups recommended")
+    print("Recommendation: Schedule regular health checkups")
     
 if exercise_hours < 3:
-    print("Increase physical activity")
+    print("Recommendation: Increase physical activity")
     
 if bmi < 18.5:
-    print("Consider increasing caloric intake")
+    print("Recommendation: Consider increasing caloric intake")
 ```
 
-Run this code. Notice something important: **ALL conditions are checked**, and a person can receive multiple health recommendations. This makes sense because these are independent health checks.
+How many recommendations appear? Now try changing `age = 45` and `exercise_hours = 1`. Run it again - how many recommendations do you see now?
 
-But what happens when we use this same approach for something that should only have ONE outcome?
+In this example, a person with `exercise_hours = 2` will see the exercise recommendation. If they're also over 40, they'll see the health checkup recommendation. Multiple recommendations make sense because they're independent health concerns.
 
-## The BMI Classification Problem
+### Practical Example: Mutually Exclusive Classification  
 
-Let's try using multiple `if` statements for BMI classification:
+Consider the same health data but now classifying BMI into categories. A person can only belong to **one** BMI category:
 
-```python
-# Using multiple if statements for BMI categories (WRONG APPROACH!)
-weight = 70  # kg
-height = 1.75  # meters
-bmi = weight / (height * height)
-
-print(f"BMI: {bmi:.1f}")
-
-# Multiple if statements - This causes problems!
-if bmi >= 30:
-    print("BMI Category: Obese")
-    
-if bmi >= 25:
-    print("BMI Category: Overweight")  # This will ALSO print for BMI 32!
-    
-if bmi >= 18.5:
-    print("BMI Category: Normal")  # This will ALSO print for BMI 32!
-    
-if bmi < 18.5:
-    print("BMI Category: Underweight")
-```
-
-Run this code with `weight = 85` (BMI ≈ 27.8). What happens? The person gets classified as both "Overweight" AND "Normal"! This is clearly wrong.
-
-::: warning PROBLEM
-Using multiple `if` statements for mutually exclusive categories gives wrong results! A person can't have multiple BMI classifications.
-:::
-
-Now let's fix this with `elif`:
+Test this code in your `exercise.py` file:
 
 ```python
-# Using elif for mutually exclusive categories (CORRECT!)
+# BMI classification - use if-elif-else chain
 weight = 85  # kg  
 height = 1.75  # meters
 bmi = weight / (height * height)
 
 print(f"BMI: {bmi:.1f}")
 
-# Only ONE category will be assigned
+# Only one classification should apply
 if bmi >= 30:
     print("BMI Category: Obese")
 elif bmi >= 25:
-    print("BMI Category: Overweight")
+    print("BMI Category: Overweight")  
 elif bmi >= 18.5:
-    print("BMI Category: Normal")
+    print("BMI Category: Normal weight")
 else:
     print("BMI Category: Underweight")
 ```
 
-Perfect! Now only one BMI category is assigned because `elif` stops checking once it finds a true condition.
+Which category appears? Try changing the weight to `95` kg, then to `60` kg. How many categories does each person get assigned?
 
-## When to Use Each Structure
+With `weight = 85` and `height = 1.75`, the BMI is approximately 27.8. The person is classified as "Overweight" and **only** as "Overweight". **Python** stops checking conditions after finding the first `True` condition (`bmi >= 25`).
 
-| Structure | When to Use | Example | Result |
-|-----------|-------------|---------|---------|
-| Multiple `if` | Independent conditions that can all be true | Health warnings, risk factors | Person can get multiple results |
-| `if-elif-else` | Mutually exclusive categories | BMI categories, age groups | Person gets exactly one result |
-| `if-else` | Simple binary choice | Healthy/unhealthy, active/inactive | Person gets one of two results |
-| `if` only | Single condition check | Special recommendation, risk alert | Person may or may not get result |
+### Why Positioning Matters for Program Logic
 
-## Common Mistake: Wrong Structure Choice
+Understanding the evaluation order helps you write correct conditional logic:
 
-**Mistake 1: Using `elif` for independent checks**
 ```python
-# WRONG: Using elif for independent health checks
-if bmi >= 25:
-    print("⚠️ Weight management needed")
-elif exercise_hours < 3:  # Won't check if first condition is true!
-    print("⚠️ More exercise needed")  # Overweight person loses this advice!
+# Correct: Most specific conditions first
+score = 95
+
+if score == 100:
+    print("Perfect score!")
+elif score >= 90:  
+    print("A grade")
+elif score >= 80:
+    print("B grade")
+else:
+    print("Below B grade")
 ```
 
-**Mistake 2: Using multiple `if` for exclusive categories**
-```python
-# WRONG: Using multiple if for BMI categories
-if bmi >= 30:
-    print("BMI Category: Obese")
-if bmi >= 25:  # Still checks even after Obese is assigned!
-    print("BMI Category: Overweight")
-```
+The positioning ensures that a perfect score (100) gets the special recognition before being categorized as just an "A grade". **Python**'s top-to-bottom evaluation makes the order of conditions crucial for correct results.
+
 
 ::: tip CHOOSING THE RIGHT STRUCTURE
 - **Independent checks** that can all happen → Use multiple `if`
@@ -488,4 +546,3 @@ if bmi >= 25:  # Still checks even after Obese is assigned!
 - **Single optional check** → Use `if` only
 :::
 
---!>
