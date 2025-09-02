@@ -1,7 +1,7 @@
 module.exports = {
   pdf_options: {
     format: 'A4',
-    orientation: 'landscape',
+    orientation: 'potrait',
     margin: {
       top: '0.3in',
       bottom: '0.3in',
@@ -11,7 +11,7 @@ module.exports = {
   },
   stylesheet: `
     @page { 
-      size: A4 landscape; 
+      size: A4 potrait; 
     }
     table { 
       font-size: 9px; 
