@@ -546,3 +546,155 @@ The positioning ensures that a perfect score (100) gets the special recognition 
 - **Single optional check** → Use `if` only
 :::
 
+## Testing Your Code with pytest
+
+Now that you understand selection statements, let's learn how to test your code using **pytest** in **VS Code**. Testing ensures your selection logic works correctly for all possible cases.
+
+### Exercise 1: Student Classification System <Badge type="warning" text="Task" />
+
+A university needs a student classification system that determines scholarship eligibility and academic standing. Navigate to `/labs/lab09/exercise1/` and open `exercise1.py`.
+
+Your task is to create a program that takes a student's GPA and credit hours as input, then displays their classification:
+
+**Requirements:**
+- **Dean's List**: GPA ≥ 3.8 AND credit hours ≥ 12
+- **Honor Roll**: GPA ≥ 3.5 AND credit hours ≥ 12  
+- **Good Standing**: GPA ≥ 2.0
+- **Academic Probation**: GPA < 2.0
+- **Part-time students** (credit hours < 12) cannot qualify for Dean's List or Honor Roll
+
+You'll find this starter code in `exercise1.py`:
+
+```python
+# Student Classification System
+# Get student information
+student_name = input("Enter student name: ")
+gpa = float(input("Enter GPA (0.0-4.0): "))
+credit_hours = int(input("Enter credit hours: "))
+
+# TODO: Add your classification logic here using if-elif-else statements
+# Use the requirements above to determine the student's classification
+# Store the result in a variable called 'classification'
+
+# Display results
+print(f"\nStudent: {student_name}")
+print(f"GPA: {gpa}")
+print(f"Credit Hours: {credit_hours}")
+print(f"Classification: {classification}")
+```
+
+
+Complete the program by adding selection statements between the input and output sections. **DO NOT** change the `input` and `print` statment given, it will mess up the testing.
+
+### Running Tests with pytest in VS Code
+
+The test file `test_exercise1.py` is located in `/labs/lab09/exercise1/test/test_exercise1.py` and has already been created for you. The tests will check your program by running it with different inputs and checking if the output matches the expected classification.
+
+**How to run your tests:**
+
+1. **Open Test Explorer**:
+   - Look for the **Test Explorer** in the **VS Code** sidebar (flask/beaker icon)  
+   - You'll see your test functions listed under `test_exercise1.py`
+
+2. **Run your tests**:
+   - Click **"Run All Tests"** button to test your implementation
+
+<p align="center">
+    <img src="/public/labs/lab-09/lab-9-1.png" alt="drawing" width="300"/>
+</p>
+
+3. **Read the test results**:
+   - After you click the run button for the test , the **Test Result** tab will automatically open at the bottom of the window.
+   - On the right side, you will see which test pass or failed. Green mean pass and red mean failed.
+   - To know why you test failed, scroll down in the **Test Result** tab until you see the error message marked by the letter **E** on the left side. The message can be pretty long but ignore the rest and just read the error message.
+   - In my example, it failed because variable `classification` is not defined.
+  
+<p align="center">
+    <img src="/public/labs/lab-09/lab-9-2.png" alt="drawing" width="600"/>
+</p>
+
+
+### Your Workflow
+
+1. **Complete** your selection logic in `exercise1.py`
+2. **Run all tests** to see which cases work
+3. **Fix the failing cases** by improving your if-elif-else statements
+4. **Run tests again** until all are green
+5. **Success** - your program handles all scenarios correctly.
+
+## Exercise 2: Tax Calculator <Badge type="warning" text="Task" />
+
+Calculate employee net salary after taxes. Overtime pay is RM35 per hour. Tax rates depend on filing status and total income:
+
+**Tax Rates:**
+- Single: 22% if total income ≥ RM5000, otherwise 18%
+- Married: 20% if total income ≥ RM6000, otherwise 15%
+- Head: 25% if total income ≥ RM5500, otherwise 19%
+
+**Additional deductions:** EPF 11%, SOCSO 0.5%
+
+Create `/labs/lab09/exercise2/exercise2.py`:
+
+```python
+employee_name = input()
+base_salary = float(input())
+overtime_hours = int(input())
+tax_status = input()
+
+# TODO: Your code here
+
+print(employee_name)
+print(tax_rate)
+print(net_salary:.2f)
+```
+
+## Exercise 3: Movie Ticket Pricing <Badge type="warning" text="Task" />
+
+Calculate movie ticket prices based on day, time, and customer type.
+
+**Pricing Rules:**
+- Weekends: Adult RM18, Child RM12, Senior RM15
+- Weekdays: Adult RM15, Child RM10, Senior RM12
+- Evening shows (after 6pm): Add RM3 to base price
+- Student discount: 10% off final price on weekdays only
+
+Create `/labs/lab09/exercise3/exercise3.py`:
+
+```python
+day_type = input()
+show_time = int(input())
+customer_type = input()
+is_student = input()
+
+# TODO: Your code here
+
+print(base_price)
+print(final_price)
+```
+
+## Exercise 4: Water Bill Calculator <Badge type="warning" text="Task" />
+
+Calculate water bills with tiered pricing based on consumption.
+
+**Rate Structure:**
+- First 20 cubic meters: RM0.57 per cubic meter
+- Next 15 cubic meters (21-35): RM1.03 per cubic meter
+- Above 35 cubic meters: RM1.40 per cubic meter
+
+**Additional charges:** Service charge RM8, Sewerage RM2
+
+Create `/labs/lab09/exercise4/exercise4.py`:
+
+```python
+current_reading = int(input())
+previous_reading = int(input())
+
+# TODO: Your code here
+
+print(consumption)
+print(water_cost)
+print(total_bill)
+```
+
+
+
