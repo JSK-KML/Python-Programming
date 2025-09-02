@@ -65,7 +65,8 @@ export default defineConfig({
           { text: 'Chapter 3', link: '/lectures/chapter-03' },
           { text: 'Chapter 4', link: '/lectures/chapter-04' },
           { text: 'Chapter 5', link: '/lectures/chapter-05' },
-          { text: 'Chapter 6', link: '/lectures/chapter-06' }
+          { text: 'Chapter 6', link: '/lectures/chapter-06' },
+          { text: 'Chapter 7', link: '/lectures/chapter-07' }
         ],
         activeMatch: '^/lectures/' 
       },
@@ -170,6 +171,10 @@ export default defineConfig({
         { 
           text: 'Chapter 6', 
           link: '/lectures/chapter-06' 
+        },
+        {
+          text: 'Chapter 7',
+          link: '/lectures/chapter-07'
         }
 
       ],

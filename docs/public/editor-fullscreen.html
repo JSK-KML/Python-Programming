@@ -1073,56 +1073,76 @@
                 indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
               });
               
-              // Setup debugging infrastructure
+              // Simple trace-based visualization  
               window.pyodide.runPython(`
 import sys
-import traceback
 
-class ExecutionTracker:
+import time
+
+class SimpleTracer:
     def __init__(self):
         self.steps = []
-        self.current_output = ""
         self.step_count = 0
-        self.max_steps = 100
+        self.max_steps = 20
+        self.start_time = None
+        self.timeout_seconds = 5  # 5 second timeout
         
-    def trace_function(self, frame, event, arg):
+    def trace_calls(self, frame, event, arg):
+        # Check timeout
+        import time  # Import time within the function
+        if self.start_time and time.time() - self.start_time > self.timeout_seconds:
+            print(f"[TRACE] TIMEOUT after {self.timeout_seconds} seconds - stopping execution")
+            raise Exception(f"Execution timeout ({self.timeout_seconds}s) - possible infinite loop")
+        
         if event == 'line' and self.step_count < self.max_steps:
-            step_data = {
-                'line': frame.f_lineno,
-                'variables': dict(frame.f_locals.items()),
-                'globals': {k: v for k, v in frame.f_globals.items() 
-                           if not k.startswith('__') and k != 'tracker'},
-                'output': self.current_output,
-                'filename': frame.f_code.co_filename
-            }
-            self.steps.append(step_data)
-            self.step_count += 1
-            print(f"[STEP {self.step_count}] Line {frame.f_lineno}: {len(step_data['variables'])} vars, output: '{self.current_output.strip()}'")
-        return self.trace_function
+            # More flexible filename check - include <string> which is common for exec()
+            if '<string>' in frame.f_code.co_filename or '<exec>' in frame.f_code.co_filename:
+                print(f"[TRACE] Line {frame.f_lineno}")
+                
+                # Debug: Show all available variables
+                print(f"[DEBUG] Local vars: {list(frame.f_locals.keys())}")
+                print(f"[DEBUG] Global vars: {[k for k in frame.f_globals.keys() if not k.startswith('_')]}")
+                
+                # Get user variables - filter out system and cleanup variables
+                system_vars = {'sys', 'SimpleTracer', 'tracer', 'json', 'code_to_run', 
+                              'user_vars_to_remove', 'var_name', 'globals_to_keep',
+                              'steps_json', 'step', 'clean_vars', 'k', 'v', 'step_obj', 'all_vars', 'time',
+                              'expected_output', 'code_lines', 'print_lines', 'output_lines', 'step_output', 
+                              'prints_executed', 'print_line', 'line', 'io', 'redirect_stdout', 'clean_globals', 
+                              'output_buffer', 'trace_buffer', 'original_stdout', 'captured_output'}
+                user_vars = {}
+                
+                # Check both local and global variables
+                all_vars = {}
+                all_vars.update(frame.f_globals)  # Global variables
+                all_vars.update(frame.f_locals)   # Local variables
+                
+                for k, v in all_vars.items():
+                    if not k.startswith('_') and k not in system_vars:
+                        try:
+                            user_vars[k] = str(v)  # Convert to string to avoid serialization issues
+                            print(f"[TRACE] Variable: {k} = {v}")
+                        except:
+                            pass  # Skip variables that can't be converted
+                
+                self.steps.append({
+                    'line': frame.f_lineno,
+                    'variables': dict(user_vars),
+                    'output': '',
+                    'filename': frame.f_code.co_filename
+                })
+                self.step_count += 1
+        
+        return self.trace_calls
         
     def reset(self):
+        import time  # Import time within the function
         self.steps = []
-        self.current_output = ""
         self.step_count = 0
+        self.start_time = time.time()  # Reset timer when starting new execution
 
-# Create global tracker
-tracker = ExecutionTracker()
-
-# Custom print function to capture output
-original_print = print
-def debug_print(*args, **kwargs):
-    import io
-    from contextlib import redirect_stdout
-    f = io.StringIO()
-    with redirect_stdout(f):
-        original_print(*args, **kwargs)
-    output = f.getvalue()
-    tracker.current_output += output
-    original_print(*args, **kwargs)  # Still print to console
-
-# Replace built-in print
-import builtins
-builtins.print = debug_print
+# Create tracer
+tracer = SimpleTracer()
               `);
               
               console.log('Pyodide loaded successfully with debugging!');
@@ -1214,7 +1234,7 @@ builtins.print = debug_print
         
         setTimeout(() => {
           executePython(code, output);
-        }, 300);
+        }, 100);
       } catch (error) {
         output.textContent = `Error: ${error.message}`;
         showNotification('Error running code');
@@ -1230,35 +1250,40 @@ builtins.print = debug_print
         
         output.textContent = 'Running Python code...\\n\\n';
         
-        // Reset tracker and execute code with tracing
+        // Reset debugger but don't enable debugging for regular execution
         console.log('[PYODIDE] Starting code execution...');
         window.pyodide.runPython(`
-print("[PYTHON] Resetting tracker for execution...")
-tracker.reset()
-print(f"[PYTHON] Tracker reset. Steps: {len(tracker.steps)}")
-sys.settrace(tracker.trace_function)
-print("[PYTHON] sys.settrace() activated for execution")
+tracer.reset()
         `);
-        console.log('[PYODIDE] Trace function activated for execution');
+        console.log('[PYODIDE] Tracker reset for execution');
         
         let pythonOutput = '';
         
         try {
-          // Execute the user's code
+          // Execute the user's code and capture output
           console.log('[PYODIDE] Executing user code...');
-          await window.pyodide.runPythonAsync(`
-try:
-    print("[PYTHON] Starting user code execution...")
-    exec('''${code.replace(/'''/g, "\\'\\'\\'")}''')
-    print(f"[PYTHON] User code completed. Total steps: {len(tracker.steps)}")
-finally:
-    sys.settrace(None)  # Stop tracing
-    print("[PYTHON] sys.settrace() deactivated")
-          `);
-          console.log('[PYODIDE] User code execution completed');
           
-          // Get captured output
-          pythonOutput = window.pyodide.runPython('tracker.current_output');
+          // Capture stdout to get print output
+          pythonOutput = await window.pyodide.runPythonAsync(`
+import sys
+import io
+from contextlib import redirect_stdout
+
+# Create output capture buffer
+output_buffer = io.StringIO()
+
+try:
+    with redirect_stdout(output_buffer):
+        exec('''${code.replace(/'''/g, "\\'\\'\\'")}''')
+    # Get the captured output
+    captured_output = output_buffer.getvalue()
+except Exception as e:
+    captured_output = f"Error: {e}"
+
+captured_output
+          `);
+          
+          console.log('[PYODIDE] User code execution completed');
           
         } catch (execError) {
           throw execError;
@@ -1412,56 +1437,143 @@ finally:
           waitingForInput: false
         };
         
-        // Reset tracker and execute code with tracing
+        // Reset debugger and enable debugging for visualization
         console.log('[PYODIDE] Starting visualization execution...');
         window.pyodide.runPython(`
-print("[PYTHON] Resetting tracker for visualization...")
-tracker.reset()
-print(f"[PYTHON] Tracker reset. Steps: {len(tracker.steps)}")
-sys.settrace(tracker.trace_function)
-print("[PYTHON] sys.settrace() activated for visualization")
+tracer.reset()
         `);
         console.log('[PYODIDE] Trace function activated for visualization');
         
         try {
-          // Execute the user's code with debugging
+          // Clear the Python output panel first to prevent accumulation
+          const outputPanel = document.getElementById('output');
+          if (outputPanel) {
+            outputPanel.textContent = '';
+          }
+          
+          // First, run the code once to get expected output without tracing
+          console.log('[PYODIDE] Getting expected output...');
+          const expectedOutput = await window.pyodide.runPythonAsync(`
+import sys
+import io
+from contextlib import redirect_stdout
+
+# Save original stdout
+original_stdout = sys.stdout
+
+# Run code in clean environment to get output
+clean_globals = {'__builtins__': __builtins__}
+output_buffer = io.StringIO()
+
+try:
+    # Redirect stdout to prevent any output during this execution
+    sys.stdout = output_buffer
+    exec('''${code.replace(/'''/g, "\\'\\'\\'")}''', clean_globals)
+    captured_output = output_buffer.getvalue()
+except Exception as e:
+    captured_output = f"Error: {e}"
+finally:
+    # Restore stdout
+    sys.stdout = original_stdout
+
+captured_output
+          `);
+          
+          console.log('[PYODIDE] Expected output:', expectedOutput);
+          
+          // Execute the user's code with tracing for visualization
           console.log('[PYODIDE] Executing user code for visualization...');
           await window.pyodide.runPythonAsync(`
+# Use simple trace to execute code step by step
+code_to_run = '''${code.replace(/'''/g, "\\'\\'\\'")}'''
+
+# Reset tracer before each run
+tracer.reset()
+
+# Clear previous user variables from global scope
+globals_to_keep = {'sys', 'SimpleTracer', 'tracer', 'json', 'code_to_run', '__builtins__', '__name__', '__doc__', '__package__'}
+user_vars_to_remove = [k for k in globals().keys() if k not in globals_to_keep and not k.startswith('_')]
+for var_name in user_vars_to_remove:
+    del globals()[var_name]
+
+# Redirect stdout to prevent printing during traced execution
+import io
+
+trace_buffer = io.StringIO()
+original_stdout = sys.stdout
+
+print(f"[TRACE] Starting execution")
+
+sys.settrace(tracer.trace_calls)
 try:
-    print("[PYTHON] Starting user code execution for visualization...")
-    exec('''${code.replace(/'''/g, "\\'\\'\\'")}''')
-    print(f"[PYTHON] User code completed. Total steps captured: {len(tracker.steps)}")
+    # Redirect stdout during execution to prevent output
+    sys.stdout = trace_buffer
+    exec(code_to_run)
+    # Restore stdout before printing trace info
+    sys.stdout = original_stdout
+    print(f"[TRACE] Execution completed, captured {len(tracer.steps)} steps")
 finally:
-    sys.settrace(None)  # Stop tracing
-    print("[PYTHON] sys.settrace() deactivated for visualization")
+    sys.stdout = original_stdout
+    sys.settrace(None)
           `);
           console.log('[PYODIDE] User code execution for visualization completed');
           
-          // Get execution steps from tracker
+          // Get execution steps from tracker - SIMPLE VERSION
           console.log('[PYODIDE] Extracting execution steps...');
           const stepsData = window.pyodide.runPython(`
 import json
-print(f"[PYTHON] Processing {len(tracker.steps)} captured steps...")
+
+# Get steps from BDB debugger
 steps_json = []
-for i, step in enumerate(tracker.steps):
-    # Convert variables to JSON-serializable format
+
+print(f"[TRACE] Total steps captured: {len(tracer.steps)}")
+
+# Get expected output from JavaScript and analyze print statements
+expected_output = """${expectedOutput}"""
+code_lines = code_to_run.strip().split('\\n')
+
+# Find lines that contain print statements
+print_lines = []
+for i, line in enumerate(code_lines, 1):
+    if 'print(' in line.strip():
+        print_lines.append(i)
+
+print(f"[TRACE] Print statements found on lines: {print_lines}")
+
+# Split the expected output by lines
+output_lines = expected_output.strip().split('\\n') if expected_output.strip() else []
+print(f"[TRACE] Output lines: {output_lines}")
+
+for i, step in enumerate(tracer.steps):
+    # Convert variables to strings for JSON
     clean_vars = {}
     for k, v in step['variables'].items():
-        if k != 'tracker' and not k.startswith('__'):
-            try:
-                clean_vars[k] = str(v)
-            except:
-                clean_vars[k] = '<unserializable>'
+        try:
+            clean_vars[k] = str(v)
+        except:
+            clean_vars[k] = '<error>'
+    
+    # Calculate progressive output based on executed print statements
+    step_output = ''
+    if print_lines and output_lines:
+        # Count how many print statements have been executed up to current line
+        prints_executed = sum(1 for print_line in print_lines if print_line <= step['line'])
+        if prints_executed > 0:
+            # Show output lines up to the number of prints executed
+            step_output = '\\n'.join(output_lines[:prints_executed])
     
     step_obj = {
         'line': step['line'],
         'variables': clean_vars,
-        'output': step['output'],
-        'description': f"Line {step['line']}: Executed"
+        'output': step_output,
+        'description': f"Line {step['line']}: Step {i+1}"
     }
     steps_json.append(step_obj)
-    print(f"[PYTHON] Step {i+1}: Line {step['line']}, {len(clean_vars)} vars")
-print(f"[PYTHON] Steps processing complete: {len(steps_json)} steps")
+
+print(f"[TRACE] Generated {len(steps_json)} visualization steps")
+for i, step in enumerate(steps_json):
+    print(f"[TRACE] Step {i+1}: Line {step['line']}, vars: {step['variables']}")
+
 json.dumps(steps_json)
           `);
           
@@ -1662,17 +1774,14 @@ json.dumps(steps_json)
       // Highlight current line in editor
       highlightCurrentLine(currentStepData.line);
       
-      // Update output
+      // Update output - use only current step's output (which already contains cumulative output)
       const output = document.getElementById('output');
-      const allOutput = visualizationState.steps
-        .slice(0, visualizationState.currentStep + 1)
-        .map(step => step.output)
-        .join('');
+      const currentOutput = currentStepData.output || '';
       
       if (currentStepData.waitingForInput) {
-        output.textContent = allOutput + '\n[VISUALIZATION: Program waiting for input - click Next to continue]';
+        output.textContent = currentOutput + '\n[VISUALIZATION: Program waiting for input - click Next to continue]';
       } else {
-        output.textContent = allOutput || 'No output yet...';
+        output.textContent = currentOutput || 'No output yet...';
       }
     }
     
@@ -1687,7 +1796,12 @@ json.dumps(steps_json)
       }
       
       container.innerHTML = '';
+      
       for (const [name, value] of Object.entries(variables)) {
+        // SIMPLE: Only skip obvious system variables
+        if (name.startsWith('__') || name === 'tracker') {
+          continue;
+        }
         const row = document.createElement('div');
         row.className = 'variable-row';
         
