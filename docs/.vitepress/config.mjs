@@ -52,7 +52,8 @@ export default defineConfig({
           { text: 'Lab 5', link: '/labs/lab-05' },
           { text: 'Lab 6', link: '/labs/lab-06' },
           { text: 'Lab 7', link: '/labs/lab-07' },
-          { text: 'Lab 8', link: '/labs/lab-08' }
+          { text: 'Lab 8', link: '/labs/lab-08' },
+          { text: 'Lab 9', link: '/labs/lab-09' }
         ],
         activeMatch: '^/labs/' 
       },
@@ -127,6 +128,10 @@ export default defineConfig({
               {
                 text: 'Lab 8',
                 link: '/labs/lab-08'
+              },
+              {
+                text: 'Lab 9',
+                link: '/labs/lab-09'
               }
       ],
       

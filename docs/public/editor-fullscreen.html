@@ -1056,27 +1056,86 @@
       });
     }
     
-    function loadSkulpt() {
-      return new Promise((resolve, reject) => {
-        if (window.Sk) {
+    function loadPyodide() {
+      return new Promise(async (resolve, reject) => {
+        if (window.pyodide) {
           resolve();
           return;
         }
         
-        const skulptScript = document.createElement('script');
-        skulptScript.src = 'https://skulpt.org/js/skulpt.min.js';
-        skulptScript.onload = () => {
-          const skulptStdlib = document.createElement('script');
-          skulptStdlib.src = 'https://skulpt.org/js/skulpt-stdlib.js';
-          skulptStdlib.onload = () => {
-            console.log('Skulpt loaded successfully!');
-            resolve();
+        try {
+          // Load Pyodide
+          const pyodideScript = document.createElement('script');
+          pyodideScript.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js';
+          pyodideScript.onload = async () => {
+            try {
+              window.pyodide = await loadPyodide({
+                indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
+              });
+              
+              // Setup debugging infrastructure
+              window.pyodide.runPython(`
+import sys
+import traceback
+
+class ExecutionTracker:
+    def __init__(self):
+        self.steps = []
+        self.current_output = ""
+        self.step_count = 0
+        self.max_steps = 100
+        
+    def trace_function(self, frame, event, arg):
+        if event == 'line' and self.step_count < self.max_steps:
+            step_data = {
+                'line': frame.f_lineno,
+                'variables': dict(frame.f_locals.items()),
+                'globals': {k: v for k, v in frame.f_globals.items() 
+                           if not k.startswith('__') and k != 'tracker'},
+                'output': self.current_output,
+                'filename': frame.f_code.co_filename
+            }
+            self.steps.append(step_data)
+            self.step_count += 1
+            print(f"[STEP {self.step_count}] Line {frame.f_lineno}: {len(step_data['variables'])} vars, output: '{self.current_output.strip()}'")
+        return self.trace_function
+        
+    def reset(self):
+        self.steps = []
+        self.current_output = ""
+        self.step_count = 0
+
+# Create global tracker
+tracker = ExecutionTracker()
+
+# Custom print function to capture output
+original_print = print
+def debug_print(*args, **kwargs):
+    import io
+    from contextlib import redirect_stdout
+    f = io.StringIO()
+    with redirect_stdout(f):
+        original_print(*args, **kwargs)
+    output = f.getvalue()
+    tracker.current_output += output
+    original_print(*args, **kwargs)  # Still print to console
+
+# Replace built-in print
+import builtins
+builtins.print = debug_print
+              `);
+              
+              console.log('Pyodide loaded successfully with debugging!');
+              resolve();
+            } catch (error) {
+              reject(error);
+            }
           };
-          skulptStdlib.onerror = () => reject(new Error('Failed to load Skulpt stdlib'));
-          document.head.appendChild(skulptStdlib);
-        };
-        skulptScript.onerror = () => reject(new Error('Failed to load Skulpt'));
-        document.head.appendChild(skulptScript);
+          pyodideScript.onerror = () => reject(new Error('Failed to load Pyodide'));
+          document.head.appendChild(pyodideScript);
+        } catch (error) {
+          reject(error);
+        }
       });
     }
 
@@ -1085,7 +1144,7 @@
     async function initializeEditor() {
       try {
         await loadMonaco();
-        loadSkulpt().catch(error => console.warn('Skulpt failed to load:', error));
+        loadPyodide().catch(error => console.warn('Pyodide failed to load:', error));
         
         if (!window.require) {
           console.error('Monaco loader not available');
@@ -1164,35 +1223,46 @@
 
     async function executePython(code, output) {
       try {
-        if (!window.Sk) {
+        if (!window.pyodide) {
           output.textContent = 'Loading Python interpreter...\\n\\n';
-          await loadSkulpt();
+          await loadPyodide();
         }
-        
-        let pythonOutput = '';
-        
-        Sk.pre = "output";
-        Sk.configure({
-          output: function(text) {
-            pythonOutput += text;
-          },
-          read: function(x) {
-            if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined) {
-              throw "File not found: '" + x + "'";
-            }
-            return Sk.builtinFiles["files"][x];
-          },
-          __future__: Sk.python3,
-          python3: true
-        });
         
         output.textContent = 'Running Python code...\\n\\n';
         
-        const promise = Sk.misceval.asyncToPromise(() => {
-          return Sk.importMainWithBody("<stdin>", false, code, true);
-        });
+        // Reset tracker and execute code with tracing
+        console.log('[PYODIDE] Starting code execution...');
+        window.pyodide.runPython(`
+print("[PYTHON] Resetting tracker for execution...")
+tracker.reset()
+print(f"[PYTHON] Tracker reset. Steps: {len(tracker.steps)}")
+sys.settrace(tracker.trace_function)
+print("[PYTHON] sys.settrace() activated for execution")
+        `);
+        console.log('[PYODIDE] Trace function activated for execution');
         
-        await promise;
+        let pythonOutput = '';
+        
+        try {
+          // Execute the user's code
+          console.log('[PYODIDE] Executing user code...');
+          await window.pyodide.runPythonAsync(`
+try:
+    print("[PYTHON] Starting user code execution...")
+    exec('''${code.replace(/'''/g, "\\'\\'\\'")}''')
+    print(f"[PYTHON] User code completed. Total steps: {len(tracker.steps)}")
+finally:
+    sys.settrace(None)  # Stop tracing
+    print("[PYTHON] sys.settrace() deactivated")
+          `);
+          console.log('[PYODIDE] User code execution completed');
+          
+          // Get captured output
+          pythonOutput = window.pyodide.runPython('tracker.current_output');
+          
+        } catch (execError) {
+          throw execError;
+        }
         
         if (pythonOutput.trim()) {
           output.textContent = pythonOutput;
@@ -1212,7 +1282,7 @@
           }
         }
         
-        output.textContent = `Python Error:\n${errorMessage}\n\nCheck your Python syntax and try again.\nUsing Skulpt Python interpreter.`;
+        output.textContent = `Python Error: ${error.message}\n\nCheck your Python syntax and try again.\nUsing Pyodide Python interpreter.`;
         showNotification('Python execution error');
       }
     }
@@ -1329,8 +1399,8 @@
 
     async function executeCodeVisualization(code) {
       try {
-        if (!window.Sk) {
-          await loadSkulpt();
+        if (!window.pyodide) {
+          await loadPyodide();
         }
         
         // Reset visualization state
@@ -1342,26 +1412,91 @@
           waitingForInput: false
         };
         
-        // Create initial step
-        let executionSteps = [{
-          line: 0,
-          variables: {},
-          callStack: ['<module>'],
-          output: '',
-          description: 'Program started',
-          waitingForInput: false
-        }];
+        // Reset tracker and execute code with tracing
+        console.log('[PYODIDE] Starting visualization execution...');
+        window.pyodide.runPython(`
+print("[PYTHON] Resetting tracker for visualization...")
+tracker.reset()
+print(f"[PYTHON] Tracker reset. Steps: {len(tracker.steps)}")
+sys.settrace(tracker.trace_function)
+print("[PYTHON] sys.settrace() activated for visualization")
+        `);
+        console.log('[PYODIDE] Trace function activated for visualization');
         
-        // Simulate execution with input handling
-        simulateExecution(code, executionSteps);
-        
-        visualizationState.steps = executionSteps;
-        visualizationState.currentStep = 0;
-        
-        updateVisualizationDisplay();
-        updateStepControls();
-        
-        showNotification(`Code visualization ready! ${executionSteps.length} steps created.`);
+        try {
+          // Execute the user's code with debugging
+          console.log('[PYODIDE] Executing user code for visualization...');
+          await window.pyodide.runPythonAsync(`
+try:
+    print("[PYTHON] Starting user code execution for visualization...")
+    exec('''${code.replace(/'''/g, "\\'\\'\\'")}''')
+    print(f"[PYTHON] User code completed. Total steps captured: {len(tracker.steps)}")
+finally:
+    sys.settrace(None)  # Stop tracing
+    print("[PYTHON] sys.settrace() deactivated for visualization")
+          `);
+          console.log('[PYODIDE] User code execution for visualization completed');
+          
+          // Get execution steps from tracker
+          console.log('[PYODIDE] Extracting execution steps...');
+          const stepsData = window.pyodide.runPython(`
+import json
+print(f"[PYTHON] Processing {len(tracker.steps)} captured steps...")
+steps_json = []
+for i, step in enumerate(tracker.steps):
+    # Convert variables to JSON-serializable format
+    clean_vars = {}
+    for k, v in step['variables'].items():
+        if k != 'tracker' and not k.startswith('__'):
+            try:
+                clean_vars[k] = str(v)
+            except:
+                clean_vars[k] = '<unserializable>'
+    
+    step_obj = {
+        'line': step['line'],
+        'variables': clean_vars,
+        'output': step['output'],
+        'description': f"Line {step['line']}: Executed"
+    }
+    steps_json.append(step_obj)
+    print(f"[PYTHON] Step {i+1}: Line {step['line']}, {len(clean_vars)} vars")
+print(f"[PYTHON] Steps processing complete: {len(steps_json)} steps")
+json.dumps(steps_json)
+          `);
+          
+          const executionSteps = JSON.parse(stepsData);
+          console.log(`[JS] Parsed ${executionSteps.length} execution steps:`, executionSteps);
+          
+          // Add initial step if no steps captured
+          if (executionSteps.length === 0) {
+            executionSteps.push({
+              line: 1,
+              variables: {},
+              output: '',
+              description: 'No execution steps captured'
+            });
+          }
+          
+          visualizationState.steps = executionSteps.map((step, index) => ({
+            ...step,
+            callStack: ['<module>'],
+            waitingForInput: false
+          }));
+          
+          console.log(`[JS] Visualization state created with ${visualizationState.steps.length} steps`);
+          visualizationState.currentStep = 0;
+          
+          console.log('[JS] Updating visualization display...');
+          updateVisualizationDisplay();
+          updateStepControls();
+          
+          console.log(`[JS] Visualization ready! Steps: ${executionSteps.length}`);
+          showNotification(`Code visualization ready! ${executionSteps.length} steps created.`);
+          
+        } catch (execError) {
+          throw execError;
+        }
         
       } catch (error) {
         console.error('Visualization execution error:', error);
@@ -1632,7 +1767,11 @@
     
     function nextStep() {
       if (visualizationState.currentStep < visualizationState.steps.length - 1) {
+        const oldStep = visualizationState.currentStep;
         visualizationState.currentStep++;
+        const newStep = visualizationState.currentStep;
+        console.log(`[STEP] Moving from step ${oldStep + 1} to ${newStep + 1}`);
+        console.log(`[STEP] Current step data:`, visualizationState.steps[newStep]);
         updateVisualizationDisplay();
         updateStepControls();
       }
@@ -1640,7 +1779,11 @@
     
     function prevStep() {
       if (visualizationState.currentStep > 0) {
+        const oldStep = visualizationState.currentStep;
         visualizationState.currentStep--;
+        const newStep = visualizationState.currentStep;
+        console.log(`[STEP] Moving back from step ${oldStep + 1} to ${newStep + 1}`);
+        console.log(`[STEP] Current step data:`, visualizationState.steps[newStep]);
         updateVisualizationDisplay();
         updateStepControls();
       }

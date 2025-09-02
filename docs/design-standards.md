@@ -350,7 +350,101 @@ For interactive editors (Python editor, fullscreen editor):
 - Ensure Monaco editor theme switching works with button themes
 - Test buttons in both light and dark editor themes
 
-## 11. Special Formatting
+## 11. Interactive Teaching Pattern
+
+### Discovery-Based Learning Approach
+
+All code examples in labs should follow the discovery-based learning pattern where students experience behavior before understanding theory.
+
+### Standard Teaching Pattern Structure
+
+**Required Sequence:**
+1. **Ask students to run code first** - Direct instruction to test the code
+2. **Show the code block** - Present the actual code example
+3. **Ask discovery questions** - Engage students with observation questions
+4. **Provide conceptual explanation** - Theory and "why" comes after hands-on experience
+
+### Pattern Implementation
+
+**Step 1: Run Instruction**
+```markdown
+Copy this code into your `exercise.py` file and run it:
+```
+or
+```markdown
+Test this code in your `exercise.py` file:
+```
+
+**Step 2: Code Block**
+```markdown
+```python
+# Code example demonstrating the concept
+```
+```
+
+**Step 3: Discovery Questions**
+```markdown
+What output do you see? Try changing `variable_name` to `different_value` and run it again. What happens now?
+```
+
+**Step 4: Conceptual Explanation**
+```markdown
+The concept explanation follows, explaining why the behavior occurred and the underlying principles.
+```
+
+### When to Use This Pattern
+
+**Always use for:**
+- Major concept introductions (`if`, `elif`, `else` statements)
+- Practical examples demonstrating behavior differences
+- Code that produces observable, testable results
+- Comparison between different approaches (multiple `if` vs `if-elif-else`)
+
+**Example Usage:**
+```markdown
+### Understanding If Statement Placement
+
+The `if` statement must **always** be positioned first in any selection structure.
+
+Copy this code into your `exercise.py` file and run it:
+
+```python
+student_grade = 85
+
+if student_grade >= 90:
+    print("Excellent performance")
+```
+
+What output do you see? Try changing `student_grade` to `95` and run it again. What happens now?
+
+The `if` statement serves as the **entry point** for conditional logic...
+```
+
+### Benefits of This Approach
+
+- **Experience First**: Students see behavior before learning theory
+- **Active Learning**: Encourages experimentation and discovery
+- **Engagement**: Questions keep students actively involved
+- **Understanding**: Concrete examples before abstract concepts
+- **Consistency**: Matches successful teaching style from labs 5-8
+
+### Question Types for Discovery
+
+**Observation Questions:**
+- "What output do you see?"
+- "Which message appears?"
+- "How many recommendations appear?"
+
+**Experimentation Questions:**
+- "Try changing X to Y and run it again"
+- "What happens when you use different values?"
+- "How many categories does each person get assigned?"
+
+**Analysis Questions:**
+- "Which conditions are being checked each time?"
+- "What do you notice about the results?"
+
+## 12. Special Formatting
 
 ### Currency
 - British style: `RM1.00`, `RM250.00` (no space)
