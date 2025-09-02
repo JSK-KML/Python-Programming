@@ -645,7 +645,7 @@ tax_status = input()
 
 print(employee_name)
 print(tax_rate)
-print(net_salary:.2f)
+print(f"{net_salary:.2f}")
 ```
 
 ## Exercise 3: Movie Ticket Pricing <Badge type="warning" text="Task" />
