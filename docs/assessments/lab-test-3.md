@@ -14,7 +14,7 @@
 ### Submission Process
 1. Complete your program in VS Code.
 2. Save the Python file as `lab-test-3.py`
-3. Upload the file to the Google Form at [here]()
+3. Upload the file to the Google Form (link will be provided)
 4. Fill in all required information in the form
 
 ### What to Submit
