@@ -17,7 +17,8 @@ export default defineConfig({
         text: 'Assessments',
         items: [
           { text: 'Lab Test 1', link: '/assessments/lab-test-1' },
-          { text: 'Lab Test 2', link: '/assessments/lab-test-2' }
+          { text: 'Lab Test 2', link: '/assessments/lab-test-2' },
+          { text: 'Lab Test 3', link: '/assessments/lab-test-3' }
         ],
         activeMatch: '^/assessments/' 
       },
@@ -37,7 +38,8 @@ export default defineConfig({
           { text: 'Tutorial 3', link: '/tutorials/chapter-3-tutorial-3' },
           { text: 'Tutorial 4', link: '/tutorials/chapter-3-tutorial-4' },
           { text: 'Tutorial 5', link: '/tutorials/chapter-3-tutorial-5' },
-          { text: 'Tutorial 6', link: '/tutorials/chapter-4-tutorial-1' }
+          { text: 'Tutorial 6', link: '/tutorials/chapter-4-tutorial-1' },
+          { text: 'Tutorial 7', link: '/tutorials/chapter-4-tutorial-2' }
         ],
         activeMatch: '^/tutorials/' 
       },
@@ -53,7 +55,8 @@ export default defineConfig({
           { text: 'Lab 6', link: '/labs/lab-06' },
           { text: 'Lab 7', link: '/labs/lab-07' },
           { text: 'Lab 8', link: '/labs/lab-08' },
-          { text: 'Lab 9', link: '/labs/lab-09' }
+          { text: 'Lab 9', link: '/labs/lab-09' },
+          { text: 'Lab 10', link: '/labs/lab-10' }
         ],
         activeMatch: '^/labs/' 
       },
@@ -90,6 +93,10 @@ export default defineConfig({
         {
           text: 'Lab Test 2',
           link: '/assessments/lab-test-2'
+        },
+        {
+          text: 'Lab Test 3',
+          link: '/assessments/lab-test-3'
         }
       ],
       
@@ -133,6 +140,10 @@ export default defineConfig({
               {
                 text: 'Lab 9',
                 link: '/labs/lab-09'
+              },
+              {
+                text: 'Lab 10',
+                link: '/labs/lab-10'
               }
       ],
       
@@ -203,6 +214,10 @@ export default defineConfig({
                 { 
                   text: 'Tutorial 6', 
                   link: '/tutorials/chapter-4-tutorial-1'
+                },
+                { 
+                  text: 'Tutorial 7', 
+                  link: '/tutorials/chapter-4-tutorial-2'
                 }
       ],
       
