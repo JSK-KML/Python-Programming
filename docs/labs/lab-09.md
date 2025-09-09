@@ -696,3 +696,149 @@ print(water_cost)
 print(total_bill)
 ```
 
+## Exercise 5: Restaurant Billing System <Badge type="warning" text="Task" />
+
+Calculate restaurant bills with menu items and discounts.
+
+**Menu Pricing:**
+- Main Course: Chicken RM10, Beef RM12, Fish RM11
+- Drink: Soft Drink RM2, Coffee RM3
+- Dessert: Ice Cream RM4, Cake RM5
+
+**Additional Charges:**
+- Service charge: 10% on total food cost
+- Senior citizen discount (age more than 60): 15% off final bill
+- Student discount (age less than 18): 10% off final bill
+
+Create `/labs/lab09/exercise5/exercise5.py`:
+
+```python
+main_course = input()
+drink = input()
+dessert = input()
+customer_age = int(input())
+
+# TODO: Your code here
+
+
+print(f"{final_bill:.2f}")
+```
+
+## Exercise 6: Employee Overtime Calculator <Badge type="warning" text="Task" />
+
+Calculate employee pay with overtime rates based on position.
+
+**Base Hourly Rates:**
+- Manager: RM30/hour
+- Supervisor: RM20/hour  
+- Staff: RM15/hour
+- Intern: RM8/hour
+
+**Overtime Rules:**
+- First 8 hours of overtime: 1.5x base rate
+- Above 8 hours overtime: 2.0x base rate
+- Weekend work: Additional RM5/hour bonus
+
+Create `/labs/lab09/exercise6/exercise6.py`:
+
+```python
+position = input()
+overtime_hours = int(input())
+is_weekend = input()
+
+# TODO: Your code here
+
+
+print(overtime_pay)
+
+```
+
+## Exercise 7: College Admission System <Badge type="warning" text="Task" />
+
+Determine college admission status based on multiple academic requirements.
+
+**Admission Requirements:**
+- Minimum GPA: 3.0 or higher
+- Total Score: 1200 or higher  
+- Extracurricular activities: At least one activity
+- Interview: Must be completed
+
+**Admission Status:**
+- Accepted: All 4 requirements met
+- Waitlisted: 3 requirements met
+- Rejected: Less than 3 requirements met
+
+Create `/labs/lab09/exercise7/exercise7.py`:
+
+```python
+student_gpa = float(input())
+total_score = int(input())
+number_extracurricular = input()
+completed_interview = input()
+
+# TODO: Your code here
+
+
+print(admission_status)
+```
+
+## Exercise 8: Loan Approval System <Badge type="warning" text="Task" />
+
+Evaluate loan application based on financial criteria and employment status.
+
+**Financial Requirements:**
+- Monthly income: RM3000 or higher
+- Employment status: Must be permanent or contract
+- Credit score: Good or excellent rating
+- Employment duration: 2 years or more at current job
+
+**Approval Status:**
+- Approved: All 4 criteria met
+- Conditionally Approved: 3 criteria met
+- Rejected: Less than 3 criteria met
+
+Create `/labs/lab09/exercise8/exercise8.py`:
+
+```python
+monthly_income = int(input())
+employment_status = input()
+credit_rating = input()
+employment_years = int(input())
+
+# TODO: Your code here
+
+print(approval_status)
+```
+
+## Exercise 9: Driver License Classification <Badge type="warning" text="Task" />
+
+Determine driving license class based on test results and requirements.
+
+**License Requirements:**
+- Age: 18 or older for regular license, 21+ for commercial
+- Vision test: Must pass
+- Written test: Score 80% or higher
+- Driving test: Score 85% or higher  
+- Medical clearance: Must pass
+
+**License Classes:**
+- Class A (Commercial): All 5 requirements met + age 21+
+- Class B (Regular): First 4 requirements met + age 18+
+- Restricted License: 2-3 requirements met
+- Application Denied: Less than 2 requirements met
+
+Create `/labs/lab09/exercise9/exercise9.py`:
+
+```python
+applicant_age = int(input())
+vision_test = input()
+written_score = int(input())
+driving_score = int(input())
+medical_clearance = input()
+
+# TODO: Your code here
+
+
+print(license_class)
+```
+
