@@ -69,3 +69,27 @@ PosLaju has a complex pricing structure for package delivery. Base rates depend 
 Lim is sending a 2.5kg fragile item worth RM300 to Kuching with express delivery, insurance, on Saturday.
 
 **Write the selection structure to calculate Lim's delivery cost.**
+
+### Exercise 10: Mobile Data Plan Billing <Badge type="tip" text="Question" />
+
+Phone plans: Basic RM30 (5GB), Premium RM50 (15GB). Extra data costs RM2/GB for Basic, RM1/GB for Premium. Students get 20% discount.
+
+Sarah has Premium plan, used 8GB data, is a student.
+
+**Write the selection structure to calculate Sarah's monthly bill.**
+
+### Exercise 11: Course Registration Fees <Badge type="tip" text="Question" />
+
+Students register maximum 20 credits. Full-time (12+ credits) pays RM5000, part-time pays RM300 per credit. International students pay double fees.
+
+Ahmad wants 15 credits and is a local student.
+
+**Write the selection structure to calculate Ahmad's fees.**
+
+### Exercise 12: Medical Check-up Fees <Badge type="tip" text="Question" />
+
+Clinic fees: Basic check-up RM30, Full check-up RM80. Senior citizens (65+) get 50% discount. Students get 30% discount.
+
+Ahmad, age 22, is a student wanting a full check-up.
+
+**Write the selection structure to calculate Ahmad's medical fees.**
