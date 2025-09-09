@@ -202,3 +202,90 @@ if weight > 10:
     total_cost = total_cost * 0.85
 ```
 :::
+
+### Exercise 10: Mobile Data Plan Billing <Badge type="tip" text="Question" />
+
+Phone plans: Basic RM30 (5GB), Premium RM50 (15GB). Extra data costs RM2/GB for Basic, RM1/GB for Premium. Students get 20% discount.
+
+Sarah has Premium plan, used 8GB data, is a student.
+
+**Write the selection structure to calculate Sarah's monthly bill.**
+
+::: tip Answer
+```python
+# Determine plan fee
+if plan_type == "Basic":
+    monthly_fee = 30
+    data_allowance = 5
+    overage_rate = 2
+else:  # Premium
+    monthly_fee = 50
+    data_allowance = 15
+    overage_rate = 1
+
+# Calculate overage charges
+if data_used > data_allowance:
+    overage_charges = (data_used - data_allowance) * overage_rate
+else:
+    overage_charges = 0
+
+# Calculate total
+total = monthly_fee + overage_charges
+
+# Apply student discount
+if is_student:
+    total = total * 0.8
+
+final_bill = total
+```
+:::
+
+### Exercise 11: Course Registration Fees <Badge type="tip" text="Question" />
+
+Students register maximum 20 credits. Full-time (12+ credits) pays RM5000, part-time pays RM300 per credit. International students pay double fees.
+
+Ahmad wants 15 credits and is a local student.
+
+**Write the selection structure to calculate Ahmad's fees.**
+
+::: tip Answer
+```python
+# Calculate base fee
+if credits >= 12:
+    fee = 5000  # Full-time
+else:
+    fee = credits * 300  # Part-time
+
+# Apply international surcharge
+if is_international:
+    fee = fee * 2
+
+total_fee = fee
+```
+:::
+
+### Exercise 12: Medical Check-up Fees <Badge type="tip" text="Question" />
+
+Clinic fees: Basic check-up RM30, Full check-up RM80. Senior citizens (65+) get 50% discount. Students get 30% discount.
+
+Ahmad, age 22, is a student wanting a full check-up.
+
+**Write the selection structure to calculate Ahmad's medical fees.**
+
+::: tip Answer
+```python
+# Determine base fee
+if checkup_type == "Basic":
+    fee = 30
+else:  # Full
+    fee = 80
+
+# Apply discounts
+if age >= 65:
+    fee = fee * 0.5  # Senior discount
+elif is_student:
+    fee = fee * 0.7  # Student discount
+
+total_fee = fee
+```
+:::
