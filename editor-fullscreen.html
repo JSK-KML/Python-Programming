@@ -607,6 +607,83 @@
       background: rgba(0, 0, 0, 0.2);
     }
 
+    /* Input Area Styles */
+    .input-area {
+      background: #21262d;
+      border-top: 1px solid #30363d;
+      padding: 12px 20px;
+      flex-shrink: 0;
+      display: none; /* Hidden by default */
+    }
+
+    body.light-mode .input-area {
+      background: #f6f8fa;
+      border-top-color: #d0d7de;
+    }
+
+    .input-prompt {
+      color: #58a6ff;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      margin-bottom: 8px;
+      white-space: pre-wrap;
+    }
+
+    body.light-mode .input-prompt {
+      color: #0969da;
+    }
+
+    .input-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .input-prefix {
+      color: #58a6ff;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    body.light-mode .input-prefix {
+      color: #0969da;
+    }
+
+    .python-input {
+      flex: 1;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 4px;
+      color: #e6edf3;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      padding: 8px 12px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .python-input:focus {
+      border-color: #58a6ff;
+    }
+
+    body.light-mode .python-input {
+      background: #ffffff;
+      border-color: #d0d7de;
+      color: #24292f;
+    }
+
+    body.light-mode .python-input:focus {
+      border-color: #0969da;
+    }
+
+    .input-submit {
+      padding: 6px 12px;
+      font-size: 11px;
+      height: auto;
+      min-width: auto;
+    }
+
     /* Visualization Section Styles */
     .visualization-section {
       background: #161b22;
@@ -996,6 +1073,14 @@
             </div>
           </div>
           <div class="output-content" id="output">Write some Python code and click "Run Code" to see results...</div>
+          <div class="input-area" id="input-area">
+            <div class="input-prompt" id="input-prompt"></div>
+            <div class="input-line">
+              <span class="input-prefix">>>> </span>
+              <input type="text" id="python-input" class="python-input" placeholder="Enter input here..." />
+              <button class="btn btn-primary input-submit" onclick="submitConsoleInput()">Submit</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1038,6 +1123,66 @@
     let editorFontSize = 16;
     let outputFontSize = 13;
     let isLightMode = false;
+    let isWaitingForInput = false;
+    
+    // Simple synchronous input handling
+    window.get_user_input_sync = function(prompt) {
+      // Pre-collect all inputs before execution
+      if (window.userInputValues.length > window.inputIndex) {
+        return window.userInputValues[window.inputIndex++];
+      }
+      
+      // Fallback to prompt if no pre-collected input
+      return window.prompt(prompt || "Input: ") || "";
+    };
+    
+    // Function to show console input UI
+    function showConsoleInputUI(prompt) {
+      isWaitingForInput = true;
+      const inputArea = document.getElementById('input-area');
+      const inputPrompt = document.getElementById('input-prompt');
+      const pythonInput = document.getElementById('python-input');
+      
+      if (inputArea && inputPrompt && pythonInput) {
+        inputPrompt.textContent = prompt || '';
+        inputArea.style.display = 'block';
+        pythonInput.value = '';
+        pythonInput.focus();
+        
+        // Scroll the input area into view
+        inputArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        // Add Enter key listener
+        pythonInput.onkeypress = function(e) {
+          if (e.key === 'Enter') {
+            submitConsoleInput();
+          }
+        };
+      }
+    }
+    
+    function submitConsoleInput() {
+      if (!isWaitingForInput) return;
+      
+      const pythonInput = document.getElementById('python-input');
+      const inputArea = document.getElementById('input-area');
+      
+      if (pythonInput && inputArea) {
+        const userInput = pythonInput.value;
+        
+        // Hide input area
+        inputArea.style.display = 'none';
+        isWaitingForInput = false;
+        
+        // Store the input and continue execution
+        window.userInputValues.push(userInput);
+        
+        // Continue code execution if we're in the middle of it
+        if (window.continueExecution) {
+          window.continueExecution();
+        }
+      }
+    }
     
     // Load Monaco Editor and Skulpt
     function loadMonaco() {
@@ -1073,10 +1218,39 @@
                 indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
               });
               
-              // Simple trace-based visualization  
+              // Set up simple input handling with execution control
+              window.currentInputPrompt = "";
+              window.currentInputResolve = null;
+              window.userInputValues = [];
+              window.inputIndex = 0;
+              
               window.pyodide.runPython(`
 import sys
+import builtins
 
+# Store original input function
+_original_input = builtins.input
+
+def _web_input(prompt=""):
+    from js import get_user_input_sync
+    
+    # Show the prompt in output
+    if prompt:
+        print(prompt, end="", flush=True)
+    
+    # Get input synchronously
+    result = get_user_input_sync(prompt or "")
+    
+    # Echo the input
+    print(result)
+    return result
+
+# Replace input function
+builtins.input = _web_input
+              `);
+              
+              // Simple trace-based visualization  
+              window.pyodide.runPython(`
 import time
 
 class SimpleTracer:
@@ -1109,7 +1283,8 @@ class SimpleTracer:
                               'steps_json', 'step', 'clean_vars', 'k', 'v', 'step_obj', 'all_vars', 'time',
                               'expected_output', 'code_lines', 'print_lines', 'output_lines', 'step_output', 
                               'prints_executed', 'print_line', 'line', 'io', 'redirect_stdout', 'clean_globals', 
-                              'output_buffer', 'trace_buffer', 'original_stdout', 'captured_output'}
+                              'output_buffer', 'trace_buffer', 'original_stdout', 'captured_output',
+                              'builtins', '_original_input', '_web_input'}
                 user_vars = {}
                 
                 # Check both local and global variables
@@ -1230,15 +1405,74 @@ tracer = SimpleTracer()
       
       try {
         const code = editor.getValue();
-        output.textContent = `Running Python code...\\n\\n`;
         
-        setTimeout(() => {
-          executePython(code, output);
-        }, 100);
+        // Check if code contains input() calls
+        if (code.includes('input(')) {
+          // Handle interactive code
+          runInteractiveCode(code, output);
+        } else {
+          // Handle regular code
+          output.textContent = `Running Python code...\\n\\n`;
+          setTimeout(() => {
+            executePython(code, output);
+          }, 100);
+        }
+        
+        // Hide input area if visible
+        const inputArea = document.getElementById('input-area');
+        if (inputArea) {
+          inputArea.style.display = 'none';
+        }
+        isWaitingForInput = false;
+        
       } catch (error) {
         output.textContent = `Error: ${error.message}`;
         showNotification('Error running code');
       }
+    }
+    
+    function runInteractiveCode(code, output) {
+      output.textContent = 'Interactive code detected. Collecting inputs...\\n\\n';
+      
+      // Reset input collection
+      window.userInputValues = [];
+      window.inputIndex = 0;
+      
+      // Count number of input() calls
+      const inputMatches = code.match(/input\s*\(/g);
+      const inputCount = inputMatches ? inputMatches.length : 0;
+      
+      if (inputCount === 0) {
+        // No inputs, run normally
+        executePython(code, output);
+        return;
+      }
+      
+      // Collect inputs one by one
+      collectNextInput(code, output, 0, inputCount);
+    }
+    
+    function collectNextInput(code, output, currentInputIndex, totalInputs) {
+      if (currentInputIndex >= totalInputs) {
+        // All inputs collected, execute code
+        output.textContent = 'All inputs collected. Running code...\\n\\n';
+        setTimeout(() => {
+          window.inputIndex = 0; // Reset for execution
+          executePython(code, output);
+        }, 100);
+        return;
+      }
+      
+      console.log(`Collecting input ${currentInputIndex + 1} of ${totalInputs}`);
+      
+      // Show input UI for current input
+      showConsoleInputUI(`Input ${currentInputIndex + 1} of ${totalInputs}: `);
+      
+      // Set up continuation
+      window.continueExecution = function() {
+        console.log(`Continuing to input ${currentInputIndex + 2}`);
+        collectNextInput(code, output, currentInputIndex + 1, totalInputs);
+      };
     }
 
     async function executePython(code, output) {
@@ -1263,8 +1497,11 @@ tracer.reset()
           // Execute the user's code and capture output
           console.log('[PYODIDE] Executing user code...');
           
+          // Reset input state before execution
+          window.inputIndex = 0;
+          
           // Capture stdout to get print output
-          pythonOutput = await window.pyodide.runPythonAsync(`
+          pythonOutput = window.pyodide.runPython(`
 import sys
 import io
 from contextlib import redirect_stdout
@@ -1453,7 +1690,7 @@ tracer.reset()
           
           // First, run the code once to get expected output without tracing
           console.log('[PYODIDE] Getting expected output...');
-          const expectedOutput = await window.pyodide.runPythonAsync(`
+          const expectedOutput = window.pyodide.runPython(`
 import sys
 import io
 from contextlib import redirect_stdout
@@ -1491,7 +1728,8 @@ code_to_run = '''${code.replace(/'''/g, "\\'\\'\\'")}'''
 tracer.reset()
 
 # Clear previous user variables from global scope
-globals_to_keep = {'sys', 'SimpleTracer', 'tracer', 'json', 'code_to_run', '__builtins__', '__name__', '__doc__', '__package__'}
+globals_to_keep = {'sys', 'SimpleTracer', 'tracer', 'json', 'code_to_run', '__builtins__', '__name__', '__doc__', '__package__', 
+                  'builtins', '_original_input', '_web_input'}
 user_vars_to_remove = [k for k in globals().keys() if k not in globals_to_keep and not k.startswith('_')]
 for var_name in user_vars_to_remove:
     del globals()[var_name]
