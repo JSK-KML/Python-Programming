@@ -8,7 +8,7 @@
 
 ### Questions
 
-You can see the questions [here](lab-test-3.pdf)
+You can see the questions [here](https://drive.google.com/file/d/1mfdoQr_OjduxqVbpf_BanZ66NvEAnyDU/view?usp=sharing)
 
 ### Rules
 - No phones or AI tools allowed
