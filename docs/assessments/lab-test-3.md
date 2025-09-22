@@ -8,7 +8,9 @@
 
 ### Questions
 
-You can see the questions [here](https://drive.google.com/file/d/1mfdoQr_OjduxqVbpf_BanZ66NvEAnyDU/view?usp=sharing)
+
+You can see the questions [here](/assessments/lab-test-3.pdf)
+
 
 ### Rules
 - No phones or AI tools allowed
