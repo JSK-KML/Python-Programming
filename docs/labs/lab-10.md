@@ -27,7 +27,7 @@ Calculate employee overtime pay with simplified rate structure.
 **Salary Structure:**
 - Base hourly rates: Manager RM35, Supervisor RM25, Staff RM18
 - Overtime rate: 1.5x base rate for all overtime hours
-- Weekend bonus: Additional RM5/hour for all overtime hours on weekends
+- Weekend bonus: Extra RM5 for each overtime hour worked on weekends, calculated separately from overtime pay and then added to total
 
 Create `/labs/lab10/exercise1/exercise1.py`:
 
@@ -71,12 +71,12 @@ Determine loan approval status based on income and credit score.
 
 **Loan Assessment Criteria:**
 - Income requirements: Minimum RM4000 for approval
-- Credit score tiers: Excellent (700+) = 3.5% rate, Good (600-699) = 5.5% rate, Poor (<600) = Rejected
+- Credit score tiers: Excellent (700+) = 3.5% rate, Good (600-699) = 5.5% rate, Poor (<600) = Rejected with 0% interest rate
 - Maximum loan amount: 5x monthly income
 
 **Approval Status:**
 - Approved: Income ≥ RM4000 AND credit score ≥ 600 AND loan amount ≤ 5x income
-- Rejected: Fails any criteria
+- Rejected: Fails any criteria (interest rate = 0%)
 
 Create `/labs/lab10/exercise3/exercise3.py`:
 
