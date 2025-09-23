@@ -18,7 +18,7 @@ You can see the questions [here](/assessments/lab-test-3.pdf)
 ### Submission Process
 1. Complete your program in VS Code.
 2. Save the Python file as `lab-test-3.py`
-3. Upload the file to the [Google Form](https://forms.gle/pEg5HqF6XfmYDee17) 
+3. Upload the file to the [Google Form](https://forms.gle/NNGupihLRLnWqof99) 
 4. Fill in all required information in the form
 
 ### What to Submit
