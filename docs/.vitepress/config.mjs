@@ -39,7 +39,9 @@ export default defineConfig({
           { text: 'Tutorial 4', link: '/tutorials/chapter-3-tutorial-4' },
           { text: 'Tutorial 5', link: '/tutorials/chapter-3-tutorial-5' },
           { text: 'Tutorial 6', link: '/tutorials/chapter-4-tutorial-1' },
-          { text: 'Tutorial 7', link: '/tutorials/chapter-4-tutorial-2' }
+          { text: 'Tutorial 7', link: '/tutorials/chapter-4-tutorial-2' },
+          { text: 'Tutorial 8', link: '/tutorials/chapter-4-tutorial-3' },
+          { text: 'Tutorial 9', link: '/tutorials/chapter-7-tutorial-1' }
         ],
         activeMatch: '^/tutorials/' 
       },
@@ -218,7 +220,15 @@ export default defineConfig({
                 { 
                   text: 'Tutorial 7', 
                   link: '/tutorials/chapter-4-tutorial-2'
-                }
+                },
+                { 
+                  text: 'Tutorial 8', 
+                  link: '/tutorials/chapter-4-tutorial-3'
+                },
+                { 
+                  text: 'Tutorial 9', 
+                  link: '/tutorials/chapter-7-tutorial-1'
+                },
       ],
       
       '/editor/': [
