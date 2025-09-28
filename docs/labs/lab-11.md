@@ -1,9 +1,9 @@
 ---
 outline: deep
-title: Lab 10 - More Python Selections
+title: Lab 11 - Counter-Controlled Loops
 ---
 
-# Lab 10: More Python Selections
+# Lab 11: Counter-Controlled Loops
 
 ## Pull and Update in VS Code
 
@@ -15,290 +15,362 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
     <img src="/public/labs/lab-02/lab-2-1.png" alt="drawing" width="400"/>
 </p>
 
+## Counter-Controlled Loops
 
-## Selection Structure 
+When you know how many times you need to repeat something, you use counter-controlled loops. **Python** gives you two main ways to handle this: `for` loops with `range()` and `while` loops where you manage the counter yourself.
 
-Understanding how **Python** executes selection statements helps you write more efficient code. The order and structure of your conditions directly impacts your program's performance.
+Launch **VS Code** and open the `exercise.py` file in `/labs/lab11/`.
 
-### Condition Ordering Strategy
+## For Loop with Range
 
-**Python** evaluates conditions from top to bottom, stopping at the first `True` condition. Understanding the right order prevents bugs and makes your code easier to understand.
+### Understanding the Basic Need
 
-Let's learn the proper selection ordering by building a student grading system step by step:
+You often need to repeat actions a specific number of times. Consider printing 10 receipts, calculating monthly payments over 24 months, or processing exactly 30 student records. The key characteristic here is that you know the exact count before starting.
 
-**Scenario**: We need to classify students based on their exam score (0-100).
-
-#### Step 1: Start Simple - Basic Categories
-
-```python
-# Version 1: Basic grading
-score = 85
-
-if score >= 80:
-    grade = "A"
-elif score >= 70:
-    grade = "B"
-elif score >= 60:
-    grade = "C"
-else:
-    grade = "F"
-
-print(f"Score {score}: Grade {grade}")
-```
-
-This works, but what if someone enters an invalid score?
-
-#### Step 2: Add Safety Checks First
+Without loops, you'd have to write repetitive code like this:
 
 ```python
-# Version 2: Add safety checks
-score = -10  # Try with invalid score
-
-# STEP 1: Check for problems FIRST
-if score < 0 or score > 100:
-    grade = "Invalid score"
-# Then do normal grading
-elif score >= 80:
-    grade = "A"
-elif score >= 70:
-    grade = "B"
-elif score >= 60:
-    grade = "C"
-else:
-    grade = "F"
-
-print(f"Score {score}: Grade {grade}")
+# The hard way - writing everything manually
+print("Receipt #1 printed")
+print("Receipt #2 printed")
+print("Receipt #3 printed")
+print("Receipt #4 printed")
+print("Receipt #5 printed")
 ```
 
-Now our code won't crash with bad data. But what about perfect scores?
+This approach has serious problems. What if you need 100 receipts instead of 5? You'd have to write 100 lines of nearly identical code. What if the number of receipts comes from user input? You'd need a different program for every possible count.
 
-#### Step 3: Add Most Specific Conditions
+Copy this simple example into your `exercise.py` file:
 
 ```python
-# Version 3: Handle special cases
-score = 100  # Try with perfect score
-
-# STEP 1: Safety checks first
-if score < 0 or score > 100:
-    grade = "Invalid score"
-# STEP 2: Most specific conditions (exact matches)
-elif score == 100:
-    grade = "Perfect A+"
-elif score == 0:
-    grade = "Zero - F"
-# STEP 3: Broader conditions (ranges)
-elif score >= 80:
-    grade = "A"
-elif score >= 70:
-    grade = "B"
-elif score >= 60:
-    grade = "C"
-# STEP 4: Default case
-else:
-    grade = "F"
-
-print(f"Score {score}: Grade {grade}")
+# The smart way - let Python count for you
+print("Printing 5 receipts:")
+for receipt_number in range(5):
+    print(f"Receipt #{receipt_number + 1} printed")
 ```
 
-Perfect. Now we handle special cases before general ones.
+Run this code. Notice how `receipt_number` automatically goes from 0 to 4, but we display it as 1 to 5 for users. **Python** handles all the counting logic - you don't need to manually increment anything or check when to stop. The `for` loop replaces those 5 separate print statements with just 2 lines of code.
 
-#### Step 4: Complete System - All Steps Applied
+### Range Function Basics
+
+The `range()` function controls how **Python** counts for you. It has three different forms depending on how much control you need.
+
+Start with the simplest form - just telling **Python** where to stop:
 
 ```python
-# Final Version: Complete ordering strategy
-score = 95  # Test with different scores
-
-print(f"Grading student with score: {score}")
-
-# STEP 1: Safety checks first (prevent crashes)
-if score < 0:
-    grade = "Invalid: negative score"
-elif score > 100:
-    grade = "Invalid: score too high"
-
-# STEP 2: Most specific conditions (exact matches)
-elif score == 100:
-    grade = "Perfect A+"
-elif score == 0:
-    grade = "No attempt - F"
-
-# STEP 3: Broader conditions (ranges, most specific to least)
-elif score >= 95:    # Narrow range
-    grade = "A+ Excellent"
-elif score >= 90:    # Broader range
-    grade = "A Outstanding" 
-elif score >= 80:    # Even broader
-    grade = "B Good"
-elif score >= 70:    # Broader still
-    grade = "C Average"
-elif score >= 60:    # Broadest passing
-    grade = "D Pass"
-
-# STEP 4: Default case (everything else)
-else:
-    grade = "F Fail"
-
-print(f"Final grade: {grade}")
+# Single parameter: range(stop)
+print("Basic range counting:")
+for count in range(4):
+    print(f"Count: {count}")
 ```
 
-**The Strategy in Action:**
-1. **Safety first** - Catches invalid data before it causes problems
-2. **Exact matches next** - Handles special cases (perfect scores, zero)
-3. **Ranges from narrow to broad** - Most specific ranges first (95-100, then 90-94, etc.)
-4. **Default case last** - Catches everything not handled above
+Add this to your file and run it. You get 0, 1, 2, 3. The range always stops before the number you specify.
 
-Test this code with different scores: `100`, `95`, `85`, `65`, `45`, `0`, `-5`, `150`
+This might seem odd at first - why does `range(4)` give you 4 numbers (0, 1, 2, 3) but stops at 3? **Python** uses this "stop-before" approach because it makes many programming tasks easier. When you want to process 4 items in a list, `range(4)` gives you the exact indices you need: 0, 1, 2, 3. When you want to repeat something 4 times, `range(4)` gives you exactly 4 iterations.
 
-
-
-
-## Deeeper Into Comparison Operators
-
-Comparison operators seem simple, but they have subtle behaviors that can cause bugs in your code. Understanding these cases helps you prevents common programming errors.
-
-### Floating Point Precision Issues
-
-One of the most common bugs in programming involves comparing floating-point numbers with `==`. This seems innocent but can cause serious problems.
-
-Copy this code into your `exercise.py` file:
+Now try specifying both start and stop points:
 
 ```python
-# Dangerous floating point comparison
-price1 = 0.1 + 0.2
-price2 = 0.3
-
-print(f"price1 = {price1}")
-print(f"price2 = {price2}")
-print(f"Are they equal? {price1 == price2}")
+# Two parameters: range(start, stop)
+print("Custom start and stop:")
+for number in range(10, 15):
+    print(f"Number: {number}")
 ```
 
-Run this code. You'll see that `0.1 + 0.2` does NOT equal `0.3`. 
+This gives you 10, 11, 12, 13, 14. Much more useful when you want to start counting from a specific number. Notice it still stops before 15, just like the single parameter version stopped before the specified number.
 
-**Why doesn't this work?**
+The format is `range(start, stop)` where:
+- **start**: the first number you want (included)
+- **stop**: where to stop counting (excluded - not included)
 
-Computers store decimal numbers using the [IEEE 754 standard](https://en.wikipedia.org/wiki/IEEE_754). - a system that uses binary (0s and 1s) to represent decimal numbers. But some decimal numbers cannot be represented exactly in binary, just like you can't write 1/3 exactly in decimal (it becomes 0.33333... forever).
-
-Think about it this way:
-- In decimal: 1/3 = 0.33333... (repeating forever)
-- In binary: 0.1 = 0.00011001100110011... (repeating forever)
-
-The IEEE 754 system has to "round off" these repeating decimals to fit in computer memory. 
-
-Here's what happens when you ask the computer to store 0.1:
-
-```bash
-┌─────────────────────────────────────────────────────────────────┐
-│                    FLOATING POINT CONVERSION                   │
-└─────────────────────────────────────────────────────────────────┘
-
-STEP 1: Input
-┌──────────┐
-│   0.1    │ ──────────► Convert to binary
-└──────────┘
-
-STEP 2: Binary Conversion  
-┌────────────────────────────────────────────────────────┐
-│ 0.00011001100110011001100110011001100110011...        │ ◄── Infinite
-└────────────────────────────────────────────────────────┘
-
-STEP 3: Memory Storage (64-bit limit)
-┌────────────────────────────────────────────────────────┐
-│ 0.0001100110011001100110011001100110011001100110011001│ ◄── Cut off
-└────────────────────────────────────────────────────────┘
-                                                    
-STEP 4: Convert Back to Decimal
-┌────────────────────────────────────────────────────────┐
-│ 0.1000000000000000055511151231257827021181583404541016│ ◄── Not 0.1
-└────────────────────────────────────────────────────────┘
-
-Result: Computer thinks it stored 0.1, but actually stored ≈ 0.1000...0016
-```
-
-The computer:
-1. Tries to convert 0.1 to binary
-2. Gets 0.00011001100110011... (repeating forever)
-3. Cuts off after available memory space
-4. When converted back to decimal, becomes that long approximation instead of exactly 0.1
-
-Think of it like trying to write 1/3 on paper. You write 0.33333, but you have to stop somewhere. The computer does the same thing with 0.1 in binary.
-
-When you add two of these slightly-wrong numbers together, the tiny errors combine, giving you a result that's slightly different from what you expect.
+The third form lets you control how much to count by:
 
 ```python
-# Let's see what's really stored
-price1 = 0.1 + 0.2
-price2 = 0.3
-
-print("What computer thinks 0.1 + 0.2 is:")
-print(price1)
-print("What computer thinks 0.3 is:")
-print(price2)
-print("The tiny difference:")
-print(price1 - price2)
+# Three parameters: range(start, stop, step)
+print("Counting by 3s:")
+for value in range(0, 12, 3):
+    print(f"Value: {value}")
 ```
 
-The difference is tiny (about 0.0000000000000004), but `==` requires EXACT equality.
+Run this and you'll see 0, 3, 6, 9. The step parameter tells **Python** how much to add each time. Instead of adding 1 (the default), it adds 3.
 
-**Better approach for floats:**
+The format is `range(start, stop, step)` where:
+- **start**: the first number you want (included)
+- **stop**: where to stop counting (excluded - not included)
+- **step**: how much to add each time (increment)
+
+Try this counting by 5s example:
 
 ```python
-# Better approach - use round() function
-price1 = 0.1 + 0.2  
-price2 = 0.3
-
-# Round both numbers to remove tiny errors
-rounded_price1 = round(price1, 10)  # Round to 10 decimal places
-rounded_price2 = round(price2, 10)
-
-if rounded_price1 == rounded_price2:
-    print("Prices are equal (after rounding)")
-else:
-    print("Prices are different")
-
-print("Original price1:")
-print(price1)
-print("Rounded price1:")
-print(rounded_price1)
+# Counting by 5s
+print("Counting by 5s:")
+for value in range(0, 25, 5):
+    print(f"Value: {value}")
 ```
 
+This gives you 0, 5, 10, 15, 20. Perfect for things like counting money in RM5 notes or scheduling events every 5 minutes.
 
-### String Equality Issues
+### Practical For Loop Applications
 
-String equality with `==` can fail when you expect it to work, similar to floating point problems. This can cause bugs in your programs.
+#### User-Determined Counting
 
-Copy this code into your `exercise.py` file:
+Sometimes the number of repetitions comes from user input, but you still know the count before the loop starts:
 
 ```python
-# String equality surprises
-username = "Admin"
-expected = "admin"
+# Count determined by user input
+team_size = int(input("How many team members? "))
+print(f"Registering {team_size} team members:")
 
-print("Username entered:", username)
-print("Expected username:", expected) 
-print("Are they equal?", username == expected)
+for member in range(1, team_size + 1):
+    name = input(f"Enter name for member {member}: ")
+    print(f"Member {member}: {name} registered")
+
+print("Team registration complete!")
 ```
 
-Run this code. You'll see that "Admin" does NOT equal "admin" even though they're the same word.
+The crucial point here is that once the user enters `team_size`, you know exactly how many times the loop will run. The `for` loop is perfect for this scenario.
 
-**Why doesn't this work?**
+Notice we use `range(1, team_size + 1)` instead of `range(team_size)`. This is because we want to number the team members starting from 1, not 0. If the user says 3 team members, we want "Member 1", "Member 2", "Member 3" - not "Member 0", "Member 1", "Member 2". The `+ 1` is needed because range stops before the end number.
 
-**Python's `==` operator is case-sensitive for strings. It treats uppercase and lowercase letters as completely different characters, just like 'A' and 'a' are different letters in the alphabet.**
+#### Calculation-Based Counting
+
+The count might come from a calculation or mathematical formula:
 
 ```python
-# Let's see the problem clearly
-password1 = "Secret123"
-password2 = "secret123" 
-password3 = "SECRET123"
+# Count from calculation
+months_in_year = 12
+years = 3
+total_months = months_in_year * years
 
-print("Testing password equality:")
-print("password1:", password1)
-print("password2:", password2)
-print("password3:", password3)
-print()
-print("password1 == password2:", password1 == password2)  # False
-print("password1 == password3:", password1 == password3)  # False
-print("password2 == password3:", password2 == password3)  # False
+print(f"Monthly report for {years} years:")
+for month in range(1, total_months + 1):
+    year_number = (month - 1) // 12 + 1
+    month_in_year = (month - 1) % 12 + 1
+    print(f"Month {month}: Year {year_number}, Month {month_in_year}")
 ```
 
-All three passwords look the same to humans, but `==` sees them as completely different.
+Here, `total_months` determines how many monthly reports we generate. Each iteration uses the `month` counter to calculate which year and month we're processing.
 
+The power of this approach is that you can change `years` to any value - 5, 10, 20 years - and the same code works. The calculations `(month - 1) // 12 + 1` and `(month - 1) % 12 + 1` automatically figure out which year and which month within that year we're currently processing.
+
+#### Using Counter Values in Calculations
+
+The counter variable isn't just for counting - you can use its value in your calculations:
+
+```python
+# Counter used in calculations
+print("Multiplication table for 7:")
+for multiplier in range(1, 11):
+    result = 7 * multiplier
+    print(f"7 x {multiplier} = {result}")
+```
+
+The `multiplier` variable serves dual purposes: it counts from 1 to 10, and it's also the number we multiply by 7.
+
+## While Loop with Counter
+
+### When For Loops Aren't Sufficient
+
+The `for` loop works great when you need straightforward counting, but sometimes you need more control. Consider these scenarios: the counting increment needs to change based on data you process, you need to coordinate multiple counters, or the counter update logic is more complex than simple addition.
+
+Think about a video game where players advance levels at different rates. A skilled player might skip levels, while a struggling player moves up slowly. Or consider a business process where you handle different numbers of items based on their priority. These situations require more flexible counter management than a `for` loop can provide.
+
+### The Three Essential Steps
+
+With a `while` loop, you become responsible for managing the counter. This requires three steps that you must handle manually:
+
+ - **Step 1: Initialize** - Set the counter to its starting value
+ - **Step 2: Condition** - Check if the loop should continue
+ - **Step 3: Update** - Change the counter value for the next iteration
+
+```python
+# Basic while loop counter pattern
+attempt = 1                    # Step 1: Initialize
+while attempt <= 3:            # Step 2: Condition
+    print(f"Attempt number: {attempt}")
+    attempt += 1               # Step 3: Update
+```
+
+Add this to your `exercise.py` and run it. The output looks similar to a `for` loop, but you control every aspect. The critical part is Step 3 - if you forget to update `attempt`, the loop runs forever.
+
+These three steps mirror what the `for` loop does automatically. The `for` loop initializes the counter variable, checks if it should continue on each iteration, and updates the counter at the end of each loop. With a `while` loop, you write these steps explicitly, which gives you the power to modify any of them based on your program's needs.
+
+Let's see why manual control matters:
+
+```python
+# Counter increment varies
+week = 1
+while week <= 4:
+    points = int(input(f"Week {week} points: "))
+
+    if points >= 100:
+        week += 2  # Skip ahead
+    else:
+        week += 1  # Normal progress
+```
+
+This example shows something impossible with a `for` loop - the counter increment changes based on the data processed within the loop.
+
+Here's what makes this powerful: if someone scores 100+ points in week 1, they jump directly to week 3, skipping week 2 entirely. This kind of conditional advancement is common in real applications. Educational software might let students skip lessons they've mastered, or business software might fast-track priority orders through fewer approval steps.
+
+### Advanced Counter Scenarios
+
+#### Coordinated Multiple Counters
+
+Sometimes you need several counters tracking different aspects of your process:
+
+```python
+# Multiple counters working together
+day = 1
+total_sales = 0
+successful_days = 0
+
+print("Daily sales tracking:")
+while day <= 7:  # One week
+    daily_sales = float(input(f"Day {day} sales: RM"))
+    total_sales += daily_sales
+
+    if daily_sales >= 1000:
+        successful_days += 1
+        print(f"Day {day}: Target achieved!")
+    else:
+        print(f"Day {day}: Below target")
+
+    day += 1
+
+print(f"Week summary: RM{total_sales} total, {successful_days} successful days")
+```
+
+Here, `day` counts the days, `total_sales` accumulates money, and `successful_days` counts achievements. Each serves a different purpose but they're all coordinated within the same loop.
+
+#### Variable Step Counting
+
+When your counter needs to follow non-standard patterns:
+
+```python
+# Custom step pattern
+level = 1
+step = 1
+
+while level <= 10:
+    print(f"Level: {level}")
+    level += step
+    step += 1  # Increase step each time
+```
+
+The `level` counter increases by different amounts each iteration. First by 1, then by 2, then by 3, and so on. This kind of variable progression is natural with `while` loops.
+
+### Counter Safety
+
+The main risk with `while` loop counters is creating infinite loops by forgetting the counter update:
+
+```python
+# Safe counter practice
+attempts = 0
+while attempts < 5:
+    print(f"Attempt {attempts + 1}")
+    attempts += 1  # Never forget this!
+```
+
+Always place the counter update where it will execute every loop iteration. A common mistake is putting it inside a condition where it might be skipped.
+
+### Comparing Both Approaches
+
+Let's solve the same task using both approaches:
+
+**Problem:** Calculate sum of numbers from 1 to 5
+
+```python
+# For loop approach
+total = 0
+for i in range(1, 6):
+    total += i
+print(f"For loop total: {total}")
+```
+
+The `for` loop is clean and direct. Now the `while` loop version:
+
+```python
+# While loop approach
+total = 0
+current = 1
+while current <= 5:
+    total += current
+    current += 1  # Manual update
+print(f"While loop total: {total}")
+```
+
+Both produce identical results, but the `while` loop requires you to manage `current` manually. For this straightforward counting, the `for` loop is simpler. However, the `while` loop becomes valuable when you need the flexibility to modify the counter logic based on the calculations or data processed within the loop.
+
+## Exercise 1: Score Accumulator <Badge type="warning" text="Task" />
+
+Calculate running totals of game scores over multiple rounds. Each round, ask the user to input the round score, then add it to the total score. Use a for loop to process each round and track the cumulative score.
+
+Process scores for a specified number of rounds. For each round, get the round score from user input, then add the round score to the running total. The challenge is calculating bonus points: if the round score is above 100, add a 20% bonus to that round's score before adding to the total.
+
+**Scoring Rules:** Round score ≤ 100: Add score as-is, Round score > 100: Add score + 20% bonus
+
+**Example:** Round 1: User enters 80 points → total = 80, Round 2: User enters 120 points → 120 + 24 bonus = 144 added → total = 224
+
+Create `/labs/lab11/exercise1/exercise1.py`:
+
+```python
+num_rounds = int(input())
+
+# TODO: Your code here
+# Use input() inside the loop to get each round's score
+
+print(f"{final_score:.1f}")
+print(rounds_processed)
+```
+
+## Exercise 2: Temperature Monitor <Badge type="warning" text="Task" />
+
+Monitor daily temperatures and count how many days exceed a warning threshold. Each day, ask the user to input the temperature reading, then check if it exceeds the threshold. Use a for loop to process daily temperature readings and track temperature patterns.
+
+Process temperature readings for a specified number of days. For each day, get the temperature from user input, then count how many days have temperatures above the danger threshold. Calculate the average temperature across all days.
+
+**Temperature Rules:** Temperature > threshold: Count as danger day, Track all temperatures for average calculation
+
+**Example:** Threshold 35°C, Day 1: User enters 32°C, Day 2: User enters 37°C (danger), Day 3: User enters 34°C, Day 4: User enters 39°C (danger): Danger days = 2, Average = 35.5°C
+
+Create `/labs/lab11/exercise2/exercise2.py`:
+
+```python
+num_days = int(input())
+danger_threshold = float(input())
+
+# TODO: Your code here
+# Use input() inside the loop to get each day's temperature
+
+print(danger_days)
+print(f"{average_temp:.1f}")
+```
+
+## Exercise 3: Point Accumulator <Badge type="warning" text="Task" />
+
+Build a point accumulation system that keeps adding points until reaching a target. The program repeatedly asks the user for points and adds them to a running total. Use a while loop that continues collecting points until the total meets or exceeds the target amount.
+
+Your program should start with zero points and keep asking for more points from the user. After each input, add those points to your running total and check if you've reached the target. When the total finally reaches or goes over the target, stop the loop and display the results.
+
+**How it works:** Start with total = 0, Ask user for points and add to total, Repeat until total ≥ target, Track how many times you asked for input
+
+**Example:** Target is 100 points. User enters 30 (total = 30), then enters 45 (total = 75), then enters 35 (total = 110). Since 110 ≥ 100, stop. Result: 3 rounds played, final total = 110.
+
+Create `/labs/lab11/exercise3/exercise3.py`:
+
+```python
+target_points = int(input())
+
+# TODO: Your code here
+# Use input() inside the while loop to get points each round
+
+print(total_points)
+print(rounds_played)
+```
+
+## Commit and Push Your Work
+
+After completing all exercises, save all your files and commit them to your repository. Make sure your files are properly saved in the `/labs/lab11/` directory, including `exercise.py`, `exercise1.py`, `exercise2.py`, and `exercise3.py`.
+
+Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 11: Counter-Controlled Loops with Exercises", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully.
