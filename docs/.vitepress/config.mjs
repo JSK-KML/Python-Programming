@@ -5,6 +5,9 @@ export default defineConfig({
   title: "Python Programming",
   description: "Course and Labs Informations",
   base: '/Python-Programming/',
+  head: [
+    ['link', { rel: 'icon', type: 'image/png', href: '/Python-Programming/favicon.png' }]
+  ],
   
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
