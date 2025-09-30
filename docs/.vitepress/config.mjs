@@ -68,8 +68,8 @@ export default defineConfig({
         ],
         activeMatch: '^/labs/' 
       },
-      { 
-        text: 'Lectures', 
+      {
+        text: 'Lectures',
         items: [
           { text: 'Chapter 1', link: '/lectures/chapter-01' },
           { text: 'Chapter 2', link: '/lectures/chapter-02' },
@@ -79,16 +79,21 @@ export default defineConfig({
           { text: 'Chapter 6', link: '/lectures/chapter-06' },
           { text: 'Chapter 7', link: '/lectures/chapter-07' }
         ],
-        activeMatch: '^/lectures/' 
+        activeMatch: '^/lectures/'
       },
-      { 
-        text: 'Editor', 
+      {
+        text: 'Exams',
+        link: '/exams/',
+        activeMatch: '^/exams/'
+      },
+      {
+        text: 'Editor',
         items: [
           { text: 'Python Editor', link: '/editor/python-editor' },
           { text: 'Mobile Editor', link: '/editor/mobile-editor' },
           { text: 'Presentation Mode', link: '/editor/presentation-mode' }
         ],
-        activeMatch: '^/editor/' 
+        activeMatch: '^/editor/'
       }
     ],
 
@@ -257,6 +262,29 @@ export default defineConfig({
         {
           text: 'Presentation Mode',
           link: '/editor/presentation-mode'
+        }
+      ],
+
+      '/exams/': [
+        {
+          text: 'Sample Question',
+          link: '/exams/#sample-question'
+        },
+        {
+          text: 'Exam 1',
+          link: '/exams/#exam-1'
+        },
+        {
+          text: 'Exam 2',
+          link: '/exams/#exam-2'
+        },
+        {
+          text: 'Exam 3',
+          link: '/exams/#exam-3'
+        },
+        {
+          text: 'Exam 4',
+          link: '/exams/#exam-4'
         }
       ]
     },
