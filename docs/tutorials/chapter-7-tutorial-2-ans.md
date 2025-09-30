@@ -5,226 +5,479 @@ outline: deep
 
 # Chapter 7 - Tutorial 2: Counter-Controlled Loops - Answers
 
-## Range Function Understanding - Multi-Variable Exercises
+## Exercise 1: Restaurant Bill Calculator
 
-### **Exercise 1: Library Fine Calculator** <Badge type="tip" text="Exercise" />
+### Question
+A restaurant needs to calculate total bills for 5 customers including service charge and tax.
 
-A library calculates overdue fines for books returned late. Book IDs processed today are: 401, 406, 411, 416, 421. Each book has different overdue days: 3, 6, 9, 12, 15 days respectively. The fine rate is RM0.50 per day, but there's a maximum cap of RM8.00 per book.
-
-**Partially completed code:**
-```python
-print("=== OVERDUE FINE CALCULATION ===")
-starting_days = __
-fine_per_day = __
-max_fine = __
-
-for book_sequence in range(__):
-    book_id = __ * __ + __
-    days_overdue = starting_days + (book_sequence * __)
-    calculated_fine = days_overdue * __
-    actual_fine = min(calculated_fine, __)
-
-    print(f"Book {book_id}: {days_overdue} days overdue = RM{actual_fine:.2f}")
-```
-
-::: tip Answer
-```python
-print("=== OVERDUE FINE CALCULATION ===")
-starting_days = 3
-fine_per_day = 0.50
-max_fine = 8.00
-
-for book_sequence in range(5):
-    book_id = 5 * book_sequence + 401
-    days_overdue = starting_days + (book_sequence * 3)
-    calculated_fine = days_overdue * fine_per_day
-    actual_fine = min(calculated_fine, max_fine)
-
-    print(f"Book {book_id}: {days_overdue} days overdue = RM{actual_fine:.2f}")
-```
-:::
-
----
-
-### **Exercise 2: Taxi Fare System** <Badge type="tip" text="Exercise" />
-
-A taxi company calculates fares for rides. Trip numbers are: 205, 210, 215, 220, 225. Distance traveled: 5km, 8km, 11km, 14km, 17km. Base fare is RM4.00, plus RM1.20 per km. If distance > 10km, add RM2.00 surcharge.
+**Charges:**
+- Service charge: 5% of bill
+- Tax: 6% of bill (calculated on original amount, not after service charge)
+- Total = Bill + Service Charge + Tax
 
 **Partially completed code:**
 ```python
-print("=== TAXI FARE CALCULATION ===")
-base_fare = __
-rate_per_km = __
-surcharge = __
-threshold_distance = __
+print("=== RESTAURANT BILL CALCULATOR ===")
+service_rate = 0.05
+tax_rate = 0.06
 
-for trip_index in range(__):
-    trip_number = __ + (trip_index * __)
-    distance = __ + (trip_index * __)
-    km_cost = distance * __
-    extra_charge = __ if distance > __ else __
-    total_fare = __ + __ + __
+for customer in range(1, __):
+    bill = float(input(f"Enter bill amount for Customer {customer}: RM"))
 
-    print(f"Trip {trip_number}: {distance}km = Base(RM{base_fare:.2f}) + Distance(RM{km_cost:.2f}) + Surcharge(RM{extra_charge:.2f}) = RM{total_fare:.2f}")
+    service_charge = bill * __
+    tax = bill * __
+    total = bill + __ + __
+
+    print(f"Customer {customer}:")
+    print(f"  Bill: RM{bill:.2f}")
+    print(f"  Service Charge (5%): RM{service_charge:.2f}")
+    print(f"  Tax (6%): RM{tax:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
 ```
 
-::: tip Answer
+### Answer
 ```python
-print("=== TAXI FARE CALCULATION ===")
-base_fare = 4.00
-rate_per_km = 1.20
-surcharge = 2.00
-threshold_distance = 10
+print("=== RESTAURANT BILL CALCULATOR ===")
+service_rate = 0.05
+tax_rate = 0.06
 
-for trip_index in range(5):
-    trip_number = 205 + (trip_index * 5)
-    distance = 5 + (trip_index * 3)
-    km_cost = distance * rate_per_km
-    extra_charge = surcharge if distance > threshold_distance else 0
-    total_fare = base_fare + km_cost + extra_charge
+for customer in range(1, 6):  # 6 because range stops before the end value
+    bill = float(input(f"Enter bill amount for Customer {customer}: RM"))
 
-    print(f"Trip {trip_number}: {distance}km = Base(RM{base_fare:.2f}) + Distance(RM{km_cost:.2f}) + Surcharge(RM{extra_charge:.2f}) = RM{total_fare:.2f}")
+    service_charge = bill * service_rate  # Calculate 5% of bill
+    tax = bill * tax_rate  # Calculate 6% of bill
+    total = bill + service_charge + tax  # Add all three amounts
+
+    print(f"Customer {customer}:")
+    print(f"  Bill: RM{bill:.2f}")
+    print(f"  Service Charge (5%): RM{service_charge:.2f}")
+    print(f"  Tax (6%): RM{tax:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
 ```
-:::
+
+### Explanation
+1. **`range(1, 6)`** - Loop 5 times for customers 1, 2, 3, 4, 5. We use 6 as the end value because range() stops before reaching it.
+2. **`service_charge = bill * service_rate`** - Multiply the bill by 0.05 to get 5% service charge
+3. **`tax = bill * tax_rate`** - Multiply the bill by 0.06 to get 6% tax (both calculated from original bill amount)
+4. **`total = bill + service_charge + tax`** - Add all three components together to get the final total
+
+**Example:** If bill = RM50.00:
+- Service charge = 50 × 0.05 = RM2.50
+- Tax = 50 × 0.06 = RM3.00
+- Total = 50 + 2.50 + 3.00 = RM55.50
 
 ---
 
-### **Exercise 3: Employee Bonus Calculator** <Badge type="tip" text="Exercise" />
+## Exercise 2: Student Final Grade Calculator
 
-HR calculates monthly bonuses for employees. Employee IDs: 1002, 1007, 1012, 1017, 1022. Years of service: 2, 4, 6, 8, 10 years. Base bonus is RM300, plus RM50 per year of service. If service ≥ 6 years, add loyalty bonus of RM150.
+### Question
+Calculate final grades for 5 students based on Test score (70%) and Assignment score (30%).
+
+**Grading system:**
+- A: 80-100
+- B: 70-79
+- C: 60-69
+- D: 50-59
+- F: Below 50
 
 **Partially completed code:**
 ```python
-print("=== MONTHLY BONUS CALCULATION ===")
-base_bonus = __
-bonus_per_year = __
-loyalty_bonus = __
-loyalty_threshold = __
+print("=== STUDENT FINAL GRADE CALCULATOR ===")
+test_weight = 0.70
+assignment_weight = 0.30
 
-for emp_index in range(__):
-    employee_id = __ + (emp_index * __)
-    years_service = __ + (emp_index * __)
-    service_bonus = years_service * __
-    loyalty_amount = __ if years_service >= __ else __
-    total_bonus = __ + __ + __
+for student in range(1, __):
+    print(f"Student {student}:")
+    test_score = int(input("  Enter test score: "))
+    assignment_score = int(input("  Enter assignment score: "))
 
-    print(f"Employee {employee_id}: {years_service} years = Base(RM{base_bonus}) + Service(RM{service_bonus}) + Loyalty(RM{loyalty_amount}) = RM{total_bonus}")
+    final_score = (test_score * __) + (assignment_score * __)
+
+    if final_score >= __:
+        grade = "__"
+    elif final_score >= __:
+        grade = "__"
+    elif final_score >= __:
+        grade = "__"
+    elif final_score >= __:
+        grade = "__"
+    else:
+        grade = "__"
+
+    print(f"  Test: {test_score} (70%), Assignment: {assignment_score} (30%)")
+    print(f"  Final Score: {final_score:.2f} = Grade {grade}")
+    print()
 ```
 
-::: tip Answer
+### Answer
 ```python
-print("=== MONTHLY BONUS CALCULATION ===")
-base_bonus = 300
-bonus_per_year = 50
-loyalty_bonus = 150
-loyalty_threshold = 6
+print("=== STUDENT FINAL GRADE CALCULATOR ===")
+test_weight = 0.70
+assignment_weight = 0.30
 
-for emp_index in range(5):
-    employee_id = 1002 + (emp_index * 5)
-    years_service = 2 + (emp_index * 2)
-    service_bonus = years_service * bonus_per_year
-    loyalty_amount = loyalty_bonus if years_service >= loyalty_threshold else 0
-    total_bonus = base_bonus + service_bonus + loyalty_amount
+for student in range(1, 6):  # Loop for 5 students
+    print(f"Student {student}:")
+    test_score = int(input("  Enter test score: "))
+    assignment_score = int(input("  Enter assignment score: "))
 
-    print(f"Employee {employee_id}: {years_service} years = Base(RM{base_bonus}) + Service(RM{service_bonus}) + Loyalty(RM{loyalty_amount}) = RM{total_bonus}")
+    final_score = (test_score * test_weight) + (assignment_score * assignment_weight)
+
+    if final_score >= 80:
+        grade = "A"
+    elif final_score >= 70:
+        grade = "B"
+    elif final_score >= 60:
+        grade = "C"
+    elif final_score >= 50:
+        grade = "D"
+    else:
+        grade = "F"
+
+    print(f"  Test: {test_score} (70%), Assignment: {assignment_score} (30%)")
+    print(f"  Final Score: {final_score:.2f} = Grade {grade}")
+    print()
 ```
-:::
+
+### Explanation
+1. **`range(1, 6)`** - Loop 5 times for students 1-5
+2. **`final_score = (test_score * test_weight) + (assignment_score * assignment_weight)`** - Calculate weighted average:
+   - Test contributes 70% of final score
+   - Assignment contributes 30% of final score
+3. **Grading thresholds** - Use if-elif-else to assign grades:
+   - **80 and above** → Grade A
+   - **70-79** → Grade B
+   - **60-69** → Grade C
+   - **50-59** → Grade D
+   - **Below 50** → Grade F
+
+**Example:** If test_score = 85 and assignment_score = 90:
+- final_score = (85 × 0.70) + (90 × 0.30)
+- final_score = 59.5 + 27 = 86.5
+- Since 86.5 ≥ 80, grade = "A"
 
 ---
 
-### **Exercise 4: Internet Data Plan** <Badge type="tip" text="Exercise" />
+## Exercise 3: Electricity Bill with Rebate
 
-An ISP calculates monthly bills for customers. Account numbers: 5001, 5004, 5007, 5010, 5013. Data used: 15GB, 25GB, 35GB, 45GB, 55GB. Monthly fee is RM40, excess data costs RM3 per GB over 20GB limit. If usage ≥ 40GB, apply RM15 high-usage fee.
+### Question
+Calculate electricity bills for 5 houses. Bills include usage charge, surcharge if high usage, and rebate if low usage.
+
+**Rates:**
+- RM0.40 per kWh
+- Surcharge: RM25 if usage > 300 kWh
+- Rebate: RM15 if usage < 100 kWh
 
 **Partially completed code:**
 ```python
-print("=== INTERNET BILL CALCULATION ===")
-monthly_fee = __
-data_limit = __
-excess_rate = __
-high_usage_fee = __
-high_usage_threshold = __
+print("=== ELECTRICITY BILL WITH REBATE ===")
+rate = 0.40
+surcharge = 25
+rebate = 15
 
-for customer_index in range(__):
-    account_number = __ + (customer_index * __)
-    data_used = __ + (customer_index * __)
-    excess_gb = max(__, data_used - __)
-    excess_cost = excess_gb * __
-    high_usage_charge = __ if data_used >= __ else __
-    total_bill = __ + __ + __
+for house in range(1, __):
+    kwh = float(input(f"Enter kWh usage for House {house}: "))
+    basic_charge = kwh * __
 
-    print(f"Account {account_number}: {data_used}GB used = Monthly(RM{monthly_fee}) + Excess(RM{excess_cost}) + High-usage(RM{high_usage_charge}) = RM{total_bill}")
+    if kwh > __:
+        extra_charge = __
+    else:
+        extra_charge = __
+
+    if kwh < __:
+        rebate_amount = __
+    else:
+        rebate_amount = __
+
+    total = basic_charge + __ - __
+
+    print(f"House {house}:")
+    print(f"  Usage: {kwh} kWh")
+    print(f"  Basic Charge: RM{basic_charge:.2f}")
+    print(f"  Surcharge: RM{extra_charge:.2f}")
+    print(f"  Rebate: -RM{rebate_amount:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
 ```
 
-::: tip Answer
+### Answer
 ```python
-print("=== INTERNET BILL CALCULATION ===")
-monthly_fee = 40
-data_limit = 20
-excess_rate = 3
-high_usage_fee = 15
-high_usage_threshold = 40
+print("=== ELECTRICITY BILL WITH REBATE ===")
+rate = 0.40
+surcharge = 25
+rebate = 15
 
-for customer_index in range(5):
-    account_number = 5001 + (customer_index * 3)
-    data_used = 15 + (customer_index * 10)
-    excess_gb = max(0, data_used - data_limit)
-    excess_cost = excess_gb * excess_rate
-    high_usage_charge = high_usage_fee if data_used >= high_usage_threshold else 0
-    total_bill = monthly_fee + excess_cost + high_usage_charge
+for house in range(1, 6):  # Loop for 5 houses
+    kwh = float(input(f"Enter kWh usage for House {house}: "))
+    basic_charge = kwh * rate  # Calculate basic charge
 
-    print(f"Account {account_number}: {data_used}GB used = Monthly(RM{monthly_fee}) + Excess(RM{excess_cost}) + High-usage(RM{high_usage_charge}) = RM{total_bill}")
+    if kwh > 300:  # Check if high usage
+        extra_charge = surcharge  # Add surcharge
+    else:
+        extra_charge = 0  # No surcharge
+
+    if kwh < 100:  # Check if low usage
+        rebate_amount = rebate  # Give rebate
+    else:
+        rebate_amount = 0  # No rebate
+
+    total = basic_charge + extra_charge - rebate_amount  # Calculate total
+
+    print(f"House {house}:")
+    print(f"  Usage: {kwh} kWh")
+    print(f"  Basic Charge: RM{basic_charge:.2f}")
+    print(f"  Surcharge: RM{extra_charge:.2f}")
+    print(f"  Rebate: -RM{rebate_amount:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
 ```
-:::
+
+### Explanation
+1. **`range(1, 6)`** - Loop 5 times for houses 1-5
+2. **`basic_charge = kwh * rate`** - Calculate basic charge at RM0.40 per kWh
+3. **Surcharge logic:**
+   - **If kwh > 300** → Add RM25 surcharge for high usage
+   - **Otherwise** → No surcharge (extra_charge = 0)
+4. **Rebate logic:**
+   - **If kwh < 100** → Give RM15 rebate for low usage
+   - **Otherwise** → No rebate (rebate_amount = 0)
+5. **`total = basic_charge + extra_charge - rebate_amount`** - Calculate final bill
+
+**Example 1:** If kwh = 85 (low usage):
+- basic_charge = 85 × 0.40 = RM34.00
+- extra_charge = 0 (not > 300)
+- rebate_amount = 15 (< 100)
+- total = 34 + 0 - 15 = RM19.00
+
+**Example 2:** If kwh = 320 (high usage):
+- basic_charge = 320 × 0.40 = RM128.00
+- extra_charge = 25 (> 300)
+- rebate_amount = 0 (not < 100)
+- total = 128 + 25 - 0 = RM153.00
 
 ---
 
-### **Exercise 5: Parking Meter System** <Badge type="tip" text="Exercise" />
+## Exercise 4: Online Store Checkout
 
-A city calculates parking fees for different zones. Zone codes: 302, 307, 312, 317, 322. Hours parked: 1, 3, 5, 7, 9 hours. Hourly rate is RM2.00, but first hour is free. Maximum daily charge is RM12.00.
+### Question
+Calculate final prices for 5 products with discount and shipping fee.
+
+**Rules:**
+- Discount: 10% if price ≥ RM1000, otherwise 5%
+- Shipping: RM10 if price < RM500, otherwise FREE
 
 **Partially completed code:**
 ```python
-print("=== PARKING FEE CALCULATION ===")
-hourly_rate = __
-free_hours = __
-max_daily_charge = __
+print("=== ONLINE STORE CHECKOUT ===")
 
-for zone_index in range(__):
-    zone_code = __ + (zone_index * __)
-    hours_parked = __ + (zone_index * __)
-    billable_hours = max(__, hours_parked - __)
-    calculated_fee = billable_hours * __
-    actual_fee = min(__, __)
+for product_num in range(1, __):
+    price = float(input(f"Enter price for Product {product_num}: RM"))
 
-    print(f"Zone {zone_code}: {hours_parked} hours = {billable_hours} billable hours = RM{actual_fee:.2f}")
+    if price >= __:
+        discount_rate = __
+    else:
+        discount_rate = __
+
+    discount = price * __
+    price_after_discount = price - __
+
+    if price < __:
+        shipping = __
+    else:
+        shipping = __
+
+    final_price = __ + __
+
+    print(f"Product {product_num}:")
+    print(f"  Original Price: RM{price:.2f}")
+    print(f"  Discount ({int(discount_rate*100)}%): -RM{discount:.2f}")
+    print(f"  Shipping: RM{shipping:.2f}")
+    print(f"  Final Price: RM{final_price:.2f}")
+    print()
 ```
 
-::: tip Answer
+### Answer
 ```python
-print("=== PARKING FEE CALCULATION ===")
-hourly_rate = 2.00
-free_hours = 1
-max_daily_charge = 12.00
+print("=== ONLINE STORE CHECKOUT ===")
 
-for zone_index in range(5):
-    zone_code = 302 + (zone_index * 5)
-    hours_parked = 1 + (zone_index * 2)
-    billable_hours = max(0, hours_parked - free_hours)
-    calculated_fee = billable_hours * hourly_rate
-    actual_fee = min(calculated_fee, max_daily_charge)
+for product_num in range(1, 6):  # Loop for 5 products
+    price = float(input(f"Enter price for Product {product_num}: RM"))
 
-    print(f"Zone {zone_code}: {hours_parked} hours = {billable_hours} billable hours = RM{actual_fee:.2f}")
+    if price >= 1000:  # Check if high-value item
+        discount_rate = 0.10  # 10% discount
+    else:
+        discount_rate = 0.05  # 5% discount
+
+    discount = price * discount_rate  # Calculate discount amount
+    price_after_discount = price - discount  # Subtract discount from price
+
+    if price < 500:  # Check if needs shipping charge
+        shipping = 10  # RM10 shipping
+    else:
+        shipping = 0  # Free shipping
+
+    final_price = price_after_discount + shipping  # Add shipping to discounted price
+
+    print(f"Product {product_num}:")
+    print(f"  Original Price: RM{price:.2f}")
+    print(f"  Discount ({int(discount_rate*100)}%): -RM{discount:.2f}")
+    print(f"  Shipping: RM{shipping:.2f}")
+    print(f"  Final Price: RM{final_price:.2f}")
+    print()
 ```
-:::
+
+### Explanation
+1. **`range(1, 6)`** - Loop 5 times for products 1-5
+2. **Discount logic:**
+   - **If price ≥ RM1000** → 10% discount (discount_rate = 0.10)
+   - **Otherwise** → 5% discount (discount_rate = 0.05)
+3. **`discount = price * discount_rate`** - Calculate discount amount
+4. **`price_after_discount = price - discount`** - Subtract discount from original price
+5. **Shipping logic:**
+   - **If price < RM500** → RM10 shipping charge
+   - **Otherwise** → Free shipping (shipping = 0)
+6. **`final_price = price_after_discount + shipping`** - Add shipping to discounted price
+
+**Example 1:** If price = RM450:
+- discount_rate = 0.05 (5%)
+- discount = 450 × 0.05 = RM22.50
+- price_after_discount = 450 - 22.50 = RM427.50
+- shipping = 10 (< 500)
+- final_price = 427.50 + 10 = RM437.50
+
+**Example 2:** If price = RM1200:
+- discount_rate = 0.10 (10%)
+- discount = 1200 × 0.10 = RM120.00
+- price_after_discount = 1200 - 120 = RM1080.00
+- shipping = 0 (≥ 500)
+- final_price = 1080 + 0 = RM1080.00
 
 ---
 
-## Loop Prediction Questions
+## Exercise 5: International Shipping Calculator
 
-### **Exercise 6: Predict the Output**
+### Question
+Calculate shipping costs for 5 packages including weight charges, insurance, and express delivery option.
 
-**Look at this code snippet and predict exactly what will be printed:**
+**Rates:**
+- Base rate: RM5
+- If weight > 5kg: Add RM2 per kg for excess weight
+- Insurance: RM8 if package value > RM500
+- Express delivery: RM12 (ask user yes/no)
+
+**Partially completed code:**
+```python
+print("=== INTERNATIONAL SHIPPING CALCULATOR ===")
+base_rate = 5
+rate_per_kg = 2
+insurance_fee = 8
+express_fee = 12
+
+for package_num in range(1, __):
+    print(f"Package {package_num}:")
+    weight = float(input("  Enter weight (kg): "))
+    value = float(input("  Enter package value (RM): "))
+    express = input("  Express delivery? (yes/no): ")
+
+    if weight > __:
+        excess_weight = weight - __
+        weight_charge = base_rate + (excess_weight * __)
+    else:
+        weight_charge = __
+
+    if value > __:
+        insurance = __
+    else:
+        insurance = __
+
+    if express == "__":
+        express_charge = __
+    else:
+        express_charge = __
+
+    total = __ + __ + __
+
+    print(f"  Weight Charge: RM{weight_charge:.2f}")
+    print(f"  Insurance: RM{insurance:.2f}")
+    print(f"  Express: RM{express_charge:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
+```
+
+### Answer
+```python
+print("=== INTERNATIONAL SHIPPING CALCULATOR ===")
+base_rate = 5
+rate_per_kg = 2
+insurance_fee = 8
+express_fee = 12
+
+for package_num in range(1, 6):  # Loop for 5 packages
+    print(f"Package {package_num}:")
+    weight = float(input("  Enter weight (kg): "))
+    value = float(input("  Enter package value (RM): "))
+    express = input("  Express delivery? (yes/no): ")
+
+    if weight > 5:  # Check if weight exceeds 5kg
+        excess_weight = weight - 5  # Calculate excess weight
+        weight_charge = base_rate + (excess_weight * rate_per_kg)  # Base + excess charge
+    else:
+        weight_charge = base_rate  # Only base rate
+
+    if value > 500:  # Check if valuable package
+        insurance = insurance_fee  # Add insurance
+    else:
+        insurance = 0  # No insurance
+
+    if express == "yes":  # Check if express delivery requested
+        express_charge = express_fee  # Add express fee
+    else:
+        express_charge = 0  # No express fee
+
+    total = weight_charge + insurance + express_charge  # Calculate total
+
+    print(f"  Weight Charge: RM{weight_charge:.2f}")
+    print(f"  Insurance: RM{insurance:.2f}")
+    print(f"  Express: RM{express_charge:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
+```
+
+### Explanation
+1. **`range(1, 6)`** - Loop 5 times for packages 1-5
+2. **Weight charge logic:**
+   - **If weight > 5kg:**
+     - Calculate excess_weight = weight - 5
+     - weight_charge = base_rate (RM5) + (excess_weight × RM2)
+   - **Otherwise:** weight_charge = base_rate only (RM5)
+3. **Insurance logic:**
+   - **If value > RM500** → Add RM8 insurance
+   - **Otherwise** → No insurance (insurance = 0)
+4. **Express delivery logic:**
+   - **If express == "yes"** → Add RM12 express fee
+   - **Otherwise** → No express fee (express_charge = 0)
+5. **`total = weight_charge + insurance + express_charge`** - Sum all charges
+
+**Example 1:** If weight = 3kg, value = RM400, express = "no":
+- weight_charge = 5 (not > 5kg)
+- insurance = 0 (not > RM500)
+- express_charge = 0 (not "yes")
+- total = 5 + 0 + 0 = RM5.00
+
+**Example 2:** If weight = 8kg, value = RM1200, express = "yes":
+- excess_weight = 8 - 5 = 3kg
+- weight_charge = 5 + (3 × 2) = 5 + 6 = RM11.00
+- insurance = 8 (> RM500)
+- express_charge = 12 ("yes")
+- total = 11 + 8 + 12 = RM31.00
+
+---
+
+## Exercise 6: Predict the Output
+
+### Question
+Look at this code snippet and predict exactly what will be printed:
 
 ```python
 counter = 15
@@ -236,7 +489,7 @@ while counter >= 8:
 print(f"Final result: {total}")
 ```
 
-::: tip Answer
+### Answer
 **Expected Output:**
 ```
 Step 15: Total = 15
@@ -245,19 +498,47 @@ Step 9: Total = 36
 Final result: 36
 ```
 
-**Explanation:**
-- counter starts at 15
-- First iteration: total = 0 + 15 = 15, counter becomes 12
-- Second iteration: total = 15 + 12 = 27, counter becomes 9
-- Third iteration: total = 27 + 9 = 36, counter becomes 6
-- Loop stops because 6 < 8
-:::
+### Explanation
+Let's trace through the loop step by step:
+
+**Initial values:**
+- counter = 15
+- total = 0
+- Loop condition: counter >= 8
+
+**Iteration 1:**
+- counter = 15 (≥ 8, continue)
+- total = total + counter = 0 + 15 = 15
+- Print: "Step 15: Total = 15"
+- counter = counter - 3 = 15 - 3 = 12
+
+**Iteration 2:**
+- counter = 12 (≥ 8, continue)
+- total = total + counter = 15 + 12 = 27
+- Print: "Step 12: Total = 27"
+- counter = counter - 3 = 12 - 3 = 9
+
+**Iteration 3:**
+- counter = 9 (≥ 8, continue)
+- total = total + counter = 27 + 9 = 36
+- Print: "Step 9: Total = 36"
+- counter = counter - 3 = 9 - 3 = 6
+
+**Loop ends:**
+- counter = 6 (< 8, stop loop)
+- Print: "Final result: 36"
+
+**Key points:**
+- The loop adds counter values: 15 + 12 + 9 = 36
+- Counter decreases by 3 each iteration
+- Loop stops when counter becomes 6 (less than 8)
 
 ---
 
-### **Exercise 7: Range Prediction Challenge**
+## Exercise 7: Range Prediction Challenge
 
-**Predict the exact output of this loop:**
+### Question
+Predict the exact output of this loop:
 
 ```python
 for value in range(25, 5, -4):
@@ -265,7 +546,7 @@ for value in range(25, 5, -4):
     print(f"Input: {value} → Output: {result}")
 ```
 
-::: tip Answer
+### Answer
 **Expected Output:**
 ```
 Input: 25 → Output: 40
@@ -275,23 +556,35 @@ Input: 13 → Output: 16
 Input: 9 → Output: 8
 ```
 
-**Explanation:**
-- range(25, 5, -4) generates: 25, 21, 17, 13, 9
-- Formula: value * 2 - 10
-- 25 * 2 - 10 = 40
-- 21 * 2 - 10 = 32
-- 17 * 2 - 10 = 24
-- 13 * 2 - 10 = 16
-- 9 * 2 - 10 = 8
-:::
+### Explanation
+**Understanding `range(25, 5, -4)`:**
+- **Start:** 25
+- **Stop:** 5 (exclusive, stops before reaching 5)
+- **Step:** -4 (counts down by 4)
+
+**Generated sequence:** 25, 21, 17, 13, 9
+
+**Calculating each result using formula `value * 2 - 10`:**
+
+| Iteration | value | Calculation | result |
+|-----------|-------|-------------|--------|
+| 1 | 25 | 25 × 2 - 10 = 50 - 10 | 40 |
+| 2 | 21 | 21 × 2 - 10 = 42 - 10 | 32 |
+| 3 | 17 | 17 × 2 - 10 = 34 - 10 | 24 |
+| 4 | 13 | 13 × 2 - 10 = 26 - 10 | 16 |
+| 5 | 9 | 9 × 2 - 10 = 18 - 10 | 8 |
+
+**Key points:**
+- Negative step makes the range count **downwards**
+- Range stops **before** reaching the stop value (5)
+- Each value is doubled first, then 10 is subtracted
 
 ---
 
-## Debug the Loop
+## Exercise 8: Fix the Loop
 
-### **Exercise 8: Fix the Loop**
-
-**This loop is supposed to calculate a shopping discount:**
+### Question
+This loop is supposed to calculate a shopping discount:
 
 ```python
 # Calculate 10% discount for purchases over RM50
@@ -311,8 +604,8 @@ while index < len(purchases):
 print(f"Total savings: RM{total_savings:.2f}")
 ```
 
-::: tip Answer
-**Problem:** The line `index = index` doesn't increment the index, causing an infinite loop when processing purchases over RM50.
+### Answer
+**Problem:** The bug is on line 7: `index = index` doesn't increment the index when a discount is applied, causing an **infinite loop**.
 
 **Fixed Code:**
 ```python
@@ -337,13 +630,37 @@ print(f"Total savings: RM{total_savings:.2f}")
 ```
 Total savings: RM16.50
 ```
-:::
+
+### Explanation
+**What was wrong:**
+- Line `index = index` assigns index to itself (no change)
+- When processing purchases > RM50 (75 and 90), the loop gets stuck
+- The loop keeps processing the same item forever (infinite loop)
+
+**Why it happens:**
+- purchases[1] = 75 (> 50)
+- Enters if block, but index stays at 1
+- Next iteration: still at index 1, processes 75 again
+- Repeats forever!
+
+**How to fix:**
+- Change `index = index` to `index += 1`
+- This increments the index, moving to the next item
+
+**Calculating the correct answer:**
+- purchases = [25, 75, 40, 90]
+- 25: not > 50, skip
+- **75:** > 50, savings = 75 × 0.10 = RM7.50
+- 40: not > 50, skip
+- **90:** > 50, savings = 90 × 0.10 = RM9.00
+- **Total savings = 7.50 + 9.00 = RM16.50**
 
 ---
 
-### **Exercise 9: Fix the Logic Error**
+## Exercise 9: Fix the Loop
 
-**This loop is supposed to print multiples of 3 from 15 down to 3:**
+### Question
+This loop is supposed to print multiples of 3 from 15 down to 3:
 
 ```python
 # Expected output: 15, 12, 9, 6, 3
@@ -356,16 +673,18 @@ while current >= 3:
         current = 12
 ```
 
-::: tip Answer
-**Problem:** The line `if current == 9: current = 12` creates an infinite loop by resetting the counter back to 12 when it reaches 9.
+### Answer
+**Problem:** The line `if current == 9: current = 12` causes the loop to reset from 9 back to 12, creating an **infinite loop**.
 
-**What happens:**
-- Prints 15 (15 % 3 == 0)
-- current becomes 14, then 13, then 12
-- Prints 12 (12 % 3 == 0)
-- current becomes 11, then 10, then 9
-- When current == 9, it gets reset to 12
-- This creates an infinite loop between 12 and 9
+**What happens in the buggy code:**
+1. current = 15 → prints 15 (15 % 3 == 0) → current becomes 14
+2. current = 14 → skips (14 % 3 ≠ 0) → current becomes 13
+3. current = 13 → skips (13 % 3 ≠ 0) → current becomes 12
+4. current = 12 → prints 12 (12 % 3 == 0) → current becomes 11
+5. current = 11 → skips (11 % 3 ≠ 0) → current becomes 10
+6. current = 10 → skips (10 % 3 ≠ 0) → current becomes 9
+7. current = 9 → **gets reset to 12** (bug triggers!)
+8. Back to step 4... **infinite loop!**
 
 **Fixed Code:**
 ```python
@@ -377,13 +696,6 @@ while current >= 3:
     current -= 1
 ```
 
-**More Efficient Solution:**
-```python
-# Print multiples of 3 from 15 down to 3
-for num in range(15, 2, -3):  # Start from 15, go down by 3
-    print(num)
-```
-
 **Expected Output:**
 ```
 15
@@ -392,24 +704,40 @@ for num in range(15, 2, -3):  # Start from 15, go down by 3
 6
 3
 ```
-:::
 
----
+### Explanation
+**Why the bug exists:**
+- The line `if current == 9: current = 12` was probably left in by mistake
+- It creates a loop that never ends: 12 → 11 → 10 → 9 → 12 → 11 → 10 → 9...
+- The counter never reaches values below 9
 
-## Analysis Questions
+**How it should work:**
+- Start at 15, decrease by 1 each time
+- Print only when current is divisible by 3 (remainder is 0)
+- Stop when current becomes less than 3
 
-1. **Which exercise requires you to handle both minimum and maximum limits?**
-   - Exercise 5 (Parking Meter System) uses both `max()` for minimum billable hours and `min()` for maximum daily charge.
+**Trace of correct code:**
+| current | % 3 | Action |
+|---------|-----|--------|
+| 15 | 0 | Print 15 |
+| 14 | 2 | Skip |
+| 13 | 1 | Skip |
+| 12 | 0 | Print 12 |
+| 11 | 2 | Skip |
+| 10 | 1 | Skip |
+| 9 | 0 | Print 9 |
+| 8 | 2 | Skip |
+| 7 | 1 | Skip |
+| 6 | 0 | Print 6 |
+| 5 | 2 | Skip |
+| 4 | 1 | Skip |
+| 3 | 0 | Print 3 |
+| 2 | - | Stop (< 3) |
 
-2. **How do the conditional statements affect the final calculations?**
-   - They apply different rates or add/subtract fees based on thresholds (e.g., surcharge for long distances, loyalty bonuses for long service).
-
-3. **Which variables are derived from other variables vs. independent?**
-   - Independent: base values, rates, thresholds
-   - Derived: calculations like total costs, bonuses, fees that depend on other variables
-
-4. **What patterns do you notice in how the range parameters relate to the ID/code sequences?**
-   - Most use arithmetic sequences with consistent increments (5, 3, 2, etc.) that match the range step and multiplier values.
-
-5. **Which exercise would be most affected if you changed only the range but not the calculations?**
-   - All exercises would break if range parameters don't match the expected sequence patterns, but Exercise 1 (Library Fine Calculator) would be most affected due to its precise day progression.
+**Alternative efficient solution:**
+```python
+# Using range to count down by 3
+for num in range(15, 2, -3):
+    print(num)
+```
+This directly generates: 15, 12, 9, 6, 3 without checking every number!
