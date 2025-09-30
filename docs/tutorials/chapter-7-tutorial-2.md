@@ -8,217 +8,341 @@ outline: deep
 
 
 
-### **Exercise 1: Library Fine Calculator** <Badge type="tip" text="Exercise" />
+### **Exercise 1: Restaurant Bill Calculator** <Badge type="tip" text="Exercise" />
 
-A library calculates overdue fines for books returned late. Book IDs processed today are: 401, 406, 411, 416, 421. Each book has different overdue days: 3, 6, 9, 12, 15 days respectively. The fine rate is RM0.50 per day, but there's a maximum cap of RM8.00 per book.
+A restaurant needs to calculate total bills for 5 customers including service charge and tax.
 
-**Hints:**
-- Look at the Book IDs: What's the difference between 401 and 406? Between 406 and 411?
-- Look at the Days overdue: What's the difference between 3 and 6? Between 6 and 9?
-- How many books are being processed? Count them to determine the range.
-- Find the fine rate and maximum fine values in the problem description.
-
-**Partially completed code:**
-```python
-print("=== OVERDUE FINE CALCULATION ===")
-starting_days = __
-fine_per_day = __
-max_fine = __
-
-for book_sequence in range(__):
-    book_id = book_sequence * __ + __
-    days_overdue = starting_days + (book_sequence * __)
-    calculated_fine = days_overdue * __
-    actual_fine = min(calculated_fine, __)
-
-    print(f"Book {book_id}: {days_overdue} days overdue = RM{actual_fine:.2f}")
-```
-
-**Expected Output:**
-```
-Book 401: 3 days overdue = RM1.50
-Book 406: 6 days overdue = RM3.00
-Book 411: 9 days overdue = RM4.50
-Book 416: 12 days overdue = RM6.00
-Book 421: 15 days overdue = RM7.50
-```
-
-
-
-### **Exercise 2: Taxi Fare System** <Badge type="tip" text="Exercise" />
-
-A taxi company calculates fares for rides. Trip numbers are: 205, 210, 215, 220, 225. Distance traveled: 5km, 8km, 11km, 14km, 17km. Base fare is RM4.00, plus RM1.20 per km. If distance > 10km, add RM2.00 surcharge.
-
-**Hints:**
-- Look at the Trip numbers: What's the pattern between 205, 210, 215...?
-- Look at the Distance values: What's the difference between 5, 8, 11...?
-- Count how many trips to determine the range parameter.
-- Find the base fare, rate per km, and surcharge amount in the problem description.
-- At what distance does the surcharge apply?
+**Charges:**
+- Service charge: 5% of bill
+- Tax: 6% of bill (calculated on original amount, not after service charge)
+- Total = Bill + Service Charge + Tax
 
 **Partially completed code:**
 ```python
-print("=== TAXI FARE CALCULATION ===")
-base_fare = __
-rate_per_km = __
-surcharge = __
-threshold_distance = __
+print("=== RESTAURANT BILL CALCULATOR ===")
+service_rate = 0.05
+tax_rate = 0.06
 
-for trip_index in range(__):
-    trip_number = __ + (trip_index * __)
-    distance = __ + (trip_index * __)
-    km_cost = distance * __
+for customer in range(1, __):
+    bill = float(input(f"Enter bill amount for Customer {customer}: RM"))
 
-    if distance > __:
+    service_charge = bill * __
+    tax = bill * __
+    total = bill + __ + __
+
+    print(f"Customer {customer}:")
+    print(f"  Bill: RM{bill:.2f}")
+    print(f"  Service Charge (5%): RM{service_charge:.2f}")
+    print(f"  Tax (6%): RM{tax:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
+```
+
+**Sample Run:**
+```
+=== RESTAURANT BILL CALCULATOR ===
+Enter bill amount for Customer 1: RM50.00
+Customer 1:
+  Bill: RM50.00
+  Service Charge (5%): RM2.50
+  Tax (6%): RM3.00
+  Total: RM55.50
+
+Enter bill amount for Customer 2: RM120.50
+Customer 2:
+  Bill: RM120.50
+  Service Charge (5%): RM6.03
+  Tax (6%): RM7.23
+  Total: RM133.76
+
+Enter bill amount for Customer 3: RM89.90
+Customer 3:
+  Bill: RM89.90
+  Service Charge (5%): RM4.50
+  Tax (6%): RM5.39
+  Total: RM99.79
+```
+
+
+
+### **Exercise 2: Student Final Grade Calculator** <Badge type="tip" text="Exercise" />
+
+Calculate final grades for 5 students based on Test score (70%) and Assignment score (30%).
+
+**Grading system:**
+- A: 80-100
+- B: 70-79
+- C: 60-69
+- D: 50-59
+- F: Below 50
+
+**Partially completed code:**
+```python
+print("=== STUDENT FINAL GRADE CALCULATOR ===")
+test_weight = 0.70
+assignment_weight = 0.30
+
+for student in range(1, __):
+    print(f"Student {student}:")
+    test_score = int(input("  Enter test score: "))
+    assignment_score = int(input("  Enter assignment score: "))
+
+    final_score = (test_score * __) + (assignment_score * __)
+
+    if final_score >= __:
+        grade = "__"
+    elif final_score >= __:
+        grade = "__"
+    elif final_score >= __:
+        grade = "__"
+    elif final_score >= __:
+        grade = "__"
+    else:
+        grade = "__"
+
+    print(f"  Test: {test_score} (70%), Assignment: {assignment_score} (30%)")
+    print(f"  Final Score: {final_score:.2f} = Grade {grade}")
+    print()
+```
+
+**Sample Run:**
+```
+=== STUDENT FINAL GRADE CALCULATOR ===
+Student 1:
+  Enter test score: 85
+  Enter assignment score: 90
+  Test: 85 (70%), Assignment: 90 (30%)
+  Final Score: 86.50 = Grade A
+
+Student 2:
+  Enter test score: 70
+  Enter assignment score: 80
+  Test: 70 (70%), Assignment: 80 (30%)
+  Final Score: 73.00 = Grade B
+
+Student 3:
+  Enter test score: 55
+  Enter assignment score: 60
+  Test: 55 (70%), Assignment: 60 (30%)
+  Final Score: 56.50 = Grade D
+```
+
+
+
+### **Exercise 3: Electricity Bill with Rebate** <Badge type="tip" text="Exercise" />
+
+Calculate electricity bills for 5 houses. Bills include usage charge, surcharge if high usage, and rebate if low usage.
+
+**Rates:**
+- RM0.40 per kWh
+- Surcharge: RM25 if usage > 300 kWh
+- Rebate: RM15 if usage < 100 kWh
+
+**Partially completed code:**
+```python
+print("=== ELECTRICITY BILL WITH REBATE ===")
+rate = 0.40
+surcharge = 25
+rebate = 15
+
+for house in range(1, __):
+    kwh = float(input(f"Enter kWh usage for House {house}: "))
+    basic_charge = kwh * __
+
+    if kwh > __:
         extra_charge = __
     else:
         extra_charge = __
 
-    total_fare = __ + __ + __
-
-    print(f"Trip {trip_number}: {distance}km = Base(RM{base_fare:.2f}) + Distance(RM{km_cost:.2f}) + Surcharge(RM{extra_charge:.2f}) = RM{total_fare:.2f}")
-```
-
-**Expected Output:**
-```
-Trip 205: 5km = Base(RM4.00) + Distance(RM6.00) + Surcharge(RM0.00) = RM10.00
-Trip 210: 8km = Base(RM4.00) + Distance(RM9.60) + Surcharge(RM0.00) = RM13.60
-Trip 215: 11km = Base(RM4.00) + Distance(RM13.20) + Surcharge(RM2.00) = RM19.20
-Trip 220: 14km = Base(RM4.00) + Distance(RM16.80) + Surcharge(RM2.00) = RM22.80
-Trip 225: 17km = Base(RM4.00) + Distance(RM20.40) + Surcharge(RM2.00) = RM26.40
-```
-
-
-
-### **Exercise 3: Employee Bonus Calculator** <Badge type="tip" text="Exercise" />
-
-HR calculates monthly bonuses for employees. Employee IDs: 1002, 1007, 1012, 1017, 1022. Years of service: 2, 4, 6, 8, 10 years. Base bonus is RM300, plus RM50 per year of service. If service ≥ 6 years, add loyalty bonus of RM150.
-
-**Hints:**
-- Analyze the Employee IDs: What's the pattern in 1002, 1007, 1012...?
-- Look at Years of service: What's the pattern in 2, 4, 6, 8, 10?
-- Count the total number of employees for the range.
-- Find the base bonus, bonus per year, and loyalty bonus amounts in the problem.
-- At how many years of service does the loyalty bonus kick in?
-
-**Partially completed code:**
-```python
-print("=== MONTHLY BONUS CALCULATION ===")
-base_bonus = __
-bonus_per_year = __
-loyalty_bonus = __
-loyalty_threshold = __
-
-for emp_index in range(__):
-    employee_id = __ + (emp_index * __)
-    years_service = __ + (emp_index * __)
-    service_bonus = years_service * __
-
-    if years_service >= __:
-        loyalty_amount = __
+    if kwh < __:
+        rebate_amount = __
     else:
-        loyalty_amount = __
+        rebate_amount = __
 
-    total_bonus = __ + __ + __
+    total = basic_charge + __ - __
 
-    print(f"Employee {employee_id}: {years_service} years = Base(RM{base_bonus}) + Service(RM{service_bonus}) + Loyalty(RM{loyalty_amount}) = RM{total_bonus}")
+    print(f"House {house}:")
+    print(f"  Usage: {kwh} kWh")
+    print(f"  Basic Charge: RM{basic_charge:.2f}")
+    print(f"  Surcharge: RM{extra_charge:.2f}")
+    print(f"  Rebate: -RM{rebate_amount:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
 ```
 
-**Expected Output:**
+**Sample Run:**
 ```
-Employee 1002: 2 years = Base(RM300) + Service(RM100) + Loyalty(RM0) = RM400
-Employee 1007: 4 years = Base(RM300) + Service(RM200) + Loyalty(RM0) = RM500
-Employee 1012: 6 years = Base(RM300) + Service(RM300) + Loyalty(RM150) = RM750
-Employee 1017: 8 years = Base(RM300) + Service(RM400) + Loyalty(RM150) = RM850
-Employee 1022: 10 years = Base(RM300) + Service(RM500) + Loyalty(RM150) = RM950
+=== ELECTRICITY BILL WITH REBATE ===
+Enter kWh usage for House 1: 85
+House 1:
+  Usage: 85.0 kWh
+  Basic Charge: RM34.00
+  Surcharge: RM0.00
+  Rebate: -RM15.00
+  Total: RM19.00
+
+Enter kWh usage for House 2: 320
+House 2:
+  Usage: 320.0 kWh
+  Basic Charge: RM128.00
+  Surcharge: RM25.00
+  Rebate: -RM0.00
+  Total: RM153.00
+
+Enter kWh usage for House 3: 150
+House 3:
+  Usage: 150.0 kWh
+  Basic Charge: RM60.00
+  Surcharge: RM0.00
+  Rebate: -RM0.00
+  Total: RM60.00
 ```
 
 
 
-### **Exercise 4: Internet Data Plan** <Badge type="tip" text="Exercise" />
+### **Exercise 4: Online Store Checkout** <Badge type="tip" text="Exercise" />
 
-An ISP calculates monthly bills for customers. Account numbers: 5001, 5004, 5007, 5010, 5013. Data used: 15GB, 25GB, 35GB, 45GB, 55GB. Monthly fee is RM40, excess data costs RM3 per GB over 20GB limit. If usage ≥ 40GB, apply RM15 high-usage fee.
+Calculate final prices for 5 products with discount and shipping fee.
 
-**Hints:**
-- Examine the Account numbers: What's the difference between 5001, 5004, 5007...?
-- Look at Data usage: What's the pattern in 15, 25, 35, 45, 55?
-- Count the customers to determine the range.
-- Find the monthly fee, data limit, excess rate, and high-usage fee in the problem.
-- At what GB usage does the high-usage fee apply?
-- How do you ensure excess GB is never negative?
+**Rules:**
+- Discount: 10% if price ≥ RM1000, otherwise 5%
+- Shipping: RM10 if price < RM500, otherwise FREE
 
 **Partially completed code:**
 ```python
-print("=== INTERNET BILL CALCULATION ===")
-monthly_fee = __
-data_limit = __
-excess_rate = __
-high_usage_fee = __
-high_usage_threshold = __
+print("=== ONLINE STORE CHECKOUT ===")
 
-for customer_index in range(__):
-    account_number = __ + (customer_index * __)
-    data_used = __ + (customer_index * __)
-    excess_gb = max(__, data_used - __)
-    excess_cost = excess_gb * __
+for product_num in range(1, __):
+    price = float(input(f"Enter price for Product {product_num}: RM"))
 
-    if data_used >= __:
-        high_usage_charge = __
+    if price >= __:
+        discount_rate = __
     else:
-        high_usage_charge = __
+        discount_rate = __
 
-    total_bill = __ + __ + __
+    discount = price * __
+    price_after_discount = price - __
 
-    print(f"Account {account_number}: {data_used}GB used = Monthly(RM{monthly_fee}) + Excess(RM{excess_cost}) + High-usage(RM{high_usage_charge}) = RM{total_bill}")
+    if price < __:
+        shipping = __
+    else:
+        shipping = __
+
+    final_price = __ + __
+
+    print(f"Product {product_num}:")
+    print(f"  Original Price: RM{price:.2f}")
+    print(f"  Discount ({int(discount_rate*100)}%): -RM{discount:.2f}")
+    print(f"  Shipping: RM{shipping:.2f}")
+    print(f"  Final Price: RM{final_price:.2f}")
+    print()
 ```
 
-**Expected Output:**
+**Sample Run:**
 ```
-Account 5001: 15GB used = Monthly(RM40) + Excess(RM0) + High-usage(RM0) = RM40
-Account 5004: 25GB used = Monthly(RM40) + Excess(RM15) + High-usage(RM0) = RM55
-Account 5007: 35GB used = Monthly(RM40) + Excess(RM45) + High-usage(RM0) = RM85
-Account 5010: 45GB used = Monthly(RM40) + Excess(RM75) + High-usage(RM15) = RM130
-Account 5013: 55GB used = Monthly(RM40) + Excess(RM105) + High-usage(RM15) = RM160
+=== ONLINE STORE CHECKOUT ===
+Enter price for Product 1: RM450
+Product 1:
+  Original Price: RM450.00
+  Discount (5%): -RM22.50
+  Shipping: RM10.00
+  Final Price: RM437.50
+
+Enter price for Product 2: RM1200
+Product 2:
+  Original Price: RM1200.00
+  Discount (10%): -RM120.00
+  Shipping: RM0.00
+  Final Price: RM1080.00
+
+Enter price for Product 3: RM800
+Product 3:
+  Original Price: RM800.00
+  Discount (5%): -RM40.00
+  Shipping: RM0.00
+  Final Price: RM760.00
 ```
 
 
 
-### **Exercise 5: Parking Meter System** <Badge type="tip" text="Exercise" />
+### **Exercise 5: International Shipping Calculator** <Badge type="tip" text="Exercise" />
 
-A city calculates parking fees for different zones. Zone codes: 302, 307, 312, 317, 322. Hours parked: 1, 3, 5, 7, 9 hours. Hourly rate is RM2.00, but first hour is free. Maximum daily charge is RM12.00.
+Calculate shipping costs for 5 packages including weight charges, insurance, and express delivery option.
 
-**Hints:**
-- Study the Zone codes: What's the pattern in 302, 307, 312...?
-- Look at Hours parked: What's the difference between 1, 3, 5, 7, 9?
-- Count the zones to determine the range.
-- Find the hourly rate, free hours, and maximum charge in the problem.
-- How do you ensure billable hours is never negative?
-- How do you apply the maximum daily charge limit?
+**Rates:**
+- Base rate: RM5
+- If weight > 5kg: Add RM2 per kg for excess weight
+- Insurance: RM8 if package value > RM500
+- Express delivery: RM12 (ask user yes/no)
 
 **Partially completed code:**
 ```python
-print("=== PARKING FEE CALCULATION ===")
-hourly_rate = __
-free_hours = __
-max_daily_charge = __
+print("=== INTERNATIONAL SHIPPING CALCULATOR ===")
+base_rate = 5
+rate_per_kg = 2
+insurance_fee = 8
+express_fee = 12
 
-for zone_index in range(__):
-    zone_code = __ + (zone_index * __)
-    hours_parked = __ + (zone_index * __)
-    billable_hours = max(__, hours_parked - __)
-    calculated_fee = billable_hours * __
-    actual_fee = min(__, __)
+for package_num in range(1, __):
+    print(f"Package {package_num}:")
+    weight = float(input("  Enter weight (kg): "))
+    value = float(input("  Enter package value (RM): "))
+    express = input("  Express delivery? (yes/no): ")
 
-    print(f"Zone {zone_code}: {hours_parked} hours = {billable_hours} billable hours = RM{actual_fee:.2f}")
+    if weight > __:
+        excess_weight = weight - __
+        weight_charge = base_rate + (excess_weight * __)
+    else:
+        weight_charge = __
+
+    if value > __:
+        insurance = __
+    else:
+        insurance = __
+
+    if express == "__":
+        express_charge = __
+    else:
+        express_charge = __
+
+    total = __ + __ + __
+
+    print(f"  Weight Charge: RM{weight_charge:.2f}")
+    print(f"  Insurance: RM{insurance:.2f}")
+    print(f"  Express: RM{express_charge:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
 ```
 
-**Expected Output:**
+**Sample Run:**
 ```
-Zone 302: 1 hours = 0 billable hours = RM0.00
-Zone 307: 3 hours = 2 billable hours = RM4.00
-Zone 312: 5 hours = 4 billable hours = RM8.00
-Zone 317: 7 hours = 6 billable hours = RM12.00
-Zone 322: 9 hours = 8 billable hours = RM12.00
+=== INTERNATIONAL SHIPPING CALCULATOR ===
+Package 1:
+  Enter weight (kg): 3
+  Enter package value (RM): 400
+  Express delivery? (yes/no): no
+  Weight Charge: RM5.00
+  Insurance: RM0.00
+  Express: RM0.00
+  Total: RM5.00
+
+Package 2:
+  Enter weight (kg): 8
+  Enter package value (RM): 1200
+  Express delivery? (yes/no): yes
+  Weight Charge: RM11.00
+  Insurance: RM8.00
+  Express: RM12.00
+  Total: RM31.00
+
+Package 3:
+  Enter weight (kg): 15
+  Enter package value (RM): 800
+  Express delivery? (yes/no): no
+  Weight Charge: RM25.00
+  Insurance: RM8.00
+  Express: RM0.00
+  Total: RM33.00
 ```
 
 
@@ -295,6 +419,164 @@ while current >= 3:
         current = 12
 ```
 
+---
 
+## **Solutions**
+
+::: details Exercise 1: Restaurant Bill Calculator - Solution
+```python
+print("=== RESTAURANT BILL CALCULATOR ===")
+service_rate = 0.05
+tax_rate = 0.06
+
+for customer in range(1, 6):
+    bill = float(input(f"Enter bill amount for Customer {customer}: RM"))
+
+    service_charge = bill * service_rate
+    tax = bill * tax_rate
+    total = bill + service_charge + tax
+
+    print(f"Customer {customer}:")
+    print(f"  Bill: RM{bill:.2f}")
+    print(f"  Service Charge (5%): RM{service_charge:.2f}")
+    print(f"  Tax (6%): RM{tax:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
+```
+:::
+
+::: details Exercise 2: Student Final Grade Calculator - Solution
+```python
+print("=== STUDENT FINAL GRADE CALCULATOR ===")
+test_weight = 0.70
+assignment_weight = 0.30
+
+for student in range(1, 6):
+    print(f"Student {student}:")
+    test_score = int(input("  Enter test score: "))
+    assignment_score = int(input("  Enter assignment score: "))
+
+    final_score = (test_score * test_weight) + (assignment_score * assignment_weight)
+
+    if final_score >= 80:
+        grade = "A"
+    elif final_score >= 70:
+        grade = "B"
+    elif final_score >= 60:
+        grade = "C"
+    elif final_score >= 50:
+        grade = "D"
+    else:
+        grade = "F"
+
+    print(f"  Test: {test_score} (70%), Assignment: {assignment_score} (30%)")
+    print(f"  Final Score: {final_score:.2f} = Grade {grade}")
+    print()
+```
+:::
+
+::: details Exercise 3: Electricity Bill with Rebate - Solution
+```python
+print("=== ELECTRICITY BILL WITH REBATE ===")
+rate = 0.40
+surcharge = 25
+rebate = 15
+
+for house in range(1, 6):
+    kwh = float(input(f"Enter kWh usage for House {house}: "))
+    basic_charge = kwh * rate
+
+    if kwh > 300:
+        extra_charge = surcharge
+    else:
+        extra_charge = 0
+
+    if kwh < 100:
+        rebate_amount = rebate
+    else:
+        rebate_amount = 0
+
+    total = basic_charge + extra_charge - rebate_amount
+
+    print(f"House {house}:")
+    print(f"  Usage: {kwh} kWh")
+    print(f"  Basic Charge: RM{basic_charge:.2f}")
+    print(f"  Surcharge: RM{extra_charge:.2f}")
+    print(f"  Rebate: -RM{rebate_amount:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
+```
+:::
+
+::: details Exercise 4: Online Store Checkout - Solution
+```python
+print("=== ONLINE STORE CHECKOUT ===")
+
+for product_num in range(1, 6):
+    price = float(input(f"Enter price for Product {product_num}: RM"))
+
+    if price >= 1000:
+        discount_rate = 0.10
+    else:
+        discount_rate = 0.05
+
+    discount = price * discount_rate
+    price_after_discount = price - discount
+
+    if price < 500:
+        shipping = 10
+    else:
+        shipping = 0
+
+    final_price = price_after_discount + shipping
+
+    print(f"Product {product_num}:")
+    print(f"  Original Price: RM{price:.2f}")
+    print(f"  Discount ({int(discount_rate*100)}%): -RM{discount:.2f}")
+    print(f"  Shipping: RM{shipping:.2f}")
+    print(f"  Final Price: RM{final_price:.2f}")
+    print()
+```
+:::
+
+::: details Exercise 5: International Shipping Calculator - Solution
+```python
+print("=== INTERNATIONAL SHIPPING CALCULATOR ===")
+base_rate = 5
+rate_per_kg = 2
+insurance_fee = 8
+express_fee = 12
+
+for package_num in range(1, 6):
+    print(f"Package {package_num}:")
+    weight = float(input("  Enter weight (kg): "))
+    value = float(input("  Enter package value (RM): "))
+    express = input("  Express delivery? (yes/no): ")
+
+    if weight > 5:
+        excess_weight = weight - 5
+        weight_charge = base_rate + (excess_weight * rate_per_kg)
+    else:
+        weight_charge = base_rate
+
+    if value > 500:
+        insurance = insurance_fee
+    else:
+        insurance = 0
+
+    if express == "yes":
+        express_charge = express_fee
+    else:
+        express_charge = 0
+
+    total = weight_charge + insurance + express_charge
+
+    print(f"  Weight Charge: RM{weight_charge:.2f}")
+    print(f"  Insurance: RM{insurance:.2f}")
+    print(f"  Express: RM{express_charge:.2f}")
+    print(f"  Total: RM{total:.2f}")
+    print()
+```
+:::
 
 
