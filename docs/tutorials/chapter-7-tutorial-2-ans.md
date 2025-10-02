@@ -584,76 +584,83 @@ Input: 9 → Output: 8
 ## Exercise 8: Fix the Loop
 
 ### Question
-This loop is supposed to calculate a shopping discount:
+This loop is supposed to calculate the average of 5 numbers entered by the user:
 
-```python
-# Calculate 10% discount for purchases over RM50
-purchases = [25, 75, 40, 90]
-index = 0
-total_savings = 0
+```python:line-numbers
+# Expected: Input 5 numbers, calculate and display their average
+count = 0
+total = 0
 
-while index < len(purchases):
-    current_purchase = purchases[index]
+while count < 5:
+    number = float(input(f"Enter number {count + 1}: "))
+    total += number
 
-    if current_purchase > 50:
-        total_savings += current_purchase * 0.10
-        index = index  # Bug is here
-    else:
-        index += 1
-
-print(f"Total savings: RM{total_savings:.2f}")
+average = total / count
+print(f"Average: {average}")
 ```
 
 ### Answer
-**Problem:** The bug is on line 7: `index = index` doesn't increment the index when a discount is applied, causing an **infinite loop**.
+**Problem:** The `count` variable is **never incremented**, causing two bugs:
+1. **Infinite loop** - count stays at 0, so `count < 5` is always true
+2. **Division by zero** - even if the loop could finish, `average = total / count` would divide by 0
+
+**What happens when you run the buggy code:**
+- The program keeps asking for "number 1" forever
+- count never increases from 0
+- Loop never exits
 
 **Fixed Code:**
-```python
-# Calculate 10% discount for purchases over RM50
-purchases = [25, 75, 40, 90]
-index = 0
-total_savings = 0
+```python:line-numbers
+# Expected: Input 5 numbers, calculate and display their average
+count = 0
+total = 0
 
-while index < len(purchases):
-    current_purchase = purchases[index]
+while count < 5:
+    number = float(input(f"Enter number {count + 1}: "))
+    total += number
+    count += 1  # Fixed: increment count
 
-    if current_purchase > 50:
-        total_savings += current_purchase * 0.10
-        index += 1  # Fixed: increment index
-    else:
-        index += 1
-
-print(f"Total savings: RM{total_savings:.2f}")
+average = total / count
+print(f"Average: {average}")
 ```
 
-**Expected Output:**
+**Expected Output (example):**
 ```
-Total savings: RM16.50
+Enter number 1: 10
+Enter number 2: 20
+Enter number 3: 30
+Enter number 4: 40
+Enter number 5: 50
+Average: 30.0
 ```
 
 ### Explanation
-**What was wrong:**
-- Line `index = index` assigns index to itself (no change)
-- When processing purchases > RM50 (75 and 90), the loop gets stuck
-- The loop keeps processing the same item forever (infinite loop)
+**The bug:**
+- Line 7: Missing `count += 1` inside the loop
+- Without incrementing count, the loop condition `count < 5` never becomes false
+- count stays at 0 forever, creating an infinite loop
 
-**Why it happens:**
-- purchases[1] = 75 (> 50)
-- Enters if block, but index stays at 1
-- Next iteration: still at index 1, processes 75 again
-- Repeats forever!
+**Why this bug is subtle:**
+- The code looks almost complete
+- Easy to forget to update the counter variable
+- The loop has other operations (input, addition) that might distract you
 
 **How to fix:**
-- Change `index = index` to `index += 1`
-- This increments the index, moving to the next item
+- Add `count += 1` inside the loop after adding the number to total
+- This ensures count increases from 0 to 5, allowing the loop to exit
 
-**Calculating the correct answer:**
-- purchases = [25, 75, 40, 90]
-- 25: not > 50, skip
-- **75:** > 50, savings = 75 × 0.10 = RM7.50
-- 40: not > 50, skip
-- **90:** > 50, savings = 90 × 0.10 = RM9.00
-- **Total savings = 7.50 + 9.00 = RM16.50**
+**Trace of correct code:**
+| Iteration | count | Input | total | Next count |
+|-----------|-------|-------|-------|------------|
+| 1 | 0 | 10 | 0 + 10 = 10 | 1 |
+| 2 | 1 | 20 | 10 + 20 = 30 | 2 |
+| 3 | 2 | 30 | 30 + 30 = 60 | 3 |
+| 4 | 3 | 40 | 60 + 40 = 100 | 4 |
+| 5 | 4 | 50 | 100 + 50 = 150 | 5 |
+| - | 5 | - | - | Loop stops (5 < 5 is false) |
+| - | - | - | average = 150 / 5 = 30.0 | |
+
+**Key lesson:** Always remember to **increment your counter variable** in loops!
 
 ---
 

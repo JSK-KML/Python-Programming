@@ -18,7 +18,7 @@ A restaurant needs to calculate total bills for 5 customers including service ch
 - Total = Bill + Service Charge + Tax
 
 **Partially completed code:**
-```python
+```python:line-numbers
 print("=== RESTAURANT BILL CALCULATOR ===")
 service_rate = 0.05
 tax_rate = 0.06
@@ -77,7 +77,7 @@ Calculate final grades for 5 students based on Test score (70%) and Assignment s
 - F: Below 50
 
 **Partially completed code:**
-```python
+```python:line-numbers
 print("=== STUDENT FINAL GRADE CALCULATOR ===")
 test_weight = 0.70
 assignment_weight = 0.30
@@ -139,7 +139,7 @@ Calculate electricity bills for 5 houses. Bills include usage charge, surcharge 
 - Rebate: RM15 if usage < 100 kWh
 
 **Partially completed code:**
-```python
+```python:line-numbers
 print("=== ELECTRICITY BILL WITH REBATE ===")
 rate = 0.40
 surcharge = 25
@@ -209,7 +209,7 @@ Calculate final prices for 5 products with discount and shipping fee.
 - Shipping: RM10 if price < RM500, otherwise FREE
 
 **Partially completed code:**
-```python
+```python:line-numbers
 print("=== ONLINE STORE CHECKOUT ===")
 
 for product_num in range(1, __):
@@ -276,7 +276,7 @@ Calculate shipping costs for 5 packages including weight charges, insurance, and
 - Express delivery: RM12 (ask user yes/no)
 
 **Partially completed code:**
-```python
+```python:line-numbers
 print("=== INTERNATIONAL SHIPPING CALCULATOR ===")
 base_rate = 5
 rate_per_kg = 2
@@ -350,7 +350,7 @@ Package 3:
 
 **Look at this code snippet and predict exactly what will be printed:**
 
-```python
+```python:line-numbers
 counter = 15
 total = 0
 while counter >= 8:
@@ -368,7 +368,7 @@ print(f"Final result: {total}")
 
 **Predict the exact output of this loop:**
 
-```python
+```python:line-numbers
 for value in range(25, 5, -4):
     result = value * 2 - 10
     print(f"Input: {value} → Output: {result}")
@@ -381,24 +381,19 @@ for value in range(25, 5, -4):
 
 ### **Exercise 8: Fix the Loop**
 
-**This loop is supposed to calculate a shopping discount:**
+**This loop is supposed to calculate the average of 5 numbers entered by the user:**
 
-```python
-# Calculate 10% discount for purchases over RM50
-purchases = [25, 75, 40, 90]
-index = 0
-total_savings = 0
+```python:line-numbers
+# Expected: Input 5 numbers, calculate and display their average
+count = 0
+total = 0
 
-while index < len(purchases):
-    current_purchase = purchases[index]
+while count < 5:
+    number = float(input(f"Enter number {count + 1}: "))
+    total += number
 
-    if current_purchase > 50:
-        total_savings += current_purchase * 0.10
-        index = index  # Bug is here
-    else:
-        index += 1
-
-print(f"Total savings: RM{total_savings:.2f}")
+average = total / count
+print(f"Average: {average}")
 ```
 
 
@@ -408,7 +403,7 @@ print(f"Total savings: RM{total_savings:.2f}")
 
 **This loop is supposed to print multiples of 3 from 15 down to 3:**
 
-```python
+```python:line-numbers
 # Expected output: 15, 12, 9, 6, 3
 current = 15
 while current >= 3:
