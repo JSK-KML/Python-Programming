@@ -35,7 +35,7 @@ export default defineConfig({
         activeMatch: '^/course/' 
       },
       { 
-        text: 'Tutorials', 
+        text: 'Tutorials',
         items: [
           { text: 'Tutorial 1', link: '/tutorials/chapter-2-tutorial-1' },
           { text: 'Tutorial 2', link: '/tutorials/chapter-2-tutorial-2' },
@@ -46,7 +46,8 @@ export default defineConfig({
           { text: 'Tutorial 7', link: '/tutorials/chapter-4-tutorial-2' },
           { text: 'Tutorial 8', link: '/tutorials/chapter-4-tutorial-3' },
           { text: 'Tutorial 9', link: '/tutorials/chapter-7-tutorial-1' },
-          { text: 'Tutorial 10', link: '/tutorials/chapter-7-tutorial-2' }
+          { text: 'Tutorial 10', link: '/tutorials/chapter-7-tutorial-2' },
+          { text: 'Tutorial 11', link: '/tutorials/chapter-7-tutorial-3' }
 
         ],
         activeMatch: '^/tutorials/' 
@@ -257,6 +258,10 @@ export default defineConfig({
                 {
                   text: 'Tutorial 10',
                   link: '/tutorials/chapter-7-tutorial-2'
+                },
+                {
+                  text: 'Tutorial 11',
+                  link: '/tutorials/chapter-7-tutorial-3'
                 }
       ],
       
