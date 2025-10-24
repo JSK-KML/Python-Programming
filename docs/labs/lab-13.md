@@ -1,9 +1,9 @@
 ---
 outline: deep
-title: Lab 10 - More Python Selections
+title: Lab 13 - Loop Control Statements
 ---
 
-# Lab 10: More Python Selections
+# Lab 13: Loop Control Statements
 
 ## Pull and Update in VS Code
 
@@ -15,290 +15,366 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
     <img src="/public/labs/lab-02/lab-2-1.png" alt="drawing" width="400"/>
 </p>
 
+## Introduction to Loop Control
 
-## Selection Structure 
+In Labs 11 and 12, you learned how loops naturally end - counter loops finish after a specific number of iterations, and sentinel loops stop when they see a special value. But what if you need more control? What if you want to stop a loop early when you find what you're looking for? Or skip certain iterations without stopping the entire loop?
 
-Understanding how **Python** executes selection statements helps you write more efficient code. The order and structure of your conditions directly impacts your program's performance.
+Think about searching for a book in a library. You don't keep searching after you find it - you stop immediately. Or imagine processing a list of numbers but skipping the negative ones. These scenarios require loop control statements.
 
-### Condition Ordering Strategy
+Launch **VS Code** and open the `exercise.py` file in `/labs/lab13/`.
 
-**Python** evaluates conditions from top to bottom, stopping at the first `True` condition. Understanding the right order prevents bugs and makes your code easier to understand.
+## The Problem: Inefficient Searching
 
-Let's learn the proper selection ordering by building a student grading system step by step:
+### Searching Without Control
 
-**Scenario**: We need to classify students based on their exam score (0-100).
-
-#### Step 1: Start Simple - Basic Categories
-
-```python
-# Version 1: Basic grading
-score = 85
-
-if score >= 80:
-    grade = "A"
-elif score >= 70:
-    grade = "B"
-elif score >= 60:
-    grade = "C"
-else:
-    grade = "F"
-
-print(f"Score {score}: Grade {grade}")
-```
-
-This works, but what if someone enters an invalid score?
-
-#### Step 2: Add Safety Checks First
-
-```python
-# Version 2: Add safety checks
-score = -10  # Try with invalid score
-
-# STEP 1: Check for problems FIRST
-if score < 0 or score > 100:
-    grade = "Invalid score"
-# Then do normal grading
-elif score >= 80:
-    grade = "A"
-elif score >= 70:
-    grade = "B"
-elif score >= 60:
-    grade = "C"
-else:
-    grade = "F"
-
-print(f"Score {score}: Grade {grade}")
-```
-
-Now our code won't crash with bad data. But what about perfect scores?
-
-#### Step 3: Add Most Specific Conditions
-
-```python
-# Version 3: Handle special cases
-score = 100  # Try with perfect score
-
-# STEP 1: Safety checks first
-if score < 0 or score > 100:
-    grade = "Invalid score"
-# STEP 2: Most specific conditions (exact matches)
-elif score == 100:
-    grade = "Perfect A+"
-elif score == 0:
-    grade = "Zero - F"
-# STEP 3: Broader conditions (ranges)
-elif score >= 80:
-    grade = "A"
-elif score >= 70:
-    grade = "B"
-elif score >= 60:
-    grade = "C"
-# STEP 4: Default case
-else:
-    grade = "F"
-
-print(f"Score {score}: Grade {grade}")
-```
-
-Perfect. Now we handle special cases before general ones.
-
-#### Step 4: Complete System - All Steps Applied
-
-```python
-# Final Version: Complete ordering strategy
-score = 95  # Test with different scores
-
-print(f"Grading student with score: {score}")
-
-# STEP 1: Safety checks first (prevent crashes)
-if score < 0:
-    grade = "Invalid: negative score"
-elif score > 100:
-    grade = "Invalid: score too high"
-
-# STEP 2: Most specific conditions (exact matches)
-elif score == 100:
-    grade = "Perfect A+"
-elif score == 0:
-    grade = "No attempt - F"
-
-# STEP 3: Broader conditions (ranges, most specific to least)
-elif score >= 95:    # Narrow range
-    grade = "A+ Excellent"
-elif score >= 90:    # Broader range
-    grade = "A Outstanding" 
-elif score >= 80:    # Even broader
-    grade = "B Good"
-elif score >= 70:    # Broader still
-    grade = "C Average"
-elif score >= 60:    # Broadest passing
-    grade = "D Pass"
-
-# STEP 4: Default case (everything else)
-else:
-    grade = "F Fail"
-
-print(f"Final grade: {grade}")
-```
-
-**The Strategy in Action:**
-1. **Safety first** - Catches invalid data before it causes problems
-2. **Exact matches next** - Handles special cases (perfect scores, zero)
-3. **Ranges from narrow to broad** - Most specific ranges first (95-100, then 90-94, etc.)
-4. **Default case last** - Catches everything not handled above
-
-Test this code with different scores: `100`, `95`, `85`, `65`, `45`, `0`, `-5`, `150`
-
-
-
-
-## Deeeper Into Comparison Operators
-
-Comparison operators seem simple, but they have subtle behaviors that can cause bugs in your code. Understanding these cases helps you prevents common programming errors.
-
-### Floating Point Precision Issues
-
-One of the most common bugs in programming involves comparing floating-point numbers with `==`. This seems innocent but can cause serious problems.
+Consider this problem: you're searching for a specific student ID in a list of 1000 students. Without loop control, even after finding the student, you'd keep checking all remaining IDs.
 
 Copy this code into your `exercise.py` file:
 
 ```python
-# Dangerous floating point comparison
-price1 = 0.1 + 0.2
-price2 = 0.3
+# Inefficient search - checks all 10 numbers even after finding target
+target = 7
+found = False
 
-print(f"price1 = {price1}")
-print(f"price2 = {price2}")
-print(f"Are they equal? {price1 == price2}")
+for number in range(10):
+    print(f"Checking number: {number}")
+    if number == target:
+        found = True
+        print(f"Found {target}!")
+    # Loop continues even after finding target
+
+print(f"Search complete. Found: {found}")
 ```
 
-Run this code. You'll see that `0.1 + 0.2` does NOT equal `0.3`. 
+Run this code. Notice that after finding 7, the loop still checks 8 and 9. This wastes time and resources.
 
-**Why doesn't this work?**
+::: warning INEFFICIENCY
+The loop continues checking even after achieving its goal. With 1000 items, you'd waste 993 unnecessary checks if the target is at position 7.
+:::
 
-Computers store decimal numbers using the [IEEE 754 standard](https://en.wikipedia.org/wiki/IEEE_754). - a system that uses binary (0s and 1s) to represent decimal numbers. But some decimal numbers cannot be represented exactly in binary, just like you can't write 1/3 exactly in decimal (it becomes 0.33333... forever).
+This is where the `break` statement becomes valuable.
 
-Think about it this way:
-- In decimal: 1/3 = 0.33333... (repeating forever)
-- In binary: 0.1 = 0.00011001100110011... (repeating forever)
+## The Break Statement
 
-The IEEE 754 system has to "round off" these repeating decimals to fit in computer memory. 
+### Understanding Break
 
-Here's what happens when you ask the computer to store 0.1:
-
-```bash
-┌─────────────────────────────────────────────────────────────────┐
-│                    FLOATING POINT CONVERSION                   │
-└─────────────────────────────────────────────────────────────────┘
-
-STEP 1: Input
-┌──────────┐
-│   0.1    │ ──────────► Convert to binary
-└──────────┘
-
-STEP 2: Binary Conversion  
-┌────────────────────────────────────────────────────────┐
-│ 0.00011001100110011001100110011001100110011...        │ ◄── Infinite
-└────────────────────────────────────────────────────────┘
-
-STEP 3: Memory Storage (64-bit limit)
-┌────────────────────────────────────────────────────────┐
-│ 0.0001100110011001100110011001100110011001100110011001│ ◄── Cut off
-└────────────────────────────────────────────────────────┘
-                                                    
-STEP 4: Convert Back to Decimal
-┌────────────────────────────────────────────────────────┐
-│ 0.1000000000000000055511151231257827021181583404541016│ ◄── Not 0.1
-└────────────────────────────────────────────────────────┘
-
-Result: Computer thinks it stored 0.1, but actually stored ≈ 0.1000...0016
-```
-
-The computer:
-1. Tries to convert 0.1 to binary
-2. Gets 0.00011001100110011... (repeating forever)
-3. Cuts off after available memory space
-4. When converted back to decimal, becomes that long approximation instead of exactly 0.1
-
-Think of it like trying to write 1/3 on paper. You write 0.33333, but you have to stop somewhere. The computer does the same thing with 0.1 in binary.
-
-When you add two of these slightly-wrong numbers together, the tiny errors combine, giving you a result that's slightly different from what you expect.
+The `break` statement immediately exits the loop, regardless of the loop's normal termination condition. Once **Python** executes `break`, it jumps to the first line of code after the loop.
 
 ```python
-# Let's see what's really stored
-price1 = 0.1 + 0.2
-price2 = 0.3
-
-print("What computer thinks 0.1 + 0.2 is:")
-print(price1)
-print("What computer thinks 0.3 is:")
-print(price2)
-print("The tiny difference:")
-print(price1 - price2)
+for item in range(100):
+    if condition:
+        break  # Exit loop immediately // [!code highlight]
+    # This code runs only if break hasn't executed
+# Python jumps here after break
 ```
 
-The difference is tiny (about 0.0000000000000004), but `==` requires EXACT equality.
+### Efficient Searching with Break
 
-**Better approach for floats:**
+Now let's fix our search program using `break`:
 
 ```python
-# Better approach - use round() function
-price1 = 0.1 + 0.2  
-price2 = 0.3
+# Efficient search - stops immediately after finding target
+target = 7
+found = False
 
-# Round both numbers to remove tiny errors
-rounded_price1 = round(price1, 10)  # Round to 10 decimal places
-rounded_price2 = round(price2, 10)
+for number in range(10):
+    print(f'Checking number: {number}')
+    if number == target:
+        found = True
+        print(f'Found {target}!')
+        break  # Exit loop immediately // [!code highlight]
+    print(f'Still inside loop, checking next...')  # This runs before break // [!code highlight]
 
-if rounded_price1 == rounded_price2:
-    print("Prices are equal (after rounding)")
-else:
-    print("Prices are different")
-
-print("Original price1:")
-print(price1)
-print("Rounded price1:")
-print(rounded_price1)
+print(f'Search complete. Found: {found}')  # Python jumps here after break // [!code highlight]
 ```
 
+Add this to your `exercise.py` and run it. Notice three important things:
 
-### String Equality Issues
+1. The line `'Still inside loop, checking next...'` prints for numbers 0-6
+2. When it finds 7, it prints `'Found {target}!'` then immediately executes `break`
+3. The `'Still inside loop...'` message doesn't print after finding 7, and execution jumps to the `print` statement outside the loop
 
-String equality with `==` can fail when you expect it to work, similar to floating point problems. This can cause bugs in your programs.
+Try changing `target = 3` and run it again. How many checks happen now? Then try `target = 9`. Notice how `break` optimizes the search by stopping as soon as the goal is achieved.
 
-Copy this code into your `exercise.py` file:
+### Break in While Loops
+
+The `break` statement works the same way in `while` loops:
 
 ```python
-# String equality surprises
-username = "Admin"
-expected = "admin"
+# Password validation with break
+attempts = 0
 
-print("Username entered:", username)
-print("Expected username:", expected) 
-print("Are they equal?", username == expected)
+while attempts < 3:
+    password = input("Enter password: ")
+    attempts += 1
+
+    if password == "secret123":
+        print("Access granted!")
+        break  # Exit immediately // [!code highlight]
+
+    print(f"Wrong password. {3 - attempts} attempts remaining.")
 ```
 
-Run this code. You'll see that "Admin" does NOT equal "admin" even though they're the same word.
+Copy this into your `exercise.py`. The `while` loop normally runs 3 times, but `break` exits early if the password is correct. Try entering the correct password on the first or second attempt - the loop stops immediately.
 
-**Why doesn't this work?**
+## The Continue Statement
 
-**Python's `==` operator is case-sensitive for strings. It treats uppercase and lowercase letters as completely different characters, just like 'A' and 'a' are different letters in the alphabet.**
+### Understanding Continue
+
+While `break` exits the loop entirely, `continue` only skips the rest of the current iteration and moves to the next one. Think of it as "skip this one, but keep going."
 
 ```python
-# Let's see the problem clearly
-password1 = "Secret123"
-password2 = "secret123" 
-password3 = "SECRET123"
-
-print("Testing password equality:")
-print("password1:", password1)
-print("password2:", password2)
-print("password3:", password3)
-print()
-print("password1 == password2:", password1 == password2)  # False
-print("password1 == password3:", password1 == password3)  # False
-print("password2 == password3:", password2 == password3)  # False
+for item in range(5):
+    if condition:
+        continue  # Skip rest of this iteration
+    # This code skips when continue executes
+# Loop continues with next iteration
 ```
 
-All three passwords look the same to humans, but `==` sees them as completely different.
+### The Problem: How to Skip Specific Iterations?
 
+<Badge type="tip" text="Question" />
+
+**Problem:** You want to calculate the sum of numbers from 1 to 5, but you need to skip number 3 (maybe it represents invalid data). How can you skip just that one number without stopping the entire loop?
+
+Copy this code that adds all numbers:
+
+```python
+# Problem: This adds ALL numbers including 3
+total = 0
+
+for number in range(5):
+    print(f'Processing: {number}')
+    total += number
+    print(f'Added to total. Current total: {total}')
+
+print(f'Final total: {total}')
+```
+
+Run this code. It adds all numbers 0 through 4, giving a total of 10. But we want to skip 3 and get a total of 6 (0+1+2+4) instead. How can we do this?
+
+### Solution with Continue
+
+Now let's use `continue` to skip number 3:
+
+```python
+# Solution: Skip number 3 with continue
+total = 0
+
+for number in range(5):
+    print(f'Processing: {number}')
+
+    if number == 3:
+        print('Skipping 3!')
+        continue  # Skip to next iteration // [!code highlight]
+
+    total += number  # This line skipped when continue executes // [!code highlight]
+    print(f'Added {number}. Current total: {total}')  # This too // [!code highlight]
+
+print(f'Final total: {total}')  # Python continues here after each iteration // [!code highlight]
+```
+
+Add this to your `exercise.py` and run it. Notice what happens:
+
+1. When `number` is 0, 1, 2, or 4: both lines after the `if` execute normally
+2. When `number` is 3: `continue` executes, skipping the addition and the print statement
+3. After each iteration (including when `continue` runs), the loop continues with the next number
+4. After all iterations complete, execution moves to the final print outside the loop
+
+### Continue in While Loops
+
+The `continue` statement works identically in `while` loops, but you must be extremely careful with counter placement to avoid infinite loops.
+
+::: danger CRITICAL: Counter Placement with Continue
+When using `continue` in `while` loops, ALWAYS update your counter BEFORE the `continue` statement. If the counter update comes after `continue`, it will be skipped, causing an infinite loop.
+:::
+
+Here's the **correct** way:
+
+```python
+# CORRECT - Process only even numbers
+number = 0
+
+while number < 10:
+    number += 1  # Counter BEFORE continue // [!code highlight]
+
+    if number % 2 != 0:  # If odd
+        continue  # Skip odd numbers // [!code highlight]
+
+    # This only executes for even numbers
+    print(f"Processing even number: {number}")
+```
+
+Try this code. Notice that `continue` skips the print statement for odd numbers, but the loop continues incrementing and checking all numbers from 1 to 10.
+
+Now look at this **dangerous mistake**:
+
+```python
+# WRONG - Creates infinite loop!
+number = 0
+
+while number < 10:
+    if number % 2 != 0:  # If odd
+        continue  # Skips the increment below!
+
+    print(f"Processing even number: {number}")
+    number += 1  # This never executes when number is odd! // [!code error]
+```
+
+**What happens:** When `number` is 0 initially, it prints "Processing even number: 0" and increments to 1. Then when `number` is 1 (odd), `continue` executes and skips the increment. The loop checks `1 < 10` again (still true), checks if 1 is odd (yes), executes `continue` again, and repeats forever. Your program hangs!
+
+::: warning DEBUGGING TIP
+If your `while` loop never ends, check if your counter update is after a `continue` statement. This is one of the most common beginner mistakes with loop control.
+:::
+
+## Comparing Break vs Continue
+
+Let's solve the same problem using both approaches to see the difference clearly.
+
+**Task:** Check numbers 0 through 9 and find the first number greater than 7.
+
+```python
+# Using break - stops when found
+for number in range(10):
+    print(f'Checking: {number}')
+    if number > 7:
+        print(f'Found first number > 7: {number}')
+        break  # Stop searching
+
+print('Search complete')
+```
+
+Run this code. It checks 0, 1, 2, 3, 4, 5, 6, 7, then finds 8 and stops. The number 9 is never checked.
+
+Now try this version with `continue`:
+
+```python
+# Using continue - processes all, reports only numbers > 7
+for number in range(10):
+    if number <= 7:
+        continue  # Skip numbers <= 7
+    print(f'Number greater than 7: {number}')  # Reports 8 and 9
+
+print('Processing complete')
+```
+
+This version checks all numbers 0-9 and reports 8 and 9. The loop never stops early - it processes all iterations.
+
+| Statement | Effect | Use Case |
+|-----------|--------|----------|
+| `break` | Exit loop completely | Stop when goal achieved |
+| `continue` | Skip rest of current iteration | Filter/skip specific items |
+| Neither | Process every iteration | Need all data |
+
+## Exercise 1: Password System with Limited Attempts <Badge type="warning" text="Task" />
+
+Create a password verification system that gives users 3 attempts. Stop immediately if they enter the correct password. The correct password is "python123".
+
+Create `/labs/lab13/exercise1/exercise1.py`:
+
+```python
+correct_password = "python123"
+
+# TODO: Your code here
+
+print(login_successful)
+print(attempts_used)
+```
+
+## Exercise 2: First Divisible Number Finder <Badge type="warning" text="Task" />
+
+Find the first number between 1 and 100 that is divisible by both 7 and 13. Stop searching immediately after finding it.
+
+Create `/labs/lab13/exercise2/exercise2.py`:
+
+```python
+# TODO: Your code here
+
+print(found_number)
+```
+
+## Exercise 3: Grade Filter with Continue <Badge type="warning" text="Task" />
+
+Process grades and calculate the average, but skip any grades that are invalid (less than 0 or greater than 100). Keep reading grades until a negative number is entered. Count how many valid grades were processed.
+
+Create `/labs/lab13/exercise3/exercise3.py`:
+
+```python
+grade = float(input())
+
+# TODO: Your code here
+
+print(valid_count)
+print(f"{average:.2f}")
+```
+
+## Exercise 4: Positive Number Sum <Badge type="warning" text="Task" />
+
+Keep accepting numbers from the user. Skip negative numbers (don't add them to sum). Stop when the user enters 0. Calculate sum and count of positive numbers only. Note: 0 is neither positive nor negative.
+
+Create `/labs/lab13/exercise4/exercise4.py`:
+
+```python
+number = float(input())
+
+# TODO: Your code here
+
+print(positive_count)
+print(f"{positive_sum:.2f}")
+```
+
+## Exercise 5: ATM Withdrawal Validator <Badge type="warning" text="Task" />
+
+You are creating an ATM system. Read withdrawal amounts from the user until they enter 0 to finish. The ATM has these rules:
+- Minimum withdrawal: $20
+- Maximum withdrawal: $500
+- Only multiples of $20 are allowed
+
+Count how many valid withdrawals were made and calculate the total amount withdrawn. Skip invalid amounts and continue asking.
+
+Create `/labs/lab13/exercise5/exercise5.py`:
+
+```python
+amount = int(input())
+
+# TODO: Your code here
+
+print(valid_count)      # Number of valid withdrawals
+print(total_withdrawn)  # Total amount from valid withdrawals only
+```
+
+## Exercise 6: Movie Ticket Counter <Badge type="warning" text="Task" />
+
+A cinema is selling tickets. Read customer ages one by one until -1 is entered to stop. Calculate the total ticket revenue based on these prices:
+- Children (age 0-12): $8
+- Teens (age 13-17): $10
+- Adults (age 18-64): $15
+- Seniors (age 65+): $10
+
+Count the total number of tickets sold and calculate total revenue.
+
+Create `/labs/lab13/exercise6/exercise6.py`:
+
+```python
+age = int(input())
+
+# TODO: Your code here
+
+print(tickets_sold)
+print(total_revenue)
+```
+
+## Testing Your Solutions
+
+Use **pytest** to verify your implementations work correctly:
+
+1. Navigate to each exercise folder
+2. Run the tests using **VS Code**'s Test Explorer
+3. Fix any failing test cases
+4. Ensure all tests pass before moving to the next exercise
+
+## Commit and Push Your Work
+
+After completing all exercises, save all your files and commit them to your repository. Make sure your files are properly saved in the `/labs/lab13/` directory, including `exercise.py` and all exercise folders with their Python files.
+
+Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 13: Loop Control Statements", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully and that any automated tests pass.
