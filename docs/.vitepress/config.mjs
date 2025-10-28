@@ -296,6 +296,10 @@ export default defineConfig({
           link: '/exams/#sample-question'
         },
         {
+          text: 'Sample Question Answer',
+          link: '/exams/#sample-question-answer'
+        },
+        {
           text: 'Exam 1',
           link: '/exams/#exam-1'
         },

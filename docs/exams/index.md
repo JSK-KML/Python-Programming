@@ -22,6 +22,22 @@ outline: deep
 <br>
 <br>
 
+### Sample Question Answer
+
+<iframe src="/Python-Programming/exams/sample-pspm-answer.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exams/sample-pspm-answer.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    📖 Open Fullscreen
+  </button>
+</a>
+
+<br>
+<br>
+
+
 ## Exam 1
 
 <iframe src="/Python-Programming/exams/exam-1.pdf" width="100%" height="400" allowfullscreen></iframe>
