@@ -295,7 +295,7 @@ print(found_number)
 
 ## Exercise 3: Grade Filter with Continue <Badge type="warning" text="Task" />
 
-Process grades and calculate the average, but skip any grades that are invalid (less than 0 or greater than 100). Keep reading grades until a negative number is entered. Count how many valid grades were processed.
+Process grades and calculate the average, but skip any grades that are invalid (less than 0 or greater than 100). Keep reading grades until -1 is entered. Count how many valid grades were processed.
 
 Create `/labs/lab13/exercise3/exercise3.py`:
 
