@@ -322,6 +322,10 @@ export default defineConfig({
         {
           text: 'Exam 6',
           link: '/exams/#exam-6'
+        },
+        {
+          text: 'Exam 7',
+          link: '/exams/#exam-7'
         }
       ]
     },
