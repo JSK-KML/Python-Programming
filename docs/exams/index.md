@@ -125,3 +125,18 @@ outline: deep
   </button>
 </a>
 
+<br>
+<br>
+
+## Exam 7
+
+<iframe src="/Python-Programming/exams/exam-7.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exams/exam-7.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    📖 Open Fullscreen
+  </button>
+</a>
+
