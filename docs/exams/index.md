@@ -140,3 +140,18 @@ outline: deep
   </button>
 </a>
 
+<br>
+<br>
+
+## Skema KMK Pra-PSPM 25/26
+
+<iframe src="/Python-Programming/exam/Skema KMK Pra-PSPM 25_26.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exam/Skema KMK Pra-PSPM 25_26.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    📖 Open Fullscreen
+  </button>
+</a>
+
