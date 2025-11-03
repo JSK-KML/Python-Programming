@@ -326,6 +326,10 @@ export default defineConfig({
         {
           text: 'Exam 7',
           link: '/exams/#exam-7'
+        },
+        {
+          text: 'Skema KMK Pra-PSPM 25/26',
+          link: '/exams/#skema-kmk-pra-pspm-25-26'
         }
       ]
     },
