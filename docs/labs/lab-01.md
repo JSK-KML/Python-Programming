@@ -27,6 +27,57 @@ This lab walks you through setting up **Git** and **VS Code**, then using their 
 
     
 
+## Install GitHub CLI
+
+**GitHub CLI** (`gh`) is a command-line tool that brings **GitHub** directly into your terminal. In this course, we use it to authenticate your machine with **GitHub** so that pushing and pulling code works without entering your credentials every time.
+
+In **VS Code**, open a terminal by clicking `Terminal` in the top menu bar, then selecting `New Terminal`. A terminal panel will appear at the bottom of **VS Code**.
+
+Install **GitHub CLI** using `winget`:
+
+```bash
+winget install --id GitHub.cli
+```
+
+Once installed, close and reopen the terminal, then verify:
+
+```bash
+gh --version
+```
+
+You should see a version number printed.
+
+### Logging In
+
+Run the following command to authenticate with **GitHub**:
+
+```bash
+gh auth login
+```
+
+Follow the prompts:
+- Select **GitHub.com**
+- Select **HTTPS**
+- When asked to authenticate, choose **Login with a web browser**
+- A one-time code will appear in the terminal — copy it, press <kbd>Enter</kbd> to open the browser, paste the code, and authorise the app
+
+Once done, verify you are logged in:
+
+```bash
+gh auth status
+```
+
+You should see your **GitHub** username confirmed.
+
+### Setting Up Your Identity
+
+Tell **Git** who you are for commit records. Replace `USERNAME` and `EMAIL` with your actual **GitHub** username and email:
+
+```bash
+git config --global user.name  "USERNAME"
+git config --global user.email "EMAIL"
+```
+
 ## Forking the Repository
 
 When you fork a repository on **GitHub**, you create a fully independent copy under your own account. The original owner keeps their version; you now control yours and can set permissions, open issues, or adjust settings without affecting the source project.
@@ -62,25 +113,7 @@ Back in **VS Code**, choose `Source Control` from the sidebar and click `Clone r
     <img src="/public/labs/lab-01/lab-1-4.png" alt="drawing" width="400"/>
 </p>
 
-After finishing that, your **GitHub** account needs to be set up. By `cloning` the repository, you are just copying the code into your own PC, but you need to tell **GitHub** that you are the rightful owner of the code. To do this, you need to use the terminal. Click `Terminal` and then `New Terminal`. 
-
-<p align="center">
-    <img src="/public/labs/lab-01/lab-1-8.png" alt="drawing" width="400"/>
-</p>
-
-A new terminal will appear at the bottom of **VS Code**.
-
-<p align="center">
-    <img src="/public/labs/lab-01/lab-1-9.png" alt="drawing" width="400"/>
-</p>
-
-
-In the terminal, use the command below to setup your **GitHub** username and email. Refer back to your **GitHub** account for your username and email, the email is the email that you use for login. Replace `USERNAME` and `EMAIL` with your actual username and email.
-
-```bash
-git config --global user.name  "USERNAME"
-git config --global user.email "EMAIL"
-```
+After finishing that, your local copy is ready to use. If you have completed the **GitHub CLI** setup earlier, your machine is already authenticated and you are good to go.
 
 ## Commit and Push 
 
@@ -132,6 +165,8 @@ Congrats! You've just navigated your first **GitHub** workflow. Here's a quick r
 - `Fork`: make a personal copy of any **GitHub** repository in your own account.
 
 - `Clone`: bring that repository down to your computer, including its full history.
+
+- `gh auth login`: authenticate your machine with **GitHub** so you can push and pull without entering credentials each time.
 
 - `Commit`: record your local edits as a named snapshot with a clear message.
 

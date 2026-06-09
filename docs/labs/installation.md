@@ -21,7 +21,6 @@ Why we use **Git** (and **GitHub**) instead of **Google Classroom**:
 
 - Complete history & easy rollback: Unlike a one-off upload, **Git** preserves the full history of your edits. Made a mistake? You can revert to any prior version with a single command.
 
-- Collaboration & peer review: **GitHub's** pull-request workflow lets you review classmates' code, discuss improvements inline, and learn from each other in a transparent, controlled way.
 
 ### Installing Git
 

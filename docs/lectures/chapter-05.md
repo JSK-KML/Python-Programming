@@ -19,7 +19,7 @@ outline: deep
 
 <a href="./chapter-05.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>
 
