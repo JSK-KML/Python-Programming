@@ -4,6 +4,14 @@
     --vp-font-family-base: 'Plus Jakarta Sans', sans-serif;
 }
 
+.VPHero .image-bg {
+    display: none !important;
+}
+
+.VPHero .image-container {
+    background: transparent !important;
+}
+
 .open-pdf-btn {
     display: inline-block;
     padding: 0.6rem 1.4rem;

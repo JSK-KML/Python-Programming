@@ -1,39 +1,32 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 title: Home
 
 hero:
-  name: "CP115 Python Programming"
-  text: "Course and Lab Information"
-  tagline: Structured Python Labs and Exercises
+  name: "CP115"
+  text: "Python Programming"
+  tagline: Labs, tutorials, and everything you need to get through the course.
+  image:
+    src: /icon.png
+    alt: CP115
   actions:
     - theme: brand
-      text: Course Informations
-      link: /course/course
-
+      text: Get Started
+      link: /labs/lab-01
+    - theme: alt
+      text: Schedule
+      link: /course/schedule
 
 features:
-  - title: Course Informations
-    details: Complete course overview including assessment breakdown, weekly schedules, learning objectives, and grading criteria to help you succeed in CP115 Python Programming
-  
+  - title: Labs
+    details: Hands-on labs covering core Python concepts, from environment setup and version control through to testing and debugging.
+  - title: Tutorials
+    details: Practice problems aligned to each chapter, designed to reinforce lecture material and prepare you for assessments.
+  - title: Assessments
+    details: Practical tests and a final assignment, together worth 50% of your grade. The PSPM final exam covers the remaining 50%.
+
 ---
-
-
-<CodeGroup>
-<CodeGroupItem title="Python" active>
-
-```python
-print("Hello, World!")
-```
-
-</CodeGroupItem>
-
-</CodeGroup>
-
-
-
 
 <script setup>
 import { VPTeamMembers } from 'vitepress/theme'
@@ -43,26 +36,19 @@ const members = [
     avatar: 'https://github.com/Aiman-Haris.png',
     name: 'Muhammad Aiman Haris',
     title: 'Lecturer',
-    org : 'Kolej Matrikulasi Labuan',
-    desc : 'I have several years of experience in teaching programming using is Python, Java and JavaScript. If you have any questions, please don\'t hesitate to reach out via the link below. Enjoy the course!',
+    org: 'Kolej Matrikulasi Labuan',
+    desc: 'Several years of experience teaching programming in Python, Java, and JavaScript. Feel free to reach out via the links below — enjoy the course!',
     links: [
-      {icon : 'whatsapp', link :'https://wasap.my/+60143294625'},
+      { icon: 'whatsapp', link: 'https://wasap.my/+60143294625' },
       { icon: 'gmail', link: 'mailto:bm-3570@moe-dl.edu.my' },
       { icon: 'github', link: 'https://github.com/Aiman-Haris' }
-      
     ]
-  },
-
+  }
 ]
 </script>
 
 <br>
-<br>
-<br>
-<br>
 
-
-# Course Lecturer
+## Course Lecturer
 
 <VPTeamMembers size="small" :members />
-
