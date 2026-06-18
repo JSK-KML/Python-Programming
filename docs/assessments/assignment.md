@@ -112,6 +112,6 @@ Submit **TWO** files:
 
 <a href="/Python-Programming/assessments/assignment.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>

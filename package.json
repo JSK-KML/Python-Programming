@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "dip:pdf": "md-to-pdf docs/course/DIP/week-1-dip.md docs/course/DIP/week-2-dip.md docs/course/DIP/week-3-dip.md docs/course/DIP/week-4-dip.md docs/course/DIP/week-5-dip.md docs/course/DIP/week-6-dip.md docs/course/DIP/week-7-dip.md docs/course/DIP/week-8-dip.md docs/course/DIP/week-9-dip.md docs/course/DIP/week-10-dip.md docs/course/DIP/week-11-dip.md docs/course/DIP/week-12-dip.md docs/course/DIP/week-13-dip.md docs/course/DIP/week-14-dip.md docs/course/DIP/week-15-dip.md docs/course/DIP/week-16-dip.md docs/course/DIP/week-17-dip.md docs/course/DIP/DIP-Guidelines.md"
   },

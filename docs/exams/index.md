@@ -15,7 +15,7 @@ outline: deep
 
 <a href="/Python-Programming/exams/SAMPLE QUESTION SEM I.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>
 
@@ -30,7 +30,7 @@ outline: deep
 
 <a href="/Python-Programming/exams/sample-pspm-answer.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>
 
@@ -46,7 +46,7 @@ outline: deep
 
 <a href="/Python-Programming/exams/exam-1.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>
 
@@ -61,7 +61,7 @@ outline: deep
 
 <a href="/Python-Programming/exams/exam-2.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>
 
@@ -76,7 +76,7 @@ outline: deep
 
 <a href="/Python-Programming/exams/exam-3.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>
 
@@ -91,7 +91,7 @@ outline: deep
 
 <a href="/Python-Programming/exams/Exam-4.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>
 
@@ -106,7 +106,7 @@ outline: deep
 
 <a href="/Python-Programming/assessments/exam-5.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>
 
@@ -121,7 +121,7 @@ outline: deep
 
 <a href="/Python-Programming/assessments/exam-6.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>
 
@@ -136,7 +136,7 @@ outline: deep
 
 <a href="/Python-Programming/exams/exam-7.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>
 
@@ -151,7 +151,7 @@ outline: deep
 
 <a href="/Python-Programming/exam/Skema KMK Pra-PSPM 25_26.pdf" target="_blank" rel="noopener">
   <button class="open-pdf-btn">
-    📖 Open Fullscreen
+    Open Fullscreen
   </button>
 </a>
 
