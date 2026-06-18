@@ -27,6 +27,29 @@ This lab walks you through setting up **Git** and **VS Code**, then using their 
 
     
 
+## Preparing Your Workspace Folder
+
+Before working with **GitHub**, you need a place on your computer to keep your work. Keeping everything in one organized folder makes your files easy to find later.
+
+<Badge type="tip" text="Task" />
+
+First, create a folder named after yourself on your **Desktop**:
+
+1. Go to your **Desktop**.
+2. Right-click on an empty area and choose `New` → `Folder`.
+3. Name the folder using your own name, for example `aiman-cp115`.
+
+<br>
+
+Now open that folder in **VS Code** so it becomes your working area:
+
+1. Open **VS Code**.
+2. From the top menu, click `File` → `Open Folder...`.
+3. Browse to your **Desktop**, select the folder you just created, and click `Select Folder`.
+
+
+Once the folder is open, you will see its name at the top of the **Explorer** panel on the left side of **VS Code**. This is where your cloned repository will live.
+
 ## Forking the Repository
 
 When you fork a repository on **GitHub**, you create a fully independent copy under your own account. The original owner keeps their version; you now control yours and can set permissions, open issues, or adjust settings without affecting the source project.
@@ -61,6 +84,24 @@ Back in **VS Code**, choose `Source Control` from the sidebar and click `Clone r
 <p align="center">
     <img src="/public/labs/lab-01/lab-1-4.png" alt="drawing" width="400"/>
 </p>
+
+### Cloning Using the Terminal <Badge type="tip" text="Optional" />
+
+Instead of the graphical `Source Control` panel, you can also clone the repository using the **terminal**. This is the method most programmers use, and it is good to get familiar with it.
+
+Open a terminal in **VS Code** by clicking `Terminal` and then `New Terminal`. A terminal will appear at the bottom of the window, already pointing at your workspace folder.
+
+In the terminal, type the command below, replacing the link with the one you copied from the `Code` button on **GitHub**:
+
+```bash
+git clone https://github.com/YOUR-USERNAME/CP115-Class-Repo.git
+```
+
+Press `Enter`, and **Git** will download a full copy of the repository into a new folder inside your workspace. 
+
+::: tip
+Both methods do the same thing. The `Source Control` panel runs the `git clone` command for you behind the scenes.
+:::
 
 After finishing that, your **GitHub** account needs to be set up. By `cloning` the repository, you are just copying the code into your own PC, but you need to tell **GitHub** that you are the rightful owner of the code. To do this, you need to use the terminal. Click `Terminal` and then `New Terminal`. 
 
