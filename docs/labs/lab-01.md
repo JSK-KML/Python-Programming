@@ -27,6 +27,19 @@ This lab walks you through setting up **Git** and **VS Code**, then using their 
 
     
 
+## Create a GitHub Account
+
+**GitHub** is the online platform where we store and share all the code for this course. Before you can fork, clone, or push any code, you need your own free **GitHub** account.
+
+<Badge type="tip" text="Task" />
+
+1. Open your browser and go to [https://github.com/signup](https://github.com/signup).
+2. Enter your **email address**. Use an email you check regularly so you can verify your account.
+3. Create a strong **password** and choose a **username**. This username is how others will see you on **GitHub**, so pick something clear and professional.
+
+
+Once your account is created and verified, you are ready to continue.
+
 ## Preparing Your Workspace Folder
 
 Before working with **GitHub**, you need a place on your computer to keep your work. Keeping everything in one organized folder makes your files easy to find later.
