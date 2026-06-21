@@ -7,9 +7,6 @@ hero:
   name: "CP115"
   text: "Python Programming"
   tagline: Labs, tutorials, and everything you need to get through the course.
-  image:
-    src: /icon.png
-    alt: CP115
   actions:
     - theme: brand
       text: Get Started
