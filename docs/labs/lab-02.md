@@ -5,6 +5,38 @@ title : Lab 2 - Flowgorithm and More Github
 
 # Lab 02 : Flowgorithm and More GitHub
 
+## Before You Begin
+
+Before starting the lab, make sure your workspace is set up correctly.
+
+1. Open **VS Code**.
+2. From the top menu, click `File` → `Open Folder...` and open **your own** cloned folder. If you have not cloned it yet, follow [Lab 01](./lab-01.md#cloning-your-repository) first.
+3. Make sure it is **your own** folder, not a classmate's. Many students share the same PC, so there may be more than one cloned repository on this computer. Confirm the folder belongs to you before doing anything.
+
+::: warning REMINDER
+Always verify the folder is yours before you start. Working in a classmate's folder means your work goes to the wrong repository, and you may overwrite someone else's work.
+:::
+
+Next, make sure **you** are the one logged in to **GitHub** on this machine. Because the same PC is shared, a classmate may still be logged in from an earlier session.
+
+1. Open a terminal in **VS Code** by clicking `Terminal` in the top menu bar, then `New Terminal`.
+2. Check who is currently logged in:
+
+```bash
+gh auth status
+```
+
+3. If the account shown is **not yours**, log out first, then log in as yourself:
+
+```bash
+gh auth logout
+gh auth login
+```
+
+If no one is logged in, just run `gh auth login` and follow the prompts to authenticate. Refer back to [Lab 01](./lab-01.md#logging-in) if you need a reminder of the steps.
+
+Once your folder and login are confirmed to be yours, continue with the lab below.
+
 ## Pull and Update in VS Code
 
 This lab will explain how to use **Flowgorithm** and how to integrate **Flowgorithm** with **GitHub**
@@ -125,8 +157,6 @@ Make sure you click the correct arrow to ensure that the variable is declared in
 
 You set up these tasks using a simple file written in YAML, where you describe what steps should happen and when.
 
-For example, every time you push new code or create a pull request, **GitHub Actions** can automatically check your work to see if everything is correct.
-
 This process is called a workflow, and it helps catch mistakes early, without you needing to run tests manually.
 
 To set up your **GitHub Actions**, go to the `cp115-class-repo` in your **GitHub** account and go to the `Actions` tab. Click the `I understand my workflows, go ahead and enable them`. 
@@ -135,7 +165,7 @@ To set up your **GitHub Actions**, go to the `cp115-class-repo` in your **GitHub
     <img src="/public/labs/lab-02/lab-2-3.png" alt="drawing" width="600"/>
 </p>
 
-The directions for **GitHub Actions** have been set up in any file that has the `.yml` file. If you look into your repository right now, you will see that there are two `.yml` file, both of them are inside `.github/workflows` called `lab01-ci.yml` and `lab02-ci.yml`. The file name is quite explanatory. The first one is for the first lab and the second on is for the second lab.
+The directions for **GitHub Actions** have been set up in any file that has the `.yml` file. If you look into your repository right now, you will see that there are a few `.yml` file, inside `.github/workflows` such as `lab01-ci.yml` and `lab02-ci.yml`. The file name is quite explanatory. The first one is for the first lab and the second on is for the second lab.
 
 Look into the `lab02-ci.yml`, you can see that the language is quite direct and can be understand easily. Don't worry too much about writing the workflow, for now, the workflow will be given to you.
 
@@ -173,4 +203,58 @@ Your task is to read the error message and correct the mistake based on the erro
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-7.png" alt="drawing" width="600"/>
 </p>
+
+## Exercises <Badge type="tip" text="Task" />
+
+Now that you know how to build a flowchart in **Flowgorithm** and push it for the auto-checker to verify, it is your turn to practice. Below are five problems. For each one, build a flowchart in **Flowgorithm** using the **sequence** structure and save it with the exact file name given.
+
+::: warning REMINDER
+Save each file with the **exact** file name stated in the question and place it inside the `/labs/lab02/` directory. The **GitHub Actions** auto-checker looks for these exact names. A wrong name (for example `exercise1.fprg` instead of `exercise-1.fprg`) will fail the check.
+:::
+
+### Exercise 1 - Money Changer
+
+A money changer charges a 2% commission on the amount of Ringgit handed over. The commission is deducted first, and only the remaining Ringgit is converted to Thai Baht at the day's exchange rate. Calculate the amount of Baht received.
+
+Save your file as `exercise-1.fprg` inside the `/labs/lab02/` directory.
+
+### Exercise 2 - Timber Shop
+
+A timber shop sells planks of wood priced per metre. A customer states the length of timber they need in centimetres. To allow for cutting mistakes, the customer always buys 10% extra timber. Calculate the total length the customer must order in metres, and the total price.
+
+Save your file as `exercise-2.fprg` inside the `/labs/lab02/` directory.
+
+### Exercise 3 - Air-Conditioner Running Cost
+
+Pak Long has been complaining about his electricity bill. His old air-conditioner draws a certain amount of power in watts, and he leaves it running for a number of hours every night. Electricity is charged at RM0.218 per kilowatt-hour. Pak Long wants to know how much that one air-conditioner costs him to run each night, and across a whole month of 30 days.
+
+Save your file as `exercise-3.fprg` inside the `/labs/lab02/` directory.
+
+### Exercise 4 - Roadtrip
+
+Syafiq is planning a roadtrip. His car uses 8 litres of petrol for every 100km travelled, and petrol costs RM2.05 per litre. Given the distance of his journey in kilometres, calculate how much he will spend on petrol.
+
+Save your file as `exercise-4.fprg` inside the `/labs/lab02/` directory.
+
+### Exercise 5 - Photo Printing
+
+A phone shop charges customers to print photos. There is a fixed service fee of RM2 per order, plus RM0.50 for each photo printed. Given the number of photos a customer wants printed, calculate the total cost of their order.
+
+Save your file as `exercise-5.fprg` inside the `/labs/lab02/` directory.
+
+## Finishing Up
+
+Once all five exercise files are saved inside `/labs/lab02/`, submit your work and log out of the shared machine.
+
+1. Commit and push all your files to **GitHub**. Refer back to [commit and push](./lab-01.md#commit-and-push) if you need a reminder.
+2. Confirm your push succeeded by checking the green tick in the `Actions` tab of your repository on **GitHub**.
+3. Log out of **GitHub** on this machine so the next student does not push to your account:
+
+```bash
+gh auth logout
+```
+
+::: warning REMINDER
+Always run `gh auth logout` before you leave. If you stay logged in, the next student using this PC could accidentally push their work to your repository.
+:::
 
