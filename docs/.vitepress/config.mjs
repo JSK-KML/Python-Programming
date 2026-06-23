@@ -76,7 +76,7 @@ export default defineConfig({
         text: 'Lectures',
         items: [
           { text: 'Chapter 1', link: '/lectures/chapter-01' },
-          // { text: 'Chapter 2', link: '/lectures/chapter-02' },
+          { text: 'Chapter 2', link: '/lectures/chapter-02' },
           // { text: 'Chapter 3', link: '/lectures/chapter-03' },
           // { text: 'Chapter 4', link: '/lectures/chapter-04' },
           // { text: 'Chapter 5', link: '/lectures/chapter-05' },
@@ -142,7 +142,7 @@ export default defineConfig({
 
       '/lectures/': [
         { text: 'Chapter 1', link: '/lectures/chapter-01' },
-        // { text: 'Chapter 2', link: '/lectures/chapter-02' },
+        { text: 'Chapter 2', link: '/lectures/chapter-02' },
         // { text: 'Chapter 3', link: '/lectures/chapter-03' },
         // { text: 'Chapter 4', link: '/lectures/chapter-04' },
         // { text: 'Chapter 5', link: '/lectures/chapter-05' },
