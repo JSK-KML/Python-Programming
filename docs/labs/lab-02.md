@@ -27,10 +27,15 @@ Next, make sure **you** are the one logged in to **GitHub** on this machine. Bec
 gh auth status
 ```
 
-3. If the account shown is **not yours**, log out first, then log in as yourself:
+3. If the account shown is **not yours**, log out first,
 
 ```bash
 gh auth logout
+
+```
+ then log in as yourself:
+
+```bash
 gh auth login
 ```
 
@@ -42,7 +47,13 @@ Once your folder and login are confirmed to be yours, continue with the lab belo
 
 This lab will explain how to use **Flowgorithm** and how to integrate **Flowgorithm** with **GitHub**
 
-Before starting any lab, you need to make sure that the repo in your **GitHub** is the latest one. [Sync the repo](./lab-01.md#syncing-fork) if the `upstream` repo have been updated.
+Before starting any lab, you need to make sure that the repo in your **GitHub** is the latest one. 
+
+[Sync the repo](./lab-01.md#syncing-fork) if the `upstream` repo have been updated.
+
+::: warning REMINDER
+Please sync the repo, you can refer to the link above on how to do it. I will know if you didnt do it. 
+:::
 
 Syncing the repo only updates the online repo that exist in **GitHub** web server. Back in our **VS Code**, the code are unchanged from the last time you used it. 
 
@@ -53,6 +64,18 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
 </p>
 
 `Pull` connects to the project on **GitHub**, grabs any commits added since your last `Pull`, and blends those changes into your PC so your local files and history now match what's online on **GitHub** server.
+
+
+## Checklist Before You Proceed
+
+<Checklist title="Please Check Properly">
+
+1. You have logged in to your Github account in the browser.
+2. You have logged in to your Github account in the terminal using VS Code.
+3. You have sync the repo in you Github account in the browser.
+4. You have pull the update into you repo in VS Code.
+
+</Checklist>
 
 ## Introduction to Flowgorithm
 
@@ -156,23 +179,30 @@ Make sure you click the correct arrow to ensure that the variable is declared in
 
 **GitHub Actions** is a built-in tool inside **GitHub** that can automatically run tasks for you, like checking your code, testing it, or uploading your project to a website.
 
-You set up these tasks using a simple file written in YAML, where you describe what steps should happen and when.
 
-This process is called a workflow, and it helps catch mistakes early, without you needing to run tests manually.
+To set up your **GitHub Actions**, go to the `cp115-class-repo` in your **GitHub** account and go to the `Actions` tab. 
 
-To set up your **GitHub Actions**, go to the `cp115-class-repo` in your **GitHub** account and go to the `Actions` tab. Click the `I understand my workflows, go ahead and enable them`. 
+Click the `I understand my workflows, go ahead and enable them`.
+
+::: warning REMINDER
+Please check that you are currently opening your repo, not mine (Yes,this is me, you lecturer, talking to you directly.)
+:::
 
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-3.png" alt="drawing" width="600"/>
 </p>
 
-The directions for **GitHub Actions** have been set up in any file that has the `.yml` file. If you look into your repository right now, you will see that there are a few `.yml` file, inside `.github/workflows` such as `lab01-ci.yml` and `lab02-ci.yml`. The file name is quite explanatory. The first one is for the first lab and the second on is for the second lab.
 
-Look into the `lab02-ci.yml`, you can see that the language is quite direct and can be understand easily. Don't worry too much about writing the workflow, for now, the workflow will be given to you.
 
 ## Using Flowgorithm with GitHub Action
 
-Copy and paste the saved file from the [**Flowgorithm**](#introduction-to-flowgorithm) section earlier into `/labs/lab02/` directory of your repo using **VS Code**. Then commit and push the code. Refer back to the previous lab on how to do [commit and push](./lab-01.md#commit-and-push) if you don't remember how to.
+Copy and paste the saved file from the [**Flowgorithm**](#introduction-to-flowgorithm) section earlier into `/labs/lab02/` directory of your repo using **VS Code**. 
+
+::: warning REMINDER
+Copy and paste properly, dont skip this one.
+:::
+
+Then **commit and push the code**. Refer back to the previous lab on how to do [commit and push](./lab-01.md#commit-and-push) if you don't remember how to.
 
 When you push your changes to **GitHub**, a special process called a **GitHub Actions** workflow automatically runs in the background. Think of this as **GitHub** testing your work — just like an auto-checker.
 

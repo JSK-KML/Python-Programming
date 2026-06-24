@@ -38,7 +38,7 @@ export default defineConfig({
         text: 'Tutorials',
         items: [
           { text: 'Tutorial 1', link: '/tutorials/chapter-2-tutorial-1' },
-          // { text: 'Tutorial 2', link: '/tutorials/chapter-2-tutorial-2' },
+          { text: 'Tutorial 2', link: '/tutorials/chapter-2-tutorial-2' },
           // { text: 'Tutorial 3', link: '/tutorials/chapter-3-tutorial-3' },
           // { text: 'Tutorial 4', link: '/tutorials/chapter-3-tutorial-4' },
           // { text: 'Tutorial 5', link: '/tutorials/chapter-3-tutorial-5' },
@@ -155,7 +155,7 @@ export default defineConfig({
           text: 'Tutorial 1',
           link: '/tutorials/chapter-2-tutorial-1'
         },
-        // { text: 'Tutorial 2', link: '/tutorials/chapter-2-tutorial-2' },
+        { text: 'Tutorial 2', link: '/tutorials/chapter-2-tutorial-2' },
         // { text: 'Tutorial 3', link: '/tutorials/chapter-3-tutorial-3' },
         // { text: 'Tutorial 4', link: '/tutorials/chapter-3-tutorial-4' },
         // { text: 'Tutorial 5', link: '/tutorials/chapter-3-tutorial-5' },

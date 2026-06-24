@@ -2,6 +2,7 @@ import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 import './style.css'
 import StudyHighlighter from './components/StudyHighlighter.vue'
+import Checklist from './components/Checklist.vue'
 
 export default {
   extends: DefaultTheme,
@@ -14,5 +15,6 @@ export default {
   },
   enhanceApp({ app }) {
     app.component('StudyHighlighter', StudyHighlighter)
+    app.component('Checklist', Checklist)
   }
 }
