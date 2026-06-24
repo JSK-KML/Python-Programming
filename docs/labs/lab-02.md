@@ -1,5 +1,6 @@
 ---
 outline: deep
+highlighter: true
 title : Lab 2 - Flowgorithm and More Github
 ---
 

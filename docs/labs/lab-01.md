@@ -1,5 +1,6 @@
 ---
 outline: deep
+highlighter: true
 
 
 title: Lab 1 - Tool Orientation (VS Code and GitHub)
