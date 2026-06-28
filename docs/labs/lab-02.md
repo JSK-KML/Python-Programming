@@ -63,7 +63,7 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
     <img src="/public/labs/lab-02/lab-2-1.png" alt="drawing" width="400"/>
 </p>
 
-`Pull` connects to the project on **GitHub**, grabs any commits added since your last `Pull`, and blends those changes into your PC so your local files and history now match what's online on **GitHub** server.
+[`Pull`](./glossary.md#pull) connects to the project on **GitHub**, grabs any commits added since your last `Pull`, and blends those changes into your PC so your local files and history now match what's online on **GitHub** server.
 
 
 ## Checklist Before You Proceed
@@ -177,7 +177,7 @@ Make sure you click the correct arrow to ensure that the variable is declared in
 
 ## Using GitHub Actions
 
-**GitHub Actions** is a built-in tool inside **GitHub** that can automatically run tasks for you, like checking your code, testing it, or uploading your project to a website.
+[**GitHub Actions**](./glossary.md#github-actions) is a built-in tool inside **GitHub** that can automatically run tasks for you, like checking your code, testing it, or uploading your project to a website.
 
 
 To set up your **GitHub Actions**, go to the `cp115-class-repo` in your **GitHub** account and go to the `Actions` tab. 
@@ -196,7 +196,7 @@ Please check that you are currently opening your repo, not mine (Yes,this is me,
 
 ## Using Flowgorithm with GitHub Action
 
-Copy and paste the saved file from the [**Flowgorithm**](#introduction-to-flowgorithm) section earlier into `/labs/lab02/` directory of your repo using **VS Code**. 
+Copy and paste the saved file from the [**Flowgorithm**](#introduction-to-flowgorithm) section earlier into `/labs/lab02/` [directory](./glossary.md#directory) of your repo using **VS Code**. 
 
 ::: warning REMINDER
 Copy and paste properly, dont skip this one.
@@ -204,7 +204,7 @@ Copy and paste properly, dont skip this one.
 
 Then **commit and push the code**. Refer back to the previous lab on how to do [commit and push](./lab-01.md#commit-and-push) if you don't remember how to.
 
-When you push your changes to **GitHub**, a special process called a **GitHub Actions** workflow automatically runs in the background. Think of this as **GitHub** testing your work — just like an auto-checker.
+When you push your changes to **GitHub**, a special process called a **GitHub Actions** [workflow](./glossary.md#workflow) automatically runs in the background. Think of this as **GitHub** testing your work — just like an auto-checker.
 
 After you push, go back to your repository on **GitHub**. You'll notice a small orange circle beside your latest commit message
 

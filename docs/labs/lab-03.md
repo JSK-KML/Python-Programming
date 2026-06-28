@@ -7,104 +7,44 @@ title : Lab 3 - More Flowgorithm
 
 ## Pull and Update in VS Code
 
-This lab will explain how to use **Flowgorithm** for sequence and selection.
+This lab builds on [Lab 02](./lab-02.md). There you learned the **sequence** structure: taking input, declaring variables, and showing output. Here you will add the missing piece, **processing** that input with calculations, then run your flowchart and export it to **Python**.
 
 Before starting any lab, you need to make sure that the repo in your **GitHub** is the latest one. [Sync the repo](./lab-01.md#syncing-fork) if the `upstream` repo have been updated. 
 
-Once the online repo is in-sync, bring those changes down to your PC by clicking `Source Control` and then `...` beside `Changes` and click `Pull`.
+Once the online repo is in-sync, bring those changes down to your PC by clicking `Source Control` and then `...` beside `Changes` and click [`Pull`](./glossary.md#pull).
 
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-1.png" alt="drawing" width="400"/>
 </p>
 
-## Creating Our First Flowchart <Badge type="warning" text="Recall" />
+## Recap: Building the Sequence <Badge type="warning" text="Recall" />
 
-Launch **Flowgorithm** by pressing <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">⊞ Win</kbd> on your keyboard and type *Flowgorithm*. If you can't see it make sure you have [installed it.](/labs/installation#flowgorithm)
+We will reuse the meal-price scenario from [Chapter 2 - Tutorial 1, Scenario 1](../tutorials/chapter-2-tutorial-1.md#scenario-1-meal-price-with-taxes):
 
-When you first launch it, you will see a simple flowchart, containing only `Start` and `End`. This is the default template of the any **Flowgorithm** projects. Before we edit the file, we need to save the file first.
+>A government tax of 10% and service tax of 5% will be added to the price of a set of meal bought at MFC. Calculate the total price that Ali has to pay for a set of meal.
 
-To know if the file is still unsaved, the name of the file is still called `(Untitled)`. To save the file, click `File` and then `Save As...`. The system will prompt you on the location of the file you want it saved. Save it to any location you are comfortable with. Remember this location, you will need to use this later. Name the file exactly as this; `lab-03-1`.
+You already know how to do every step below from Lab 02, so we will not repeat the screenshots. If any step is unclear, go back to [Lab 02 - Creating Our First Flowchart](./lab-02.md#creating-our-first-flowchart).
 
-Hover your mouse on the arrow that is connecting `Main` and `End` until the arrow turns orange, then left click on the arrow.
+Launch **Flowgorithm**, then `File` → `Save As...` and name the file `lab-03-1`. Build the following sequence by clicking the arrow where each shape should go:
 
-<p align="center">
-    <img src="/public/labs/lab-02/lab-2-8.png" alt="drawing" width="400"/>
-</p>
+1. **Declare** `mealPrice` (Integer)
+2. **Input** `mealPrice`
+3. **Declare** `finalPrice` (Real)
+4. **Output** `finalPrice`
 
-After you right click on in, you will see a window popup, listing all the shapes that you can add into your flowchart. Don't worry about the types of shapes that you see here, you will be taught on how to use it later.
-
-<p align="center">
-    <img src="/public/labs/lab-02/lab-2-9.png" alt="drawing" width="600"/>
-</p>
-
-Lets try to apply it on a scenario. For this example, lets use [Scenario 1](../tutorials/chapter-2-tutorial-1.md#scenario-1-meal-price-with-taxes) from our Chapter 2 - Tutorial 1.
-
-For this exercise, we are focusing on how to use **Flowgorithm** not how to create a correct flowchart. The usage of the shapes might be not the most accurate way, but take it easy. This exercise is emphasizing on the software.
-
-Lets recall Scenario 1 from Chapter 2 - Tutorial 1 :
-
->A government tax of 10% and service tax of 5% will be added to the price of a set of meal bought  at MFC. Calculate the total price that Ali has to pay for a set of meal. Write a problem analysis for the given problem statement.
-
-#### Creating Input and Output
-
-Click again the arrow between `Main` and `End` and open the popup window again. Under the **Statement** category, click the **Input** shapes.
-
-<p align="center">
-    <img src="/public/labs/lab-02/lab-2-10.png" alt="drawing" width="600"/>
-</p>
-
-An `Input` shape will appear in between `Main` and `End`. So if you want to add a new shape in between the two old shape, click the line in between those two shapes. Now lets change the input in the `Input` shapes. Double click the `Input` shapes until a window appear that ask you to enter the variable name. For this questions, the input name is `mealPrice`.
-
-<p align="center">
-    <img src="/public/labs/lab-02/lab-2-11.png" alt="drawing" width="400"/>
-</p>
-
-::: info NOTE
-Any variable name that are used must only contains only letters and numbers, you cannot use special character such as - or _
-:::
-
-After finishing those steps, this is what you should see as belows.
-
-<p align="center">
-    <img src="/public/labs/lab-02/lab-2-12.png" alt="drawing" width="400"/>
-</p>
-
-Now repeat the process again, but this time, use the `Output` shape and enter the variable name for the output. Make sure that you click the arrow between `Input` and `End` so you will add the `Output` shape in the correct sequence.
-
-
-#### Declaring the Variable
-
-Even though we have declared our input and output, in **Flowgorithm**, we need to separately declare our variable first outside the `Input` and `Output` shape. So for your `Input`, click the arrow between `Main` and `Input` so we can declare the variable used in `Input` shape.
-
-In the popup window, under the category Statement, choose the `Declare` shape.
-
-<p align="center">
-    <img src="/public/labs/lab-02/lab-2-13.png" alt="drawing" width="400"/>
-</p>
-
-Double click the `Declare` shape and name the variable exactly as you put in the input, which in our case, is `mealPrice` and choose the Integer data type. Click OK to finalise it. 
-
-<p align="center">
-    <img src="/public/labs/lab-02/lab-2-14.png" alt="drawing" width="400"/>
-</p>
-
-The result afterwards should look like the below
-
-<p align="center">
-    <img src="/public/labs/lab-02/lab-2-15.png" alt="drawing" width="300"/>
-</p>
-
-
-Repeat the steps again to declare the variable that are used in `Output` shape. After you finished that, click anywhere in the **Flowgorithm** and press <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">Ctrl</kbd> + <kbd style="color:#fff;background:#0047A3;border:1px solid #0060CC;padding:4px 10px;border-radius:6px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.25);font-size:.85em;line-height:1;user-select:none;">S</kbd> to save the file. 
-
+When you finish, you should have these four shapes in order, with an empty gap between `Declare finalPrice` and `Output finalPrice` where the calculation will go.
 
 ::: warning REMINDER
-Make sure you click the correct arrow to ensure that the variable is declared in the correct sequence.
+Before moving on, confirm you have **four** shapes in order: declare and input for `mealPrice`, then declare and output for `finalPrice`. The calculation is still missing, that is what we add next.
 :::
 
-### Creating Process
+## Creating a Process (The Assign Shape)
 
-To create a process in **Flowgorithm**, click the arrow in between  `Declare` `**finalPrice** and `Output` **finalPrice**.
+So far every flowchart you have built only moves data in and straight back out. A real program has to **do something** to that data in between. That "doing something" is a **process**, and in **Flowgorithm** a process is created with the `Assign` shape.
+
+The `Assign` shape takes an **expression** on the right, calculates its value, and stores the result in a **variable** on the left. This is where the actual maths of your program happens.
+
+To add it, click the arrow between `Declare finalPrice` and `Output finalPrice`.
 
 <p align="center">
     <img src="/public/labs/lab-03/lab-3-1.png" alt="drawing" width="200"/>
@@ -113,83 +53,207 @@ To create a process in **Flowgorithm**, click the arrow in between  `Declare` `*
 In the popup window, under the category **Statement**, choose the `Assign` shape.
 
 <p align="center">
-    <img src="/public/labs/lab-03/lab-3-2.png" alt="drawing" width="200"/>
+    <img src="/public/labs/lab-03/lab-3-2.png" alt="drawing" width="500"/>
 </p>
 
-After the `Assign` shape has appeared between the `Declare` and `Output` shape, double click it, in the popup window, on the left side, in the **variable** box and on the right side in the **Expression Box**, follow the guide below.
+Double click the new `Assign` shape. The popup has two boxes: the **Variable** box on the left (where the answer is stored) and the **Expression** box on the right (the calculation). For our scenario, the total is the meal price plus 10% government tax plus 5% service tax, so:
+
+- **Variable:** `finalPrice`
+- **Expression:** `mealPrice + (mealPrice * 0.10) + (mealPrice * 0.05)`
 
 <p align="center">
     <img src="/public/labs/lab-03/lab-3-3.png" alt="drawing" width="400"/>
 </p>
 
+::: info NOTE
+You can only assign **into** a variable that has already been declared, and you can only use variables in the expression that already hold a value. This is why we declared `finalPrice` earlier and put the `Assign` **after** the input, not before it. The order matters.
+:::
 
-### Running and Testing
+### Adding More Than One Input or Output
 
-Before running the program, double-check if your answer is exactly like this.
+Our meal-price example used a single input and a single output, but several of the exercises below need more than one of each (the storage converter, for example, has one input and **five** outputs).
+
+Adding them works exactly the same way: click the arrow at the point in the sequence where the new shape should go, then add another `Declare`, `Input`, `Assign`, or `Output`. Every variable must still be declared before it is used.
+
+::: warning REMINDER
+The auto-checker reads your inputs and outputs **in the order they appear from top to bottom**. Place each `Input` and `Output` in the exact order the question lists, or your check will fail even when the maths is correct.
+:::
+
+## Running and Testing
+
+A flowchart that looks correct is not the same as a flowchart that **is** correct. **Flowgorithm** lets you [run](./glossary.md#run) your flowchart step by step so you can check the logic against your own calculation.
+
+Before running, double-check your flowchart matches this exactly:
 
 <p align="center">
     <img src="/public/labs/lab-03/lab-3-5.png" alt="drawing" width="200"/>
 </p>
 
-To run the program, click the green arrow at the top right corner of the window. A popup window with a box to enter an input will appear, enter any input and compare it with you calculator to see if the calculations are correct.
+To run the program, click the **green arrow** at the top right corner of the window. A popup will appear asking for input. Enter a value for `mealPrice`, for example `100`.
 
 <p align="center">
     <img src="/public/labs/lab-03/lab-3-4.png" alt="drawing" width="400"/>
 </p>
 
-Copy and paste the saved file from the section earlier into `/labs/lab03/` directory of your repo using **VS Code**. Then commit and push the code. Refer back to the previous lab on how to do [commit and push](./lab-01.md#commit-and-push) if you don't remember how to.
+Now **verify** the result yourself. For an input of `100`, the total should be `100 + 10 + 5 = 115`. If **Flowgorithm** shows `115`, your process is correct. If it shows something else, double click your `Assign` shape and check the expression.
 
+::: tip WHY
+Always test with a value you can work out by hand. If your flowchart and your calculator disagree, the bug is in the flowchart, and now you know to fix it before you ever write a line of code.
+:::
 
+Once you are happy with the result, create a folder for this work: in **VS Code**, right click the `lab03` folder, choose `New Folder`, and name it `exercise1`. Copy the saved `lab-03-1.fprg` file into `/labs/lab03/exercise1/`, then [commit and push](./lab-01.md#commit-and-push).
 
 ## Exporting Flowgorithm to Python 
 
-In **VS Code**, right click the `lab03` folder and click `New File`. Name the file `lab-3-1.py`. In **Flowgorithm**, at the top bar, click the `Source Code Viewer`.
+One of the most useful features of **Flowgorithm** is that it can translate your finished flowchart into real code in many languages, including **Python**. This lets you connect the diagram you understand to the code you are about to learn.
+
+First, in **VS Code**, right click the `exercise1` folder you just created and click `New File`. Name the file `lab-03-1.py`.
+
+Back in **Flowgorithm**, at the top bar, click the `Source Code Viewer`.
 
 <p align="center">
     <img src="/public/labs/lab-03/lab-3-6.png" alt="drawing" width="400"/>
 </p>
 
-A popup window will appear, click the the dropdown at the top left of the window and choose `Python`.
+A popup window will appear. Click the dropdown at the top left and choose `Python`.
 
 <p align="center">
     <img src="/public/labs/lab-03/lab-3-7.png" alt="drawing" width="400"/>
 </p>
 
-Copy and paste the given code from the window into `lab-3-1.py` and save the file.
+Copy the generated code from the window into your `lab-03-1.py` file and save it.
+
+::: info NOTE
+Take a moment to read the **Python** code it produced. Each `Declare`, `Input`, `Assign`, and `Output` shape in your flowchart became a line of code. You will be writing this kind of code by hand soon, so seeing the flowchart and the code side by side is good practice.
+:::
+
+## Working with the Command Line
+
+So far you have run your flowchart with the green arrow and managed your files by clicking. Programmers do much of this same work by typing into the [terminal](./glossary.md#terminal) instead, giving the computer one [command](./glossary.md#command) at a time. In this section you will run the **Python** file you just exported entirely from the command line, picking up four everyday commands as you go.
+
+Open a terminal in **VS Code** with `Terminal` → `New Terminal`. A panel appears at the bottom, with a line waiting for your first command. 
+
+A terminal is always "inside" one folder, called the [working directory](./glossary.md#working-directory), so the first thing to do is ask where you are:
+
+```bash
+pwd
+```
+
+[`pwd`](./glossary.md#pwd) (*print working directory*) prints the full path of the folder you are currently in. The terminal responds with **output** like this:
+
+```
+/c/Users/Aiman/Desktop/name-cp115/CP115-Class-Repo
+```
+
+`pwd` depends on where do you open your VS Code, for some of you, the output of `pwd` might be: 
+
+```
+/c/Users/Aiman/Desktop/name-cp115
+```
+
+Dont worry too much about it, because we can change our `pwd` later. 
+
+Now lets take a look at what you have in the current directory. Run the command below:
 
 
+```bash
+ls
+```
 
-## Scenario 1 – Hotel Reservation <Badge type="warning" text="Question" />
+[`ls`](./glossary.md#ls) (*list*) shows the files and folders inside your working directory. This time the output is:
+
+```
+labs  README.md
+```
+
+You might notice the `Explorer` panel of your `CP115-Class-Repo` shows more than this, including `.github` and `.vscode`:
+
+<p align="center">
+    <img src="/public/labs/lab-03/lab-3-8.png" alt="drawing" width="300"/>
+</p>
+
+Those two folders start with a dot (`.`), and `ls` hides any file or folder whose name begins with a dot. **VS Code** still shows them in the `Explorer`; they are there, `ls` simply does not list them unless you ask it to. You can ignore them for this lab.
+
+Now lets change our `pwd`, to do that we use `cd` ( *change directory* ). You can do them one by one like below:
+
+```bash
+cd labs
+```
+```bash
+cd lab03
+```
+```bash
+cd exercise1
+```
+
+Now if you try to run `pwd` again, you will see the output below:
+
+```
+/c/Users/Aiman/Desktop/name-cp115/CP115-Class-Repo/labs/lab03/exercise1
+```
+
+Run `ls` here, and the output lists the two files you saved earlier:
+
+```
+lab-03-1.fprg  lab-03-1.py
+```
+
+
+That confirms you are in the right place. Now run the file with the **Python** interpreter:
+
+```bash
+python lab-03-1.py
+```
+
+The program runs, asks for your input just as before, and prints the result straight into the terminal.
+
+::: info NOTE
+If `python` is not recognised, try `py lab-03-1.py` instead. On **Windows** the Python launcher is sometimes called `py`.
+:::
+
+::: tip WHY
+Clicking the ▶ button does all of this for you: it opens a terminal and runs `python` on your file behind the scenes. Lab 01 made the same point about the `Source Control` panel running `git clone`. Learning the commands underneath means you understand what the button is really doing.
+:::
+
+## Exercises
+
+The remaining tasks are yours to solve. For each one, build the flowchart in **Flowgorithm**, test it, export it to **Python**, and place both files in that exercise's folder.
+
+::: warning REMINDER
+Your program must output **only the answer**, nothing else. In each `Output` shape put **just the variable** (for example `finalPrice`), never a label such as `"Total: " & finalPrice`. Do not add any prompt text to your `Input` either. The auto-checker reads the raw numbers your program prints, in the given order, so any extra words, labels, or symbols will fail the check even when your calculation is correct.
+:::
+
+## Exercise 2 – Hotel Reservation <Badge type="warning" text="Question" />
 
 Question:
 Mr Rahman plans to make a reservation for a hotel room in Langkawi Island. The basic rate is RM250.00 per night and service charge is 15% of the room rate. Determine the total payment if he books the hotel room for n nights.
 
 Instruction:
-- Flowgorithm file name: `lab-03-2` → place in `/labs/lab03/`.
-- Python file name : `lab-03-2.py` → place in `/labs/lab03/`.
+- Flowgorithm file name: `lab-03-2` → place in `/labs/lab03/exercise2/`.
+- Python file name : `lab-03-2.py` → place in `/labs/lab03/exercise2/`.
 
 Inputs (in order):
 
-- `NUM_NIGHT` – integer number of nights
+- `numNight` – integer number of nights
 
 Outputs (in order):
 
-- `TOTAL_PAYMENT` – sum of room rate and service charge (RM)
+- `totalPayment` – sum of room rate and service charge (RM)
 
 
-## Scenario 2 – Storage Conversion <Badge type="warning" text="Question" />
+## Exercise 3 – Storage Conversion <Badge type="warning" text="Question" />
 Question:
 Prompt user to input a size in Kilobyte, and convert the input into Megabyte, Gigabyte, Terabyte and Petabyte.
 
 Instruction:
-- Flowgorithm file name: `lab-03-3` → place in `/labs/lab03/`.
-- Python file name : `lab-03-3.py` → place in `/labs/lab03/`.
+- Flowgorithm file name: `lab-03-3` → place in `/labs/lab03/exercise3/`.
+- Python file name : `lab-03-3.py` → place in `/labs/lab03/exercise3/`.
 
-Inputs (order):
+Inputs (in order):
 
 - `kilobyte` – real number in KB
 
-Outputs (order):
+Outputs (in order):
 
 `megabyte`
 
@@ -200,42 +264,42 @@ Outputs (order):
 `petabyte`
 
 
-## Scenario 3 – International Fax Cost <Badge type="warning" text="Question" />
+## Exercise 4 – International Fax Cost <Badge type="warning" text="Question" />
 
 Question:
 Amin’s program calculates the cost of sending an international fax: service charge RM3.00 plus RM0.20 per page.
 
 Instruction:
-- Flowgorithm file name: `lab-03-4` → place in `/labs/lab03/`.
-- Python file name : `lab-03-4.py` → place in `/labs/lab03/`.
+- Flowgorithm file name: `lab-03-4` → place in `/labs/lab03/exercise4/`.
+- Python file name : `lab-03-4.py` → place in `/labs/lab03/exercise4/`.
 
-Inputs (order):
+Inputs (in order):
 
 - `pages` – integer number of pages
   
-Outputs (order):
+Outputs (in order):
 
-`TOTAL_COST` – sum of service charge and pages cost
+`totalCost` – sum of service charge and pages cost
 
 
-## Scenario 4 – Cookie Calories <Badge type="warning" text="Question" />
+## Exercise 5 – Cookie Calories <Badge type="warning" text="Question" />
 
 Question:
 A pack contains 40 pieces of cookies. The calorie info claims 10 servings per pack. Each serving equals 300 calories. Calculate the total calories consumed based on number of packs eaten.
 
 Instruction:
-- Flowgorithm file name: `lab-03-5` → place in `/labs/lab03/`.
-- Python file name : `lab-03-5.py` → place in `/labs/lab03/`.
+- Flowgorithm file name: `lab-03-5` → place in `/labs/lab03/exercise5/`.
+- Python file name : `lab-03-5.py` → place in `/labs/lab03/exercise5/`.
 
-Inputs (order):
+Inputs (in order):
 
-- `packs_eaten` – integer number of packs consumed
+- `packsEaten` – integer number of packs consumed
 
-Outputs (order):
+Outputs (in order):
 
-- `TOTAL_CALORIES` – SERVINGS_CONSUMED * 300
+- `totalCalories` – servingsConsumed * 300
 
-## Scenario 5 – Wage to Mow Yard <Badge type="warning" text="Question" />
+## Exercise 6 – Wage to Mow Yard <Badge type="warning" text="Question" />
 
 Question:
 The wage to mow the yard is based on diesel price RM2.00 per square meter. The yard area is the large rectangle minus the house rectangle. You are given the length and width of the yard boundary and the length and width of the house. Calculate the wage.
@@ -243,43 +307,43 @@ The wage to mow the yard is based on diesel price RM2.00 per square meter. The y
 ![image1](/public/tutorials/c2t1-1.png)
 
 Instruction:
-- Flowgorithm file name: `lab-03-6` → place in `/labs/lab03/`.
-- Python file name : `lab-03-6.py` → place in `/labs/lab03/`.
+- Flowgorithm file name: `lab-03-6` → place in `/labs/lab03/exercise6/`.
+- Python file name : `lab-03-6.py` → place in `/labs/lab03/exercise6/`.
 
-Inputs (order):
+Inputs (in order):
 
-- `yard_length` – real number
+- `yardLength` – real number
 
-- `yard_width` – real number
+- `yardWidth` – real number
 
-- `house_length` – real number
+- `houseLength` – real number
 
-- `house_width` – real number
+- `houseWidth` – real number
  
-Outputs (order):
+Outputs (in order):
 
-- `WAGE` – Total wage
+- `wage` – Total wage
 
-## Scenario 6 – Temperature Conversion <Badge type="warning" text="Question" />
+## Exercise 7 – Temperature Conversion <Badge type="warning" text="Question" />
 
 Question
 Prompt user to input a temperature in Celsius and convert it to Fahrenheit and Kelvin.
 
 Instruction:
-- Flowgorithm file name: `lab-03-7` → place in `/labs/lab03/`.
-- Python file name: `lab-03-7.py` → place in `/labs/lab03/`.
+- Flowgorithm file name: `lab-03-7` → place in `/labs/lab03/exercise7/`.
+- Python file name: `lab-03-7.py` → place in `/labs/lab03/exercise7/`.
 
-Inputs (in order)
+Inputs (in order):
 
 - `celsius` – real number (°C)
 
-Outputs (in order)
+Outputs (in order):
 
 - `fahrenheit` 
 
 - `kelvin` 
 
-## Scenario 7 – Simple Interest Calculator <Badge type="warning" text="Question" />
+## Exercise 8 – Simple Interest Calculator <Badge type="warning" text="Question" />
 
 Question: 
 Prompt user for principal (P), annual rate (R %) and time (T years); calculate:
@@ -288,8 +352,8 @@ Prompt user for principal (P), annual rate (R %) and time (T years); calculate:
 3. the monthly interest amount (simple interest ÷ (T × 12))
 
 Instruction:  
-- Flowgorithm file name: `lab-03-8` → place in `/labs/lab03/`.  
-- Python file name:    `lab-03-8.py` → place in `/labs/lab03/`.  
+- Flowgorithm file name: `lab-03-8` → place in `/labs/lab03/exercise8/`.  
+- Python file name:    `lab-03-8.py` → place in `/labs/lab03/exercise8/`.  
 
 Inputs (in order):  
 - `principal` – real number (RM)  
@@ -298,17 +362,27 @@ Inputs (in order):
 
 Outputs (in order):  
 - `interest`        
-- `total_amount`     
-- `monthly_interest`
+- `totalAmount`     
+- `monthlyInterest`
 
 
-## Push and Check <Badge type="danger" text="Experimental" />
+## Commit, Push and Check
 
-After you have finish answering all the questions, make sure to [commit and push](./lab-01.md#commit-and-push) your files back to your repo.
+For **every** exercise you must place **two** files inside that exercise's own folder under `/labs/lab03/`:
 
-In the **GitHub** repo, make sure that the commit passed all the test. Recall back [here](./lab-02.md#using-flowgorithm-with-github-action) if you forgot how to check it.
+- the **Flowgorithm** file (`.fprg`), and
+- the exported **Python** file (`.py`),
 
+both named exactly as the question states and placed in the matching folder, for example `lab-03-2.fprg` and `lab-03-2.py` inside `/labs/lab03/exercise2/`. A wrong name or wrong folder will fail the check.
 
-::: danger ATTENTION
-The **GitHub Actions** setup for this lab is experimental and can fail eventhough you have done everything correctly. Please let me know if you have reached this part and show me the Actions result.
+Once all your files are in their exercise folders, submit them in three steps:
+
+1. **Commit.** In **VS Code**, open `Source Control`, write a clear message such as `Complete Lab 03 exercises`, and click `Commit`. This records a snapshot of your work.
+2. **Push.** Click `Sync Changes` to upload your commit to your repository on **GitHub**. If you have forgotten how, refer back to [commit and push](./lab-01.md#commit-and-push).
+3. **Check.** The push triggers the **GitHub Actions** auto-checker automatically. Go to your repository on **GitHub** and look at the mark beside your latest commit: an orange dot means it is still running, a red cross means it failed, and a green tick means every file passed. Recall the details [here](./lab-02.md#using-flowgorithm-with-github-action).
+
+If you see a red cross, click the `Actions` tab and open the latest workflow to read which file failed and why, then fix it and push again.
+
+::: tip WHY
+For each Python file the checker **runs your program**, types the inputs in the exact order the question lists, then compares your printed outputs against the expected answers, again in order. This is why every exercise states its inputs and outputs *in order*. If your program reads inputs in a different order, or prints outputs in a different order, the check fails even when your maths is correct.
 :::

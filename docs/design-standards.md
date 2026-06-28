@@ -41,91 +41,77 @@ This document establishes consistent design choices for all markdown files in th
 
 ## 2. Badge Types and Usage
 
-### Standard Badge Types
+Badges tag **what a heading is**. Use only these four:
 
-**Questions and Scenarios:**
-```markdown
-<Badge type="tip" text="Question" />
-```
-- Use for: All numbered scenarios and practice questions
-- Placement: Right after the heading
+| Badge | Use for |
+|-------|---------|
+| `<Badge type="tip" text="Question" />` | Numbered scenarios and practice questions |
+| `<Badge type="tip" text="Task" />` | A specific task the student must complete |
+| `<Badge type="warning" text="Recall" />` | Sections reviewing previous concepts |
+| `<Badge type="danger" text="Experimental" />` | Features that may not work consistently |
 
-**Tasks and Activities:**
-```markdown
-<Badge type="tip" text="Task" />
-```
-- Use for: Specific tasks students must complete
-- Example: "Successful Action Workflow", hands-on activities
+**Rules:** place after the heading text with a space, one badge per heading, no other labels. For inline information use a [callout box](#_3-container-callout-guidelines), not a badge.
 
-**Review and Recall:**
-```markdown
-<Badge type="warning" text="Recall" />
-```
-- Use for: Sections reviewing previous concepts
-- Example: "Creating The IPO Table", "Creating Our First Flowchart"
+## 3. Container (Callout) Guidelines
 
-**Experimental Features:**
-```markdown
-<Badge type="danger" text="Experimental" />
-```
-- Use for: Features that may not work consistently
-- Example: GitHub Actions setups that are being tested
+Callout boxes use a **small, fixed vocabulary**. Every callout maps to exactly one purpose. Do not invent new titles.
 
-**Additional Badge Types:**
-```markdown
-<Badge type="info" text="Note" />        <!-- For general information -->
-<Badge type="warning" text="Important" /> <!-- For important reminders -->
-<Badge type="danger" text="Critical" />   <!-- For critical warnings -->
-```
+### The Four Standard Boxes
 
-### Badge Placement Rules
-- Always place badges **after** the heading text with a space
-- One badge per heading maximum
-- Use consistent text labels as shown above
+| Box | Color | Use it for |
+|-----|-------|------------|
+| `::: info NOTE` | Gray | A neutral fact or clarification the student should know. Nothing breaks if ignored. |
+| `::: tip WHY` | Green | The reasoning behind a step, or a concept explained deeper. Answers "why are we doing this?" |
+| `::: warning REMINDER` | Yellow | Something easy to forget that the student **must** do: progress checks, exact filenames, syncing, logging out. |
+| `::: danger ATTENTION` | Red | Something that will actually break: lost work, failed auto-checker, wrong account on a shared PC. |
 
-## 3. Container Guidelines
-
-### Standard Container Types
-
-**General Tips:**
-```markdown
-::: tip
-Use the navigation links above to explore labs, installation guides and the course schedule.
-:::
-```
-
-**Important Reminders:**
-```markdown
-::: warning REMINDER
-Make sure you click the correct arrow to ensure that the variable is declared in the correct sequence.
-:::
-```
-
-**Critical Information:**
-```markdown
-::: danger ATTENTION
-The GitHub Actions setup for this lab is experimental and can fail even though you have done everything correctly.
-:::
-```
-
-**Collapsible Clues:**
-```markdown
-::: details Click for clue
-Content that students can reveal for hints
-:::
-```
-
-**Technical Notes:**
+**`::: info NOTE`** — neutral information, no action required:
 ```markdown
 ::: info NOTE
-Any variable name that is used must only contain letters and numbers, you cannot use special characters such as - or _
+Any variable name can only contain letters and numbers. You cannot use special characters such as `-` or `_`.
 :::
 ```
 
-### Container Naming Standards
-- Use **UPPERCASE** for the label text
-- Be specific: `REMINDER`, `ATTENTION`, `NOTE` rather than generic terms
-- Keep labels consistent across similar content types
+**`::: tip WHY`** — the reasoning behind a step or a deeper look at a concept (replaces old scattered titles like `WHY THIS MATTERS`, `HOW ELIF WORKS`, `CHOOSING THE RIGHT STRUCTURE`):
+```markdown
+::: tip WHY
+Always test with a value you can work out by hand. If your flowchart and your calculator disagree, the bug is in the flowchart.
+:::
+```
+
+**`::: warning REMINDER`** — must-do steps that are easy to forget. Also covers **progress checks** ("confirm you have X before continuing"); there is no separate CHECKPOINT box:
+```markdown
+::: warning REMINDER
+Save each file with the **exact** file name stated in the question. The auto-checker looks for these exact names.
+:::
+```
+
+**`::: danger ATTENTION`** — genuine hazards: lost work, failed checks, or actions affecting the wrong person on a shared PC:
+```markdown
+::: danger ATTENTION
+Always run `gh auth logout` before you leave. If you stay logged in, the next student could push their work to your repository.
+:::
+```
+
+### Callout Rules
+
+1. **Title is ONE uppercase word.** The only exception is the fixed phrase `ATTENTION`. No sentence-length titles — put detail in the body, not the title.
+   - Bad: `::: danger CRITICAL: Counter Placement with Continue`
+   - Good: `::: danger ATTENTION` with the detail in the body.
+2. **Never use a bare `::: tip`** with no title. Pick `WHY`, or use `NOTE` if it is neutral information.
+3. **No CHECKPOINT, PITFALL, PROBLEM, LIMITATION, INEFFICIENCY, DEBUGGING TIP** or other ad-hoc titles. Map them onto the four boxes:
+   - "Confirm you have X" → `REMINDER`
+   - "Here is why the naive approach is bad" → `WHY`
+   - "Watch out, this will fail" → `ATTENTION` (if it breaks) or `REMINDER` (if it is just forgettable)
+4. **Don't stack callouts.** No two boxes back to back. If you have that much to say, it is prose.
+5. **One purpose per box.** If a box is doing two jobs, split the content or move part of it into normal text.
+
+### Quick Decision Guide
+
+- Will something **break or be lost** if they miss it? → `ATTENTION`
+- Is it a **must-do they'll forget** (including "check you have X")? → `REMINDER`
+- Is it **why** we do something / a concept? → `WHY`
+- Is it just **good to know**? → `NOTE`
 
 ## 4. Keyboard Key Styling
 
