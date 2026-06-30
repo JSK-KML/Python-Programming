@@ -275,13 +275,13 @@ Inputs (in order):
 
 Outputs (in order):
 
-`megabyte`
+- `megabyte`
 
-`gigabyte`
+- `gigabyte`
 
-`terabyte`
+- `terabyte`
 
-`petabyte`
+- `petabyte`
 
 
 ## Exercise 4 – International Fax Cost <Badge type="warning" text="Question" />
@@ -299,7 +299,7 @@ Inputs (in order):
   
 Outputs (in order):
 
-`totalCost` – sum of service charge and pages cost
+- `totalCost` – sum of service charge and pages cost
 
 
 ## Exercise 5 – Cookie Calories <Badge type="warning" text="Question" />
@@ -317,7 +317,7 @@ Inputs (in order):
 
 Outputs (in order):
 
-- `totalCalories` – servingsConsumed * 300
+- `totalCalories` – total calories consumed
 
 ## Exercise 6 – Wage to Mow Yard <Badge type="warning" text="Question" />
 
