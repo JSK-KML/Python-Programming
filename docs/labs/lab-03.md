@@ -5,6 +5,15 @@ title : Lab 3 - More Flowgorithm
 
 # Lab 03 : More Flowgorithm 
 
+## Before You Begin
+
+Same as every lab, before you start, make sure your workspace and login are **yours**:
+
+1. Open **your own** cloned folder in **VS Code** (`File` → `Open Folder...`). Many students share the same PC, so confirm the folder belongs to you.
+2. Confirm **you** are the one logged in to **GitHub** in the terminal with `gh auth status`. If it is not your account, `gh auth logout` then `gh auth login`.
+
+Full steps are in [Lab 02 - Before You Begin](./lab-02.md#before-you-begin) if you need a reminder.
+
 ## Pull and Update in VS Code
 
 This lab builds on [Lab 02](./lab-02.md). There you learned the **sequence** structure: taking input, declaring variables, and showing output. Here you will add the missing piece, **processing** that input with calculations, then run your flowchart and export it to **Python**.
@@ -16,6 +25,17 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-1.png" alt="drawing" width="400"/>
 </p>
+
+## Checklist Before You Proceed
+
+<Checklist title="Please Check Properly">
+
+1. You have logged in to your Github account in the browser.
+2. You have logged in to your Github account in the terminal using VS Code.
+3. You have sync the repo in you Github account in the browser.
+4. You have pull the update into you repo in VS Code.
+
+</Checklist>
 
 ## Recap: Building the Sequence <Badge type="warning" text="Recall" />
 
