@@ -57,23 +57,42 @@ A gym offers membership fees based on the membership type. If the membership is 
 A hotel is applying tax on room prices based on the room rate. If the room rate is greater than RM200.00, a 15% tax will be applied. If the room rate is between RM100.00 and RM200.00 (inclusive), a 10% tax will be applied. If the room rate is RM100.00 or less, a 5% tax will be applied. Calculate the price after tax for the customer based on the room rate.
 
 
-### Scenario 6 - Coffee Subscription <Badge type="warning" text="Question" />
+### Scenario 6 - Student Result <Badge type="warning" text="Question" />
 
-A café sells a monthly coffee subscription that includes 15 cups.
-After that, each extra cup costs:
+A lecturer enters three test marks for a student. Calculate the average of the three marks, and determine the student's grade based on the average:
+  - If the average is 80 or above, the grade is "A".
+  - If the average is between 60 and 79 (inclusive), the grade is "B".
+  - Otherwise, the grade is "C".
 
-Cumulative Cups	Extra-Cup Price
- - 16-25 : RM4.00 each
- - 26-35 : RM3.00 each
- - 36+	 : RM2.00 each
+Display the average and the grade.
 
 
-### Scenario 7 - Cinema Loyalty Pass <Badge type="warning" text="Question" />
+### Scenario 7 - Temperature Reading <Badge type="warning" text="Question" />
 
-A cinema loyalty pass gives one free ticket every Tuesday or one free ticket any day once you've spent RM200.00 that month—whichever happens first.
-Tickets cost RM18.00.
-A member buys tickets on: 
+A weather station receives a temperature in Fahrenheit. Calculate the temperature in Celsius based on the Fahrenheit value, and determine the weather condition:
+  - If the Celsius temperature is more than 30, the condition is "Hot".
+  - If the Celsius temperature is between 15 and 30 (inclusive), the condition is "Warm".
+  - Otherwise, the condition is "Cool".
 
-  - 1st (Jan) : 3 tickets
-  - 7th (Jan, Tue) : 2 tickets
-  - 14th (Jan, Tue) : 4 tickets
+Display the Celsius temperature and the weather condition.
+
+
+### Scenario 8 - Cashier Receipt <Badge type="warning" text="Question" />
+
+A customer pays for an item with cash. Calculate the change based on the cash given and the item price. Then determine the customer's tier based on the price:
+  - If the price is greater than RM300.00, the tier is "Gold".
+  - If the price is greater than RM150.00, the tier is "Silver".
+  - Otherwise, the tier is "Normal".
+
+Separately, regardless of the tier, if the price is greater than RM500.00, also display "Free gift".
+
+Display the change, the customer's tier, and the "Free gift" message if it applies.
+
+
+### Scenario 9 - Employee Payroll <Badge type="warning" text="Question" />
+
+An employee is paid based on the hours worked and an hourly rate. Calculate the basic pay based on the hours worked and the rate, and determine the additional amounts:
+  - If the hours worked are more than 160, add overtime pay.
+  - If the basic pay is more than RM3000.00, add a bonus.
+
+Display the basic pay and any additional amounts that apply.
