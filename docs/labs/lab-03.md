@@ -101,7 +101,7 @@ Now **verify** the result yourself. For an input of `100`, the total should be `
 Always test with a value you can work out by hand. If your flowchart and your calculator disagree, the bug is in the flowchart, and now you know to fix it before you ever write a line of code.
 :::
 
-Once you are happy with the result, create a folder for this work: in **VS Code**, right click the `lab03` folder, choose `New Folder`, and name it `exercise1`. Copy the saved `lab-03-1.fprg` file into `/labs/lab03/exercise1/`, then [commit and push](./lab-01.md#commit-and-push).
+Once you are happy with the result, copy the saved `lab-03-1.fprg` file into `/labs/lab03/exercise1/`, then [commit and push](./lab-01.md#commit-and-push).
 
 ## Exporting Flowgorithm to Python 
 
