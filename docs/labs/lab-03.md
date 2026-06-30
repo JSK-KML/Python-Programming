@@ -10,7 +10,7 @@ title : Lab 3 - More Flowgorithm
 Same as every lab, before you start, make sure your workspace and login are **yours**:
 
 1. Open **your own** cloned folder in **VS Code** (`File` → `Open Folder...`). Many students share the same PC, so confirm the folder belongs to you.
-2. Confirm **you** are the one logged in to **GitHub** in the terminal with `gh auth status`. If it is not your account, `gh auth logout` then `gh auth login`.
+2. In the terminal, log out of any account with `gh auth logout`, then log back in as yourself with `gh auth login`.
 
 Full steps are in [Lab 02 - Before You Begin](./lab-02.md#before-you-begin) if you need a reminder.
 
