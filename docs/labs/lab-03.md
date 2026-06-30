@@ -5,6 +5,15 @@ title : Lab 3 - More Flowgorithm
 
 # Lab 03 : More Flowgorithm 
 
+## Before You Begin
+
+Same as every lab, before you start, make sure your workspace and login are **yours**:
+
+1. Open **your own** cloned folder in **VS Code** (`File` → `Open Folder...`). Many students share the same PC, so confirm the folder belongs to you.
+2. In the terminal, log out of any account with `gh auth logout`, then log back in as yourself with `gh auth login`.
+
+Full steps are in [Lab 02 - Before You Begin](./lab-02.md#before-you-begin) if you need a reminder.
+
 ## Pull and Update in VS Code
 
 This lab builds on [Lab 02](./lab-02.md). There you learned the **sequence** structure: taking input, declaring variables, and showing output. Here you will add the missing piece, **processing** that input with calculations, then run your flowchart and export it to **Python**.
@@ -16,6 +25,17 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
 <p align="center">
     <img src="/public/labs/lab-02/lab-2-1.png" alt="drawing" width="400"/>
 </p>
+
+## Checklist Before You Proceed
+
+<Checklist title="Please Check Properly">
+
+1. You have logged in to your Github account in the browser.
+2. You have logged in to your Github account in the terminal using VS Code.
+3. You have sync the repo in you Github account in the browser.
+4. You have pull the update into you repo in VS Code.
+
+</Checklist>
 
 ## Recap: Building the Sequence <Badge type="warning" text="Recall" />
 
@@ -240,6 +260,8 @@ Outputs (in order):
 
 - `totalPayment` – sum of room rate and service charge (RM)
 
+After exporting, **run `lab-03-2.py` in the terminal** and test it yourself by entering an input to confirm it works.
+
 
 ## Exercise 3 – Storage Conversion <Badge type="warning" text="Question" />
 Question:
@@ -263,6 +285,8 @@ Outputs (in order):
 
 - `petabyte`
 
+After exporting, **run `lab-03-3.py` in the terminal** and test it yourself by entering an input to confirm it works.
+
 
 ## Exercise 4 – International Fax Cost <Badge type="warning" text="Question" />
 
@@ -281,6 +305,8 @@ Outputs (in order):
 
 - `totalCost` – sum of service charge and pages cost
 
+After exporting, **run `lab-03-4.py` in the terminal** and test it yourself by entering an input to confirm it works.
+
 
 ## Exercise 5 – Cookie Calories <Badge type="warning" text="Question" />
 
@@ -298,6 +324,8 @@ Inputs (in order):
 Outputs (in order):
 
 - `totalCalories` – total calories consumed
+
+After exporting, **run `lab-03-5.py` in the terminal** and test it yourself by entering an input to confirm it works.
 
 ## Exercise 6 – Wage to Mow Yard <Badge type="warning" text="Question" />
 
@@ -324,6 +352,8 @@ Outputs (in order):
 
 - `wage` – Total wage
 
+After exporting, **run `lab-03-6.py` in the terminal** and test it yourself by entering the inputs to confirm it works.
+
 ## Exercise 7 – Temperature Conversion <Badge type="warning" text="Question" />
 
 Question
@@ -342,6 +372,8 @@ Outputs (in order):
 - `fahrenheit` 
 
 - `kelvin` 
+
+After exporting, **run `lab-03-7.py` in the terminal** and test it yourself by entering an input to confirm it works.
 
 ## Exercise 8 – Simple Interest Calculator <Badge type="warning" text="Question" />
 
@@ -364,6 +396,8 @@ Outputs (in order):
 - `interest`        
 - `totalAmount`     
 - `monthlyInterest`
+
+After exporting, **run `lab-03-8.py` in the terminal** and test it yourself by entering the inputs to confirm it works.
 
 
 ## Commit, Push and Check
