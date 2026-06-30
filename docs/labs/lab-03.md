@@ -260,6 +260,8 @@ Outputs (in order):
 
 - `totalPayment` – sum of room rate and service charge (RM)
 
+After exporting, **run `lab-03-2.py` in the terminal** and test it yourself by entering an input to confirm it works.
+
 
 ## Exercise 3 – Storage Conversion <Badge type="warning" text="Question" />
 Question:
@@ -283,6 +285,8 @@ Outputs (in order):
 
 - `petabyte`
 
+After exporting, **run `lab-03-3.py` in the terminal** and test it yourself by entering an input to confirm it works.
+
 
 ## Exercise 4 – International Fax Cost <Badge type="warning" text="Question" />
 
@@ -301,6 +305,8 @@ Outputs (in order):
 
 - `totalCost` – sum of service charge and pages cost
 
+After exporting, **run `lab-03-4.py` in the terminal** and test it yourself by entering an input to confirm it works.
+
 
 ## Exercise 5 – Cookie Calories <Badge type="warning" text="Question" />
 
@@ -318,6 +324,8 @@ Inputs (in order):
 Outputs (in order):
 
 - `totalCalories` – total calories consumed
+
+After exporting, **run `lab-03-5.py` in the terminal** and test it yourself by entering an input to confirm it works.
 
 ## Exercise 6 – Wage to Mow Yard <Badge type="warning" text="Question" />
 
@@ -344,6 +352,8 @@ Outputs (in order):
 
 - `wage` – Total wage
 
+After exporting, **run `lab-03-6.py` in the terminal** and test it yourself by entering the inputs to confirm it works.
+
 ## Exercise 7 – Temperature Conversion <Badge type="warning" text="Question" />
 
 Question
@@ -362,6 +372,8 @@ Outputs (in order):
 - `fahrenheit` 
 
 - `kelvin` 
+
+After exporting, **run `lab-03-7.py` in the terminal** and test it yourself by entering an input to confirm it works.
 
 ## Exercise 8 – Simple Interest Calculator <Badge type="warning" text="Question" />
 
@@ -384,6 +396,8 @@ Outputs (in order):
 - `interest`        
 - `totalAmount`     
 - `monthlyInterest`
+
+After exporting, **run `lab-03-8.py` in the terminal** and test it yourself by entering the inputs to confirm it works.
 
 
 ## Commit, Push and Check
