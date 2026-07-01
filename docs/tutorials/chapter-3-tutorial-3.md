@@ -3,99 +3,77 @@ title: Chapter 3 - Tutorial 3
 outline: deep
 ---
 
-# Chapter 2 and 3 - Tutorial 3
+# Chapter 3 - Tutorial 3
 
-## Creating The IPO Table  <Badge type="warning" text="Recall" />
+## Creating The IPO Table <Badge type="warning" text="Recall" />
 
 | Phase      | Practical Meaning | Typical Keywords (in the problem text) |
 |------------|------------------|-----------------------------------------|
-| **Input**  | Data accepted from the user — always *nouns*, never actions. **NEVER USE VERB.** | enter, read, get |
-| **Process**| Operations applied to the inputs — arithmetic, decisions, loops. Each item should begin with a **verb**.<br><br> The suggested structure for **selection** question is: <br><br> DETERMINE THE + CONSTANT + BASED ON + INPUT<br><br> VERB + OUTPUT + BASED ON INPUT AND CONSTANT  | calculate, compute, determine, if, while, repeat |
-| **Output** | The result delivered to the user or another system — again *nouns* or messages. **NEVER USE VERB.** | display, print, show |
+| **Input**  | Data accepted from the user  always *nouns*, never actions. **NEVER USE VERB.** <br><br>Suggested structure: <br><br> **Counter-controlled** : input_name for x times <br> **Sentinel** : input_name for x times until condition is true| enter, read, get |
+| **Process**| Operations applied to the inputs  arithmetic, decisions, loops. Each item should begin with a **verb**.<br><br> The suggested structure for **repetition** question is: <br><br> Counter-controlled : repeat VERB + OUTPUT + BASED ON INPUT AND CONSTANT for x times <br><br> Sentinel : repeat VERB + OUTPUT + BASED ON INPUT AND CONSTANT for x times until condition is true | calculate, compute, determine, if, while, repeat |
+| **Output** | The result delivered to the user or another system  again *nouns* or messages. **NEVER USE VERB.** <br><br>Suggested structure: <br><br> input_name for x times (if necessary) <br><br> or <br><br> input_name for x times until condition is true (if necessary) | display, print, show |
 
 
 
-## Creating The Flowchart  <Badge type="warning" text="Recall" />
+## Creating The Flowchart <Badge type="warning" text="Recall" />
 
 | Shape      | Usage                | Tips                                                                       |
 |------------|----------------------|----------------------------------------------------------------------------|
-| Capsule    | Input and output     | Make sure to use **VERB** to clarify whether you are doing input or output |
-| Arrow      | Program direction    | All shapes except diamond can only have one arrow coming out of them; the arrows coming in are limitless |
-| Rectangle  | Process              | One process box can be used for one or multiple processes at one time        |
-| Diamond    | Selection            | Make sure to put **TRUE** and **FALSE** on arrow going out of the diamond  |
+| Oval       | Start/End            | All shapes are required to be connected with arrows; be aware of the direction |
+| Rectangle  | Process              | All processes are assignment operations (=)                               |
+| Diamond    | Decision/Selection   | All decisions must be evaluated to `True` or `False`                     |
+| Parallelogram | Input/Output     | Place Input shapes at the beginning, Output shapes at the end            |
+
+---
+
+## Real Life Algorithm
+
+### Exercise 1 - Run-Length Encoding <Badge type="warning" text="Question" />
+
+Run-Length Encoding compresses text by replacing each run of repeated characters with the character followed by its count. For example, "aaabbc" becomes "a3b2c1" (3 a's, 2 b's, 1 c).
+
+**Problem:** Read characters one by one and output each character followed by how many times it appeared in a row.
+
+- **Input:** Characters entered one by one, ending when `#` is entered
+
+- **Output:** Compressed string representation
+
+**Example:** Input: a, a, a, b, b, c → Output: a3b2c1
+
+### Exercise 2 - Checksum Validation <Badge type="warning" text="Question" />
+
+A checksum detects errors by checking whether a sum of digits follows an expected rule. Credit card numbers, ISBN codes, and barcodes all use this idea.
+
+**Problem:** Add up all the digits entered and check whether the total is divisible by 10.
+
+**Input:** Digits entered one by one, until a negative number is entered
+
+**Output:** "Valid" if the sum is divisible by 10, "Invalid" otherwise
+
+**Example:** For digits 1, 2, 3, 4: sum = 10, and 10 % 10 = 0, so output "Valid"
 
 
-## Implementing IPO and Flowchart
+### Exercise 3 - Caesar Cipher <Badge type="warning" text="Question" />
 
-For each of the questions below, create an IPO table and its respective flowchart
+A Caesar Cipher encrypts text by shifting each letter forward by a fixed number of positions, wrapping around at the end. For example, with a shift of 1: a→b, b→c, and d wraps back to a.
 
-### Scenario 1 - Selling Magazine <Badge type="warning" text="Question" />
+**Problem:** Shift each letter (a-d only) forward by the given shift amount, wrapping around within the a-d range.
 
-MyHealth magazine is sold at RM5.00 each if at least 5 units of the magazine are purchased, and it is sold at the price of RM7.00 each otherwise. Calculate the price a customer has to pay after they enter the quantity of the magazines that they purchased.
+**Input:** Shift amount, then characters (a-d only) entered one by one, until `#` is entered
 
-### Scenario 2 - Library Books <Badge type="warning" text="Question" />
+**Output:** Encrypted message
 
-A library system calculates whether a late fee should be charged to a member returning a book based on the return date. If the book is returned on time, no fee is charged. If it's late, a fee of RM1.00 per the number of overdue days is applied.
+**Example:** With shift = 1, input: a, b, c, d → Output: bcda
 
-### Scenario 3 - Electricity Bill <Badge type="warning" text="Question" />
-A utility company charges RM0.30 per kWh for the first 100 kWh, RM0.50 per kWh for the next 100 kWh (101–200 kWh), and RM0.75 per kWh for any usage above 200 kWh.
+### Exercise 4 - Simple Hash Function <Badge type="warning" text="Question" />
 
-Calculate the total bill when the customer enters their total kWh consumed.
+A hash function turns input data into a single number, its "fingerprint". Here we use a simple letter-to-number mapping: a=1, b=2, c=3, d=4.
 
-### Scenario 4 - Income Tax Slab <Badge type="warning" text="Question" />
-Income tax is applied as:
+**Problem:** Convert each character (a-d only) to its number value, multiply it by its position (1st, 2nd, 3rd...), and add up the results.
 
-- First RM50,000.00 → 0%
+**Input:** Characters (a-d only) entered one by one, until `#` is entered
 
-- Next RM50,000.00 → 1%
+**Output:** Final hash value
 
-- Above RM100,000.00 → 2%
-
-Given an annual income, calculate total tax due.
-
-### Scenario 5 - Parking Fee <Badge type="warning" text="Question" />
-
-A mall charges parking as follows:
-
-First 2 hours → Free
-
-Next 3 hours (2–5 hours) → RM2.00 per hour
-
-Beyond 5 hours → RM3.00 per hour
-
-Maximum charge per day → RM30.00
-
-Given total hours parked, calculate the parking fee.
-
-### Scenario 6 - Baggage Allowance Logic <Badge type="warning" text="Question" />
-
-A flight ticket that includes 15 kg of free baggage.
-Excess baggage is charged RM4.00 per kg beyond that limit.
-However, if the passenger brings no baggage, they receive a RM10.00 discount on the total ticket price.
-
-Given the weight of baggage and ticket price, calculate the final price. 
-
-
-### Scenario 7 - Early Bird Discount Logic <Badge type="warning" text="Question" />
-
-If a user registers before the 15th day of the month, they get a 10% discount.
-Otherwise, they pay full price.
-
-Given the day of registration and base fee, calculate the final fee.
-
-### Scenario 8 - Final Score <Badge type="warning" text="Question" />
-
-Final score is calculated as:
-
-Midterm 30%
-
-Assignment 20%
-
-Final exam 50%
-
-But if any of the three components is below 30, the final score is automatically 0.
-
-Given all three marks, calculate final result.
-
-
+**Example:** For input "ab": (1 × 1) + (2 × 2) = 1 + 4 = 5
 
