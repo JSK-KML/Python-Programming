@@ -31,16 +31,16 @@ For each of the questions below, create an IPO table and its respective flowchar
 
 ### Scenario 1 - Selling Magazine <Badge type="warning" text="Question" />
 
-MyHealth magazine is sold at RM5.00 each if at least 5 units of the magazine are purchased, and it is sold at the price of RM7.00 each otherwise. Calculate the price a customer has to pay after they enter the quantity of the magazines that they purchased.
+MyHealth magazine is sold at RM5.00 each if at least 5 units of the magazine are purchased, and it is sold at the price of RM7.00 each otherwise. A shop serves `n` customers in a day. Given the quantity of magazines each customer purchased, calculate and display the price every customer has to pay.
 
 ### Scenario 2 - Library Books <Badge type="warning" text="Question" />
 
-A library system calculates whether a late fee should be charged to a member returning a book based on the return date. If the book is returned on time, no fee is charged. If it's late, a fee of RM1.00 per the number of overdue days is applied.
+A library charges a late fee to members returning books. If a book is returned on time (0 overdue days), no fee is charged; if it is late, a fee of RM1.00 per overdue day is applied. Given the number of overdue days for each of 8 members, calculate and display every member's late fee.
 
 ### Scenario 3 - Electricity Bill <Badge type="warning" text="Question" />
 A utility company charges RM0.30 per kWh for the first 100 kWh, RM0.50 per kWh for the next 100 kWh (101–200 kWh), and RM0.75 per kWh for any usage above 200 kWh.
 
-Calculate the total bill when the customer enters their total kWh consumed.
+Given the total kWh consumed by each of `n` customers, calculate and display every customer's total bill, and finally display the total revenue collected from all `n` customers.
 
 ### Scenario 4 - Income Tax Slab <Badge type="warning" text="Question" />
 Income tax is applied as:
@@ -51,7 +51,7 @@ Income tax is applied as:
 
 - Above RM100,000.00 → 2%
 
-Given an annual income, calculate total tax due.
+Given the annual income of each of `n` taxpayers, calculate and display every taxpayer's total tax due.
 
 ### Scenario 5 - Parking Fee <Badge type="warning" text="Question" />
 
@@ -65,7 +65,7 @@ Beyond 5 hours → RM3.00 per hour
 
 Maximum charge per day → RM30.00
 
-Given total hours parked, calculate the parking fee.
+Given the total hours parked by each of 5 vehicles, calculate and display every vehicle's parking fee.
 
 ### Scenario 6 - Baggage Allowance Logic <Badge type="warning" text="Question" />
 
@@ -73,7 +73,7 @@ A flight ticket that includes 15 kg of free baggage.
 Excess baggage is charged RM4.00 per kg beyond that limit.
 However, if the passenger brings no baggage, they receive a RM10.00 discount on the total ticket price.
 
-Given the weight of baggage and ticket price, calculate the final price. 
+Given the baggage weight and ticket price for each of 20 passengers, calculate and display every passenger's final price.
 
 
 ### Scenario 7 - Early Bird Discount Logic <Badge type="warning" text="Question" />
@@ -81,7 +81,7 @@ Given the weight of baggage and ticket price, calculate the final price.
 If a user registers before the 15th day of the month, they get a 10% discount.
 Otherwise, they pay full price.
 
-Given the day of registration and base fee, calculate the final fee.
+Given the registration day and base fee for each of `n` users, calculate and display every user's final fee.
 
 ### Scenario 8 - Final Score <Badge type="warning" text="Question" />
 
@@ -95,7 +95,7 @@ Final exam 50%
 
 But if any of the three components is below 30, the final score is automatically 0.
 
-Given all three marks, calculate final result.
+Given the midterm, assignment, and final exam marks for each of 10 students, calculate and display every student's final result.
 
 
 
