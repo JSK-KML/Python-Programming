@@ -5,13 +5,45 @@ title : Lab 4 - Selection in Flowgorithm
 
 # Lab 04 : Selection in Flowgorithm 
 
+## Before You Begin
+
+Same as every lab, before you start, make sure your workspace and login are **yours**:
+
+1. Open **your own** cloned folder in **VS Code** (`File` → `Open Folder...`). Many students share the same PC, so confirm the folder belongs to you.
+2. In the terminal, log out of any account with `gh auth logout`, then log back in as yourself with `gh auth login`.
+
+Full steps are in [Lab 02 - Before You Begin](./lab-02.md#before-you-begin) if you need a reminder.
+
+## Pull and Update in VS Code
+
+This lab builds on [Lab 03](./lab-03.md). There you learned the **process** structure: adding the `Assign` shape to calculate values, running your flowchart, and exporting it to **Python**. Here you will add the missing piece, **selection**, so your flowchart can make decisions and take different paths depending on the input.
+
+Before starting any lab, you need to make sure that the repo in your **GitHub** is the latest one. [Sync the repo](./lab-01.md#syncing-fork) if the `upstream` repo have been updated. 
+
+Once the online repo is in-sync, bring those changes down to your PC by clicking `Source Control` and then `...` beside `Changes` and click [`Pull`](./glossary.md#pull).
+
+<p align="center">
+    <img src="/public/labs/lab-02/lab-2-1.png" alt="drawing" width="400"/>
+</p>
+
+## Checklist Before You Proceed
+
+<Checklist title="Please Check Properly">
+
+1. You have logged in to your Github account in the browser.
+2. You have logged in to your Github account in the terminal using VS Code.
+3. You have sync the repo in you Github account in the browser.
+4. You have pull the update into you repo in VS Code.
+
+</Checklist>
+
 ## Implementing Selection
 
-Selection in flowchart is represented by the diamond shape. In **Flowgorithm**, it is the same. Before we start using the diamond shapes, lets use one example from [Tutorial 3](../tutorials/chapter-3-tutorial-3.md) for us to implement in **Flowgorithm**
+Selection in flowchart is represented by the diamond shape. In **Flowgorithm**, it is the same. Before we start using the diamond shapes, lets use one example from [Tutorial 4](../tutorials/chapter-3-tutorial-4.md) for us to implement in **Flowgorithm**
 
 > MyHealth magazine is sold at RM5.00 each if at least 5 units of the magazine are purchased, and it is sold at the price of RM7.00 each otherwise. Calculate the price a customer has to pay after they enter the quantity of the magazines that they purchased. 
 
-Lets skip the `Input` shape and `Declare` shape for the questions, if you forgot how to do that, you can refer back [here](./lab-03.md#creating-input-and-output).
+Lets skip the `Input` shape and `Declare` shape for the questions, if you forgot how to do that, you can refer back [here](./lab-03.md#recap-building-the-sequence).
 
 After declaring input and accepting input from the user, you will got this
 
@@ -99,7 +131,9 @@ At the top bar, click **Tools > Export to an Image file**.
 
 After you click it, a popup window will appear, no need to change anything and just click **Create** atthe bottom right of the window. 
 
-Then it will prompt you the location that you want the image saved and the name of the image. Rename the image to `lab-4-1`.
+Then it will prompt you the location that you want the image saved and the name of the image. Rename the image to `lab-4-0` and save it in `/labs/lab04/example/`. Also export this walkthrough to **Python** and save it as `lab-4-0.py` in the same folder.
+
+For every question in this lab you submit two files: the flowchart exported as a **PNG image** (`.png`), and the flowchart exported as a **Python file** (`.py`). To create the Python file, export the flowchart the same way you learned in [Lab 03 - Exporting Flowgorithm to Python](./lab-03.md#exporting-flowgorithm-to-python). Save both into that question's folder, using the names given in the question.
 
 ## Selection Questions
 
@@ -107,6 +141,16 @@ Then it will prompt you the location that you want the image saved and the name 
 A utility company charges RM0.30 per kWh for the first 100 kWh, RM0.50 per kWh for the next 100 kWh (101–200 kWh), and RM0.75 per kWh for any usage above 200 kWh.
 
 Calculate the total bill when the customer enters their total kWh consumed.
+
+Inputs (in order):
+
+- `kwh` – total kWh consumed
+
+Outputs (in order):
+
+- `totalBill` – the total electricity bill
+
+Save the PNG image as `lab-4-1.png` and the Python file as `lab-4-1.py`, both in `/labs/lab04/exercise1/`.
 
 ### Scenario 2 - Income Tax Slab <Badge type="warning" text="Question" />
 Income tax is applied as:
@@ -118,6 +162,16 @@ Income tax is applied as:
 - Above RM100,000.00 → 2%
 
 Given an annual income, calculate total tax due.
+
+Inputs (in order):
+
+- `income` – annual income (RM)
+
+Outputs (in order):
+
+- `totalTax` – the total tax due
+
+Save the PNG image as `lab-4-2.png` and the Python file as `lab-4-2.py`, both in `/labs/lab04/exercise2/`.
 
 ### Scenario 3 - Parking Fee <Badge type="warning" text="Question" />
 
@@ -133,6 +187,16 @@ Maximum charge per day → RM30.00
 
 Given total hours parked, calculate the parking fee.
 
+Inputs (in order):
+
+- `hours` – total hours parked
+
+Outputs (in order):
+
+- `parkingFee` – the parking fee (capped at RM30.00)
+
+Save the PNG image as `lab-4-3.png` and the Python file as `lab-4-3.py`, both in `/labs/lab04/exercise3/`.
+
 ### Scenario 4 - Baggage Allowance Logic <Badge type="warning" text="Question" />
 
 A flight ticket that includes 15 kg of free baggage.Excess baggage is charged RM4.00 per kg beyond that limit.
@@ -140,5 +204,17 @@ However, if the passenger brings no baggage, they receive a RM10.00 discount on 
 
 
 Given the weight of baggage and ticket price, calculate the final price. 
+
+Inputs (in order):
+
+- `weight` – baggage weight in kg
+
+- `ticketPrice` – ticket price (RM)
+
+Outputs (in order):
+
+- `finalPrice` – the final price to pay
+
+Save the PNG image as `lab-4-4.png` and the Python file as `lab-4-4.py`, both in `/labs/lab04/exercise4/`.
 
 
