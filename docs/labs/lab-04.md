@@ -217,4 +217,90 @@ Outputs (in order):
 
 Save the PNG image as `lab-4-4.png` and the Python file as `lab-4-4.py`, both in `/labs/lab04/exercise4/`.
 
+### Scenario 5 - Football Points <Badge type="warning" text="Question" />
+
+In a football league, a team earns 3 points for winning a match, 1 point for a draw, and no points for a loss. A team also collects 1 bonus point whenever the other side fails to score in that match. Given the goals each team scored, calculate the points each team takes from the match.
+
+Inputs (in order):
+
+- `scoreA` – goals scored by team A
+
+- `scoreB` – goals scored by team B
+
+Outputs (in order):
+
+- `pointsA` – points earned by team A
+
+- `pointsB` – points earned by team B
+
+Save the PNG image as `lab-4-5.png` and the Python file as `lab-4-5.py`, both in `/labs/lab04/exercise5/`.
+
+### Scenario 6 - Concert Ticket <Badge type="warning" text="Question" />
+
+A concert ticket costs RM80. Fans who arrive more than 30 minutes before the show get RM15 off, and anyone who arrives after the show has already started is refused entry and pays nothing. Members get a further 15% off whatever they would pay. Given how many minutes before the show a fan arrives (a negative number means they arrived after it started) and whether they are a member, calculate what they pay.
+
+Inputs (in order):
+
+- `minutesBefore` – minutes before the show the fan arrives (negative if after it started)
+
+- `membership` – `yes` or `no`
+
+Outputs (in order):
+
+- `price` – the amount the fan pays
+
+Save the PNG image as `lab-4-6.png` and the Python file as `lab-4-6.py`, both in `/labs/lab04/exercise6/`.
+
+### Scenario 7 - Thermostat <Badge type="warning" text="Question" />
+
+A thermostat adjusts its power based on the room temperature compared to a target. When the room is colder than the target, it heats at 10 watts for every degree below. When the room is warmer, it cools at 8 watts for every degree above. When they are equal, it uses no power. The power used can never exceed 100 watts. Given the room and target temperatures, calculate the power used.
+
+Inputs (in order):
+
+- `tempRoom` – current room temperature
+
+- `tempTarget` – target temperature
+
+Outputs (in order):
+
+- `power` – the power used in watts
+
+Save the PNG image as `lab-4-7.png` and the Python file as `lab-4-7.py`, both in `/labs/lab04/exercise7/`.
+
+### Scenario 8 - Taxi Fare <Badge type="warning" text="Question" />
+
+A taxi starts the meter at RM4, which already covers the first 2 km of the trip. Every kilometre beyond that adds RM1.20 to the fare. Rides taken after midnight have a flat RM3 surcharge added at the end. Given the trip distance and whether it is after midnight, calculate the total fare.
+
+Inputs (in order):
+
+- `distance` – trip distance in km
+
+- `afterMidnight` – `yes` or `no`
+
+Outputs (in order):
+
+- `fare` – the total fare
+
+Save the PNG image as `lab-4-8.png` and the Python file as `lab-4-8.py`, both in `/labs/lab04/exercise8/`.
+
+### Scenario 9 - Cheaper Plan <Badge type="warning" text="Question" />
+
+A customer's monthly data can be charged in two ways, and the bill always uses whichever works out cheaper:
+
+- **Plan A** charges RM10 as a base, plus RM1 for each GB used.
+
+- **Plan B** charges a flat RM25 that already covers the first 20 GB. Any usage beyond 20 GB adds RM3 for each extra GB.
+
+Given the data used, calculate the amount the customer is billed.
+
+Inputs (in order):
+
+- `gb` – data used in GB
+
+Outputs (in order):
+
+- `bill` – the amount billed
+
+Save the PNG image as `lab-4-9.png` and the Python file as `lab-4-9.py`, both in `/labs/lab04/exercise9/`.
+
 

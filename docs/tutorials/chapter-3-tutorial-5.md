@@ -6,26 +6,6 @@ outline: deep
 # Chapter 3 - Tutorial 5
 
 
-## Creating The IPO Table <Badge type="warning" text="Recall" />
-
-| Phase      | Practical Meaning | Typical Keywords (in the problem text) |
-|------------|------------------|-----------------------------------------|
-| **Input**  | Data accepted from the user  always *nouns*, never actions. **NEVER USE VERB.** <br><br>Suggested structure: <br><br> **Counter-controlled** : input_name for x times <br> **Sentinel** : input_name for x times until condition is true| enter, read, get |
-| **Process**| Operations applied to the inputs  arithmetic, decisions, loops. Each item should begin with a **verb**.<br><br> The suggested structure for **repetition** question is: <br><br> Counter-controlled : repeat VERB + OUTPUT + BASED ON INPUT AND CONSTANT for x times <br><br> Sentinel : repeat VERB + OUTPUT + BASED ON INPUT AND CONSTANT for x times until condition is true | calculate, compute, determine, if, while, repeat |
-| **Output** | The result delivered to the user or another system  again *nouns* or messages. **NEVER USE VERB.** <br><br>Suggested structure: <br><br> input_name for x times (if necessary) <br><br> or <br><br> input_name for x times until condition is true (if necessary) | display, print, show |
-
-
-
-## Creating The Flowchart <Badge type="warning" text="Recall" />
-
-| Shape      | Usage                | Tips                                                                       |
-|------------|----------------------|----------------------------------------------------------------------------|
-| Oval       | Start/End            | All shapes are required to be connected with arrows; be aware of the direction |
-| Rectangle  | Process              | All processes are assignment operations (=)                               |
-| Diamond    | Decision/Selection   | All decisions must be evaluated to `True` or `False`                     |
-| Parallelogram | Input/Output     | Place Input shapes at the beginning, Output shapes at the end            |
-
----
 
 ## Pseudocode Indentation Rules <Badge type="warning" text="Recall" />
 
@@ -33,8 +13,9 @@ outline: deep
 
 **Rule 1: ALL statements inside an IF block MUST be indented**
 
+**CORRECT - Statements inside IF are indented:**
+
 ```
-✅ CORRECT - Statements inside IF are indented:
 BEGIN
     READ age
     IF age >= 18 THEN
@@ -44,8 +25,11 @@ BEGIN
     ENDIF
     PRINT "Thank you"
 END
+```
 
-❌ WRONG - No indentation inside IF:
+**WRONG - No indentation inside IF:**
+
+```
 BEGIN
     READ age
     IF age >= 18 THEN
@@ -59,29 +43,33 @@ END
 
 **Rule 2: IF-ELSE statements require proper indentation for BOTH parts**
 
+**CORRECT - Both IF and ELSE parts indented:**
+
 ```
-✅ CORRECT - Both IF and ELSE parts indented:
 BEGIN
     READ score
     IF score >= 80 THEN
         PRINT "Excellent! You passed with distinction"
-        SET grade = "A"
+        grade = "A"
     ELSE
         PRINT "You need to improve"
-        SET grade = "F"
+        grade = "F"
     ENDIF
     PRINT "Your grade is: " + grade
 END
+```
 
-❌ WRONG - Inconsistent indentation:
+**WRONG - Inconsistent indentation:**
+
+```
 BEGIN
     READ score
     IF score >= 80 THEN
         PRINT "Excellent! You passed with distinction"
-    SET grade = "A"
+    grade = "A"
     ELSE
         PRINT "You need to improve"
-        SET grade = "F"
+        grade = "F"
     ENDIF
     PRINT "Your grade is: " + grade
 END
@@ -91,24 +79,28 @@ END
 
 **Rule 3: ALL statements inside a WHILE loop MUST be indented**
 
+**CORRECT - Loop body properly indented:**
+
 ```
-✅ CORRECT - Loop body properly indented:
 BEGIN
-    SET counter = 1
+    counter = 1
     WHILE counter <= 5 DO
         PRINT "Count: " + counter
-        SET counter = counter + 1
+        counter = counter + 1
         PRINT "Next iteration coming..."
     ENDWHILE
     PRINT "Loop finished"
 END
+```
 
-❌ WRONG - Loop body not indented:
+**WRONG - Loop body not indented:**
+
+```
 BEGIN
-    SET counter = 1
+    counter = 1
     WHILE counter <= 5 DO
     PRINT "Count: " + counter
-    SET counter = counter + 1
+    counter = counter + 1
     PRINT "Next iteration coming..."
     ENDWHILE
     PRINT "Loop finished"
@@ -119,17 +111,18 @@ END
 
 **Rule 4: Nested IF inside WHILE requires DOUBLE indentation**
 
+**CORRECT - Nested IF properly indented:**
+
 ```
-✅ CORRECT - Nested IF properly indented:
 BEGIN
-    SET num = 1
+    num = 1
     WHILE num <= 10 DO
         IF num % 2 = 0 THEN
             PRINT num + " is even"
         ELSE
             PRINT num + " is odd"
         ENDIF
-        SET num = num + 1
+        num = num + 1
     ENDWHILE
 END
 
@@ -150,7 +143,7 @@ BEGIN                          ← Level 0 (No indentation)
         ELSE                   ← Level 2 (Same level as IF)
             PRINT "Small"      ← Level 3 (Inside ELSE)
         ENDIF                  ← Level 2 (Closes IF)
-        SET value = value - 1  ← Level 2 (Inside WHILE)
+        value = value - 1      ← Level 2 (Inside WHILE)
     ENDWHILE                   ← Level 1 (Closes WHILE)
     PRINT "Done"               ← Level 1 (After WHILE)
 END                            ← Level 0 (Closes BEGIN)
@@ -181,8 +174,7 @@ Convert the below IPO table into a flowchart and pseudocode.
 
 | **INPUT** | **PROCESS** | **OUTPUT** |
 |-----------|-------------|------------|
-| workout_minutes for 5 days | repeat determine daily_points based on workout_minutes for 5 times | total_points |
-| | repeat calculate total_points based on daily_points for 5 times | |
+| number for 5 times | repeat determine largest based on number for 5 times | largest |
 
 
 ## Exercise 3 <Badge type="warning" text="Task" />
@@ -206,7 +198,7 @@ Start
     while temperature != -999
         if temperature > 30
             print "Hot day"
-            set count = count + 1
+            count = count + 1
         else
             if temperature < 10
                 print "Cold day"
