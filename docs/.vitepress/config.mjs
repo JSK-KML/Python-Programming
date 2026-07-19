@@ -27,7 +27,7 @@ export default defineConfig({
         text: 'Assessments',
         items: [
           { text: 'Assessments', link: '/assessments/course' },
-          // { text: 'Lab Test 1', link: '/assessments/lab-test-1' },
+          { text: 'Lab Test 1', link: '/assessments/lab-test-1' },
           // { text: 'Lab Test 2', link: '/assessments/lab-test-2' },
           // { text: 'Lab Test 3', link: '/assessments/lab-test-3' },
           // { text: 'Assignment', link: '/assessments/assignment' }
@@ -42,7 +42,7 @@ export default defineConfig({
           { text: 'Tutorial 3', link: '/tutorials/chapter-3-tutorial-3' },
           { text: 'Tutorial 4', link: '/tutorials/chapter-3-tutorial-4' },
           { text: 'Tutorial 5', link: '/tutorials/chapter-3-tutorial-5' },
-          // { text: 'Tutorial 6', link: '/tutorials/chapter-4-tutorial-1' },
+          { text: 'Tutorial 6', link: '/tutorials/chapter-4-tutorial-1' },
           // { text: 'Tutorial 7', link: '/tutorials/chapter-4-tutorial-2' },
           // { text: 'Tutorial 8', link: '/tutorials/chapter-4-tutorial-3' },
           // { text: 'Tutorial 9', link: '/tutorials/chapter-7-tutorial-1' },
@@ -81,7 +81,7 @@ export default defineConfig({
           { text: 'Chapter 2', link: '/lectures/chapter-02' },
           { text: 'Chapter 3', link: '/lectures/chapter-03' },
           { text: 'Chapter 4', link: '/lectures/chapter-04' },
-          // { text: 'Chapter 5', link: '/lectures/chapter-05' },
+          { text: 'Chapter 5', link: '/lectures/chapter-05' },
           // { text: 'Chapter 6', link: '/lectures/chapter-06' },
           // { text: 'Chapter 7', link: '/lectures/chapter-07' }
         ],
@@ -106,7 +106,7 @@ export default defineConfig({
     sidebar: {
       '/assessments/': [
         { text: 'Assessments', link: '/assessments/course' },
-        // { text: 'Lab Test 1', link: '/assessments/lab-test-1' },
+        { text: 'Lab Test 1', link: '/assessments/lab-test-1' },
         // { text: 'Lab Test 2', link: '/assessments/lab-test-2' },
         // { text: 'Lab Test 3', link: '/assessments/lab-test-3' },
         // { text: 'Assignment', link: '/assessments/assignment' }
@@ -152,7 +152,7 @@ export default defineConfig({
         { text: 'Chapter 2', link: '/lectures/chapter-02' },
         { text: 'Chapter 3', link: '/lectures/chapter-03' },
         { text: 'Chapter 4', link: '/lectures/chapter-04' },
-        // { text: 'Chapter 5', link: '/lectures/chapter-05' },
+        { text: 'Chapter 5', link: '/lectures/chapter-05' },
         // { text: 'Chapter 6', link: '/lectures/chapter-06' },
         // { text: 'Chapter 7', link: '/lectures/chapter-07' }
       ],
@@ -166,7 +166,7 @@ export default defineConfig({
         { text: 'Tutorial 3', link: '/tutorials/chapter-3-tutorial-3' },
         { text: 'Tutorial 4', link: '/tutorials/chapter-3-tutorial-4' },
         { text: 'Tutorial 5', link: '/tutorials/chapter-3-tutorial-5' },
-        // { text: 'Tutorial 6', link: '/tutorials/chapter-4-tutorial-1' },
+        { text: 'Tutorial 6', link: '/tutorials/chapter-4-tutorial-1' },
         // { text: 'Tutorial 7', link: '/tutorials/chapter-4-tutorial-2' },
         // { text: 'Tutorial 8', link: '/tutorials/chapter-4-tutorial-3' },
         // { text: 'Tutorial 9', link: '/tutorials/chapter-7-tutorial-1' },

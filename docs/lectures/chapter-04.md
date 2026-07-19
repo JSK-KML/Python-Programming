@@ -22,4 +22,3 @@ outline: deep
     Open Fullscreen
   </button>
 </a>
-
