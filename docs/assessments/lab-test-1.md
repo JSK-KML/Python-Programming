@@ -5,9 +5,9 @@
 **Time Limit:** 45 minutes  
 **Software Required:** **Flowgorithm**  
 **Submission:** Export flowchart as image and Python file, then upload both to Google Form
+<!--
 
 ### Parcel Delivery Charge <Badge type="warning" text="Question" />
-
 A parcel delivery company charges customers based on the parcel weight. The payment rate is as follows:
 
 - First 5 kg → RM 8 per kg
@@ -29,7 +29,7 @@ Outputs (in order):
 - `totalCharge` – the final total charge
 
 Save the PNG image as `lab-test-1.png` and the Python file as `lab-test-1.py`.
-
+-->
 ### Rubric
 
 You can see the marking rubric [here](/assessments/lab-test-1-rubric.pdf)
