@@ -29,9 +29,6 @@ High-level languages are easier to learn, portable, and faster to write. So why 
 
 Each generation of programming language (1st to 5th) moved closer to human language and further from the machine. What is gained at each step up, and what is lost?
 
-The slides list "natural language" as the fifth generation, but for decades it never truly arrived because human language is too ambiguous for a machine to execute precisely. Today, however, tools like ChatGPT let people describe a program in plain English and receive working code.
-
-So has the fifth generation finally arrived? Or is the LLM just a translator with extra steps? Does the ambiguity problem actually go away, or does someone still have to check the precise code underneath?
 
 ### 6. Who Are Paradigms For?
 
