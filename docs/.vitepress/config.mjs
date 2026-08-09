@@ -28,7 +28,7 @@ export default defineConfig({
         items: [
           { text: 'Assessments', link: '/assessments/course' },
           { text: 'Lab Test 1', link: '/assessments/lab-test-1' },
-          // { text: 'Lab Test 2', link: '/assessments/lab-test-2' },
+          { text: 'Lab Test 2', link: '/assessments/lab-test-2' },
           // { text: 'Lab Test 3', link: '/assessments/lab-test-3' },
           // { text: 'Assignment', link: '/assessments/assignment' }
         ],
@@ -63,7 +63,7 @@ export default defineConfig({
           { text: 'Lab 4', link: '/labs/lab-04' },
           { text: 'Lab 4 (Supplementary)', link: '/labs/lab-04-supplementary' },
           { text: 'Lab 5', link: '/labs/lab-05' },
-          // { text: 'Lab 6', link: '/labs/lab-06' },
+          { text: 'Lab 6', link: '/labs/lab-06' },
           // { text: 'Lab 7', link: '/labs/lab-07' },
           // { text: 'Lab 8', link: '/labs/lab-08' },
           // { text: 'Lab 9', link: '/labs/lab-09' },
@@ -82,7 +82,7 @@ export default defineConfig({
           { text: 'Chapter 3', link: '/lectures/chapter-03' },
           { text: 'Chapter 4', link: '/lectures/chapter-04' },
           { text: 'Chapter 5', link: '/lectures/chapter-05' },
-          // { text: 'Chapter 6', link: '/lectures/chapter-06' },
+          { text: 'Chapter 6', link: '/lectures/chapter-06' },
           // { text: 'Chapter 7', link: '/lectures/chapter-07' }
         ],
         activeMatch: '^/lectures/'
@@ -107,7 +107,7 @@ export default defineConfig({
       '/assessments/': [
         { text: 'Assessments', link: '/assessments/course' },
         { text: 'Lab Test 1', link: '/assessments/lab-test-1' },
-        // { text: 'Lab Test 2', link: '/assessments/lab-test-2' },
+        { text: 'Lab Test 2', link: '/assessments/lab-test-2' },
         // { text: 'Lab Test 3', link: '/assessments/lab-test-3' },
         // { text: 'Assignment', link: '/assessments/assignment' }
       ],
@@ -133,7 +133,7 @@ export default defineConfig({
         { text: 'Lab 4', link: '/labs/lab-04' },
         { text: 'Lab 4 (Supplementary)', link: '/labs/lab-04-supplementary' },
         { text: 'Lab 5', link: '/labs/lab-05' },
-        // { text: 'Lab 6', link: '/labs/lab-06' },
+        { text: 'Lab 6', link: '/labs/lab-06' },
         // { text: 'Lab 7', link: '/labs/lab-07' },
         // { text: 'Lab 8', link: '/labs/lab-08' },
         // { text: 'Lab 9', link: '/labs/lab-09' },
@@ -153,7 +153,7 @@ export default defineConfig({
         { text: 'Chapter 3', link: '/lectures/chapter-03' },
         { text: 'Chapter 4', link: '/lectures/chapter-04' },
         { text: 'Chapter 5', link: '/lectures/chapter-05' },
-        // { text: 'Chapter 6', link: '/lectures/chapter-06' },
+        { text: 'Chapter 6', link: '/lectures/chapter-06' },
         // { text: 'Chapter 7', link: '/lectures/chapter-07' }
       ],
 

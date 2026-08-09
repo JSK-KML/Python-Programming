@@ -16,6 +16,185 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
     <img src="/public/labs/lab-02/lab-2-1.png" alt="drawing" width="400"/>
 </p>
 
+## Escape Characters
+
+Escape characters are special characters in strings that are preceded by a backslash (`\`). They allow you to include characters that would otherwise be difficult or impossible to type directly in a string.
+
+The two most commonly used escape characters are:
+- `\n` - Creates a new line (line break)
+- `\t` - Creates a tab (horizontal spacing)
+
+#### Using `\n` for New Lines
+
+```python
+# Without \n - everything prints on one line
+print("Hello World How are you?")
+
+# With \n - creates line breaks
+print("Hello\nWorld\nHow are you?")
+
+# You can combine \n with regular text
+message = "Name: Ali\nAge: 20\nGrade: A"
+print(message)
+```
+
+**Output:**
+```
+Hello World How are you?
+Hello
+World
+How are you?
+Name: Ali
+Age: 20
+Grade: A
+```
+
+#### Using `\t` for Tabs
+
+```python
+# Without \t - no spacing
+print("Name Age Grade")
+print("Ali 20 A")
+
+# With \t - creates neat columns
+print("Name\tAge\tGrade")
+print("Ali\t20\tA")
+print("Sarah\t19\tB+")
+```
+
+**Output:**
+```
+Name Age Grade
+Ali 20 A
+Name	Age	Grade
+Ali	20	A
+Sarah	19	B+
+```
+
+#### Combining `\n` and `\t`
+
+```python
+# Creating a formatted table
+student_data = "Student Information:\n\nName\tAge\tGrade\nAli\t20\tA\nSarah\t19\tB+"
+print(student_data)
+```
+
+**Output:**
+```
+Student Information:
+
+Name	Age	Grade
+Ali	20	A
+Sarah	19	B+
+```
+
+### Escape Characters Exercise <Badge type="warning" text="Task" />
+
+Open the file `exercise1.py` inside the `/labs/lab06/exercise1/` folder (it has already been created for you). Write a program that prints this receipt as a single string, using `\n` for every line break and `\t` for every column, with no `print()` called more than once:
+
+```
+========== RECEIPT ==========
+Item		Price	Qty	Total
+Coffee		$3.50	2	$7.00
+Muffin		$2.10	3	$6.30
+Water		$1.05	4	$4.20
+------------------------------
+Subtotal			$17.50
+Tax (6%)			$1.05
+Total			$18.55
+============================
+```
+
+Store each item's name, unit price, and quantity in variables, and calculate every `Total`, the subtotal, the tax, and the final total in your code. Do not type the money amounts in directly, they must be computed. Every amount shown must display with exactly two decimal places. Run it with `python exercise1.py` and check the columns line up in a real console.
+
+## Comments
+
+There are multiple ways of doing comments in Python: single-line comments and multi-line comments. Comments are essential for writing clean, understandable code.
+
+### Why Use Comments?
+
+Comments serve several important purposes:
+- **Explain what your code does** - Help others (and future you) understand the logic
+- **Document complex algorithms** - Break down complicated processes step by step  
+- **Provide context** - Explain why you chose a particular approach
+- **Disable code temporarily** - Comment out code for testing without deleting it
+- **Add reminders** - Note areas that need improvement or bug fixes
+
+### Single-Line Comments
+
+Single-line comments in Python start with `#`. Everything after `#` on that line is ignored by Python:
+
+```python
+# This is a comment - it won't run
+print("Hello World")  # This comment explains what the print does
+
+# You can use comments to explain variables
+student_name = "Ali"  # Store the student's name
+age = 20             # Student's age in years
+
+# Comments can temporarily disable code
+# print("This line won't execute")
+print("This line will execute")
+```
+
+**Output:**
+```
+Hello World
+This line will execute
+```
+
+### Multi-Line Comments
+
+Python doesn't have a specific multi-line comment syntax like some languages, but there are two common approaches:
+
+#### Method 1: Multiple `#` Lines
+
+```python
+# This is a multi-line comment
+# that spans several lines.
+# Each line needs its own # symbol.
+# This is the most common way.
+
+print("Code after comments")
+```
+
+#### Method 2: Triple Quotes (Docstrings)
+
+Triple quotes (`"""` or `'''`) can also be used for multi-line comments:
+
+```python
+"""
+This is a multi-line comment using triple quotes.
+You can write multiple lines without using # on each line.
+This is technically a string, but if it's not assigned to a variable,
+Python ignores it, making it act like a comment.
+"""
+
+print("Code after triple quote comment")
+
+'''
+You can also use triple single quotes
+for multi-line comments.
+Both work the same way.
+'''
+```
+
+**Output:**
+```
+Code after comments
+Code after triple quote comment
+```
+
+
+### Best Practices for Comments
+
+1. **Write clear, concise comments** - Explain the "why", not just the "what"
+2. **Keep comments up to date** - Update comments when you change code
+3. **Don't over-comment** - Don't explain obvious things
+4. **Use proper grammar and spelling** - Comments are read by humans
+
+<!--
+
 ## Setting Up Your Workspace
 
 Before we write any Python for this lab, we will set up the environment properly, the same way a working programmer does. Most of this happens in the [terminal](./lab-03.md#working-with-the-command-line), which you first met in Lab 03. If any command feels unfamiliar, that section is where they were introduced.
@@ -82,9 +261,7 @@ deactivate
 
 The `(cp115_env)` prefix should disappear from your terminal prompt, indicating that you're back to using your system **Python** installation.
 
-::: tip
-Always activate your virtual environment before working on your project, and deactivate it when you're done. This ensures you're working in the correct, isolated environment.
-:::
+> **Tip:** Always activate your virtual environment before working on your project, and deactivate it when you're done. This ensures you're working in the correct, isolated environment.
 
 ## Testing Python Code in VS Code
 
@@ -211,9 +388,7 @@ touch exercise.py
 
 `touch` creates an empty file. Run `ls` and you will see `exercise.py` alongside the exercise folders. Open it in **VS Code** and use it to try out every piece of code in this lab.
 
-::: tip WHY
-Right clicking `New File` and typing `touch exercise.py` do exactly the same thing. Learning the command means you understand what the button does, and once it is muscle memory it is quicker than reaching for the mouse.
-:::
+> **Tip (why):** Right clicking `New File` and typing `touch exercise.py` do exactly the same thing. Learning the command means you understand what the button does, and once it is muscle memory it is quicker than reaching for the mouse.
 
 ## Indentation
 
@@ -397,9 +572,7 @@ print(round(answer, 2))
 
 `round(answer, 2)` rounds `answer` to `2` decimal places. This is especially important when you are working with money, because nobody wants to see a price of `RM0.30000000000000004`.
 
-::: warning REMINDER
-Whenever your program deals with prices or any decimal amount that will be shown to a user, wrap the final result in `round()`. The maths underneath is still slightly imprecise, but `round()` gives you a clean number to display.
-:::
+> **Reminder:** Whenever your program deals with prices or any decimal amount that will be shown to a user, wrap the final result in `round()`. The maths underneath is still slightly imprecise, but `round()` gives you a clean number to display.
 
 ## String Quotes: Single, Double, and Triple
 
@@ -493,190 +666,11 @@ Ali's note:
 
 Store each of the three blocks in its own variable, then print them. Run it from the terminal with `python exercise2.py` and check your output matches character for character, including the quote marks.
 
-## Escape Characters
-
-Escape characters are special characters in strings that are preceded by a backslash (`\`). They allow you to include characters that would otherwise be difficult or impossible to type directly in a string.
-
-The two most commonly used escape characters are:
-- `\n` - Creates a new line (line break)
-- `\t` - Creates a tab (horizontal spacing)
-
-#### Using `\n` for New Lines
-
-```python
-# Without \n - everything prints on one line
-print("Hello World How are you?")
-
-# With \n - creates line breaks
-print("Hello\nWorld\nHow are you?")
-
-# You can combine \n with regular text
-message = "Name: Ali\nAge: 20\nGrade: A"
-print(message)
-```
-
-**Output:**
-```
-Hello World How are you?
-Hello
-World
-How are you?
-Name: Ali
-Age: 20
-Grade: A
-```
-
-#### Using `\t` for Tabs
-
-```python
-# Without \t - no spacing
-print("Name Age Grade")
-print("Ali 20 A")
-
-# With \t - creates neat columns
-print("Name\tAge\tGrade")
-print("Ali\t20\tA")
-print("Sarah\t19\tB+")
-```
-
-**Output:**
-```
-Name Age Grade
-Ali 20 A
-Name	Age	Grade
-Ali	20	A
-Sarah	19	B+
-```
-
-#### Combining `\n` and `\t`
-
-```python
-# Creating a formatted table
-student_data = "Student Information:\n\nName\tAge\tGrade\nAli\t20\tA\nSarah\t19\tB+"
-print(student_data)
-```
-
-**Output:**
-```
-Student Information:
-
-Name	Age	Grade
-Ali	20	A
-Sarah	19	B+
-```
-
-### Escape Characters Exercise <Badge type="warning" text="Task" />
-
-Open the file `exercise3.py` inside the `/labs/lab06/exercise3/` folder (it has already been created for you). Write a program that prints this receipt as a single string, using `\n` for every line break and `\t` for every column, with no `print()` called more than once:
-
-```
-========== RECEIPT ==========
-Item		Price	Qty	Total
-Coffee		$3.50	2	$7.00
-Muffin		$2.10	3	$6.30
-Water		$1.05	4	$4.20
-------------------------------
-Subtotal			$17.50
-Tax (6%)			$1.05
-Total			$18.55
-============================
-```
-
-Store each item's name, unit price, and quantity in variables, and calculate every `Total`, the subtotal, the tax, and the final total in your code. Do not type the money amounts in directly, they must be computed. Every amount shown must display with exactly two decimal places. Run it with `python exercise3.py` and check the columns line up in a real console.
-
-## Comments
-
-There are multiple ways of doing comments in Python: single-line comments and multi-line comments. Comments are essential for writing clean, understandable code.
-
-### Why Use Comments?
-
-Comments serve several important purposes:
-- **Explain what your code does** - Help others (and future you) understand the logic
-- **Document complex algorithms** - Break down complicated processes step by step  
-- **Provide context** - Explain why you chose a particular approach
-- **Disable code temporarily** - Comment out code for testing without deleting it
-- **Add reminders** - Note areas that need improvement or bug fixes
-
-### Single-Line Comments
-
-Single-line comments in Python start with `#`. Everything after `#` on that line is ignored by Python:
-
-```python
-# This is a comment - it won't run
-print("Hello World")  # This comment explains what the print does
-
-# You can use comments to explain variables
-student_name = "Ali"  # Store the student's name
-age = 20             # Student's age in years
-
-# Comments can temporarily disable code
-# print("This line won't execute")
-print("This line will execute")
-```
-
-**Output:**
-```
-Hello World
-This line will execute
-```
-
-### Multi-Line Comments
-
-Python doesn't have a specific multi-line comment syntax like some languages, but there are two common approaches:
-
-#### Method 1: Multiple `#` Lines
-
-```python
-# This is a multi-line comment
-# that spans several lines.
-# Each line needs its own # symbol.
-# This is the most common way.
-
-print("Code after comments")
-```
-
-#### Method 2: Triple Quotes (Docstrings)
-
-Remember the triple quotes we learned in the [Triple Quotes](#triple-quotes) section? They can also be used for multi-line comments:
-
-```python
-"""
-This is a multi-line comment using triple quotes.
-You can write multiple lines without using # on each line.
-This is technically a string, but if it's not assigned to a variable,
-Python ignores it, making it act like a comment.
-"""
-
-print("Code after triple quote comment")
-
-'''
-You can also use triple single quotes
-for multi-line comments.
-Both work the same way.
-'''
-```
-
-**Output:**
-```
-Code after comments
-Code after triple quote comment
-```
-
-
-### Best Practices for Comments
-
-1. **Write clear, concise comments** - Explain the "why", not just the "what"
-2. **Keep comments up to date** - Update comments when you change code
-3. **Don't over-comment** - Don't explain obvious things
-4. **Use proper grammar and spelling** - Comments are read by humans
-
 ## Putting It Together
 
 The remaining exercises combine what you learned in Lab 05 (variables, casting, `input()`, `len()`, `.upper()`, `.lower()`, `import`, f-strings) with the new ideas from this lab (snake_case, floating point, escape characters). Each one has a test that runs your program automatically, so your program must read its inputs and print its output in the **exact order** given.
 
-::: warning REMINDER
-The auto-checker feeds the inputs in the order listed and compares your output line by line against the expected result. Do not add prompt text to your `input()` calls, and do not print anything extra. Any extra words, labels, or a different order will fail the test even when your logic is correct.
-:::
+> **Reminder:** The auto-checker feeds the inputs in the order listed and compares your output line by line against the expected result. Do not add prompt text to your `input()` calls, and do not print anything extra. Any extra words, labels, or a different order will fail the test even when your logic is correct.
 
 ### Exercise 4: ID Card Formatter <Badge type="warning" text="Task" />
 
@@ -736,12 +730,10 @@ Outputs (in order):
 
 - the receipt exactly as shown above
 
+-->
+
 ## Commit and Push Your Work
 
-After completing all the exercises, save all your files and commit them to your repository. Make sure your files are properly saved in the `/labs/lab06/` directory, including `exercise.py` and `exercise1.py` through `exercise5.py` in their exercise folders.
+After completing the exercises, save all your files and commit them to your repository. Make sure your files are properly saved in the `/labs/lab06/` directory.
 
-Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 6: Environment, Testing and More Basic Python", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully and that any automated tests pass.
-
-::: warning REMINDER
-Do not commit your `cp115_env` folder. If you set up `.gitignore` correctly earlier in this lab, **Git** will ignore it automatically. Double check the **Source Control** panel does not list `cp115_env` before you commit.
-:::
+Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 6: Escape Characters and Comments", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully and that any automated tests pass.
