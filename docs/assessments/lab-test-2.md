@@ -22,13 +22,13 @@
 
 ### What to Submit
 - Python file file named `lab-test-2.py`
-
+<!--
 ### Question
 
 <p align="center">
     <img src="/public/assessments/lab-test-2-1.png" alt="Lab Test 2 question" width="500"/>
 </p>
-
+-->
 ### Rubric
 
 <p align="center">
