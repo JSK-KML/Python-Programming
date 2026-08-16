@@ -35,7 +35,7 @@ Launch **VS Code** and open your `CP115-Class-Repo` project. Open the terminal i
     <img src="/public/labs/lab-01/lab-1-8.png" alt="drawing" width="400"/>
 </p>
 
-Make sure you're in the root directory of your `CP115-Class-Repo`. You should see folders like `labs`, `LICENSE`, and `README.md` in your current directory.
+Make sure you're in the root directory of your `CP115-Class-Repo`. You should see folders like `labs`.
 
 Now create a virtual environment using **Python**'s built-in `venv` module. Type the following command:
 
@@ -87,8 +87,7 @@ print(course_code)
 
 ```
 
-Run this program to make sure it works:
-
+Run this program to make sure it works.
 
 ### Deactivating the Virtual Environment
 
@@ -191,109 +190,410 @@ Virtual environments like `cp115_env` should **never** be committed to your repo
 2. **Machine-specific**: They contain absolute paths specific to your computer
 3. **Platform differences**: Virtual environments differ between Windows, Mac, and Linux
 
-### Adding Virtual Environment to .gitignore
+### Looking at Your .gitignore
 
-Open the `.gitignore` file in the root of your repository.
+Open the `.gitignore` file in the root of your repository. It has already been set up for you, and looks something like this:
 
 ```gitignore
-# Python Virtual Environments
-cp115_env/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
 venv/
 env/
-.env/
+cp115_env/
 
+# Unit test / coverage reports
+.pytest_cache/
+
+# etc.
 ```
 
-### Verifying .gitignore Works
+Notice that `cp115_env/` is already listed under **Virtual environments**, so your virtual environment is ignored automatically. You can also see rules for cache files (`__pycache__/`, `.pytest_cache/`) and more.
 
-After adding the virtual environment to `.gitignore`, check that **Git** is ignoring it:
+### Ignore Your Own File Exercise <Badge type="warning" text="Task" />
 
-Look into the sidebar for **Source Control**, and you should not see `cp115_env` and all of its content as something you can commit.
+Now try it yourself with a brand new file. Inside `/labs/lab07/` you will find a file called `secret_notes.txt` that has already been created for you. Imagine this file contains private notes that should **never** be uploaded to **GitHub**.
 
-If you do see it, make sure:
+Follow these steps:
 
-1. The `.gitignore` file is in the root directory of your repository
-2. The path `cp115_env/` is correctly spelled in `.gitignore`
+1. Open the **Source Control** panel. You should see `secret_notes.txt` listed as a change waiting to be committed, which means **Git** is currently tracking it.
+2. Open the `.gitignore` file in the root of your repository and add a line to ignore it:
 
-## F-Strings
+   ```gitignore
+   # My private notes
+   labs/lab07/secret_notes.txt
+   ```
 
-### Understanding F-Strings
+3. Save the `.gitignore` file and look at the **Source Control** panel again. `secret_notes.txt` should now **disappear** from the list, because **Git** is no longer tracking it.
+4. Stage your changes, write a commit message, and **commit and push** to **GitHub**.
+5. Open your repository on **GitHub** in the browser and navigate to `labs/lab07/`. Confirm that `secret_notes.txt` is **not** there, even though it still exists on your own computer.
 
-In Lab 6, you learned how to display text using string concatenation with the `+` operator. While this works, **Python** has a more modern and easier way called **f-strings** (formatted string literals).
+::: tip
+This proves the whole point of `.gitignore`: a file can live in your project folder and still be completely invisible to **Git**. The file stays on your machine, but it never gets uploaded.
+:::
 
-F-strings let you put variables directly inside strings, making your code cleaner and easier to read.
+## Naming Variables
 
-### Comparing Old vs New Way
-
-Let's see the difference between string concatenation and f-strings. Open your `exercise.py` file in `/labs/lab07/` and try both approaches:
+In Python, we use **snake_case** to name variables. All lowercase with underscores between words
 
 ```python
-# Old way using string concatenation (from Lab 06)
 student_name = "Ali"
-age = 20
-grade = 85.5
-
-print("Student: " + student_name)
-print("Age: " + str(age))
-print("Grade: " + str(grade) + "%")
+total_price = 150.50
+is_passed_exam = True
+number_of_items = 5
 ```
+
+Some other language uses CamelCase to name variables.
 
 ```python
-# New way using f-strings
-student_name = "Ali"
-age = 20
-grade = 85.5
-
-print(f"Student: {student_name}")
-print(f"Age: {age}")
-print(f"Grade: {grade}%")
+studentName = "Ali"
+totalPrice = 150.50
+isPassedExam = True
+numberOfItems = 5
 ```
 
-**Output (both produce the same result):**
-```
-Student: Ali
-Age: 20
-Grade: 85.5%
-```
+So which one should we use? This is again similar as indentation, which is **Python** dont care, but other people do. In **Python**, the standard convention is to use snake_case, but if you decide to use CamelCase, the program still works, it just didnt follow the convention.
 
-### How F-Strings Work
+Why is it so important to follow convention? Right now you might be wondering, if both ways works that why should you care. The answer lies in your future. You will not be working alone all your life, you will be working with other classmates, collegue and others.
 
-F-strings start with the letter `f` before the opening quote. Inside the string, you put variables inside curly braces `{}`.
+Having a convention is nice because your friends know what to expect from your coding style and vice versa. You also know what to expect from them.
+
+## Indentation
+
+In pseudocode, you have been using indentation routinely when you are doing `if` and `while` statements. In Python, indentations are used exactly the same. Of course there are more indentation usage that extends further that `if` and `while` statements but that is just a reminder for the future.
+
+In `exercise.py`, inside your `/labs/lab07` folder, try copy and paste the code below in **VS Code**. What do you see?
 
 ```python
-name = "Sarah"
-score = 92
+print("Starting program")
+    print("This line has spaces before it")
+print("Back to normal")
+```
 
-# The f tells Python this is an f-string
-# The {} tells Python to put the variable value here
-message = f"Hello {name}, your score is {score}"
-print(message)
+**VS Code** will put red squiggly lines on the code to indicate something is wrong with the code. This is a main advantage of using a proper and well maintained IDE. It highlights the problems and error to us even before the code is executed.
+
+The squiggly lines are there to tell us that the indentation is wrong.
+
+<p align="center">
+    <img src="/public/labs/lab-06/lab-6-1.png" alt="drawing" width="600"/>
+</p>
+
+Now lets try to run it. This time, instead of clicking the ▶ button, run it from the terminal so you can read the error message in full. Make sure you are inside `/labs/lab07`, then type:
+
+```bash
+python exercise.py
+```
+
+The program does not produce the expected output. Instead the terminal prints an error like this:
+
+```
+  File "exercise.py", line 2
+    print("This line has spaces before it")
+IndentationError: unexpected indent
+```
+
+The terminal tells you exactly what went wrong (`IndentationError`), and the exact line it happened on (`line 2`). The red squiggly line warned you before running, and the terminal confirms it when you run. Both are pointing at the same mistake.
+
+### The 4-Space Rule
+
+Python standard convention uses 4 spaces for each level of indentation.
+
+**Why 4 spaces?**
+
+The answer is rather simple. 4 spaces is deep enough that the indentation level is clear but not too deep that it wastes horizontal screen space or makes code hard to read when you have multiple nested levels.
+
+**VS Code** helps you by automatically adding 4 spaces when you press <kbd>Tab</kbd>.
+
+Now you might wonder, what if i just decide to use 1 or 2 or something 15 spaces, would that still works?
+
+The answer is ***kinda***. It works but you need to be careful when choosing a different value than 4.
+
+Copy and paste the code below into `exercise.py`. In that code, the indentation value is different than 4. What do you see? Does it produce the expected output? Does the squiggly red lines in VS Code come out?
+
+```python
+value = 1
+
+if(value == 1):
+     print("Value is 1")
+else:
+  print("Value is not 1")
+
+```
+
+Run it in the terminal again with `python exercise.py` and watch it work despite the odd spacing. Now try to run the code below. What do you see?
+
+```python
+value = 1
+
+if(value == 1):
+     print("Value is 1")
+       print("This is an additional print statement.")
+else:
+  print("Value is not 1")
+```
+
+Bottom line is, dont use indentation if the code is on the same level and for indentation, just use <kbd>Tab</kbd> button.
+
+## Floating Point Numbers
+
+Before we go further, there is one thing about numbers with a decimal point (called `float` values) that surprises almost every beginner. Copy this into your `exercise.py` and run it with `python exercise.py`:
+
+```python
+print(0.1 + 0.2)
+```
+
+You expect `0.3`. Instead **Python** prints:
+
+```
+0.30000000000000004
+```
+
+This is **not** a bug in **Python**, and it is not a mistake in your code. To understand why it happens, think about how *you* write numbers.
+
+You write numbers in **decimal** (base 10), using the ten digits `0` to `9`. In decimal, some fractions cannot be written out fully. The classic example is `1/3`. If you try to write it as a decimal, you get `0.3333...` and the threes go on forever. You can never write down the *exact* value of `1/3` in decimal, no matter how many digits you use. The best you can do is stop somewhere and accept a tiny error.
+
+A computer does not use decimal. It stores everything in **binary** (base 2), using only the two digits `0` and `1`. And here is the key point: **just as `1/3` cannot be written exactly in decimal, the number `0.1` cannot be written exactly in binary.**
+
+Since the computer only has room for a fixed number of digits, it has to chop this off somewhere and store the *closest value it can fit*. That stored value is very slightly larger than a true `0.1`. So when you ask for `0.1 + 0.2`, the computer is really adding two numbers that are each already a tiny bit wrong, and the small errors combine into the `0.30000000000000004` you see on screen.
+
+The exact rules for how a computer stores these numbers are defined by an international standard called **IEEE 754**. Almost every programming language and processor follows it, which is why you get the *exact same* `0.30000000000000004` in Python, Java, JavaScript, C, and nearly everywhere else. You can read more on the [IEEE 754 Wikipedia page](https://en.wikipedia.org/wiki/IEEE_754) if you are curious.
+
+The takeaway: `float` values are stored *approximately*, not exactly. For everyday programs this is almost never a problem, as long as you remember it when displaying results.
+
+### Fixing it with `round()`
+
+When you want a tidy answer, use the `round()` function. It takes the number first, then how many decimal places you want:
+
+```python
+answer = 0.1 + 0.2
+print(round(answer, 2))
 ```
 
 **Output:**
 ```
-Hello Sarah, your score is 92
+0.3
 ```
 
-### F-String Exercise <Badge type="warning" text="Task" />
+`round(answer, 2)` rounds `answer` to `2` decimal places. This is especially important when you are working with money, because nobody wants to see a price of `RM0.30000000000000004`.
 
-Create a file called `exercise1.py`. Practice using f-strings by rewriting these string concatenation examples:
+## Python Operators
+
+**Python** provides various operators to perform operations on data. These operators are essential building blocks for creating calculations and logic in your programs.
+
+Launch **VS Code** and open the `exercise.py` file in `/labs/lab07/`. Let's explore different types of operators:
+
+### Arithmetic Operators
+
+Arithmetic operators perform mathematical calculations:
+
+| Operator | Description | Example | Result |
+|----------|-------------|---------|---------|
+| `+` | Addition | `5 + 3` | `8` |
+| `-` | Subtraction | `10 - 4` | `6` |
+| `*` | Multiplication | `6 * 7` | `42` |
+| `/` | Division (float) | `15 / 4` | `3.75` |
+| `//` | Floor Division | `15 // 4` | `3` |
+| `%` | Modulus (remainder) | `15 % 4` | `3` |
+| `**` | Exponentiation | `2 ** 3` | `8` |
+
+In your `exercise.py` file, let's test each operator. Start by testing addition and subtraction:
 
 ```python
-# Convert these to f-strings
-product_name = "Laptop"
-price = 1299.99
-quantity = 2
-total = price * quantity
-
-# Old way (convert these to f-strings)
-print("Product: " + product_name)
-print("Price: $" + str(price))
-print("Quantity: " + str(quantity))
-print("Total: $" + str(total))
+# Test addition and subtraction
+result1 = 25 + 15
+result2 = 100 - 25
+print(f"25 + 15 = {result1}")
+print(f"100 - 25 = {result2}")
 ```
 
-Your task: Rewrite the `print()` statements using f-strings instead of string concatenation.
+Run this code and see what you get. Are the results what you expected?
+
+Now add multiplication and division:
+
+```python
+# Test multiplication and division
+result3 = 8 * 7
+result4 = 20 / 4
+print(f"8 * 7 = {result3}")
+print(f"20 / 4 = {result4}")
+```
+
+Can you see the difference in the output? Notice how division gives you `5.0` instead of just `5`. Why do you think that happens?
+
+Finally, test floor division, modulus, and exponentiation:
+
+```python
+# Test floor division, modulus, and powers
+result5 = 17 // 5
+result6 = 17 % 5
+result7 = 3 ** 4
+print(f"17 // 5 = {result5}")
+print(f"17 % 5 = {result6}")
+print(f"3 ** 4 = {result7}")
+```
+
+Run this and observe the results. Can you figure out what `17 // 5` and `17 % 5` are doing? Think about dividing 17 by 5 - what's the whole number part and what's the remainder?
+
+### Type Casting in Operations
+
+When performing operations, **Python** automatically determines the result's data type. Different operators can produce different types of results:
+
+| Operation | Result Type | Example |
+|-----------|-------------|---------|
+| `int + int` | `int` | `5 + 3 = 8` (int) |
+| `int + float` | `float` | `5 + 3.0 = 8.0` (float) |
+| `int / int` | `float` | `10 / 2 = 5.0` (float) |
+| `int // int` | `int` | `10 // 3 = 3` (int) |
+| `int ** int` | `int` | `2 ** 3 = 8` (int) |
+| `int % int` | `int` | `17 % 5 = 2` (int) |
+
+Let's test type casting in operations in your `exercise.py`. Test how different operations affect data types:
+
+```python
+# Test division - always returns float
+division = 10 / 2
+print(f"10 / 2 = {division} (type: {type(division)})")
+
+# Test floor division - returns int when both operands are int
+floor_div = 10 // 3
+print(f"10 // 3 = {floor_div} (type: {type(floor_div)})")
+
+# Test modulus - returns int when both operands are int
+modulus = 17 % 5
+print(f"17 % 5 = {modulus} (type: {type(modulus)})")
+
+# Test exponentiation - returns int when both operands are int
+power = 2 ** 3
+print(f"2 ** 3 = {power} (type: {type(power)})")
+```
+
+Run this code and look at the output. Can you see how division always gives you a float, but floor division, modulus, and exponentiation keep the int type when both numbers are integers?
+
+Now test what happens when you mix int and float in operations:
+
+```python
+# Test mixing int and float in different operations
+mixed_division = 15.0 / 4        # float / int = float
+mixed_floor = 15.0 // 4          # float // int = float
+mixed_modulus = 17.0 % 5         # float % int = float
+mixed_power = 2.0 ** 3           # float ** int = float
+
+print(f"15.0 / 4 = {mixed_division} (type: {type(mixed_division)})")
+print(f"15.0 // 4 = {mixed_floor} (type: {type(mixed_floor)})")
+print(f"17.0 % 5 = {mixed_modulus} (type: {type(mixed_modulus)})")
+print(f"2.0 ** 3 = {mixed_power} (type: {type(mixed_power)})")
+```
+
+What do you notice? When you mix int and float, **Python** converts the result to float because it's the more precise type.
+
+### BODMAS Order of Operations
+
+**Python** follows the BODMAS rule for order of operations: **B**rackets, **O**rders (powers), **D**ivision, **M**ultiplication, **A**ddition, **S**ubtraction.
+
+| Order | Operation | Symbol |
+|-------|-----------|--------|
+| 1 | Brackets | `()` |
+| 2 | Orders (Powers) | `**` |
+| 3 | Multiplication and Division (left to right) | `*`, `/`, `//` |
+| 4 | Addition and Subtraction (left to right) | `+`, `-` |
+
+Let's test BODMAS in your `exercise.py`. First, compare expressions with and without brackets:
+
+```python
+# Compare without and with brackets
+result1 = 10 + 3 * 2     
+result2 = (10 + 3) * 2    
+print(f"10 + 3 * 2 = {result1}")
+print(f"(10 + 3) * 2 = {result2}")
+```
+
+Run this code first. Can you see how the brackets completely changed the result? Which operation happened first in each case?
+
+Now test a more complex expression step by step:
+
+```python
+# Complex BODMAS example
+expression = 3 + 2 ** 2 * 4 - 6 / 2
+print(f"3 + 2 ** 2 * 4 - 6 / 2 = {expression}")
+
+# Let's break it down step by step
+step1 = 2 ** 2    
+step2 = step1 * 4  
+step3 = 6 / 2     
+final = 3 + step2 - step3 
+print(f"Step 1 (Powers): 2 ** 2 = {step1}")
+print(f"Step 2 (Multiply): {step1} * 4 = {step2}")
+print(f"Step 3 (Division): 6 / 2 = {step3}")
+print(f"Final: 3 + {step2} - {step3} = {final}")
+```
+
+Look closely at this output. Can you follow each step? Notice how **Python** did the power operation first, then multiplication and division, and finally addition and subtraction.
+
+Test how brackets can change the result completely:
+
+```python
+# Same numbers, different brackets = different results
+without_brackets = 5 + 3 * 2 ** 2
+with_brackets = (5 + 3) * 2 ** 2
+different_brackets = 5 + (3 * 2) ** 2
+print(f"5 + 3 * 2 ** 2 = {without_brackets}")
+print(f"(5 + 3) * 2 ** 2 = {with_brackets}")
+print(f"5 + (3 * 2) ** 2 = {different_brackets}")
+```
+
+Run this and compare all three results. Can you see how the same numbers give completely different answers just by changing where you put the brackets? This shows why understanding BODMAS is so important.
+
+
+
+## Assignment Operators
+
+Assignment operators combine assignment with arithmetic operations. Instead of writing `x = x + 5`, you can write `x += 5`.
+
+Most of these assignment operators are **syntactic sugar** - they make your code shorter and easier to read, but they don't add any new functionality. Syntactic sugar is just a more convenient way to write something that you could already do with existing syntax.
+
+::: tip
+**Syntactic Sugar** is a term in programming that refers to syntax that makes code easier to read or write, but doesn't add any new functionality to the language. It's called "sugar" because it makes the code "sweeter" (more pleasant) to work with, but the underlying functionality remains the same.
+:::
+
+| Operator | Description | Example | Equivalent |
+|----------|-------------|---------|------------|
+| `+=` | Addition assignment | `x += 5` | `x = x + 5` |
+| `-=` | Subtraction assignment | `x -= 3` | `x = x - 3` |
+| `*=` | Multiplication assignment | `x *= 2` | `x = x * 2` |
+| `/=` | Division assignment (float) | `x /= 4` | `x = x / 4` |
+| `//=` | Floor division assignment | `x //= 3` | `x = x // 3` |
+| `%=` | Modulus assignment | `x %= 7` | `x = x % 7` |
+| `**=` | Exponentiation assignment | `x **= 2` | `x = x ** 2` |
+
+Let's test assignment operators in your `exercise.py`. Start with a score and update it using different assignment operators:
+
+```python
+# Test assignment operators
+score = 100
+print(f"Starting score: {score}")
+
+score += 10     # Add 10
+print(f"After += 10: {score}")
+
+score -= 5      # Subtract 5
+print(f"After -= 5: {score}")
+
+score *= 2      # Multiply by 2
+print(f"After *= 2: {score}")
+
+score //= 3     # Floor division by 3
+print(f"After //= 3: {score}")
+
+score %= 15     # Modulus by 15
+print(f"After %= 15: {score}")
+
+score **= 2     # Square it
+print(f"After **= 2: {score}")
+```
+
+Run this code and see how the score changes with each assignment operator. Can you follow how the value changes at each step?
 
 ## More Import Techniques
 
@@ -312,142 +612,10 @@ number = random.randint(1, 10)
 
 ### Creating and Importing Your Own Code
 
-Now let's learn how to create your own **Python** files and import them, just like you import `math` or `random`. This is very useful for organizing your code and reusing it in different programs.
+Beyond the built-in modules like `math` and `random`, **Python** also lets you create your own **Python** files and import them the same way. This is very useful for organizing your code and reusing it across different programs.
 
-### Creating Your Own Module
+## Commit and Push Your Work
 
-A module is just a **Python** file that contains variables, calculations, or any code you want to reuse. Let's create a simple module.
+After working through the sections above, save all your files and commit them to your repository. Make sure your files are properly saved in the `/labs/lab07/` directory.
 
-First, create a file called `my_data.py`:
-
-```python
-# my_data.py
-# This is your own module with useful data
-
-# Student information
-student_name = "Ali Rahman"
-student_age = 20
-student_grade = 85
-
-# Course information
-course_code = "CP115"
-course_name = "Python Programming"
-total_students = 25
-
-# Calculations
-grade_percentage = student_grade / 100
-remaining_students = total_students - 1
-
-# Text processing
-name_upper = student_name.upper()
-name_length = len(student_name)
-```
-
-### Importing Your Own Module
-
-Now create another file called `use_my_data.py` that imports your module:
-
-```python
-# use_my_data.py
-import my_data
-
-# Use variables from your own module
-print("=== Using My Own Module ===")
-print(f"Student: {my_data.student_name}")
-print(f"Age: {my_data.student_age}")
-print(f"Grade: {my_data.student_grade}%")
-print(f"Course: {my_data.course_code} - {my_data.course_name}")
-print(f"Name in UPPERCASE: {my_data.name_upper}")
-print(f"Name length: {my_data.name_length} characters")
-```
-
-**Output:**
-```
-=== Using My Own Module ===
-Student: Ali Rahman
-Age: 20
-Grade: 85%
-Course: CP115 - Python Programming
-Name in UPPERCASE: ALI RAHMAN
-Name length: 10 characters
-```
-
-### Import Exercise <Badge type="warning" text="Task" />
-
-Create a folder called `exercise2` and practice creating and importing your own module:
-
-1. In the `exercise2` folder, create a file called `shopping_data.py` with:
-   - Product name, price, and quantity variables
-   - Calculate total cost
-2. In the same folder, create `exercise2.py` that imports `shopping_data` and displays the information using f-strings
-
-## Combining F-Strings with Your Own Imports <Badge type="warning" text="Task" />
-
-Create a folder called `exercise3` in `/labs/lab07`.
-
-1. In the `exercise3` folder, create a file called `school_data.py` with:
-   - Student information variables (name, student ID, age)
-   - Course information variables (course code, course name)
-   - Import `random` module and generate two random scores (70-95 and 75-100)
-   - Calculate total score by adding the two scores
-   - String operations on student name (upper, lower, length)
-   - Import `math` module and calculate square root of total score
-
-2. In the same folder, create `exercise3.py` that imports `school_data` and uses f-strings to display all the information in a formatted report
-
-## Exercise 4: Restaurant Menu System <Badge type="warning" text="Task" />
-
-Create a folder called `exercise4` in `/labs/lab07`.
-
-**Part A:** In the `exercise4` folder, create a file called `menu_data.py` with the following:
-
-1. Import the `random` module
-2. Create variables for:
-   - Restaurant name (your choice)
-   - Restaurant location  
-   - Three menu items with names only (no prices or calculations)
-3. Use string operations to create:
-   - Restaurant name in uppercase
-   - Restaurant name in lowercase  
-   - Length of the location name
-4. Use random to generate:
-   - A daily special number (1, 2, or 3)
-   - A customer number (between 100-999)
-
-**Part B:** In the same folder, create `exercise4.py` that:
-
-1. Imports your `menu_data` module
-2. Uses f-strings to display:
-   - Welcome message with restaurant name
-   - Customer number
-   - Complete menu with all items
-   - Today's special (based on the random number)
-
-## Exercise 5: Personal Information Manager <Badge type="warning" text="Task" />
-
-Create a folder called `exercise5`in `/labs/lab07`.
-
-**Part A:** In the `exercise5` folder, create `personal_data.py` with:
-
-1. Import `random` and `math` modules
-2. Personal information variables:
-   - Full name, age, height (cm), weight (kg)
-   - Phone number, email address
-   - Street address, city, postcode
-3. String operations:
-   - Full name in UPPERCASE and lowercase
-   - Length of full name
-   - City name in UPPERCASE
-   - Full address (combine street + city + postcode)
-   - Length of full address
-
-
-**Part B:** In the same folder, create `exercise5.py` that:
-
-1. Imports your `personal_data` module
-2. Uses f-strings to display a comprehensive profile with:
-   - Basic personal information section
-   - String processing results
-   - Address information sections  
-   
-
+Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 7: Development Environment, Operators and Imports", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully.

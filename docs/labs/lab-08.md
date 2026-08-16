@@ -15,240 +15,117 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
     <img src="/public/labs/lab-02/lab-2-1.png" alt="drawing" width="400"/>
 </p> 
 
-## Python Operators
+## Creating Your Playground File
 
-**Python** provides various operators to perform operations on data. These operators are essential building blocks for creating calculations and logic in your programs.
+The folders and files for each exercise in this lab have already been created for you when you pulled the update, so you do not need to make them yourself. Inside `/labs/lab08/` you will find each exercise folder waiting for your answers.
 
-Launch **VS Code** and open the `exercise.py` file in `/labs/lab08/`. Let's explore different types of operators:
+The only file you need to create is a scratch file to play around in while you follow the lab. Open a terminal, move into your `lab08` folder, and create it with [`touch`](./lab-03.md#working-with-the-command-line):
 
-### Arithmetic Operators
-
-Arithmetic operators perform mathematical calculations:
-
-| Operator | Description | Example | Result |
-|----------|-------------|---------|---------|
-| `+` | Addition | `5 + 3` | `8` |
-| `-` | Subtraction | `10 - 4` | `6` |
-| `*` | Multiplication | `6 * 7` | `42` |
-| `/` | Division (float) | `15 / 4` | `3.75` |
-| `//` | Floor Division | `15 // 4` | `3` |
-| `%` | Modulus (remainder) | `15 % 4` | `3` |
-| `**` | Exponentiation | `2 ** 3` | `8` |
-
-In your `exercise.py` file, let's test each operator. Start by testing addition and subtraction:
-
-```python
-# Test addition and subtraction
-result1 = 25 + 15
-result2 = 100 - 25
-print(f"25 + 15 = {result1}")
-print(f"100 - 25 = {result2}")
+```bash
+cd labs
+```
+```bash
+cd lab08
+```
+```bash
+touch exercise.py
 ```
 
-Run this code and see what you get. Are the results what you expected?
+`touch` creates an empty file. Run `ls` and you will see `exercise.py` alongside the exercise folders. Open it in **VS Code** and use it to try out every piece of code in this lab.
 
-Now add multiplication and division:
+> **Tip (why):** Right clicking `New File` and typing `touch exercise.py` do exactly the same thing. Learning the command means you understand what the button does, and once it is muscle memory it is quicker than reaching for the mouse.
 
-```python
-# Test multiplication and division
-result3 = 8 * 7
-result4 = 20 / 4
-print(f"8 * 7 = {result3}")
-print(f"20 / 4 = {result4}")
-```
+## String Quotes: Single, Double, and Triple
 
-Can you see the difference in the output? Notice how division gives you `5.0` instead of just `5`. Why do you think that happens?
+Let's understand the different ways to create strings in Python using different types of quotes.
 
-Finally, test floor division, modulus, and exponentiation:
+### Single Quotes vs Double Quotes
+
+In Python, you can use either single quotes (`'`) or double quotes (`"`) to create strings. Both work exactly the same way:
 
 ```python
-# Test floor division, modulus, and powers
-result5 = 17 // 5
-result6 = 17 % 5
-result7 = 3 ** 4
-print(f"17 // 5 = {result5}")
-print(f"17 % 5 = {result6}")
-print(f"3 ** 4 = {result7}")
+# Using single quotes
+name1 = 'Ali'
+print(name1)
+
+# Using double quotes  
+name2 = "Ali"
+print(name2)
+
+# Both produce the same result
+print(name1 == name2)  # Output: True
 ```
 
-Run this and observe the results. Can you figure out what `17 // 5` and `17 % 5` are doing? Think about dividing 17 by 5 - what's the whole number part and what's the remainder?
+**Output:**
+```
+Ali
+Ali
+True
+```
 
-### Type Casting in Operations
+### When to Use Which?
 
-When performing operations, **Python** automatically determines the result's data type. Different operators can produce different types of results:
-
-| Operation | Result Type | Example |
-|-----------|-------------|---------|
-| `int + int` | `int` | `5 + 3 = 8` (int) |
-| `int + float` | `float` | `5 + 3.0 = 8.0` (float) |
-| `int / int` | `float` | `10 / 2 = 5.0` (float) |
-| `int // int` | `int` | `10 // 3 = 3` (int) |
-| `int ** int` | `int` | `2 ** 3 = 8` (int) |
-| `int % int` | `int` | `17 % 5 = 2` (int) |
-
-Let's test type casting in operations in your `exercise.py`. Test how different operations affect data types:
+The choice between single and double quotes becomes important when your string contains quotes:
 
 ```python
-# Test division - always returns float
-division = 10 / 2
-print(f"10 / 2 = {division} (type: {type(division)})")
+# If your string contains single quotes, use double quotes
+message1 = "I can't believe it's working!"
+print(message1)
 
-# Test floor division - returns int when both operands are int
-floor_div = 10 // 3
-print(f"10 // 3 = {floor_div} (type: {type(floor_div)})")
-
-# Test modulus - returns int when both operands are int
-modulus = 17 % 5
-print(f"17 % 5 = {modulus} (type: {type(modulus)})")
-
-# Test exponentiation - returns int when both operands are int
-power = 2 ** 3
-print(f"2 ** 3 = {power} (type: {type(power)})")
+# If your string contains double quotes, use single quotes
+message2 = 'He said "Hello there!"'
+print(message2)
 ```
 
-Run this code and look at the output. Can you see how division always gives you a float, but floor division, modulus, and exponentiation keep the int type when both numbers are integers?
+**Output:**
+```
+I can't believe it's working!
+He said "Hello there!"
+```
 
-Now test what happens when you mix int and float in operations:
+### Triple Quotes
+
+Triple quotes (`"""` or `'''`) are used for multi-line strings:
 
 ```python
-# Test mixing int and float in different operations
-mixed_division = 15.0 / 4        # float / int = float
-mixed_floor = 15.0 // 4          # float // int = float
-mixed_modulus = 17.0 % 5         # float % int = float
-mixed_power = 2.0 ** 3           # float ** int = float
+# Using triple double quotes
+long_text = """This is a long text
+that spans multiple lines.
+You can write as many lines as you want."""
+print(long_text)
 
-print(f"15.0 / 4 = {mixed_division} (type: {type(mixed_division)})")
-print(f"15.0 // 4 = {mixed_floor} (type: {type(mixed_floor)})")
-print(f"17.0 % 5 = {mixed_modulus} (type: {type(mixed_modulus)})")
-print(f"2.0 ** 3 = {mixed_power} (type: {type(mixed_power)})")
+# Using triple single quotes
+poem = '''Roses are red,
+Violets are blue,
+Python is awesome,
+And so are you!'''
+print(poem)
 ```
 
-What do you notice? When you mix int and float, **Python** converts the result to float because it's the more precise type.
-
-#### Python Operations Exercise <Badge type="warning" text="Task" />
-
-Create a new file called `exercise1.py` in your `labs/lab08/` directory. Write a program that: 
-
-1. Create these variables: `score1 = 85`, `score2 = 92.5`, `score3 = 78` 
-2. Calculate the average of all three scores and print both the result and its type     
-3. Convert the average to an integer using `int()` and print the difference from the original average
-4. Perform this calculation: `score1 ** 2 / score2 + score3 % 7` and print the result and type
-5. Compare what happens with: `int(score2)` vs `float(score1)`, why the results is liek that?
-
-### BODMAS Order of Operations
-
-**Python** follows the BODMAS rule for order of operations: **B**rackets, **O**rders (powers), **D**ivision, **M**ultiplication, **A**ddition, **S**ubtraction.
-
-| Order | Operation | Symbol |
-|-------|-----------|--------|
-| 1 | Brackets | `()` |
-| 2 | Orders (Powers) | `**` |
-| 3 | Multiplication and Division (left to right) | `*`, `/`, `//` |
-| 4 | Addition and Subtraction (left to right) | `+`, `-` |
-
-Let's test BODMAS in your `exercise.py`. First, compare expressions with and without brackets:
-
-```python
-# Compare without and with brackets
-result1 = 10 + 3 * 2     
-result2 = (10 + 3) * 2    
-print(f"10 + 3 * 2 = {result1}")
-print(f"(10 + 3) * 2 = {result2}")
+**Output:**
+```
+This is a long text
+that spans multiple lines.
+You can write as many lines as you want.
+Roses are red,
+Violets are blue,
+Python is awesome,
+And so are you!
 ```
 
-Run this code first. Can you see how the brackets completely changed the result? Which operation happened first in each case?
+### String Quotes Exercise <Badge type="warning" text="Task" />
 
-Now test a more complex expression step by step:
+Open the file `exercise1.py` inside the `/labs/lab08/exercise1/` folder (it has already been created for you). Write a single program that produces the exact output below, choosing the right kind of quote for each line so that no quote character is ever lost or causes an error:
 
-```python
-# Complex BODMAS example
-expression = 3 + 2 ** 2 * 4 - 6 / 2
-print(f"3 + 2 ** 2 * 4 - 6 / 2 = {expression}")
-
-# Let's break it down step by step
-step1 = 2 ** 2    
-step2 = step1 * 4  
-step3 = 6 / 2     
-final = 3 + step2 - step3 
-print(f"Step 1 (Powers): 2 ** 2 = {step1}")
-print(f"Step 2 (Multiply): {step1} * 4 = {step2}")
-print(f"Step 3 (Division): 6 / 2 = {step3}")
-print(f"Final: 3 + {step2} - {step3} = {final}")
+```
+She said, "It's Ali's book, isn't it?"
+The sign read: "No Parking" — don't ignore it.
+Ali's note:
+    "Meet me at 5."
+    "Bring the "blue" folder."
 ```
 
-Look closely at this output. Can you follow each step? Notice how **Python** did the power operation first, then multiplication and division, and finally addition and subtraction.
-
-Test how brackets can change the result completely:
-
-```python
-# Same numbers, different brackets = different results
-without_brackets = 5 + 3 * 2 ** 2
-with_brackets = (5 + 3) * 2 ** 2
-different_brackets = 5 + (3 * 2) ** 2
-print(f"5 + 3 * 2 ** 2 = {without_brackets}")
-print(f"(5 + 3) * 2 ** 2 = {with_brackets}")
-print(f"5 + (3 * 2) ** 2 = {different_brackets}")
-```
-
-Run this and compare all three results. Can you see how the same numbers give completely different answers just by changing where you put the brackets? This shows why understanding BODMAS is so important.
-
-
-
-#### BODMAS Exercise<Badge type="warning" text="Task" />
-
-Create a new file called `exercise2.py` in your `labs/lab08/` directory. Write a program that:
-
-**Restaurant Bill Calculator** 
-
-A group of 6 friends went to a restaurant. They ordered 3 main dishes at RM25 each, 2 appetizers at RM12 each, and 4 drinks at RM8 each. The restaurant charges a 10% service tax on the total bill, then adds a RM5 delivery fee. Finally, they want to split the bill equally among all friends. **Calculate the amount each person needs to pay**. Make sure to use BODMAS concept and use floor division to get the amount in whole ringgit (ignore cents).
-
-## Assignment Operators
-
-Assignment operators combine assignment with arithmetic operations. Instead of writing `x = x + 5`, you can write `x += 5`.
-
-Most of these assignment operators are **syntactic sugar** - they make your code shorter and easier to read, but they don't add any new functionality. Syntactic sugar is just a more convenient way to write something that you could already do with existing syntax.
-
-::: tip
-**Syntactic Sugar** is a term in programming that refers to syntax that makes code easier to read or write, but doesn't add any new functionality to the language. It's called "sugar" because it makes the code "sweeter" (more pleasant) to work with, but the underlying functionality remains the same.
-:::
-
-| Operator | Description | Example | Equivalent |
-|----------|-------------|---------|------------|
-| `+=` | Addition assignment | `x += 5` | `x = x + 5` |
-| `-=` | Subtraction assignment | `x -= 3` | `x = x - 3` |
-| `*=` | Multiplication assignment | `x *= 2` | `x = x * 2` |
-| `/=` | Division assignment (float) | `x /= 4` | `x = x / 4` |
-| `//=` | Floor division assignment | `x //= 3` | `x = x // 3` |
-| `%=` | Modulus assignment | `x %= 7` | `x = x % 7` |
-| `**=` | Exponentiation assignment | `x **= 2` | `x = x ** 2` |
-
-Let's test assignment operators in your `exercise.py`. Start with a score and update it using different assignment operators:
-
-```python
-# Test assignment operators
-score = 100
-print(f"Starting score: {score}")
-
-score += 10     # Add 10
-print(f"After += 10: {score}")
-
-score -= 5      # Subtract 5
-print(f"After -= 5: {score}")
-
-score *= 2      # Multiply by 2
-print(f"After *= 2: {score}")
-
-score //= 3     # Floor division by 3
-print(f"After //= 3: {score}")
-
-score %= 15     # Modulus by 15
-print(f"After %= 15: {score}")
-
-score **= 2     # Square it
-print(f"After **= 2: {score}")
-```
-
-Run this code and see how the score changes with each assignment operator. Can you follow how the value changes at each step?
+Store each of the three blocks in its own variable, then print them. Run it from the terminal with `python exercise1.py` and check your output matches character for character, including the quote marks.
 
 ## Sequence Control Structures
 
