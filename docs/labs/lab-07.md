@@ -35,7 +35,24 @@ Launch **VS Code** and open your `CP115-Class-Repo` project. Open the terminal i
     <img src="/public/labs/lab-01/lab-1-8.png" alt="drawing" width="400"/>
 </p>
 
-Make sure you're in the root directory of your `CP115-Class-Repo`. You should see folders like `labs`.
+Make sure your terminal is in the root directory of your `CP115-Class-Repo` folder before running any command. Look at the terminal prompt — the path should end with `CP115-Class-Repo`.
+
+If you are using **PowerShell**:
+
+```powershell
+PS C:\Users\YourName\CP115-Class-Repo>
+                       ^^^^^^^^^^^^^^^^  <- make sure this is the end
+```
+
+If you are using **Git Bash**:
+
+```bash
+YourName@PC MINGW64 ~/CP115-Class-Repo
+                      ^^^^^^^^^^^^^^^^  <- make sure this is the end
+$
+```
+
+You should also see folders like `labs` in this directory. If you are not in the correct folder, use `cd` to navigate into `CP115-Class-Repo` first.
 
 Now create a virtual environment using **Python**'s built-in `venv` module. Type the following command:
 
@@ -49,10 +66,18 @@ You should see a new folder called `cp115_env` appear in your repository root di
 
 ### Activating the Virtual Environment
 
-Creating the virtual environment is just the first step. To actually use it, you need to activate it. Run the command below.
+Creating the virtual environment is just the first step. To actually use it, you need to activate it. The command depends on which terminal you are using.
+
+If you are using **PowerShell** (the default terminal in **VS Code** on Windows), run:
+
+```powershell
+cp115_env\Scripts\activate
+```
+
+If you are using **Git Bash**, run this instead:
 
 ```bash
-cp115_env\Scripts\activate
+source cp115_env/Scripts/activate
 ```
 
 After activation, you should see `(cp115_env)` appear at the beginning of your terminal prompt. This indicates that your virtual environment is active and any **Python** commands you run will use this isolated environment.
@@ -121,10 +146,16 @@ Also make sure you have the **Python** extension by **Microsoft** installed from
 
 ### Installing pytest
 
-**pytest** is the most popular testing framework for **Python**. It makes writing and running tests simple and intuitive. First, make sure your virtual environment is activated:
+**pytest** is the most popular testing framework for **Python**. It makes writing and running tests simple and intuitive. First, make sure your virtual environment is activated. In **PowerShell**:
+
+```powershell
+cp115_env\Scripts\activate
+```
+
+Or, in **Git Bash**:
 
 ```bash
-cp115_env\Scripts\activate
+source cp115_env/Scripts/activate
 ```
 
 You should see `(cp115_env)` in your terminal prompt. Now install **pytest**:
@@ -214,21 +245,21 @@ Notice that `cp115_env/` is already listed under **Virtual environments**, so yo
 
 ### Ignore Your Own File Exercise <Badge type="warning" text="Task" />
 
-Now try it yourself with a brand new file. Inside `/labs/lab07/` you will find a file called `secret_notes.txt` that has already been created for you. Imagine this file contains private notes that should **never** be uploaded to **GitHub**.
+Now try it yourself with a brand new file. Inside `/labs/lab07/`, create a new file and name it `test.txt`. Type anything you like inside it, and imagine this file contains private notes that should **never** be uploaded to **GitHub**.
 
 Follow these steps:
 
-1. Open the **Source Control** panel. You should see `secret_notes.txt` listed as a change waiting to be committed, which means **Git** is currently tracking it.
+1. Open the **Source Control** panel. You should see `test.txt` listed as a change waiting to be committed, which means **Git** is currently tracking it.
 2. Open the `.gitignore` file in the root of your repository and add a line to ignore it:
 
    ```gitignore
    # My private notes
-   labs/lab07/secret_notes.txt
+   labs/lab07/test.txt
    ```
 
-3. Save the `.gitignore` file and look at the **Source Control** panel again. `secret_notes.txt` should now **disappear** from the list, because **Git** is no longer tracking it.
+3. Save the `.gitignore` file and look at the **Source Control** panel again. `test.txt` should now **disappear** from the list, because **Git** is no longer tracking it.
 4. Stage your changes, write a commit message, and **commit and push** to **GitHub**.
-5. Open your repository on **GitHub** in the browser and navigate to `labs/lab07/`. Confirm that `secret_notes.txt` is **not** there, even though it still exists on your own computer.
+5. Open your repository on **GitHub** in the browser and navigate to `labs/lab07/`. Confirm that `test.txt` is **not** there, even though it still exists on your own computer.
 
 ::: tip
 This proves the whole point of `.gitignore`: a file can live in your project folder and still be completely invisible to **Git**. The file stays on your machine, but it never gets uploaded.
