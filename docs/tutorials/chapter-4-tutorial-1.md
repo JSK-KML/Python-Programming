@@ -1,9 +1,9 @@
 ---
-title: Chapter 4 - Tutorial 1
+title: "Tutorial 6 : Chapter 4"
 outline: deep
 ---
 
-# Chapter 4 - Tutorial 1: Identifiers, Variables & Keywords
+# Tutorial 6 : Chapter 4 - Identifiers, Variables & Keywords
 
 ## Discussion: Languages, Paradigms & Translators <Badge type="info" text="Discussion" />
 

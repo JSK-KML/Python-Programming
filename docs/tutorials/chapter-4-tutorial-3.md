@@ -1,9 +1,9 @@
 ---
-title: Chapter 4 - Tutorial 3
+title: "Tutorial 8 : Chapter 4"
 outline: deep
 ---
 
-# Chapter 4 - Tutorial 3: Operator Precedence & Logic Errors
+# Tutorial 8 : Chapter 4 - Operator Precedence & Logic Errors
 
 ## Operator Precedence
 

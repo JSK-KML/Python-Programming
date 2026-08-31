@@ -1,9 +1,9 @@
 ---
-title: Chapter 7 - Tutorial 3
+title: "Tutorial 12 : Chapter 7"
 outline: deep
 ---
 
-# Chapter 7 - Tutorial 3: Sentinel-Controlled Loops
+# Tutorial 12 : Chapter 7 - Sentinel-Controlled Loops
 
 ## Exercise 1 <Badge type="tip" text="Question" />
 

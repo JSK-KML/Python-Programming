@@ -1,9 +1,9 @@
 ---
-title: Chapter 7 - Tutorial 2
+title: "Tutorial 13 : Chapter 7"
 outline: deep
 ---
 
-# Chapter 7 - Tutorial 2: Counter-Controlled Loops
+# Tutorial 13 : Chapter 7 - Counter-Controlled Loops (Sequence Generation)
 
 ## Loop Understanding 
 

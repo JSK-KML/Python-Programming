@@ -1,9 +1,9 @@
 ---
-title: Chapter 2 - Tutorial 1
+title: "Tutorial 1 : Chapter 2"
 outline: deep
 ---
 
-# Chapter 2 - Tutorial 1
+# Tutorial 1 : Chapter 2
 
 ## IPO - Input ▸ Process ▸ Output  
 

@@ -1,9 +1,9 @@
 ---
-title: Chapter 3 - Tutorial 3
+title: "Tutorial 3 : Chapter 3"
 outline: deep
 ---
 
-# Chapter 3 - Tutorial 3
+# Tutorial 3 : Chapter 3
 
 ## Creating The IPO Table <Badge type="warning" text="Recall" />
 

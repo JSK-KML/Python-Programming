@@ -1,9 +1,9 @@
 ---
-title: Chapter 6 and 7 - Tutorial 1
+title: "Tutorial 10 : Chapter 7"
 outline: deep
 ---
 
-# Chapter 6 and 7 - Tutorial 1
+# Tutorial 10 : Chapter 7 - Loop Practice
 
 ## Loop Practice Questions
 
