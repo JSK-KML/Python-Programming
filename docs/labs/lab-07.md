@@ -7,7 +7,7 @@ title: Lab 7 - Python Development Environment and Testing
 
 ## Pull and Update in VS Code
 
-This lab will guide you through setting up a professional **Python** development environment using virtual environments, testing with **pytest**, and automating tests with **GitHub Actions**. These are essential skills for writing maintainable and reliable **Python** code.
+This lab will guide you through setting up a professional **Python** development environment using virtual environments and testing with **pytest**. These are essential skills for writing maintainable and reliable **Python** code.
 
 Before starting any lab, you need to make sure that the repo in your **GitHub** is the latest one. [Sync the repo](./lab-01.md#syncing-fork) if the `upstream` repo have been updated.
 
@@ -626,27 +626,42 @@ print(f"After **= 2: {score}")
 
 Run this code and see how the score changes with each assignment operator. Can you follow how the value changes at each step?
 
-## More Import Techniques
+## Exercises
 
-### Review: Basic Imports from Lab 05
+The following exercises are tested with **pytest**, the same way as the earlier labs. Each exercise has its own folder inside `/labs/lab07/`, containing a starter file for you to complete and a test file that has already been written for you.
 
-In Lab 05, you learned basic import statements:
+### How to Do Each Exercise
 
-```python
-import math
-import random
+Follow these steps for every exercise below:
 
-# Using the modules
-result = math.sqrt(25)
-number = random.randint(1, 10)
-```
+1. **Open the starter file.** Go to the exercise's folder inside `/labs/lab07/` (for example, `/labs/lab07/exercise1/`) and open its `.py` file. You will see the `input()` lines at the top and the `print()` lines at the bottom, with an empty space in the middle.
+2. **Write your code in the empty middle.** Read the exercise description to work out what each printed variable should hold, and calculate it in that empty space using the values read by the `input()` lines.
+3. **Do not touch the `input()` or `print()` lines**, and do **not** add any extra `print()` output. The tests check your output exactly, so any change to those lines will make them fail.
+4. **Run the tests.** Open the **Testing** panel (the flask icon in the **VS Code** sidebar), find the tests for that exercise, and click the play button. **Green** means pass, **red** means fail.
+5. **Fix and repeat.** If a test is red, read the message (it tells you what was expected and what your program produced), correct your code, and run the tests again until every test is green.
 
-### Creating and Importing Your Own Code
+### Exercise 1: Grocery Shopping <Badge type="warning" text="Task" />
 
-Beyond the built-in modules like `math` and `random`, **Python** also lets you create your own **Python** files and import them the same way. This is very useful for organizing your code and reusing it across different programs.
+A customer buys three different items, each with its own unit price and quantity. The shop adds 6% SST to the total. Navigate to `/labs/lab07/exercise1/` and open `exercise1.py`. Complete it so it displays the subtotal, the tax, and the final amount to pay.
+
+### Exercise 2: Bank Notes <Badge type="warning" text="Task" />
+
+A bank teller pays out a cash withdrawal using the fewest possible RM50 notes, then RM1 coins for whatever is left over. Navigate to `/labs/lab07/exercise2/` and open `exercise2.py`. Complete it so it displays how many RM50 notes and how many RM1 coins are handed over.
+
+### Exercise 3: Online Order Summary <Badge type="warning" text="Task" />
+
+An online store processes a single customer order. The store works out the order total, and gives free shipping only when the order total reaches RM100. Navigate to `/labs/lab07/exercise3/` and open `exercise3.py`. Complete it so it displays the customer's name in uppercase, the order total, whether the order gets free shipping, and whether the customer is a member.
+
+### Exercise 4: Café Loyalty Bill <Badge type="warning" text="Task" />
+
+A café bill is worked out in stages. A 10% service charge is added on top of the subtotal, and then a flat RM2 loyalty discount is taken off. Navigate to `/labs/lab07/exercise4/` and open `exercise4.py`. Complete it so it displays the subtotal, the service charge, and the final amount to pay.
+
+### Exercise 5: Travel Account Setup <Badge type="warning" text="Task" />
+
+A travel website sets up a new account and its first trip. The username is the member's name in lowercase, a password is considered long enough when it has at least 8 characters, and the trip route is written as the departure and destination joined with a dash, both in uppercase (for example, `PENANG-TOKYO`). Navigate to `/labs/lab07/exercise5/` and open `exercise5.py`. Complete it so it displays the username, the number of characters in the name, whether the password is long enough, and the trip route.
 
 ## Commit and Push Your Work
 
 After working through the sections above, save all your files and commit them to your repository. Make sure your files are properly saved in the `/labs/lab07/` directory.
 
-Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 7: Development Environment, Operators and Imports", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully.
+Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 7: Development Environment, Operators and Exercises", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully.
