@@ -89,11 +89,11 @@ export default defineConfig({
         ],
         activeMatch: '^/lectures/'
       },
-      // {
-      //   text: 'Exams',
-      //   link: '/exams/',
-      //   activeMatch: '^/exams/'
-      // },
+      {
+        text: 'Exams',
+        link: '/exams/',
+        activeMatch: '^/exams/'
+      },
       // {
       //   text: 'Editor',
       //   items: [
@@ -185,18 +185,18 @@ export default defineConfig({
       //   { text: 'Presentation Mode', link: '/editor/presentation-mode' }
       // ],
 
-      // '/exams/': [
-      //   { text: 'Sample Question', link: '/exams/#sample-question' },
-      //   { text: 'Sample Question Answer', link: '/exams/#sample-question-answer' },
-      //   { text: 'Exam 1', link: '/exams/#exam-1' },
-      //   { text: 'Exam 2', link: '/exams/#exam-2' },
-      //   { text: 'Exam 3', link: '/exams/#exam-3' },
-      //   { text: 'Exam 4', link: '/exams/#exam-4' },
-      //   { text: 'Exam 5', link: '/exams/#exam-5' },
-      //   { text: 'Exam 6', link: '/exams/#exam-6' },
-      //   { text: 'Exam 7', link: '/exams/#exam-7' },
-      //   { text: 'Skema KMK Pra-PSPM 25/26', link: '/exams/#skema-kmk-pra-pspm-25-26' }
-      // ]
+      '/exams/': [
+        { text: 'Sample Question', link: '/exams/#sample-question' },
+        // { text: 'Sample Question Answer', link: '/exams/#sample-question-answer' },
+        // { text: 'Exam 1', link: '/exams/#exam-1' },
+        // { text: 'Exam 2', link: '/exams/#exam-2' },
+        // { text: 'Exam 3', link: '/exams/#exam-3' },
+        // { text: 'Exam 4', link: '/exams/#exam-4' },
+        // { text: 'Exam 5', link: '/exams/#exam-5' },
+        // { text: 'Exam 6', link: '/exams/#exam-6' },
+        // { text: 'Exam 7', link: '/exams/#exam-7' },
+        // { text: 'Skema KMK Pra-PSPM 25/26', link: '/exams/#skema-kmk-pra-pspm-25-26' }
+      ]
     },
 
     socialLinks: [

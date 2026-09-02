@@ -22,6 +22,8 @@ outline: deep
 <br>
 <br>
 
+<!--
+
 ### Sample Question Answer
 
 <iframe src="/Python-Programming/exams/sample-pspm-answer.pdf" width="100%" height="400" allowfullscreen></iframe>
@@ -154,4 +156,7 @@ outline: deep
     Open Fullscreen
   </button>
 </a>
+
+-->
+
 
