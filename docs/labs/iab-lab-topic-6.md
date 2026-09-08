@@ -31,17 +31,14 @@ A list is a collection of items stored in a single variable. It allows the stora
 
 A list is written using **square brackets** `[ ]`. The values inside are called **elements**, and they are separated by commas.
 
+**▶ Type this in and run it.** What does it print?
+
 ```python
 fruits = ["apple", "banana", "kiwi"]
 print(fruits)
 ```
 
-**Output:**
-```
-['apple', 'banana', 'kiwi']
-```
-
-In this list, the name is `fruits` and there are three elements, so the size of the list is three.
+The list is printed back exactly as you wrote it. Its name is `fruits`, and there are three elements, so the size of the list is three.
 
 ### List vs Primitive Data Type
 
@@ -58,87 +55,69 @@ A primitive data type, such as an integer or a string, holds a single value. A l
 
 Any data type can be stored in a list.
 
-**Integers:**
+**Integers.**
+
+**▶ Run it.** Confirm the list prints back the way you wrote it.
 
 ```python
 numbers = [10, 20, 30, 40, 50]
 print(numbers)
 ```
 
-**Output:**
-```
-[10, 20, 30, 40, 50]
-```
+**Floats.**
 
-**Floats:**
+**▶ Run it.** Confirm the list prints back the way you wrote it.
 
 ```python
 decimal_numbers = [1.5, 2.3, 3.7, 4.1]
 print(decimal_numbers)
 ```
 
-**Output:**
-```
-[1.5, 2.3, 3.7, 4.1]
-```
+**Strings.**
 
-**Strings:**
+**▶ Run it.** Confirm the list prints back the way you wrote it.
 
 ```python
 fruits = ["apple", "banana", "cherry", "date"]
 print(fruits)
 ```
 
-**Output:**
-```
-['apple', 'banana', 'cherry', 'date']
-```
+**Booleans.**
 
-**Booleans:**
+**▶ Run it.** Confirm the list prints back the way you wrote it.
 
 ```python
 status = [True, False, True, False]
 print(status)
 ```
 
-**Output:**
-```
-[True, False, True, False]
-```
+**Mixed data types**: a single list can hold values of different types at the same time.
 
-**Mixed data types:** a single list can hold values of different types at the same time.
+**▶ Run it.** Notice all four types sit together in one list.
 
 ```python
 mixed_list = [25, "hello", 3.14, True]
 print(mixed_list)
 ```
 
-**Output:**
-```
-[25, 'hello', 3.14, True]
-```
+A list can also be created **empty**, ready to be filled later.
 
-A list can also be created **empty**, ready to be filled later:
+**▶ Run it.** What does an empty list look like when printed?
 
 ```python
 cart = []
 print(cart)
 ```
 
-**Output:**
-```
-[]
-```
-
 ### Characteristics of a List
 
 A list has five key characteristics:
 
-- **Ordered** — elements are stored in a specific sequence.
-- **Mutable** — elements can be added, removed, or changed after the list is created.
-- **Allows Duplicates** — the same value may appear more than once.
-- **Supports Different Data Types** — a single list can store integers, strings, floats, or booleans together.
-- **Dynamic Size** — a list can grow or shrink as needed.
+- **Ordered**: elements are stored in a specific sequence.
+- **Mutable**: elements can be added, removed, or changed after the list is created.
+- **Allows Duplicates**: the same value may appear more than once.
+- **Supports Different Data Types**: a single list can store integers, strings, floats, or booleans together.
+- **Dynamic Size**: a list can grow or shrink as needed.
 
 ::: tip
 Being **mutable** and **dynamic** is what makes a list so useful: you can start with an empty list and keep adding to it as your program runs, which you will do with the `append()` method later in this session.
@@ -159,48 +138,39 @@ Each element in a list has a position, called its **index**.
 
 Indexing starts at **0**, not 1. The first element is at index `0`, the second at index `1`, and so on, counting from left to right.
 
+**▶ Run it.** Which two fruits print, and why not the middle one?
+
 ```python
 fruits = ["apple", "banana", "kiwi"]
 print(fruits[0])
 print(fruits[2])
 ```
 
-**Output:**
-```
-apple
-kiwi
-```
-
 | element | "apple" | "banana" | "kiwi" |
 |---------|---------|----------|--------|
 | positive index | 0 | 1 | 2 |
 
-Because indexing starts at `0`, the last element of this three-element list is at index `2`, not `3`. Using an index that does not exist produces an error:
+Because indexing starts at `0`, the last element of this three-element list is at index `2`, not `3`. Using an index that does not exist produces an error.
+
+**▶ Run it.** Instead of a fruit, **Python** stops with an error, read the message it gives.
 
 ```python
 fruits = ["apple", "banana", "kiwi"]
 print(fruits[5])
 ```
 
-**Output:**
-```
-IndexError: list index out of range
-```
+The error tells you the index does not exist in the list.
 
 ### Negative Index
 
 Elements can also be accessed from the **end** of the list using negative indexes. The last element is at index `-1`, the second-to-last at `-2`, counting from right to left.
 
+**▶ Run it.** Which two cities print? Count from the right to check the negative indexes match.
+
 ```python
 cities = ["Kuala Lumpur", "Tokyo", "New York", "Paris", "Dubai"]
 print(cities[-1])
 print(cities[-3])
-```
-
-**Output:**
-```
-Dubai
-New York
 ```
 
 | element | "apple" | "banana" | "kiwi" | "durian" | "guava" | "orange" |
@@ -216,7 +186,6 @@ Use the list `subjects = ["Math", "Science", "History", "English", "Computer Sci
 2. Print the first subject again using a negative index.
 3. Print the last subject using a positive index, then again using a negative index.
 4. Print `"History"` using both a positive and a negative index.
-5. Write down the positive index and the negative index that both refer to `"English"`.
 
 ### Exercises: Problem Solving <Badge type="warning" text="Task" />
 
@@ -240,7 +209,9 @@ Reaching one element at a time with an index works, but most of the time you wan
 
 ### For-Each Loop
 
-The simplest way is a `for` loop that takes each element in turn. You do **not** need to know the length of the list or set any limit — the loop automatically runs once for every element, from the first to the last, and stops on its own.
+The simplest way is a `for` loop that takes each element in turn. You do **not** need to know the length of the list or set any limit, the loop automatically runs once for every element, from the first to the last, and stops on its own.
+
+**▶ Run it.** Each fruit should print on its own line.
 
 ```python
 fruits = ["apple", "banana", "kiwi"]
@@ -250,16 +221,11 @@ for item in fruits:
     print(item)
 ```
 
-**Output:**
-```
-apple
-banana
-kiwi
-```
-
 Read it as: "for each `item` in `fruits`". The loop runs three times, once for each element. On the first pass `item` is `"apple"`, on the second `"banana"`, on the third `"kiwi"`. Note that `item` holds the **value** of the element, not its index.
 
-A for-each loop always runs in **one direction only** — from the first element to the last. You cannot reverse it, and you cannot skip specific elements. It also does not give you the **index** of each element, only its value. This makes it the best choice when you simply need to visit every element and do something with each one. For example, this adds up every number in a list:
+A for-each loop always runs in **one direction only**, from the first element to the last. You cannot reverse it, and you cannot skip specific elements. It also does not give you the **index** of each element, only its value. This makes it the best choice when you simply need to visit every element and do something with each one. For example, this adds up every number in a list.
+
+**▶ Run it.** Add the four numbers by hand and check the printed total matches.
 
 ```python
 numbers = [10, 20, 30, 40]
@@ -269,16 +235,13 @@ for number in numbers:
 print("Total:", total)
 ```
 
-**Output:**
-```
-Total: 100
-```
-
 Each pass takes the next number and adds it to `total`, so after the loop `total` holds the sum of the whole list.
 
 ### For Loop with Index
 
-When you need the **index** of each element — not just its value — loop over the positions instead. Combine `range()` and `len()`, then use the index to reach each element with `fruits[i]`.
+When you need the **index** of each element, not just its value, loop over the positions instead. Combine `range()` and `len()`, then use the index to reach each element with `fruits[i]`.
+
+**▶ Run it.** Each line should now show an index next to its fruit.
 
 ```python
 fruits = ["apple", "banana", "kiwi"]
@@ -286,16 +249,11 @@ for i in range(len(fruits)):
     print(i, fruits[i])
 ```
 
-**Output:**
-```
-0 apple
-1 banana
-2 kiwi
-```
-
 `len(fruits)` is `3`, so `range(len(fruits))` produces `0, 1, 2`, and `fruits[i]` reaches each element by its index.
 
-Having the index is what makes this loop more powerful than for-each. Because you know each element's position, you can decide what to do based on the position itself — for example, printing only the elements at **even index positions** (`0`, `2`, `4`, ...):
+Having the index is what makes this loop more powerful than for-each. Because you know each element's position, you can decide what to do based on the position itself, for example, printing only the elements at **even index positions** (`0`, `2`, `4`, ...).
+
+**▶ Run it.** Which names are skipped, and why?
 
 ```python
 names = ["Ali", "Sara", "Kumar", "Lee", "Wong"]
@@ -304,16 +262,11 @@ for i in range(len(names)):
         print(i, names[i])
 ```
 
-**Output:**
-```
-0 Ali
-2 Kumar
-4 Wong
-```
+Only the names at even index positions print. A for-each loop could not do this, because it never gives you the index `i` to test.
 
-A for-each loop could not do this, because it never gives you the index `i` to test.
+The index also lets you compare an element with its **neighbour**, the element just before it, at index `i - 1`. This example prints a message whenever a temperature is higher than the day before it.
 
-The index also lets you compare an element with its **neighbour** — the element just before it, at index `i - 1`. This example prints a message whenever a temperature is higher than the day before it:
+**▶ Run it.** Compare each temperature with the one before it to check the days it reports.
 
 ```python
 temps = [25, 27, 26, 30]
@@ -322,17 +275,13 @@ for i in range(len(temps)):
         print("Day", i, "was warmer than the day before")
 ```
 
-**Output:**
-```
-Day 1 was warmer than the day before
-Day 3 was warmer than the day before
-```
-
 The check `i > 0` is important: the very first element (index `0`) has no element before it, so there is nothing to compare it against.
 
 ### While Loop
 
 A `while` loop keeps its own counter and repeats as long as a condition is true. To visit a list, the counter starts at `0` and increases each pass, stopping when it reaches the length of the list.
+
+**▶ Run it.** It should print the same three fruits as the for-each loop did.
 
 ```python
 fruits = ["apple", "banana", "kiwi"]
@@ -342,14 +291,9 @@ while i < len(fruits):
     i = i + 1
 ```
 
-**Output:**
-```
-apple
-banana
-kiwi
-```
+For simply walking through a whole list, a `while` loop offers no advantage over the `for` loops above. Its usefulness is the **flexibility of its condition**: you control exactly when it stops, so it can end early. For example, this stops as soon as it finds a number above `100`.
 
-For simply walking through a whole list, a `while` loop offers no advantage over the `for` loops above. Its usefulness is the **flexibility of its condition**: you control exactly when it stops, so it can end early. For example, this stops as soon as it finds a number above `100`:
+**▶ Run it.** How many numbers print, and why does it stop before the end of the list?
 
 ```python
 numbers = [20, 45, 130, 60, 200]
@@ -359,18 +303,12 @@ while i < len(numbers) and numbers[i] <= 100:
     i = i + 1
 ```
 
-**Output:**
-```
-20
-45
-```
-
 The loop stops at `130` because the condition `numbers[i] <= 100` becomes false, so the remaining elements are never visited.
 
 ::: tip
-- **For-each** — visit every element, value only. Simplest and clearest.
-- **For with index** — when you need each element's position, to compare with neighbours or skip positions.
-- **While** — when the stopping point is a condition, not simply the end of the list.
+- **For-each**: visit every element, value only. Simplest and clearest.
+- **For with index**: when you need each element's position, to compare with neighbours or skip positions.
+- **While**: when the stopping point is a condition, not simply the end of the list.
 :::
 
 ### Exercises: Basic <Badge type="warning" text="Task" />
@@ -397,7 +335,7 @@ Students who passed: 4
 Grades: ['A', 'P', 'F', 'A', 'P', 'F']
 ```
 
-6. An image processing app analyses a row of pixels stored as grayscale values (0 is black, 255 is white). It needs to count the **bright spots** — pixels that are brighter than **both** their left and right neighbours. Given `pixels = [100, 120, 200, 150, 180, 160, 140]`, use a loop to count the bright spots and display the total. (The first and last pixels have only one neighbour, so they can never be a bright spot.)
+6. An image processing app analyses a row of pixels stored as grayscale values (0 is black, 255 is white). It needs to count the **bright spots**, pixels that are brighter than **both** their left and right neighbours. Given `pixels = [100, 120, 200, 150, 180, 160, 140]`, use a loop to count the bright spots and display the total. (The first and last pixels have only one neighbour, so they can never be a bright spot.)
 
 **Sample Output:**
 ```
@@ -429,6 +367,8 @@ temperatures = [36.5, 37.2, 36.8, 37.0]
 
 A list is **mutable**: its elements can be changed after it is created. To change an element, assign a new value to it through its index.
 
+**▶ Run it.** Compare the two printed lines: which element changed, and which stayed the same?
+
 ```python
 fruits = ["apple", "banana", "kiwi"]
 print(fruits)
@@ -437,24 +377,15 @@ fruits[1] = "orange"
 print(fruits)
 ```
 
-**Output:**
-```
-['apple', 'banana', 'kiwi']
-['apple', 'orange', 'kiwi']
-```
+Updating also works with negative indexes.
 
-Updating also works with negative indexes:
+**▶ Run it.** Which two cities were replaced? Count from the right to confirm `-1` and `-3` landed where you expected.
 
 ```python
 cities = ["KL", "Penang", "JB", "Malacca"]
 cities[-1] = "Ipoh"
 cities[-3] = "Shah Alam"
 print(cities)
-```
-
-**Output:**
-```
-['KL', 'Shah Alam', 'JB', 'Ipoh']
 ```
 
 ### Exercises: Basic <Badge type="warning" text="Task" />
@@ -491,19 +422,18 @@ Updated marks: [55, 0, 72, 41, 0, 90]
 
 `len()` returns the number of elements in a list.
 
+**▶ Run it.** Does the reported length match the number of cars you can count in the list?
+
 ```python
 carlist = ["Saga", "Waja", "Wira", "Persona"]
 print("Length of the list:", len(carlist))
 ```
 
-**Output:**
-```
-Length of the list: 4
-```
-
 ### The min() and max() Functions
 
 `min()` returns the smallest element and `max()` returns the largest.
+
+**▶ Run it.** Do the smallest and largest values reported match what you see in the list?
 
 ```python
 numbers = [5, 2, 8, 1, 6]
@@ -511,13 +441,9 @@ print("Minimum value:", min(numbers))
 print("Maximum value:", max(numbers))
 ```
 
-**Output:**
-```
-Minimum value: 1
-Maximum value: 8
-```
-
 With strings, `min()` and `max()` compare alphabetically. `min()` returns the word first in alphabetical order, `max()` the word last.
+
+**▶ Run it.** Check the minimum and maximum words against alphabetical order.
 
 ```python
 string_list = ["apple", "banana", "cherry", "date"]
@@ -525,40 +451,30 @@ print("Minimum string:", min(string_list))
 print("Maximum string:", max(string_list))
 ```
 
-**Output:**
-```
-Minimum string: apple
-Maximum string: date
-```
+These functions require the elements to be of a comparable type. A list that mixes numbers and text causes an error.
 
-These functions require the elements to be of a comparable type. A list that mixes numbers and text causes an error:
+**▶ Run it.** **Python** stops with an error instead of a result, read what the message says.
 
 ```python
 list1 = ['a', 'b', 'c', 50]
 print(min(list1))
 ```
 
-**Output:**
-```
-TypeError: '<' not supported between instances of 'int' and 'str'
-```
+The message explains that it cannot compare a number against text.
 
 ::: danger ATTENTION
-`min()`, `max()`, and `sum()` must compare or add the elements, and **Python** cannot decide whether a number is smaller or larger than a piece of text. To use these functions, the list must contain values of a **single comparable type** — all numbers, or all strings.
+`min()`, `max()`, and `sum()` must compare or add the elements, and **Python** cannot decide whether a number is smaller or larger than a piece of text. To use these functions, the list must contain values of a **single comparable type**, all numbers, or all strings.
 :::
 
 ### The sum() Function
 
 `sum()` adds up all the numeric values in a list and returns the total.
 
+**▶ Run it.** Add the five numbers by hand and check the total matches.
+
 ```python
 numbers = [1, 2, 3, 4, 5]
 print("Sum of all elements:", sum(numbers))
-```
-
-**Output:**
-```
-Sum of all elements: 15
 ```
 
 ### Exercises: Basic <Badge type="warning" text="Task" />
@@ -612,18 +528,17 @@ A function wraps the list; a method hangs off the list after a dot.
 
 The `append()` method adds a single element to the **end** of a list. It modifies the list in place.
 
+**▶ Run it.** Where in the list does `"orange"` appear, at the start or the end?
+
 ```python
 fruits = ["apple", "banana", "cherry"]
 fruits.append("orange")
 print(fruits)
 ```
 
-**Output:**
-```
-['apple', 'banana', 'cherry', 'orange']
-```
-
 This is useful together with an empty list: a list can be built up one element at a time, often inside a loop.
+
+**▶ Run it.** The list starts empty and ends up filled. What values does it hold, and how many?
 
 ```python
 number_list = []
@@ -632,12 +547,9 @@ for i in range(5):
 print(number_list)
 ```
 
-**Output:**
-```
-[0, 1, 2, 3, 4]
-```
+An element can also be appended only when it meets a condition.
 
-An element can also be appended only when it meets a condition:
+**▶ Run it.** Which numbers `0` to `9` end up in the list, and why were the rest left out?
 
 ```python
 even_numbers = []
@@ -645,11 +557,6 @@ for i in range(10):
     if i % 2 == 0:
         even_numbers.append(i)
 print(even_numbers)
-```
-
-**Output:**
-```
-[0, 2, 4, 6, 8]
 ```
 
 ### Exercises: Basic <Badge type="warning" text="Task" />
@@ -698,18 +605,17 @@ Rejected: 3
 
 The `sort()` method rearranges the elements of a list into order. By default it sorts in **ascending** order, from smallest to largest.
 
+**▶ Run it.** In what order do the numbers come out, smallest first or largest first?
+
 ```python
 numbers = [5, 2, 9, 1, 5, 6]
 numbers.sort()
 print(numbers)
 ```
 
-**Output:**
-```
-[1, 2, 5, 5, 6, 9]
-```
-
 Passing `reverse=True` sorts in **descending** order, from largest to smallest.
+
+**▶ Run it.** How is the order different from the previous run without `reverse=True`?
 
 ```python
 numbers = [5, 2, 9, 1, 5, 6]
@@ -717,12 +623,9 @@ numbers.sort(reverse=True)
 print(numbers)
 ```
 
-**Output:**
-```
-[9, 6, 5, 5, 2, 1]
-```
-
 `sort()` also orders strings alphabetically.
+
+**▶ Run it.** Compare the two printed lines, one is alphabetical, the other its reverse.
 
 ```python
 fruits = ["banana", "apple", "cherry", "date"]
@@ -731,12 +634,6 @@ print(fruits)
 
 fruits.sort(reverse=True)
 print(fruits)
-```
-
-**Output:**
-```
-['apple', 'banana', 'cherry', 'date']
-['date', 'cherry', 'banana', 'apple']
 ```
 
 ### Exercises: Basic <Badge type="warning" text="Task" />
@@ -758,7 +655,7 @@ Winner's time: 29
 This combines two ideas: `sort()` puts the list in order, and indexing lets you pick out the first few positions once it is sorted.
 :::
 
-4. **Combined exercise — Test Scores.** Ask the user to enter five test scores, appending each into a list. Then display the full list, the number of scores, the highest and lowest score, the total, the average, and finally the scores sorted from highest to lowest.
+4. **Combined exercise: Test Scores.** Ask the user to enter five test scores, appending each into a list. Then display the full list, the number of scores, the highest and lowest score, the total, the average, and finally the scores sorted from highest to lowest.
 
 **Sample Input** (the five scores the user types):
 ```
@@ -780,7 +677,7 @@ Average: 69.6
 Sorted (highest to lowest): [90, 83, 72, 55, 48]
 ```
 
-5. **Combined exercise — Price Check.** Ask the user to enter six prices into a list. Then display the number of prices, the cheapest and most expensive price, the total cost, and the prices sorted from lowest to highest. Finally, append a seventh price entered by the user, sort the list again, and display the updated list with its new total.
+5. **Combined exercise: Price Check.** Ask the user to enter six prices into a list. Then display the number of prices, the cheapest and most expensive price, the total cost, and the prices sorted from lowest to highest. Finally, append a seventh price entered by the user, sort the list again, and display the updated list with its new total.
 
 **Sample Input** (six prices, then one more to add):
 ```
