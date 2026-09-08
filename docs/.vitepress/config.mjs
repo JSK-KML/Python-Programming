@@ -86,7 +86,8 @@ export default defineConfig({
           { text: 'Chapter 4', link: '/lectures/chapter-04' },
           { text: 'Chapter 5', link: '/lectures/chapter-05' },
           { text: 'Chapter 6', link: '/lectures/chapter-06' },
-          { text: 'Chapter 7', link: '/lectures/chapter-07' }
+          { text: 'Chapter 7', link: '/lectures/chapter-07' },
+          { text: 'Bengkel ToT Chapter 6', link: '/lectures/bengkel-tot-chapter-06' }
         ],
         activeMatch: '^/lectures/'
       },
@@ -158,7 +159,8 @@ export default defineConfig({
         { text: 'Chapter 4', link: '/lectures/chapter-04' },
         { text: 'Chapter 5', link: '/lectures/chapter-05' },
         { text: 'Chapter 6', link: '/lectures/chapter-06' },
-        { text: 'Chapter 7', link: '/lectures/chapter-07' }
+        { text: 'Chapter 7', link: '/lectures/chapter-07' },
+        { text: 'Bengkel ToT Chapter 6', link: '/lectures/bengkel-tot-chapter-06' }
       ],
 
       '/tutorials/': [

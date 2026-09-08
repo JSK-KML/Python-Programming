@@ -11,10 +11,15 @@ A **list** is a data structure that stores a collection of values in a single va
 
 ### Learning Outcomes
 
-- Identify concepts and basic structure of lists.
-- Explain element indexing and basic list operations in Python.
-- Identify pre-defined list functions (`len()`, `min()`, `max()`, `sum()`) and a method (`append()`).
-- Construct programs that perform list method (`sort()`) to sort list data.
+- **6.1** Identify the concept and basic structure of lists in Python.
+- **6.2** Explain element indexing and basic list operations in Python.
+- **6.3** Apply lists with indexing, assignment statements, and for loops to solve simple problems.
+- **6.4** Identify pre-defined list functions (len( ), min( ), max( ), sum( ) and a method (append( )).
+- **6.5** Apply pre-defined list functions (len(), min(), max(), sum()) and the method append() to process list data.
+- **6.6** Construct programs that perform list method (sort( )) to sort list data. *(Assignment)*
+- **6.7** Determine output from list data using control structures.
+- **6.8** Construct Python programs using len( ), min( ), max( ), sum( ) and append( ).
+- **6.9** Apply lists with control structures to develop simple Python programs.
 
 ### Before You Begin
 
