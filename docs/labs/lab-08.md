@@ -1,9 +1,9 @@
 ---
 outline: deep
-title: Lab 8 - Python Operators
+title: Lab 8 - Python Selections
 ---
 
-# Lab 08: Python Operators
+# Lab 08: Python Selections
 
 ## Pull and Update in VS Code
 
@@ -11,248 +11,740 @@ Before starting any lab, you need to make sure that the repo in your **GitHub** 
 
 Once the online repo is in-sync, bring those changes down to your PC by clicking `Source Control` and then `...` beside `Changes` and click `Pull`.
 
- <p align="center">
+<p align="center">
     <img src="/public/labs/lab-02/lab-2-1.png" alt="drawing" width="400"/>
-</p> 
+</p>
 
-## Creating Your Playground File
+## Selection
 
-The folders and files for each exercise in this lab have already been created for you when you pulled the update, so you do not need to make them yourself. Inside `/labs/lab08/` you will find each exercise folder waiting for your answers.
+Launch **VS Code** and open the `exercise.py` file in `/labs/lab08/`. We'll start with a simple question and evolve it into a more complex grading system.
 
-The only file you need to create is a scratch file to play around in while you follow the lab. Open a terminal, move into your `lab08` folder, and create it with [`touch`](./lab-03.md#working-with-the-command-line):
+### Basic Problem 
 
-```bash
-cd labs
-```
-```bash
-cd lab08
-```
-```bash
-touch exercise.py
-```
+A student has scored 85 marks out of 100 in their **Python Programming** exam. Calculate and display their percentage.
 
-`touch` creates an empty file. Run `ls` and you will see `exercise.py` alongside the exercise folders. Open it in **VS Code** and use it to try out every piece of code in this lab.
-
-> **Tip (why):** Right clicking `New File` and typing `touch exercise.py` do exactly the same thing. Learning the command means you understand what the button does, and once it is muscle memory it is quicker than reaching for the mouse.
-
-## String Quotes: Single, Double, and Triple
-
-Let's understand the different ways to create strings in Python using different types of quotes.
-
-### Single Quotes vs Double Quotes
-
-In Python, you can use either single quotes (`'`) or double quotes (`"`) to create strings. Both work exactly the same way:
+Copy this code into your `exercise.py` file:
 
 ```python
-# Using single quotes
-name1 = 'Ali'
-print(name1)
+# Stage 1: Basic grade calculation
+marks = 85
+total_marks = 100
 
-# Using double quotes  
-name2 = "Ali"
-print(name2)
-
-# Both produce the same result
-print(name1 == name2)  # Output: True
+percentage = (marks / total_marks) * 100
+print(f"Student scored: {percentage}%")
 ```
 
-**Output:**
-```
-Ali
-Ali
-True
-```
+Run this code. It works perfectly for this specific case. But what if we want to tell the student whether they passed or failed?
 
-### When to Use Which?
+::: tip
+This is where we realize we need decision-making in our programs. Our code can calculate, but it can't make decisions based on the results.
+:::
 
-The choice between single and double quotes becomes important when your string contains quotes:
+### Adding Decision Making
+
+The university wants to automatically tell students if they passed. The passing grade is 60%. Let's improve our program to make this decision.
+
+In **Python**, the keyword for selection is `if`. You can see the example of usage below.
 
 ```python
-# If your string contains single quotes, use double quotes
-message1 = "I can't believe it's working!"
-print(message1)
+if conditions:
+    # Do things when the conditions is True
 
-# If your string contains double quotes, use single quotes
-message2 = 'He said "Hello there!"'
-print(message2)
 ```
 
-**Output:**
-```
-I can't believe it's working!
-He said "Hello there!"
-```
-
-### Triple Quotes
-
-Triple quotes (`"""` or `'''`) are used for multi-line strings:
+Lets implement this techniques in our previous code. Add this improved version to your `exercise.py` file:
 
 ```python
-# Using triple double quotes
-long_text = """This is a long text
-that spans multiple lines.
-You can write as many lines as you want."""
-print(long_text)
+# Adding basic decision making
+marks = 85
+total_marks = 100
 
-# Using triple single quotes
-poem = '''Roses are red,
-Violets are blue,
-Python is awesome,
-And so are you!'''
-print(poem)
+percentage = (marks / total_marks) * 100
+print(f"Student scored: {percentage}%")
+
+# conditional statement
+if percentage >= 60:
+    print("Congratulations! You passed!")
 ```
 
-**Output:**
-```
-This is a long text
-that spans multiple lines.
-You can write as many lines as you want.
-Roses are red,
-Violets are blue,
-Python is awesome,
-And so are you!
-```
+Run this code. Now it tells students when they pass. But wait, what happens when a student fails? Our program stays silent about failure.
 
-### String Quotes Exercise <Badge type="warning" text="Task" />
+Try changing `marks = 85` to `marks = 45` and run it again. Do you see the problem?
 
-Open the file `exercise1.py` inside the `/labs/lab08/exercise1/` folder (it has already been created for you). Write a single program that produces the exact output below, choosing the right kind of quote for each line so that no quote character is ever lost or causes an error:
+::: warning PROBLEM
+Our program only handles the success case. Students who fail get no feedback at all. This is clearly incomplete.
+:::
 
-```
-She said, "It's Ali's book, isn't it?"
-The sign read: "No Parking" — don't ignore it.
-Ali's note:
-    "Meet me at 5."
-    "Bring the "blue" folder."
-```
+### Handling Both Cases 
 
-Store each of the three blocks in its own variable, then print them. Run it from the terminal with `python exercise1.py` and check your output matches character for character, including the quote marks.
+We need to handle both passing and failing students. **Python** handles this case using the `else` statement. The usage of it is shown below.
 
-## Sequence Control Structures
-
-**Python** makes sequential programming very straightforward. The **Python** interpreter reads and executes your code from top to bottom, one line at a time. This is called **sequential execution** - the most basic control structure in programming.
-
-### How Python Interpreter Handles Sequences
-
-The **Python** interpreter processes your code in a very predictable way:
-
-1. **Line-by-line execution**: Each statement is executed in the exact order you write it
-2. **Immediate evaluation**: When the interpreter encounters an expression, it evaluates it right away
-3. **Variable updates**: Any changes to variables happen instantly and affect the next lines
-
-Let's see how this works in your `exercise.py`:
 
 ```python
-# Sequential execution example
-print("Step 1: Starting program")
+if conditions:
+    # Do things when the conditions is True
+else:
+    # Do things when the conditions is False
+```
+
+Update your code to include the `else` statement:
+
+```python
+# Stage 3: Complete pass/fail system
+marks = 45  # Try both passing and failing grades
+total_marks = 100
+
+percentage = (marks / total_marks) * 100
+print(f"Student scored: {percentage}%")
+
+# Complete conditional with else
+if percentage >= 60:
+    print("Congratulations! You passed!")
+else:
+    print("Sorry, you failed. Better luck next time!")
+```
+
+Great, now our program handles both cases. Test it with different values: `marks = 85` (should pass) and `marks = 45` (should fail).
+
+But now, there is a new requirement: "We don't just need pass/fail. We need to assign letter grades: A, B, C, D, and F."
+
+Try adding this with just `if` and `else`:
+
+```python
+# This doesn't work well for multiple grades
+if percentage >= 90:
+    print("Grade: A")
+else:
+    print("Grade: ?")  # What about B, C, D, F?
+```
+
+::: warning LIMITATION
+With only `if` and `else`, we can only handle two cases. But letter grades require multiple categories!
+:::
+
+### Multiple Selection 
+
+**Python** provides `elif` (else-if) to handle multiple conditions cleanly. The usage is as below.
+
+```python
+if conditions:
+    # Do things when the conditions is True
+elif conditions :
+    # Do things when conditions is True
+elif conditions :
+    # Do things when conditions is True
+else:
+    # Do things when everything else is False
+```
+
+Now lets improve our previous code using the `elif` statement:
+
+```python
+# multiple conditions with elif
+marks = 87
+total_marks = 100
+percentage = (marks / total_marks) * 100
+
+print(f"Student scored: {percentage}%")
+
+if percentage >= 90:
+    print("Grade: A - Excellent!")
+elif percentage >= 80:
+    print("Grade: B - Good!")
+elif percentage >= 70:
+    print("Grade: C - Satisfactory!")
+elif percentage >= 60:
+    print("Grade: D - Pass!")
+else:
+    print("Grade: F - Fail!")
+```
+
+Much cleaner! Test this with different values: `marks = 95`, `marks = 82`, `marks = 73`, `marks = 65`, `marks = 45`.
+
+::: tip HOW ELIF WORKS
+Python checks each condition in order. Once it finds a `True` condition, it executes that block and skips the rest. This is why we can use `>= 80` instead of `>= 80 and < 90`.
+:::
+
+### More Comparison Operators 
+
+The university now wants special handling for perfect scores and failing grades. Let's explore different comparison operators
+
+| Operator | Description | Example |
+|----------|-------------| ---------|
+| `==` | Equal to | `x == y` |
+| `!=` | Not equal to | `x != y` |
+| `>` | Greater than | `x > y` |
+| `<` | Less than | `x < y` |  
+| `>=` | Greater than or equal | `x >= y` |
+| `<=` | Less than or equal | `x <= y` |
+
+Operators can only be used with 2 values at one time. For example the code below is valid:
+
+``` python
 x = 10
-print(f"Step 2: x is now {x}")
-x = x * 2
-print(f"Step 3: x is now {x}")
-y = x + 5
-print(f"Step 4: y is now {y}")
-result = x + y
-print(f"Step 5: Final result is {result}")
+
+if x > 5:
+    print("x is greater than 5")
 ```
 
-Run this code and observe how each line executes in perfect order. Can you see how each variable assignment immediately affects the next lines?
-
-### Why Sequential Execution is Powerful
-
-Sequential execution in **Python** gives you complete control over the order of operations:
+But the code below is not valid:
 
 ```python
-# Order matters in sequential programming
-name = "Ali"
-age = 20
-student_id = "2024001"
-
-# Build information step by step
-full_info = f"Name: {name}"
-full_info = full_info + f", Age: {age}"
-full_info = full_info + f", ID: {student_id}"
-
-print(full_info)
-```
-
-Notice how we build the `full_info` string step by step. Each line depends on the previous one. Try changing the order of these lines and see what happens.
-
-
-### Proof of Sequential Execution
-
-Here's proof that **Python** truly executes line by line. Let's create a program with an error at the bottom:
-
-```python
-# This code proves sequential execution
-print("Line 1: This will run")
-print("Line 2: This will also run") 
 x = 10
-print(f"Line 3: x = {x}")
-y = x * 2
-print(f"Line 4: y = {y}")
-print("Line 5: All good so far")
 
-# This line has an intentional error
-print(unknown_variable)  # This will cause an error
+if 2< x > 5:
+    print("x is between 2 and x")
 ```
 
-Run this code in your `exercise.py`. What do you see? All the lines above the error execute perfectly, and you see their output. Only when **Python** reaches the error line does it stop.
+Now that we have learned new types of operator, lets again improve our code.
 
-This is different from languages like **Java** where a single error can prevent the entire program from running. **Python**'s interpreter executes each line as it encounters it, so you get the benefit of seeing results from the working parts of your code.
+```python
+# Different comparison operators
+marks = 100  # Try different values: 100, 0, 75, 60
+total_marks = 100
+percentage = (marks / total_marks) * 100
 
-Try commenting out the error line (add `#` at the beginning) and run it again. Now everything works perfectly.
+print(f"Student scored: {percentage}%")
 
-### Exercise 3: Student Grade System <Badge type="warning" text="Task" />
+# Using different comparison operators
+if percentage == 100:
+    print("Perfect Score! Outstanding achievement!")
+elif percentage > 90:
+    print("Grade: A+ - Exceptional!")
+elif percentage >= 80:
+    print("Grade: A - Excellent!")
+elif percentage >= 70:
+    print("Grade: B - Good!")
+elif percentage >= 60:
+    print("Grade: C - Satisfactory!")
+elif percentage > 0:
+    print("Grade: F - Fail, but you tried!")
+else:  # percentage == 0
+    print("Grade: F - No marks scored!")
+```
 
-Create a folder called `exercise3` in `/labs/lab08/`. In this folder, create `student_grades.py`:
+Notice how we use different operators:
+- `==` for exact equality (perfect 100%)
+- `>` for greater than (A+ grade)
+- `>=` for greater than or equal (other grades)
 
-A student has taken 5 tests in a programming course. Their grades are 78, 85, 92, 67, and 88. The full mark is 100 for each test and a total of 500 for all test. Calculate the total points, average score, and what percentage each test contributes to the total score. Display the results showing each test score, total points, student average, and what percentage each test contributes to the total score. Use proper variable names and add comments explaining your calculations.
 
-### Exercise 4: Fitness Membership Calculator <Badge type="warning" text="Task" />
+### Boolean Operator
 
-Create a folder called `exercise4` in `/labs/lab08/`. Create `membership_calc.py`:
+The university introduces a new policy: "Honour students must have grades of A or B AND perfect attendance." Now we need to check multiple conditions together.
 
-A fitness center offers monthly memberships. The base membership costs RM120 per month. Personal training sessions cost RM80 each, and a member wants to book 6 sessions. The gym also charges RM25 for a locker rental and RM15 for towel service. There's a one-time registration fee of RM50 for new members. Calculate the total first-month cost, the monthly cost after the first month (without registration), and the annual cost (12 months including the first month). Use proper styling including variable names and comments.
+Boolean operators allows us to test multiple conditions inside on statments. There are 3 types of boolean operator.
 
-### Exercise 5: Salary Calculator <Badge type="warning" text="Task" />
+| Operator | Example |
+|----------|---------|
+| `and` | A and B |
+| `or` |  B or C|
+| `not` |  not B|
 
-Create a folder called `exercise5` in `/labs/lab08/`. Create two files:
+The usage of boolean operators slightly differs from comparison operator in a way that we can use to with more that 2 values. 
 
-**Part A**: `employee_data.py` - Create a module with these variables:
-- `basic_salary` = RM4500
-- `overtime_hours` = 12  
-- `overtime_rate` = RM25 per hour
+```python
 
-**Part B**: `salary_calc.py` - Import the employee_data module using `import employee_data`. Access the data using `employee_data.basic_salary`, `employee_data.overtime_hours`, and `employee_data.overtime_rate`. Calculate the total salary with these deductions: 11% for EPF, 0.5% for SOCSO, and 0.2% for EIS. Add fixed deductions of RM50 for medical insurance and RM30 for parking. Display a payslip showing gross salary (basic + overtime), each deduction amount, total deductions, and net salary. Use proper formatting and comments.
+if condition1 and condition2:
+    # Do things is both conditions are True
 
-### Exercise 6: Physics Calculator <Badge type="warning" text="Task" />
+if condition1 or condition2:
+    # Do things if either are True
 
-Create a folder called `exercise6` in `/labs/lab08/`. Create two files:
+if not condition:
+    # Do things if condition is False
 
-**Part A**: `physics_constants.py` - Create a module containing:
-- Standard gravity (9.81 m/s²)
-- Ball mass (0.5 kg)  
-- Building height (25 meters)
-- Initial velocity (15 m/s)
+if condition1 and condition2 and condition3:
+    # Do things if all are True
 
-**Part B**: `motion_calculator.py` - Import the constants module and calculate projectile motion:
+if condition1 or condition2 or condition3:
+    # Do things if any are True
 
-A ball is thrown upward from a building at t = 2 seconds. Calculate the ball's position, velocity, and kinetic energy. The ball's motion follows these physics formulas:
-- Position = initial_height + initial_velocity × time - 0.5 × gravity × time²
-- Velocity = initial_velocity - gravity × time  
-- Kinetic Energy = 0.5 × mass × velocity²
+```
 
-Display a formatted report showing:
-1. Initial conditions (height, velocity, mass)
-2. Time-based calculations (position, velocity at t=2s)
-3. Energy analysis (kinetic energy at t=2s)
-4. Motion status (moving up/down based on velocity sign)
+Boolean operators have strict data type usage, it can only be uses  with a `Boolean` data type. Any value that want to use the boolean operator must be either `True` or `False`.
 
-Use proper variable naming with snake_case, add detailed comments for each calculation step, and format all outputs with appropriate units and decimal precision.
+```python
+condition1 = True
+condition2 = False
 
-## Push and Check <Badge type="danger" text="Experimental" />
+if condition1 and condition2:
+    # Do things is both conditions are True
 
-After you have finish answering all the questions, make sure to [commit and push](./lab-01.md#commit-and-push) your files back to your repo.
+if condition1 or 1:
+    # This will cause error because 1 is an integer, not a boolean
+```
 
-In the **GitHub** repo, make sure that the commit passed all the test. Recall back [here](./lab-02.md#using-flowgorithm-with-github-action) if you forgot how to check it.
+Now, again lets improve our code with boolean operators:
 
+```python
+# Complete system with boolean logic
+marks = 85
+total_marks = 100
+attendance_percentage = 100
+extra_credit = 5  # Bonus points
+
+percentage = (marks / total_marks) * 100
+print(f"Student scored: {percentage}%")
+print(f"Attendance: {attendance_percentage}%")
+print(f"Extra credit: {extra_credit} points")
+
+# Enhanced grading with boolean logic
+if percentage >= 90:
+    grade = "A"
+elif percentage >= 80:
+    grade = "B"
+elif percentage >= 70:
+    grade = "C"
+elif percentage >= 60:
+    grade = "D"
+else:
+    grade = "F"
+
+print(f"Base Grade: {grade}")
+
+# Honor Roll: (Grade A or B) AND perfect attendance
+honor_roll = (grade == "A" or grade == "B") and attendance_percentage == 100
+print(f"Honor Roll: {'Yes!' if honor_roll else 'No'}")
+```
+
+::: info BOOLEAN OPERATORS
+- `and` : Both conditions must be True
+- `or` : At least one condition must be True  
+- `not` : Reverses the truth value
+- Use parentheses `()` to group conditions clearly
+:::
+
+### Precedence Table
+
+When we combine boolean and comparison operators together, how does python know what to evaluate first?
+
+```python
+if percentage >= 80  or extra_credit > 0:
+    print("Honor Roll")
+```
+
+From the example above, obviously we want to check `percentage >= 80` first. But how do we know that Python will not evaluate `80 or extra_credit` first? Even though we have established earlier that for a boolean operator to work, both values need to be boolean, this still does not ensure that `80 or extra_credit` will not be evaluated first.
+
+This is where the precedence table comes into picture:
+
+| Precedence | Type | Operator | 
+|------------|------|----------|
+| 1 (Highest) | Arithmetic | `()` (Parentheses) |
+| 2 | Arithmetic | `**` (Exponentiation) |
+| 3 | Arithmetic | `*`, `/`, `//`, `%` (Multiply, Divide, Floor Division, Modulus) |
+| 4 | Arithmetic | `+`, `-` (Addition, Subtraction) |
+| 5 | Comparison | `<`, `<=`, `>`, `>=`, `==`, `!=` (All comparison operators) |
+| 6 | Boolean | `not` (Boolean NOT) |
+| 7 | Boolean | `and` (Boolean AND) |
+| 8 (Lowest) | Boolean | `or` (Boolean OR) |
+
+**Python** evaluates expressions from highest to lowest precedence. This means:
+
+```python
+# Example: percentage >= 80 or extra_credit > 0
+# Step 1: Evaluate comparisons first (>= and >)
+# Step 2: Then evaluate boolean operator (or)
+
+if percentage >= 80 or extra_credit > 0:
+    print("Honor Roll")
+```
+
+When in doubt, use parentheses `()` to make your intentions clear:
+
+```python
+# Clear grouping with parentheses
+if (percentage >= 80) or (extra_credit > 0):
+    print("Honor Roll")
+```
+
+## Selection Structure Positioning and Usage
+
+**Python** provides three selection structure components: `if`, `elif`, and `else`. Understanding **where** each can be positioned and **when** to use each is essential for controlling program flow.
+
+### Positioning Rules for Selection Structures
+
+Selection structures in **Python** follow strict positioning rules that determine how conditions are evaluated:
+
+| Component | Position Rules | Can Repeat? | Purpose |
+|-----------|---------------|-------------|---------|
+| `if` | **Always first** in a selection block | No | Initial condition check |
+| `elif` | **Only after `if`** or another `elif` | Yes (multiple allowed) | Additional condition checks |
+| `else` | **Always last** in a selection block | No | Default action when all conditions fail |
+
+The positioning creates a **decision chain** where **Python** evaluates conditions in order from top to bottom, executing only the first `True` condition it encounters.
+
+### Understanding If Statement Placement
+
+The `if` statement must **always** be positioned first in any selection structure. It establishes the beginning of the decision-making process.
+
+Copy this code into your `exercise.py` file and run it:
+
+```python
+# if statement - always at the beginning
+student_grade = 85
+
+if student_grade >= 90:
+    print("Excellent performance")
+```
+
+What output do you see? Try changing `student_grade` to `95` and run it again. What happens now?
+
+The `if` statement serves as the **entry point** for conditional logic. **Python** encounters the `if` first and evaluates whether its condition is `True` or `False`. Without an `if` statement, you cannot create conditional logic in **Python**.
+
+### Understanding Elif Statement Placement
+
+The `elif` statement can **only** be positioned **after** an `if` statement or **after** another `elif` statement. It provides additional conditions to check when previous conditions are `False`.
+
+Run this code in your `exercise.py` file:
+
+```python
+# elif positioning - can have multiple elif statements
+student_grade = 85
+
+if student_grade >= 90:
+    print("Excellent performance")
+elif student_grade >= 80:    # After if
+    print("Good performance") 
+elif student_grade >= 70:    # After elif
+    print("Satisfactory performance")
+elif student_grade >= 60:    # After elif
+    print("Minimum performance")
+```
+
+Which message appears? Try changing `student_grade` to different values like `95`, `75`, and `55`. What happens each time?
+
+The `elif` statement creates a **chain of alternatives**. **Python** only checks an `elif` condition if all previous conditions (`if` and any preceding `elif` statements) were `False`. Once any condition evaluates to `True`, **Python** executes that block and **skips all remaining `elif` and `else` statements**.
+
+### Understanding Else Statement Placement  
+
+The `else` statement can **only** be positioned as the **final component** in a selection structure. It executes when all previous conditions (`if` and any `elif` statements) evaluate to `False`.
+
+Copy this code into your `exercise.py` file and run it:
+
+```python
+# else positioning - always last
+student_grade = 45
+
+if student_grade >= 90:
+    print("Excellent performance")
+elif student_grade >= 80:
+    print("Good performance")
+elif student_grade >= 70:
+    print("Satisfactory performance") 
+elif student_grade >= 60:
+    print("Minimum performance")
+else:                        # Always positioned last
+    print("Below minimum performance")
+```
+
+What message appears? Try changing `student_grade` to `75`, then to `65`. Which conditions are being checked each time?
+
+The `else` statement serves as the **default action**. It provides a guaranteed execution path when none of the conditional statements above it are `True`. The `else` statement does not have a condition because it represents "everything else" - all cases not handled by the `if` and `elif` conditions.
+
+### When to Use Multiple If vs If-Elif-Else
+
+Understanding **when** to use multiple independent `if` statements versus connected `if-elif-else` chains is crucial for correct program logic.
+
+**Use multiple independent `if` statements when:**
+- Multiple conditions can be `True` simultaneously
+- Each condition represents a separate, independent check
+- You want all applicable conditions to execute their code blocks
+
+**Use `if-elif-else` chains when:**  
+- Only one condition should execute its code block
+- Conditions represent mutually exclusive choices
+- You want **Python** to stop checking once it finds the first `True` condition
+
+### Practical Example: Multiple Independent Checks
+
+Consider a health monitoring system that provides multiple warnings. Each health recommendation is independent - a person might need multiple recommendations simultaneously:
+
+Copy this code into your `exercise.py` file and run it:
+
+```python
+# Multiple independent health checks - use multiple if statements
+weight = 70  # kg
+height = 1.75  # meters
+age = 25
+exercise_hours = 2  # per week
+
+bmi = weight / (height * height)
+
+# Each check is independent - multiple can be True
+if bmi >= 25:
+    print("Recommendation: Consider weight management")
+    
+if age >= 40:
+    print("Recommendation: Schedule regular health checkups")
+    
+if exercise_hours < 3:
+    print("Recommendation: Increase physical activity")
+    
+if bmi < 18.5:
+    print("Recommendation: Consider increasing caloric intake")
+```
+
+How many recommendations appear? Now try changing `age = 45` and `exercise_hours = 1`. Run it again - how many recommendations do you see now?
+
+In this example, a person with `exercise_hours = 2` will see the exercise recommendation. If they're also over 40, they'll see the health checkup recommendation. Multiple recommendations make sense because they're independent health concerns.
+
+### Practical Example: Mutually Exclusive Classification  
+
+Consider the same health data but now classifying BMI into categories. A person can only belong to **one** BMI category:
+
+Test this code in your `exercise.py` file:
+
+```python
+# BMI classification - use if-elif-else chain
+weight = 85  # kg  
+height = 1.75  # meters
+bmi = weight / (height * height)
+
+print(f"BMI: {bmi:.1f}")
+
+# Only one classification should apply
+if bmi >= 30:
+    print("BMI Category: Obese")
+elif bmi >= 25:
+    print("BMI Category: Overweight")  
+elif bmi >= 18.5:
+    print("BMI Category: Normal weight")
+else:
+    print("BMI Category: Underweight")
+```
+
+Which category appears? Try changing the weight to `95` kg, then to `60` kg. How many categories does each person get assigned?
+
+With `weight = 85` and `height = 1.75`, the BMI is approximately 27.8. The person is classified as "Overweight" and **only** as "Overweight". **Python** stops checking conditions after finding the first `True` condition (`bmi >= 25`).
+
+### Why Positioning Matters for Program Logic
+
+Understanding the evaluation order helps you write correct conditional logic:
+
+```python
+# Correct: Most specific conditions first
+score = 95
+
+if score == 100:
+    print("Perfect score!")
+elif score >= 90:  
+    print("A grade")
+elif score >= 80:
+    print("B grade")
+else:
+    print("Below B grade")
+```
+
+The positioning ensures that a perfect score (100) gets the special recognition before being categorized as just an "A grade". **Python**'s top-to-bottom evaluation makes the order of conditions crucial for correct results.
+
+
+::: tip CHOOSING THE RIGHT STRUCTURE
+- **Independent checks** that can all happen → Use multiple `if`
+- **Categories** where only one applies → Use `if-elif-else`
+- **Binary choice** with two outcomes → Use `if-else`
+- **Single optional check** → Use `if` only
+:::
+
+## Testing Your Code with pytest
+
+Now that you understand selection statements, let's learn how to test your code using **pytest** in **VS Code**. Testing ensures your selection logic works correctly for all possible cases.
+
+### Exercise 1: Student Classification System <Badge type="warning" text="Task" />
+
+A university needs a student classification system that determines scholarship eligibility and academic standing. Navigate to `/labs/lab08/exercise1/` and open `exercise1.py`.
+
+Read a student's name, GPA, and credit hours, then work out their `classification` and print it.
+
+**Rules** (checked in this order, the first match wins):
+- **Dean's List** — GPA ≥ 3.8 **and** credit hours ≥ 12
+- **Honor Roll** — GPA ≥ 3.5 **and** credit hours ≥ 12
+- **Good Standing** — GPA ≥ 2.0
+- **Academic Probation** — anything else (GPA < 2.0)
+
+Because credit hours are checked together with GPA in the first two rules, a part-time student (credit hours < 12) can never be Dean's List or Honor Roll.
+
+**Output:** one line, the classification text exactly as written above (for example `Dean's List`).
+
+Starter in `exercise1.py`:
+
+```python
+student_name = input()
+gpa = float(input())
+credit_hours = int(input())
+
+
+
+print(classification)
+```
+
+Write your `if-elif-else` in the empty middle to set `classification`. **Do not change the `input()` or `print()` lines.**
+
+### Running Tests with pytest in VS Code
+
+The test file `test_exercise1.py` is located in `/labs/lab08/exercise1/test/test_exercise1.py` and has already been created for you. The tests will check your program by running it with different inputs and checking if the output matches the expected classification.
+
+**How to run your tests:**
+
+1. **Open Test Explorer**:
+   - Look for the **Test Explorer** in the **VS Code** sidebar (flask/beaker icon)  
+   - You'll see your test functions listed under `test_exercise1.py`
+
+2. **Run your tests**:
+   - Click **"Run All Tests"** button to test your implementation
+
+<p align="center">
+    <img src="/public/labs/lab-08/lab-9-1.png" alt="drawing" width="300"/>
+</p>
+
+3. **Read the test results**:
+   - After you click the run button for the test , the **Test Result** tab will automatically open at the bottom of the window.
+   - On the right side, you will see which test pass or failed. Green mean pass and red mean failed.
+   - To know why you test failed, scroll down in the **Test Result** tab until you see the error message marked by the letter **E** on the left side. The message can be pretty long but ignore the rest and just read the error message.
+   - In my example, it failed because variable `classification` is not defined.
+  
+<p align="center">
+    <img src="/public/labs/lab-08/lab-9-2.png" alt="drawing" width="600"/>
+</p>
+
+
+### Your Workflow
+
+1. **Complete** your selection logic in `exercise1.py`
+2. **Run all tests** to see which cases work
+3. **Fix the failing cases** by improving your if-elif-else statements
+4. **Run tests again** until all are green
+5. **Success** - your program handles all scenarios correctly.
+
+## Exercise 2: Tax Calculator <Badge type="warning" text="Task" />
+
+Read an employee's name, base salary, overtime hours, and tax status, then work out the tax rate and net salary. Overtime is paid at RM35 per hour, and the gross salary is the base salary plus overtime pay.
+
+**Inputs:** `tax_status` is `Single`, `Married`, or `Head`.
+
+**Tax rate** depends on the tax status and the gross salary:
+- `Single`: `0.22` if gross ≥ 5000, otherwise `0.18`
+- `Married`: `0.20` if gross ≥ 6000, otherwise `0.15`
+- `Head`: `0.25` if gross ≥ 5500, otherwise `0.19`
+
+**Deductions:** deduct income tax from the gross salary using the tax rate. Then also deduct EPF (11%) and SOCSO (0.5%), both calculated on the original gross salary. The net salary is what remains after all three deductions.
+
+**Output:** three lines — the name, the `tax_rate` as a decimal (for example `0.22`), and the net salary to two decimal places.
+
+Starter in `exercise2.py`:
+
+```python
+employee_name = input()
+base_salary = float(input())
+overtime_hours = int(input())
+tax_status = input()
+
+
+
+print(employee_name)
+print(tax_rate)
+print(f"{net_salary:.2f}")
+```
+
+## Exercise 3: Movie Ticket Pricing <Badge type="warning" text="Task" />
+
+Read the day, show time, and customer type, then work out the base price and the final price.
+
+**Inputs:** `day_type` is `weekend` or `weekday`; `show_time` is the hour in 24-hour form (0–23); `customer_type` is `Adult`, `Child`, or `Senior`.
+
+**Base price:**
+- `weekend`: Adult RM18, Child RM12, Senior RM15
+- `weekday`: Adult RM15, Child RM10, Senior RM12
+
+**Final price:** the base price, with RM3 added for an evening show (after 6pm, i.e. `show_time > 18`). If it is not an evening show, the final price is the same as the base price.
+
+**Output:** two lines — the base price, then the final price.
+
+Starter in `exercise3.py`:
+
+```python
+day_type = input()
+show_time = int(input())
+customer_type = input()
+
+
+
+print(base_price)
+print(final_price)
+```
+
+## Exercise 4: Water Bill Calculator <Badge type="warning" text="Task" />
+
+Read the current and previous meter readings, then work out the consumption, the water cost, and the total bill. The consumption is how much more the current reading is than the previous one.
+
+**Water cost** uses tiered pricing on the consumption:
+- First 20 cubic meters: RM0.57 each
+- Next 15 cubic meters: RM1.03 each
+- Above 35 cubic meters: RM1.40 each
+
+**Extra charges** added on top of the water cost: RM8 service charge and RM2 sewerage.
+
+**Output:** three lines — the consumption, the water cost (water only, before the extra charges), then the total bill (water cost plus both extra charges).
+
+Starter in `exercise4.py`:
+
+```python
+current_reading = int(input())
+previous_reading = int(input())
+
+
+
+print(consumption)
+print(water_cost)
+print(total_bill)
+```
+
+## Exercise 5: Restaurant Billing System <Badge type="warning" text="Task" />
+
+Read a main course, drink, and dessert, then work out the final bill.
+
+**Menu prices** (the food cost is the three items added together):
+- Main course: `Chicken` RM10, `Beef` RM12, `Fish` RM11
+- Drink: `Soft Drink` RM2, `Coffee` RM3
+- Dessert: `Ice Cream` RM4, `Cake` RM5
+
+A **10% service charge** is added to the food cost to give the final bill.
+
+**Output:** one line — the final bill to two decimal places.
+
+Starter in `exercise5.py`:
+
+```python
+main_course = input()
+drink = input()
+dessert = input()
+
+
+
+print(f"{final_bill:.2f}")
+```
+
+## Exercise 6: Employee Overtime Calculator <Badge type="warning" text="Task" />
+
+Read a position, overtime hours, and whether it is a weekend, then work out the overtime pay.
+
+**Base hourly rate** by `position`: `Manager` RM30, `Supervisor` RM20, `Staff` RM15, `Intern` RM8.
+
+**Overtime pay:** the first 8 overtime hours are paid at 1.5 × the base rate, and any hours beyond 8 are paid at 2.0 × the base rate.
+
+**Weekend bonus:** if `is_weekend` is `yes`, an extra RM5 is added for every overtime hour worked, on top of the overtime pay.
+
+**Output:** one line — the overtime pay.
+
+Starter in `exercise6.py`:
+
+```python
+position = input()
+overtime_hours = int(input())
+is_weekend = input()
+
+
+
+print(overtime_pay)
+```
 

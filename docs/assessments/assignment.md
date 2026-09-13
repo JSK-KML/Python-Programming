@@ -31,7 +31,7 @@ Late submissions will **NOT** be accepted.
 - Fill in your personal information:
   - Full name
   - Matric number
-  - Class (C01/C02)
+  - Class (C01/C02/C03)
 
 #### **2. Table of Contents**
 - Use Google Docs auto-generated table of contents
@@ -97,8 +97,9 @@ Submit **TWO** files:
 - Make a copy to your Google Drive before editing
 
 **Submission Links:**
-- **C01 Class**: [Submit Here](https://forms.gle/SJxYoyhhqvxhRVdR9)
-- **C02 Class**: [Submit Here](https://forms.gle/V7iFVCPPzYxvonL78)
+- **C01 Class**: [Submit Here](https://forms.gle/JUpxJRcHiv4SjAZBA)
+- **C02 Class**: [Submit Here](https://forms.gle/r56v2BbG6wBhstET9)
+- **C03 Class**: [Submit Here](https://forms.gle/WVy6vF8VuGST9gzV7)
 
  
 

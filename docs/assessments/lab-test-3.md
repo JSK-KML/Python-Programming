@@ -15,12 +15,14 @@ You can see the questions [here](/assessments/lab-test-3.pdf)
 ### Rules
 - No phones or AI tools allowed
 - No collaboration with other students
-- Questions will be provided on printed paper
 
 ### Submission Process
 1. Complete your program in VS Code.
 2. Save the Python file as `lab-test-3.py`
-3. Upload the file to the [Google Form](https://forms.gle/NNGupihLRLnWqof99) 
+3. Upload the file to the Google Form for your class:
+   - **C01 Class**: [Submit Here](https://forms.gle/Wu3wsRTnDny9D81b9)
+   - **C02 Class**: [Submit Here](https://forms.gle/dGuCAimja7VboXGA6)
+   - **C03 Class**: [Submit Here](https://forms.gle/G81sDJFDE7DTcGhb6)
 4. Fill in all required information in the form
 
 ### What to Submit
