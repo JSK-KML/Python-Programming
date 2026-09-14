@@ -6,7 +6,9 @@ outline: deep
 # Assignment CP115 
 
 ::: danger DEADLINE
-**Submission Deadline:** 8.00 PM, 17th October 2025
+**Release Date:** 13th September 2026
+
+**Submission Deadline:** 8.00 PM, 28th September 2026
 
 Late submissions will **NOT** be accepted.
 :::
