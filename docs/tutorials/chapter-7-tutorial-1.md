@@ -5,414 +5,54 @@ outline: deep
 
 # Tutorial 10 : Chapter 7 - Counter-Controlled Loops
 
+### Exercise 1: Restaurant Bill Calculator <Badge type="tip" text="Question" />
 
+A restaurant calculates total bills for **5 customers**. For each customer, ask for the **bill amount**, then work out a service charge of 5% and a tax of 6% (both based on the original bill), and print the bill, the service charge, the tax, and the total (bill + service charge + tax). Use a `for` loop to repeat this for all five customers.
 
+### Exercise 2: Student Final Grade Calculator <Badge type="tip" text="Question" />
 
-### **Exercise 1: Restaurant Bill Calculator** <Badge type="tip" text="Exercise" />
-
-A restaurant needs to calculate total bills for 5 customers including service charge and tax.
-
-**Charges:**
-- Service charge: 5% of bill
-- Tax: 6% of bill (calculated on original amount, not after service charge)
-- Total = Bill + Service Charge + Tax
-
-**Partially completed code:**
-```python:line-numbers
-print("=== RESTAURANT BILL CALCULATOR ===")
-service_rate = 0.05
-tax_rate = 0.06
-
-for customer in range(1, __):
-    bill = float(input(f"Enter bill amount for Customer {customer}: RM"))
-
-    service_charge = bill * __
-    tax = bill * __
-    total = bill + __ + __
-
-    print(f"Customer {customer}:")
-    print(f"  Bill: RM{bill:.2f}")
-    print(f"  Service Charge (5%): RM{service_charge:.2f}")
-    print(f"  Tax (6%): RM{tax:.2f}")
-    print(f"  Total: RM{total:.2f}")
-    print()
-```
-
-**Sample Run:**
-```
-=== RESTAURANT BILL CALCULATOR ===
-Enter bill amount for Customer 1: RM50.00
-Customer 1:
-  Bill: RM50.00
-  Service Charge (5%): RM2.50
-  Tax (6%): RM3.00
-  Total: RM55.50
-
-Enter bill amount for Customer 2: RM120.50
-Customer 2:
-  Bill: RM120.50
-  Service Charge (5%): RM6.03
-  Tax (6%): RM7.23
-  Total: RM133.76
-
-Enter bill amount for Customer 3: RM89.90
-Customer 3:
-  Bill: RM89.90
-  Service Charge (5%): RM4.50
-  Tax (6%): RM5.39
-  Total: RM99.79
-```
-
-
-
-### **Exercise 2: Student Final Grade Calculator** <Badge type="tip" text="Exercise" />
-
-Calculate final grades for 5 students based on Test score (70%) and Assignment score (30%).
-
-**Grading system:**
-- A: 80-100
-- B: 70-79
-- C: 60-69
-- D: 50-59
-- F: Below 50
-
-**Partially completed code:**
-```python:line-numbers
-print("=== STUDENT FINAL GRADE CALCULATOR ===")
-test_weight = 0.70
-assignment_weight = 0.30
-
-for student in range(1, __):
-    print(f"Student {student}:")
-    test_score = int(input("  Enter test score: "))
-    assignment_score = int(input("  Enter assignment score: "))
-
-    final_score = (test_score * __) + (assignment_score * __)
-
-    if final_score >= __:
-        grade = "__"
-    elif final_score >= __:
-        grade = "__"
-    elif final_score >= __:
-        grade = "__"
-    elif final_score >= __:
-        grade = "__"
-    else:
-        grade = "__"
-
-    print(f"  Test: {test_score} (70%), Assignment: {assignment_score} (30%)")
-    print(f"  Final Score: {final_score:.2f} = Grade {grade}")
-    print()
-```
-
-**Sample Run:**
-```
-=== STUDENT FINAL GRADE CALCULATOR ===
-Student 1:
-  Enter test score: 85
-  Enter assignment score: 90
-  Test: 85 (70%), Assignment: 90 (30%)
-  Final Score: 86.50 = Grade A
-
-Student 2:
-  Enter test score: 70
-  Enter assignment score: 80
-  Test: 70 (70%), Assignment: 80 (30%)
-  Final Score: 73.00 = Grade B
-
-Student 3:
-  Enter test score: 55
-  Enter assignment score: 60
-  Test: 55 (70%), Assignment: 60 (30%)
-  Final Score: 56.50 = Grade D
-```
-
-
-
-### **Exercise 3: Electricity Bill with Rebate** <Badge type="tip" text="Exercise" />
-
-Calculate electricity bills for 5 houses. Bills include usage charge, surcharge if high usage, and rebate if low usage.
-
-**Rates:**
-- RM0.40 per kWh
-- Surcharge: RM25 if usage > 300 kWh
-- Rebate: RM15 if usage < 100 kWh
-
-**Partially completed code:**
-```python:line-numbers
-print("=== ELECTRICITY BILL WITH REBATE ===")
-rate = 0.40
-surcharge = 25
-rebate = 15
-
-for house in range(1, __):
-    kwh = float(input(f"Enter kWh usage for House {house}: "))
-    basic_charge = kwh * __
-
-    if kwh > __:
-        extra_charge = __
-    else:
-        extra_charge = __
-
-    if kwh < __:
-        rebate_amount = __
-    else:
-        rebate_amount = __
-
-    total = basic_charge + __ - __
-
-    print(f"House {house}:")
-    print(f"  Usage: {kwh} kWh")
-    print(f"  Basic Charge: RM{basic_charge:.2f}")
-    print(f"  Surcharge: RM{extra_charge:.2f}")
-    print(f"  Rebate: -RM{rebate_amount:.2f}")
-    print(f"  Total: RM{total:.2f}")
-    print()
-```
-
-**Sample Run:**
-```
-=== ELECTRICITY BILL WITH REBATE ===
-Enter kWh usage for House 1: 85
-House 1:
-  Usage: 85.0 kWh
-  Basic Charge: RM34.00
-  Surcharge: RM0.00
-  Rebate: -RM15.00
-  Total: RM19.00
-
-Enter kWh usage for House 2: 320
-House 2:
-  Usage: 320.0 kWh
-  Basic Charge: RM128.00
-  Surcharge: RM25.00
-  Rebate: -RM0.00
-  Total: RM153.00
-
-Enter kWh usage for House 3: 150
-House 3:
-  Usage: 150.0 kWh
-  Basic Charge: RM60.00
-  Surcharge: RM0.00
-  Rebate: -RM0.00
-  Total: RM60.00
-```
-
-
-
-### **Exercise 4: Online Store Checkout** <Badge type="tip" text="Exercise" />
-
-Calculate final prices for 5 products with discount and shipping fee.
-
-**Rules:**
-- Discount: 10% if price ≥ RM1000, otherwise 5%
-- Shipping: RM10 if price < RM500, otherwise FREE
-
-**Partially completed code:**
-```python:line-numbers
-print("=== ONLINE STORE CHECKOUT ===")
-
-for product_num in range(1, __):
-    price = float(input(f"Enter price for Product {product_num}: RM"))
-
-    if price >= __:
-        discount_rate = __
-    else:
-        discount_rate = __
-
-    discount = price * __
-    price_after_discount = price - __
-
-    if price < __:
-        shipping = __
-    else:
-        shipping = __
-
-    final_price = __ + __
-
-    print(f"Product {product_num}:")
-    print(f"  Original Price: RM{price:.2f}")
-    print(f"  Discount ({int(discount_rate*100)}%): -RM{discount:.2f}")
-    print(f"  Shipping: RM{shipping:.2f}")
-    print(f"  Final Price: RM{final_price:.2f}")
-    print()
-```
-
-**Sample Run:**
-```
-=== ONLINE STORE CHECKOUT ===
-Enter price for Product 1: RM450
-Product 1:
-  Original Price: RM450.00
-  Discount (5%): -RM22.50
-  Shipping: RM10.00
-  Final Price: RM437.50
-
-Enter price for Product 2: RM1200
-Product 2:
-  Original Price: RM1200.00
-  Discount (10%): -RM120.00
-  Shipping: RM0.00
-  Final Price: RM1080.00
-
-Enter price for Product 3: RM800
-Product 3:
-  Original Price: RM800.00
-  Discount (5%): -RM40.00
-  Shipping: RM0.00
-  Final Price: RM760.00
-```
-
-
-
-### **Exercise 5: International Shipping Calculator** <Badge type="tip" text="Exercise" />
-
-Calculate shipping costs for 5 packages including weight charges, insurance, and express delivery option.
-
-**Rates:**
-- Base rate: RM5
-- If weight > 5kg: Add RM2 per kg for excess weight
-- Insurance: RM8 if package value > RM500
-- Express delivery: RM12 (ask user yes/no)
-
-**Partially completed code:**
-```python:line-numbers
-print("=== INTERNATIONAL SHIPPING CALCULATOR ===")
-base_rate = 5
-rate_per_kg = 2
-insurance_fee = 8
-express_fee = 12
-
-for package_num in range(1, __):
-    print(f"Package {package_num}:")
-    weight = float(input("  Enter weight (kg): "))
-    value = float(input("  Enter package value (RM): "))
-    express = input("  Express delivery? (yes/no): ")
-
-    if weight > __:
-        excess_weight = weight - __
-        weight_charge = base_rate + (excess_weight * __)
-    else:
-        weight_charge = __
-
-    if value > __:
-        insurance = __
-    else:
-        insurance = __
-
-    if express == "__":
-        express_charge = __
-    else:
-        express_charge = __
-
-    total = __ + __ + __
-
-    print(f"  Weight Charge: RM{weight_charge:.2f}")
-    print(f"  Insurance: RM{insurance:.2f}")
-    print(f"  Express: RM{express_charge:.2f}")
-    print(f"  Total: RM{total:.2f}")
-    print()
-```
-
-**Sample Run:**
-```
-=== INTERNATIONAL SHIPPING CALCULATOR ===
-Package 1:
-  Enter weight (kg): 3
-  Enter package value (RM): 400
-  Express delivery? (yes/no): no
-  Weight Charge: RM5.00
-  Insurance: RM0.00
-  Express: RM0.00
-  Total: RM5.00
-
-Package 2:
-  Enter weight (kg): 8
-  Enter package value (RM): 1200
-  Express delivery? (yes/no): yes
-  Weight Charge: RM11.00
-  Insurance: RM8.00
-  Express: RM12.00
-  Total: RM31.00
-
-Package 3:
-  Enter weight (kg): 15
-  Enter package value (RM): 800
-  Express delivery? (yes/no): no
-  Weight Charge: RM25.00
-  Insurance: RM8.00
-  Express: RM0.00
-  Total: RM33.00
-```
-
-
-### **Exercise 6: Predict the Output**
-
-**Look at this code snippet and predict exactly what will be printed:**
-
-```python:line-numbers
-counter = 15
-total = 0
-while counter >= 8:
-    total += counter
-    print(f"Step {counter}: Total = {total}")
-    counter -= 3
-print(f"Final result: {total}")
-```
-
-**Your prediction (write the exact output):**
-
-
-
-### **Exercise 7: Range Prediction Challenge**
-
-**Predict the exact output of this loop:**
-
-```python:line-numbers
-for value in range(25, 5, -4):
-    result = value * 2 - 10
-    print(f"Input: {value} → Output: {result}")
-```
-
-**Your prediction (write the exact output):**
-
-
-
-
-### **Exercise 8: Fix the Loop**
-
-**This loop is supposed to calculate the average of 5 numbers entered by the user:**
-
-```python:line-numbers
-# Expected: Input 5 numbers, calculate and display their average
-count = 0
-total = 0
-
-while count < 5:
-    number = float(input(f"Enter number {count + 1}: "))
-    total += number
-
-average = total / count
-print(f"Average: {average}")
-```
-
-
-
-
-### **Exercise 9: Fix the Loop**
-
-**This loop is supposed to print multiples of 3 from 15 down to 3:**
-
-```python:line-numbers
-# Expected output: 15, 12, 9, 6, 3
-current = 15
-while current >= 3:
-    if current % 3 == 0:
-        print(current)
-    current -= 1
-    if current == 9:
-        current = 12
-```
+A class has **5 students**. For each student, ask for a **test score** and an **assignment score**, then work out the final score as 70% of the test plus 30% of the assignment. Print the final score together with its grade, where the grade is `"A"` (80 and above), `"B"` (70–79), `"C"` (60–69), `"D"` (50–59), or `"F"` (below 50). Use a `for` loop to repeat this for all five students.
 
+### Exercise 3: Electricity Bill with Rebate <Badge type="tip" text="Question" />
 
+An electricity company bills **5 houses**. For each house, ask for the **usage** in kWh, then work out the bill at RM0.40 per kWh. Add a surcharge of RM25 when usage is above 300 kWh, and give a rebate of RM15 when usage is below 100 kWh. Print the usage, the basic charge, the surcharge, the rebate, and the total. Use a `for` loop to repeat this for all five houses.
 
+### Exercise 4: Online Store Checkout <Badge type="tip" text="Question" />
+
+An online store checks out **5 products**. For each product, ask for the **price**, then apply a discount of 10% when the price is RM1000 or more, otherwise 5%. Add a shipping fee of RM10 when the price is below RM500, otherwise shipping is free. Print the original price, the discount, the shipping, and the final price. Use a `for` loop to repeat this for all five products.
+
+### Exercise 5: International Shipping Calculator <Badge type="tip" text="Question" />
+
+A courier calculates shipping for **5 packages**. For each package, ask for the **weight** in kg, the **package value** in RM, and whether **express delivery** is wanted (`yes`/`no`). The base rate is RM5, plus RM2 for every kilogram above 5 kg. Add RM8 insurance when the package value is above RM500, and add RM12 when express delivery is chosen. Print the weight charge, the insurance, the express charge, and the total. Use a `for` loop to repeat this for all five packages.
+
+### Exercise 6: Countdown Total <Badge type="tip" text="Question" />
+
+Write a program using a `while` loop that starts a counter at 15 and, as long as the counter is 8 or more, adds the counter to a running total, prints the current step and total, then decreases the counter by 3. After the loop ends, print the final total.
+
+### Exercise 7: Gym Membership Renewal <Badge type="tip" text="Question" />
+
+A gym is renewing memberships for **6 members**. For each member, ask for the number of **years** they have been a member. The base renewal fee is RM120, but loyal members pay less: a member of 10 years or more gets RM40 off, a member of 5 years or more gets RM20 off, and everyone else pays the full fee. Print each member's final renewal fee, and at the end print the total collected from all six members.
+
+### Exercise 8: Cafe Daily Takings <Badge type="tip" text="Question" />
+
+A small cafe served **7 customers** today. For each customer, ask for the amount they spent. Using a loop, add up all the amounts and, at the end, print the total takings and the average spent per customer.
+
+### Exercise 9: Class Attendance Report <Badge type="tip" text="Question" />
+
+A teacher records the attendance status of **10 students**. For each student, ask for their status, which is `present`, `late`, or `absent`, and count how many students fall into each of the three groups. After the loop, print the three counts.
+
+### Exercise 10: Toll Booth Collection <Badge type="tip" text="Question" />
+
+A toll booth serves **8 vehicles** in a queue. For each vehicle, ask for its **class**, which is `1`, `2`, or `3`. Class 1 pays RM3, class 2 pays RM6, and class 3 pays RM9. Using a `while` loop, work out each vehicle's toll and add it to a running total. After the loop, print the total money collected.
+
+### Exercise 11: Shopping Cart Total <Badge type="tip" text="Question" />
+
+A cashier scans a shopping cart. First ask **how many items** are in the cart. Then, using a `while` loop that repeats that many times, ask for each item's price and add it to the bill. After the loop, print the total bill, and print `"Free delivery"` when the total reaches RM150 or more.
+
+### Exercise 12: Warehouse Stock Check <Badge type="tip" text="Question" />
+
+A warehouse manager checks stock levels. First ask **how many items** are to be checked. Then, using a `while` loop that repeats that many times, ask for each item's **stock count** and print its status: `"Out of stock"` when the count is 0, `"Low stock"` when the count is below 10, or `"In stock"` otherwise.
+
+### Exercise 13: Count the Marks <Badge type="tip" text="Question" />
+
+Write a program that first asks the user **how many students** are in the class. Then, using a `while` loop that repeats that many times, ask for each student's **mark** and count how many of them passed (a mark of 50 or above). After the loop, print how many students passed.
