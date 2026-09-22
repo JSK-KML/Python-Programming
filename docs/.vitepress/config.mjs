@@ -29,7 +29,7 @@ export default defineConfig({
           { text: 'Assessments', link: '/assessments/course' },
           { text: 'Lab Test 1', link: '/assessments/lab-test-1' },
           { text: 'Lab Test 2', link: '/assessments/lab-test-2' },
-        //  { text: 'Lab Test 3', link: '/assessments/lab-test-3' },
+          { text: 'Lab Test 3', link: '/assessments/lab-test-3' },
           { text: 'Assignment', link: '/assessments/assignment' }
         ],
         activeMatch: '^/assessments/'
@@ -111,7 +111,7 @@ export default defineConfig({
         { text: 'Assessments', link: '/assessments/course' },
         { text: 'Lab Test 1', link: '/assessments/lab-test-1' },
         { text: 'Lab Test 2', link: '/assessments/lab-test-2' },
-       // { text: 'Lab Test 3', link: '/assessments/lab-test-3' },
+        { text: 'Lab Test 3', link: '/assessments/lab-test-3' },
         { text: 'Assignment', link: '/assessments/assignment' }
       ],
 
