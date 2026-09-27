@@ -1,9 +1,9 @@
 ---
 outline: deep
-title: Lab 12 - Sentinel-Controlled Loops and Loop Control
+title: Lab 11 - Sentinel-Controlled Loops and Loop Control
 ---
 
-# Lab 12: Sentinel-Controlled Loops and Loop Control
+# Lab 11: Sentinel-Controlled Loops and Loop Control
 
 ## Pull and Update in VS Code
 
@@ -17,17 +17,17 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
 
 ## Introduction to Sentinel-Controlled Loops
 
-In Lab 11, you learned counter-controlled loops where you know exactly how many times to repeat. But what if you don't know how many times? What if a teacher wants to enter student grades without counting them first? What if a cashier wants to keep scanning items until the customer says they're done?
+In Lab 10, you learned counter-controlled loops where you know exactly how many times to repeat. But what if you don't know how many times? What if a teacher wants to enter student grades without counting them first? What if a cashier wants to keep scanning items until the customer says they're done?
 
 This is where sentinel-controlled loops come in. Instead of counting repetitions, you keep looping until you see a special signal that means "stop."
 
-Launch **VS Code** and open the `exercise.py` file in `/labs/lab12/`.
+Launch **VS Code** and open the `exercise.py` file in `/labs/lab11/`.
 
 ## Understanding the Problem
 
 ### When Counter Loops Don't Work
 
-In Lab 11, you used counter-controlled loops when you knew the exact count. But sometimes you simply don't know this upfront.
+In Lab 10, you used counter-controlled loops when you knew the exact count. But sometimes you simply don't know this upfront.
 
 Copy this code into your `exercise.py` file:
 
@@ -234,7 +234,7 @@ Create a program that calculates the total cost of items in a shopping cart. Kee
 - Use all three parts: prime input, condition check, update input
 - Display total items and total cost
 
-Create `/labs/lab12/exercise1/exercise1.py`:
+Create `/labs/lab11/exercise1/exercise1.py`:
 
 ```python
 price = float(input())
@@ -255,7 +255,7 @@ Keep accepting test scores from the user until they enter a value outside the va
 - Calculate total, count, and average of scores
 - Display count, total, and average
 
-Create `/labs/lab12/exercise2/exercise2.py`:
+Create `/labs/lab11/exercise2/exercise2.py`:
 
 ```python
 score = float(input())
@@ -277,7 +277,7 @@ Keep accepting ages from users until they type "done". Calculate the total age, 
 - Calculate total, count, and average of ages
 - Display count, total, and average
 
-Create `/labs/lab12/exercise3/exercise3.py`:
+Create `/labs/lab11/exercise3/exercise3.py`:
 
 ```python
 age_input = input()
@@ -301,7 +301,7 @@ Keep accepting student scores until the user types "end". For each score, classi
 - Calculate pass rate percentage
 - Display passing count, failing count, and pass rate
 
-Create `/labs/lab12/exercise4/exercise4.py`:
+Create `/labs/lab11/exercise4/exercise4.py`:
 
 ```python
 score_input = input()
@@ -315,6 +315,6 @@ print(f"{pass_rate:.2f}")
 
 ## Commit and Push Your Work
 
-After completing all exercises, save all your files and commit them to your repository. Make sure your files are properly saved in the `/labs/lab12/` directory, including `exercise.py` and all exercise folders with their Python files.
+After completing all exercises, save all your files and commit them to your repository. Make sure your files are properly saved in the `/labs/lab11/` directory, including `exercise.py` and all exercise folders with their Python files.
 
-Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 12: Sentinel-Controlled Loops", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully and that any automated tests pass.
+Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 11: Sentinel-Controlled Loops", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully and that any automated tests pass.
