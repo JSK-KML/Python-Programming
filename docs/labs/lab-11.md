@@ -223,94 +223,81 @@ Both produce the same result, but notice the difference:
 
 ## Sentinel-Controlled Loop Exercises
 
-### Exercise 1: Price Calculator <Badge type="warning" text="Task" />
+### Exercise 1: Longest Calm Streak <Badge type="warning" text="Task" />
 
-Create a program that calculates the total cost of items in a shopping cart. Keep asking for item prices until the user enters any negative number. Calculate the total cost and count how many items were entered. Assume all valid prices are positive numbers.
+A weather station reads wind speeds one at a time until a negative number ends the readings. A reading is **calm** when it is below 20. Find the longest run of consecutive calm readings.
 
-**Requirements**:
-- Sentinel: Any negative number 
-- Valid price range: Any positive number (assume all inputs are either valid prices or negative sentinels)
-- Track total cost and item count
-- Use all three parts: prime input, condition check, update input
-- Display total items and total cost
+At the end, print the total number of readings and the length of the longest calm streak.
+
+**Example:** `15, 10, 25, 8, 12, 5, 30` then `-1` gives 7 readings. The calm runs are `15, 10` (length 2) and `8, 12, 5` (length 3), so the longest calm streak is `3`.
 
 Create `/labs/lab11/exercise1/exercise1.py`:
 
 ```python
-price = float(input())
+speed = int(input())
 
 # TODO: Your code here
 
-print(item_count)
-print(f"{total_cost:.2f}")
+print(total_readings)
+print(longest_streak)
 ```
 
-### Exercise 2: Score Analyzer <Badge type="warning" text="Task" />
+### Exercise 2: Winning Margin <Badge type="warning" text="Task" />
 
-Keep accepting test scores from the user until they enter a value outside the valid range. Calculate the total score, count of scores, and average score. Valid scores are in the range 0-100.
+Two players take turns scoring. Scores are entered one at a time until `-1` ends the game. The 1st, 3rd, 5th and other odd-numbered scores belong to Player A, and the 2nd, 4th, 6th and other even-numbered scores belong to Player B. Work out each player's total and who wins.
 
-**Requirements**:
-- Sentinel: Any value outside 0-100 range 
-- Valid score range: 0-100
-- Calculate total, count, and average of scores
-- Display count, total, and average
+At the end, print Player A's total, Player B's total, and the winner (`A`, `B`, or `Tie`).
+
+**Example:** `10, 8, 5, 12, 7` then `-1` gives Player A `10 + 5 + 7 = 22` and Player B `8 + 12 = 20`, so the winner is `A`.
 
 Create `/labs/lab11/exercise2/exercise2.py`:
 
 ```python
-score = float(input())
+score = int(input())
 
 # TODO: Your code here
 
-print(score_count)
-print(total_score)
-print(f"{average_score:.2f}")
+print(total_a)
+print(total_b)
+print(winner)
 ```
 
-### Exercise 3: Age Statistics Calculator <Badge type="warning" text="Task" />
+### Exercise 3: Biggest Jump <Badge type="warning" text="Task" />
 
-Keep accepting ages from users until they type "done". Calculate the total age, count of ages, and average age. Assume all ages are in the range 1-120.
+A sensor sends readings one at a time until a `0` ends them. Compare each reading with the one before it, and find the biggest increase from one reading to the next.
 
-**Requirements**:
-- Use "done" as the sentinel value
-- Age range: 1-120 (assume all inputs are valid)
-- Calculate total, count, and average of ages
-- Display count, total, and average
+At the end, print the total number of readings and the biggest jump.
+
+**Example:** `5, 9, 7, 20, 3` then `0` gives changes of `+4, -2, +13, -17` between readings, so the biggest jump is `13`.
 
 Create `/labs/lab11/exercise3/exercise3.py`:
 
 ```python
-age_input = input()
+number = int(input())
 
 # TODO: Your code here
 
-print(age_count)
-print(total_age)
-print(f"{average_age:.2f}")
+print(count)
+print(biggest_jump)
 ```
 
-### Exercise 4: Grade Classifier <Badge type="warning" text="Task" />
+### Exercise 4: Beat the Record <Badge type="warning" text="Task" />
 
-Keep accepting student scores until the user types "end". For each score, classify it as "Pass" (60 or above) or "Fail" (below 60). Calculate and display the total number of passing scores, total number of failing scores, and the overall pass rate percentage. Assume all scores are in the range 0-100.
+A shop records its daily sales one at a time until a `0` ends the records. A day sets a **new record** when its sales are higher than every day before it. Count how many record days there were. The very first day always counts as a record.
 
-**Requirements**:
-- Use "end" as the sentinel value
-- Score range: 0-100 (assume all inputs are valid)
-- Classify each score as Pass (≥60) or Fail (<60)
-- Count passing and failing scores separately
-- Calculate pass rate percentage
-- Display passing count, failing count, and pass rate
+At the end, print the total number of days and the number of record days.
+
+**Example:** `30, 20, 50, 50, 80, 10` then `0` gives 6 days. The records are set on day 1 (`30`), day 3 (`50`), and day 5 (`80`), so there are `3` record days. The second `50` is not a record because it is not higher than the earlier `50`.
 
 Create `/labs/lab11/exercise4/exercise4.py`:
 
 ```python
-score_input = input()
+sales = int(input())
 
 # TODO: Your code here
 
-print(passing_count)
-print(failing_count)
-print(f"{pass_rate:.2f}")
+print(count)
+print(record_days)
 ```
 
 ## Commit and Push Your Work
