@@ -91,7 +91,10 @@ export default defineConfig({
       },
       {
         text: 'Exams',
-        link: '/exams/',
+        items: [
+          { text: 'Past Year Exams', link: '/exams/' },
+          { text: 'Marks', link: '/exams/jaguh-week-11' },
+        ],
         activeMatch: '^/exams/'
       },
       // {
@@ -187,7 +190,6 @@ export default defineConfig({
 
       '/exams/': [
         { text: 'Past Year Exams', link: '/exams/' },
-        { text: 'Sample Question', link: '/exams/#sample-question' },
         { text: 'Marks', link: '/exams/jaguh-week-11' },
         // { text: 'Sample Question Answer', link: '/exams/#sample-question-answer' },
         // { text: 'Exam 1', link: '/exams/#exam-1' },
