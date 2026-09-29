@@ -38,7 +38,7 @@ outline: deep
 
 <br>
 <br>
-
+-->
 
 ## Exam 1
 
@@ -145,6 +145,7 @@ outline: deep
 <br>
 <br>
 
+<!-- 
 ## Skema KMK Pra-PSPM 25/26
 
 <iframe src="/Python-Programming/exam/Skema KMK Pra-PSPM 25_26.pdf" width="100%" height="400" allowfullscreen></iframe>
@@ -156,7 +157,7 @@ outline: deep
     Open Fullscreen
   </button>
 </a>
-
 -->
+
 
 

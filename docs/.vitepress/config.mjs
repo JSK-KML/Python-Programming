@@ -186,6 +186,7 @@ export default defineConfig({
       // ],
 
       '/exams/': [
+        { text: 'Past Year Exams', link: '/exams/' },
         { text: 'Sample Question', link: '/exams/#sample-question' },
         { text: 'Marks', link: '/exams/jaguh-week-11' },
         // { text: 'Sample Question Answer', link: '/exams/#sample-question-answer' },
