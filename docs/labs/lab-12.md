@@ -1,9 +1,9 @@
 ---
 outline: deep
-title: Lab 13 - Loop Control Statements
+title: Lab 12 - Loop Control Statements
 ---
 
-# Lab 13: Loop Control Statements
+# Lab 12: Loop Control Statements
 
 ## Pull and Update in VS Code
 
@@ -17,11 +17,11 @@ Once the online repo is in-sync, bring those changes down to your PC by clicking
 
 ## Introduction to Loop Control
 
-In Labs 11 and 12, you learned how loops naturally end - counter loops finish after a specific number of iterations, and sentinel loops stop when they see a special value. But what if you need more control? What if you want to stop a loop early when you find what you're looking for? Or skip certain iterations without stopping the entire loop?
+In Labs 10 and 11, you learned how loops naturally end - counter loops finish after a specific number of iterations, and sentinel loops stop when they see a special value. But what if you need more control? What if you want to stop a loop early when you find what you're looking for? Or skip certain iterations without stopping the entire loop?
 
 Think about searching for a book in a library. You don't keep searching after you find it - you stop immediately. Or imagine processing a list of numbers but skipping the negative ones. These scenarios require loop control statements.
 
-Launch **VS Code** and open the `exercise.py` file in `/labs/lab13/`.
+Launch **VS Code** and open the `exercise.py` file in `/labs/lab12/`.
 
 ## The Problem: Inefficient Searching
 
@@ -268,9 +268,15 @@ This version checks all numbers 0-9 and reports 8 and 9. The loop never stops ea
 
 ## Exercise 1: Password System with Limited Attempts <Badge type="warning" text="Task" />
 
-Create a password verification system that gives users 3 attempts. Stop immediately if they enter the correct password. The correct password is "python123".
+A password system gives the user up to 3 attempts to enter the correct password, which is `python123`. The system stops asking as soon as the correct password is entered. Print whether the login succeeded (`True` or `False`) and how many attempts were used.
 
-Create `/labs/lab13/exercise1/exercise1.py`:
+**Example:** the user types `apple`, then `python123` →
+- Attempt 1: `apple` is wrong.
+- Attempt 2: `python123` is correct, so it stops here.
+
+So the program prints `True` and `2`.
+
+Create `/labs/lab12/exercise1/exercise1.py`:
 
 ```python
 correct_password = "python123"
@@ -283,9 +289,11 @@ print(attempts_used)
 
 ## Exercise 2: First Divisible Number Finder <Badge type="warning" text="Task" />
 
-Find the first number between 1 and 100 that is divisible by both 7 and 13. Stop searching immediately after finding it.
+Find the first number between 1 and 100 that is divisible by **both** 7 and 13. Stop searching as soon as it is found and print it.
 
-Create `/labs/lab13/exercise2/exercise2.py`:
+**Example:** checking 1, 2, 3, and so on, the first number that divides evenly by both 7 and 13 is `91`, so the program prints `91` and stops there.
+
+Create `/labs/lab12/exercise2/exercise2.py`:
 
 ```python
 # TODO: Your code here
@@ -295,9 +303,18 @@ print(found_number)
 
 ## Exercise 3: Grade Filter with Continue <Badge type="warning" text="Task" />
 
-Process grades and calculate the average, but skip any grades that are invalid (less than 0 or greater than 100). Keep reading grades until -1 is entered. Count how many valid grades were processed.
+Grades are entered one at a time until `-1` ends the list. Any invalid grade (below 0 or above 100) is skipped and does not count. Count how many valid grades there were and work out their average. Print the valid count and the average.
 
-Create `/labs/lab13/exercise3/exercise3.py`:
+**Example:** `80, 150, 70, -5, 90` then `-1` →
+- 80 is valid.
+- 150 is above 100, so it is skipped.
+- 70 is valid.
+- -5 is below 0, so it is skipped.
+- 90 is valid.
+
+So there are `3` valid grades with an average of `80.00`.
+
+Create `/labs/lab12/exercise3/exercise3.py`:
 
 ```python
 grade = float(input())
@@ -308,60 +325,72 @@ print(valid_count)
 print(f"{average:.2f}")
 ```
 
-## Exercise 4: Positive Number Sum <Badge type="warning" text="Task" />
+## Exercise 4: Shrinking Queue <Badge type="warning" text="Task" />
 
-Keep accepting numbers from the user. Skip negative numbers (don't add them to sum). Stop when the user enters 0. Calculate sum and count of positive numbers only. Note: 0 is neither positive nor negative.
+A shop serves a queue one customer at a time. Each number entered is how many **minutes** a customer took to serve. The shop closes once it has given **60 total minutes of service**, but a customer already being served always finishes. Read service times until the shop closes. Print how many customers were fully served and how many minutes the shop actually stayed open (this may be more than 60, because the last customer still finishes).
 
-Create `/labs/lab13/exercise4/exercise4.py`:
+**Example:** `20, 25, 30, 10` →
+- Customer 1 takes 20 — total 20, still open.
+- Customer 2 takes 25 — total 45, still open.
+- Customer 3 takes 30 — total 75, which passes 60, so the shop closes after this customer finishes.
+- The `10` is ignored because the shop has already closed.
+
+So the program prints `3` customers and `75` minutes.
+
+Create `/labs/lab12/exercise4/exercise4.py`:
 
 ```python
-number = float(input())
+minutes = int(input())
 
 # TODO: Your code here
 
-print(positive_count)
-print(f"{positive_sum:.2f}")
+print(customers)
+print(total_minutes)
 ```
 
-## Exercise 5: ATM Withdrawal Validator <Badge type="warning" text="Task" />
+## Exercise 5: Lucky Dip <Badge type="warning" text="Task" />
 
-You are creating an ATM system. Read withdrawal amounts from the user until they enter 0 to finish. The ATM has these rules:
-- Minimum withdrawal: $20
-- Maximum withdrawal: $500
-- Only multiples of $20 are allowed
+Numbers are entered one at a time until `0` ends the input. A number adds to your score **only if it is bigger than your current score**; your score starts at 0. Any number that is not bigger is ignored. Print your final score and how many numbers were ignored.
 
-Count how many valid withdrawals were made and calculate the total amount withdrawn. Skip invalid amounts and continue asking.
+**Example:** `5, 3, 8, 8, 20` then `0` →
+- 5 is bigger than 0 — add it, score 5.
+- 3 is not bigger than 5 — ignored.
+- 8 is bigger than 5 — add it, score 13.
+- 8 is not bigger than 13 — ignored.
+- 20 is bigger than 13 — add it, score 33.
 
-Create `/labs/lab13/exercise5/exercise5.py`:
+So the program prints score `33` and `2` ignored.
+
+Create `/labs/lab12/exercise5/exercise5.py`:
 
 ```python
-amount = int(input())
+number = int(input())
 
 # TODO: Your code here
 
-print(valid_count)      # Number of valid withdrawals
-print(total_withdrawn)  # Total amount from valid withdrawals only
+print(score)
+print(ignored)
 ```
 
-## Exercise 6: Movie Ticket Counter <Badge type="warning" text="Task" />
+## Exercise 6: Overtaken <Badge type="warning" text="Task" />
 
-A cinema is selling tickets. Read customer ages one by one until -1 is entered to stop. Calculate the total ticket revenue based on these prices:
-- Children (age 0-12): $8
-- Teens (age 13-17): $10
-- Adults (age 18-64): $15
-- Seniors (age 65+): $10
+In a two-runner race, each round reports two numbers: first how far **Runner A** has travelled, then how far **Runner B** has travelled. This repeats round after round until `-1` ends the race. Find the **first round in which Runner B is further than Runner A** (B's distance is greater than A's distance). Print the number of that round, or `0` if it never happens.
 
-Count the total number of tickets sold and calculate total revenue.
+**Example:** `100, 90, 150, 140, 200, 210` then `-1` →
+- Round 1: A is at 100, B is at 90 — A is further.
+- Round 2: A is at 150, B is at 140 — A is further.
+- Round 3: A is at 200, B is at 210 — B is further.
 
-Create `/labs/lab13/exercise6/exercise6.py`:
+So the program prints `3`.
+
+Create `/labs/lab12/exercise6/exercise6.py`:
 
 ```python
-age = int(input())
+a = int(input())
 
 # TODO: Your code here
 
-print(tickets_sold)
-print(total_revenue)
+print(overtake_round)
 ```
 
 ## Testing Your Solutions
@@ -375,6 +404,6 @@ Use **pytest** to verify your implementations work correctly:
 
 ## Commit and Push Your Work
 
-After completing all exercises, save all your files and commit them to your repository. Make sure your files are properly saved in the `/labs/lab13/` directory, including `exercise.py` and all exercise folders with their Python files.
+After completing all exercises, save all your files and commit them to your repository. Make sure your files are properly saved in the `/labs/lab12/` directory, including `exercise.py` and all exercise folders with their Python files.
 
-Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 13: Loop Control Statements", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully and that any automated tests pass.
+Use **VS Code**'s source control panel to stage your changes, add a meaningful commit message like "Complete Lab 12: Loop Control Statements", and push your changes to **GitHub**. Check your repository online to ensure all files have been uploaded successfully and that any automated tests pass.
