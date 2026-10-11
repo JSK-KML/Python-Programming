@@ -159,5 +159,18 @@ outline: deep
 </a>
 -->
 
+## PRAPSPM
 
+<iframe src="/Python-Programming/exams/prapspm-25-26.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exams/prapspm-25-26.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    Open Fullscreen
+  </button>
+</a>
+
+<br>
+<br>
 
