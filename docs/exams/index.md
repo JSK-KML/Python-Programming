@@ -189,3 +189,18 @@ outline: deep
 <br>
 <br>
 
+## PRAPSPM 3
+
+<iframe src="/Python-Programming/exams/prapspm-3.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exams/prapspm-3.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    Open Fullscreen
+  </button>
+</a>
+
+<br>
+<br>
+
