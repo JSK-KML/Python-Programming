@@ -204,3 +204,17 @@ outline: deep
 <br>
 <br>
 
+## PSPM 2025/2026
+
+<iframe src="/Python-Programming/exams/pspm-2025-2026.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exams/pspm-2025-2026.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    Open Fullscreen
+  </button>
+</a>
+
+<br>
+<br>
