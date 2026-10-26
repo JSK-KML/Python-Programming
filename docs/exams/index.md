@@ -204,6 +204,96 @@ outline: deep
 <br>
 <br>
 
+## PRAPSPM 4
+
+<iframe src="/Python-Programming/exams/prapspm-4.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exams/prapspm-4.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    Open Fullscreen
+  </button>
+</a>
+
+<br>
+<br>
+
+## PRAPSPM 5
+
+<iframe src="/Python-Programming/exams/prapspm-5.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exams/prapspm-5.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    Open Fullscreen
+  </button>
+</a>
+
+<br>
+<br>
+
+## PRAPSPM 6
+
+<iframe src="/Python-Programming/exams/prapspm-6.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exams/prapspm-6.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    Open Fullscreen
+  </button>
+</a>
+
+<br>
+<br>
+
+## PRAPSPM 7
+
+<iframe src="/Python-Programming/exams/prapspm-7.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exams/prapspm-7.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    Open Fullscreen
+  </button>
+</a>
+
+<br>
+<br>
+
+## PRAPSPM 8
+
+<iframe src="/Python-Programming/exams/prapspm-8.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exams/prapspm-8.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    Open Fullscreen
+  </button>
+</a>
+
+<br>
+<br>
+
+## PRAPSPM 9
+
+<iframe src="/Python-Programming/exams/prapspm-9.pdf" width="100%" height="400" allowfullscreen></iframe>
+
+<br>
+
+<a href="/Python-Programming/exams/prapspm-9.pdf" target="_blank" rel="noopener">
+  <button class="open-pdf-btn">
+    Open Fullscreen
+  </button>
+</a>
+
+<br>
+<br>
+
 ## PSPM 2025/2026
 
 <iframe src="/Python-Programming/exams/pspm-2025-2026.pdf" width="100%" height="400" allowfullscreen></iframe>
